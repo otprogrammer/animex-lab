@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 
 const fetchAnime = async (animeId : any) => {
@@ -16,7 +17,22 @@ async function Anime({params : {animeId}}:PageProps) {
   const getAnime = await fetchAnime(animeId)
 
   return (
-    <div className='text-white'>{getAnime[0].title}</div>
+
+    <div className='text-white'>
+        
+        <div className='w-[200px] min-w-[130px]'>
+
+        <img className='rounded-sm' src={getAnime[0].coverimage} alt={getAnime[0].title}/>
+        </div>
+        <h1>
+        {getAnime[0].title}
+        </h1>
+        <p>{getAnime[0].synopsis}</p>
+        
+
+        <Link href={`/w/${getAnime[0].anime_id}/1`}>
+        Watch</Link>
+        </div>
   )
 }
 
