@@ -10,7 +10,6 @@ const getTrending = async () => {
 
 async function Animes() {
   const data = await getTrending();
-  console.log(data);
   return <div className="grid grid-cols-6 gap-2">
 
 

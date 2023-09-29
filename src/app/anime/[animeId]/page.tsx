@@ -1,7 +1,7 @@
 import React from 'react'
 
 const fetchAnime = async (animeId : any) => {
-  let req = await fetch(`https://ottoex.vercel.app/api/anime/${animeId}`)
+  let req = await fetch(`https://ottoex.vercel.app/api/a/${animeId}`)
   let res = await req.json()
   return res
 }
