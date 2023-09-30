@@ -17,12 +17,9 @@ export default async function Watch({params:{slug}}:PageProps) {
 
   return (
     <div>
-      <h1>
-        Watch {data[0].title}
       
-      </h1>
       
-      <WatchContainer  slug={slug}/>
+      <WatchContainer animeData={data[0]} episodesList={data[0].episodeslist} slug={slug}/>
       </div>
   )
 }

@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@headlessui/react": "^1.7.17",
     "@oplayer/core": "^1.2.31",
     "@oplayer/hls": "^1.2.22",
     "@oplayer/plugins": "^1.0.7",
@@ -21,10 +22,12 @@
     "react-dom": "latest"
   },
   "devDependencies": {
+    "@iconify/react": "^4.1.1",
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "autoprefixer": "latest",
+    "daisyui": "^3.8.2",
     "eslint": "latest",
     "eslint-config-next": "latest",
     "postcss": "latest",

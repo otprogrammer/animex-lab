@@ -2,10 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
+@layer components {
+
+  .txt-primary {
+    @apply  text-[#e11d48]
+  }
+}
+
+
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --theme-primary: hsl(346.8 77.2% 49.8%);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -18,10 +30,8 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: #212121;
 }
+
+
+
