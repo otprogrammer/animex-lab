@@ -17,6 +17,7 @@
     "@oplayer/torrent": "^1.2.23",
     "@oplayer/ui": "^1.2.22",
     "@supabase/supabase-js": "^2.36.0",
+    "heroicons": "^2.0.18",
     "next": "^13.5.2",
     "react": "latest",
     "react-dom": "latest"

@@ -1,8 +1,11 @@
+import Card from "@/components/card/Card";
 import Link from "next/link";
 import React from "react";
 
 const getTrending = async () => {
-  let req = await fetch(`https://api.animex.live/meta/anilist/trending?page=1&perPage=28`);
+  let req = await fetch(
+    `https://api.animex.live/meta/anilist/trending?page=1&perPage=28`
+  );
   let res = await req.json();
 
   return res;
@@ -10,19 +13,19 @@ const getTrending = async () => {
 
 async function Animes() {
   const data = await getTrending();
-  return <div className="grid grid-cols-6 gap-2">
+  return (
+    <div>
 
 
-    {data.results.map((a:any,i:number)  => (
-        <Link href={`/anime/${a.malId}`} key={i}>
+    <div className="mx-20 flex flex-wrap gap-3">
+      {data.results.map((a: any, i: number) => (
+        <Card {...a}  key={i} />
+      ))}
+    </div>
 
-            <img src={a.image} />
-            <h1>
-                {a.title.romaji}
-            </h1>
-        </Link>
-   ) )}
-  </div>;
+    
+    </div>
+  );
 }
 
 export default Animes;
