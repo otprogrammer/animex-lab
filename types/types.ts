@@ -73,7 +73,7 @@ export type AnimeInfo = {
 
 
   export type WatchProps = {
-    slug: string[];
+    slug?: string[];
     episodesList: string[];
     animeData: AnimeInfo;
   };

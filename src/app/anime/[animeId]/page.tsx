@@ -63,7 +63,7 @@ async function Anime({ params: { animeId } }: PageProps) {
                   </div>
               ) : (
                 <div className="w-full h-[268px] md:w-full md:h-[319px] rounded-sm mx-auto flex items-center justify-center ">
-                  <ClipLoader color="#36d7b7" />
+                  {/* <ClipLoader color="#36d7b7" /> */}
                 </div>
               )}
             </div>

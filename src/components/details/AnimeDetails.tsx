@@ -28,7 +28,7 @@ export default function AnimeDetails(animeData:AnimeInfo) {
               <AnimeInformation title={"Rank"} data={"#" + animeData.rank} />
               <AnimeInformation
                 title={"Episodes"}
-                data={animeData.episodes || animeData.total_episodes}
+                data={animeData.episodes}
               />
               <AnimeInformation
                 title={"Genres"}
