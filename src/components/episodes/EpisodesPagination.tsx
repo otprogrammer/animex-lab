@@ -27,7 +27,7 @@ export default function EpisodesPagination({episodesList,episodesPerPage,current
       ).map((pageNumber) => (
         <button
           key={pageNumber}
-          className={`inline-flex items-center j px-4 py-2 mx-0.5 text-sm font-semibold  hover:bg-red-600 ${
+          className={`inline-flex items-center j px-3 py-1.5 mx-0.5 rounded-md cursor-pointer text-sm font-semibold  hover:bg-red-600 ${
             pageNumber === currentPage ? "bg-red-700" : "bg-neutral-900"
           } `}
           onClick={() => handlePageChange(pageNumber)}

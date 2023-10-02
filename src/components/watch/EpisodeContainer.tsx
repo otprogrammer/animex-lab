@@ -6,12 +6,12 @@ type EpisodeContainerProps = {
     lastEpisode:number;
     handleNextEpisode:React.MouseEventHandler<SVGSVGElement> | undefined;
     handlePrevEpisode:React.MouseEventHandler<SVGSVGElement> | undefined;
-    handleShowEpisodes:React.MouseEventHandler<HTMLElement> | undefined;
     handleOpen:React.MouseEventHandler<HTMLElement> | undefined;
+    download:string;
 
 }
 
-export default function EpisodeContainer({title,lastEpisode,handleNextEpisode,handlePrevEpisode,handleShowEpisodes,handleOpen} : EpisodeContainerProps) {
+export default function EpisodeContainer({title,lastEpisode,handleNextEpisode,handlePrevEpisode,handleOpen,download} : EpisodeContainerProps) {
     const cls =
     "text-zinc-400 hover:txt-primary cursor-pointer flex items-center gap-1.5";
   return (
@@ -33,7 +33,6 @@ export default function EpisodeContainer({title,lastEpisode,handleNextEpisode,ha
             </div>
 
             <small
-              onClick={handleShowEpisodes}
               className="text-zinc-400 cursor-pointer"
             >
               Episode {lastEpisode}
@@ -46,10 +45,10 @@ export default function EpisodeContainer({title,lastEpisode,handleNextEpisode,ha
               <span className={cls}>
                 <Icon icon="mdi:thumb-down" color="white" width="24" />
               </span>
-              <span className={cls}>
+              <a href={download} target='_blank' className={cls}>
                 <Icon icon="bxs:cloud-download" color="white" width={28} />
                 <span>DOWNLOAD</span>
-              </span>
+              </a>
               <span onClick={handleOpen} className={cls}>
                 <Icon icon="ic:baseline-flag" color="white" width="28" />
                 <span>REPORT</span>

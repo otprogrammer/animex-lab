@@ -1,6 +1,7 @@
 import Card from "@/components/card/Card";
 import GridContainer from "@/components/container/GridContainer";
 import Tabs from "@/components/tabs/Tabs";
+import { watchList } from "@/components/watchlist/WatchList";
 import Link from "next/link";
 import React from "react";
 

@@ -58,11 +58,14 @@ export default function Episodes({
         <div
           onClick={() => handleEpisodeRoute(ep.id,ep.number)}
           key={i}
-          className="flex flex-col max-w-[170px]  my-1"
+          className="flex flex-col max-w-[170px] relative my-1"
         >
-          <img className="flex-shrink-0 w-full h-[100px] rounded-sm object-cover" src={ep.image || animeImg} alt={ep.title} />
 
-          <div></div>
+          <div>
+          <img className="flex-shrink-0 w-full h-[100px] rounded-sm object-cover" src={ep.image || animeImg} alt={ep.title} />
+            <small className="bg-neutral-900/80 font-black py-0.5 px-1.5 absolute top-0 left-0 rounded-br-lg">{ep.number}</small>
+
+          </div>
           <div className="flex flex-col justify-between">
             <small className=" font-lighter p-0.5">{ep.title}</small>
             

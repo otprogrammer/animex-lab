@@ -3,14 +3,24 @@ import { Menu, Transition } from "@headlessui/react";
 import { Fragment, useEffect, useRef, useState } from "react";
 import { Icon } from "@iconify/react";
 import { Switch } from "@headlessui/react";
+import { useAutoNext, useAutoPlay, useAutoSkip, useEpisodesImage } from "../../store/store";
 
 export default function SettingsDropdown() {
-  const [isAutoNext, setIsAutoNext] = useState(false);
-  const [isAutoPlay, setIsAutoPlay] = useState(false);
+  // const [isAutoNext, setIsAutoNext] = useState(false);
+  // const [isAutoPlay, setIsAutoPlay] = useState(false);
+  // const [isAutoSkip, setIsAutoSkip] = useState(false);
+  // const [isShowImages, setIsShowImages] = useState(false);
+
+  const {isEpImgEnabled,enableEpImg,disableEpImg}  = useEpisodesImage()
+  const {isAutoNext,enableAutoNext,disableAutoNext}  = useAutoNext()
+  const {isAutoPlay,enableAutoPlay,disableAutoPlay}  = useAutoPlay()
+  const {isAutoSkip,enableAutoSkip,disableAutoSkip}  = useAutoSkip()
+
+
 
 
   return (
-    <div className="text-right">
+    <div className="text-right z-50">
       <Menu as="div" className="relative inline-block text-left">
         <div>
           <Menu.Button className="inline-flex w-full justify-center rounded-md bg-black bg-opacity-20 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
@@ -43,7 +53,7 @@ export default function SettingsDropdown() {
                   >
                     <Switch
                       checked={isAutoNext}
-                      onChange={setIsAutoNext}
+                      onChange={isAutoNext ? disableAutoNext : enableAutoNext}
                       className={`${isAutoNext ? "bg-red-600" : "bg-neutral-700"}
           relative inline-flex h-[20px] w-[40px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
                     >
@@ -68,8 +78,34 @@ export default function SettingsDropdown() {
                     } group flex gap-3 w-full items-center rounded-md px-2 py-2 text-sm`}
                   >
                     <Switch
+                      checked={isAutoSkip}
+                      onChange={isAutoSkip ? disableAutoSkip : enableAutoSkip}
+                      className={`${isAutoSkip ? "bg-red-600" : "bg-neutral-700"}
+          relative inline-flex h-[20px] w-[40px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
+                    >
+                      <span className="sr-only">Use setting</span>
+                      <span
+                        aria-hidden="true"
+                        className={`${
+                          isAutoSkip ? "translate-x-5" : "translate-x-0"
+                        }
+            pointer-events-none inline-block h-[16px] w-[16px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
+                      />
+                    </Switch>
+                    AutoSkip
+                  </button>
+                )}
+              </Menu.Item>
+              <Menu.Item>
+                {({ active }) => (
+                  <button
+                    className={`${
+                      active ? "bg-neutral-800 text-white" : "text-gray-200"
+                    } group flex gap-3 w-full items-center rounded-md px-2 py-2 text-sm`}
+                  >
+                    <Switch
                       checked={isAutoPlay}
-                      onChange={setIsAutoPlay}
+                      onChange={isAutoPlay ? disableAutoPlay : enableAutoPlay}
                       className={`${isAutoPlay ? "bg-red-600" : "bg-neutral-700"}
           relative inline-flex h-[20px] w-[40px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
                     >
@@ -83,6 +119,32 @@ export default function SettingsDropdown() {
                       />
                     </Switch>
                     AutoPlay
+                  </button>
+                )}
+              </Menu.Item>
+              <Menu.Item>
+                {({ active }) => (
+                  <button
+                    className={`${
+                      active ? "bg-neutral-800 text-white" : "text-gray-200"
+                    } group flex gap-3 w-full items-center rounded-md px-2 py-2 text-sm`}
+                  >
+                    <Switch
+                      checked={isEpImgEnabled}
+                      onChange={isEpImgEnabled ? disableEpImg : enableEpImg}
+                      className={`${isEpImgEnabled ? "bg-red-600" : "bg-neutral-700"}
+          relative inline-flex h-[20px] w-[40px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
+                    >
+                      <span className="sr-only">Use setting</span>
+                      <span
+                        aria-hidden="true"
+                        className={`${
+                          isEpImgEnabled ? "translate-x-5" : "translate-x-0"
+                        }
+            pointer-events-none inline-block h-[16px] w-[16px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
+                      />
+                    </Switch>
+                    Show Episodes Images
                   </button>
                 )}
               </Menu.Item>

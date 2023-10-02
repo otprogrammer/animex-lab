@@ -1,14 +1,16 @@
 "use client"
 import { useState } from 'react'
-import { Tab } from '@headlessui/react'
+import { Tab, Transition } from '@headlessui/react'
 import GridContainer from '../container/GridContainer'
+import { watchList } from '../watchlist/WatchList'
+import { myList } from '../watchlist/MyList'
 
 
 
 type HomeContainerTabs = {
   Latest : any[];
   Popular : any[]
-  MyList : any[];
+  MyList : any;
 }
 
 export default function Tabs({Latest,Popular,MyList}:HomeContainerTabs) {
@@ -16,16 +18,14 @@ export default function Tabs({Latest,Popular,MyList}:HomeContainerTabs) {
   let [categories] = useState({
     Latest: Latest,
     Popular: Popular,
-    MyList: MyList
+    MyList: myList(),
+    WatchList : watchList(),
+
   })
 
-  const navbar = [
-    { name: "Trending" },
-    { name: "Characters" },
-    { name: "Similar" },
-    { name: "OP/ED" },
-  
-  ];  const [activeIndex, setActiveIndex] = useState(0);
+
+
+const [activeIndex, setActiveIndex] = useState(0);
 
   const handleItemClick = (index:number, itemName:string) => {
     setActiveIndex(index);
@@ -39,7 +39,7 @@ export default function Tabs({Latest,Popular,MyList}:HomeContainerTabs) {
     <div className="w-full px-2  sm:px-0">
       <Tab.Group>
        
-        <Tab.List className="grid grid-cols-3 md:grid-cols-3 border-b-[1px] w-full lg:max-w-[85%] xl:max-w-[75%] mx-auto border-neutral-800/75 place-self-center">
+        <Tab.List className="grid grid-cols-3 md:grid-cols-4 w-full lg:max-w-[85%] xl:max-w-[75%] mx-auto place-self-center">
 
         {Object.keys(categories).map((category,index) => (
 
@@ -50,8 +50,8 @@ export default function Tabs({Latest,Popular,MyList}:HomeContainerTabs) {
             className={`
             focus:outline-none
             ${
-              activeIndex === index ? "txt-primary hover:text-white" : "hover:txt-primary"
-            } text-center p-2 cursor-pointer font-bold`}
+              activeIndex === index ? "txt-primary bg-black hover:text-white" : "hover:txt-primary bg-neutral-900"
+            } text-center p-2 mx-[1px] cursor-pointer font-bold`}
             >
             {category}
             </Tab>
@@ -62,13 +62,31 @@ export default function Tabs({Latest,Popular,MyList}:HomeContainerTabs) {
         
         </Tab.List>
         <Tab.Panels className="mt-2">
+        
+
+
         {Object.values(categories).map((posts, idx) => (
-            <Tab.Panel
+          <Tab.Panel
               key={idx}
               
             >
+          <Transition
+          appear={true}
+
+      as={"div"}
+      show={true}
+      enter="transform transition duration-[500ms]"
+      enterFrom="opacity-0 scale-[0.90]"
+      enterTo="opacity-100 rotate-0 scale-100"
+      leave="transform duration-200 transition ease-in-out"
+      leaveFrom="opacity-100 rotate-0 scale-100 "
+      leaveTo="opacity-0 scale-95 "
+      afterEnter={() => console.log("fe")}
+    >
               <GridContainer data={posts} heading={idx == 0 ? "Latest" : "Popular"}/>
+            </Transition>
             </Tab.Panel>
+
           ))}
     
         </Tab.Panels>

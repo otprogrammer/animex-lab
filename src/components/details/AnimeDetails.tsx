@@ -53,7 +53,7 @@ export default function AnimeDetails(animeData:AnimeInfo) {
 
               <AnimeInformation
                 title={"Released"}
-                data={"props.gogoData?.releaseDate" || animeData.year}
+                data={animeData.year}
               />
               <AnimeInformation title={"Rating"} data={animeData.rating || "?"} />
               <AnimeInformation

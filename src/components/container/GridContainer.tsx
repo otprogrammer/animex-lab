@@ -83,9 +83,7 @@ export default function GridContainer({data,heading,swiperId}:GridContainerProps
         
           {data?.map((item:any, index:any) => (
                 <SwiperSlide key={index}>
-                  <div
-                    
-                  >
+                 
                     {
                     heading === "Popular" ? 
                     
@@ -101,7 +99,7 @@ export default function GridContainer({data,heading,swiperId}:GridContainerProps
                     heading={heading}
                   />
                   }
-                  </div>
+                
                 </SwiperSlide>
               ))}
            

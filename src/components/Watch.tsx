@@ -22,6 +22,12 @@ import { useThrottle } from "./player/UseThrottle";
 import SettingsDropdown from "./SettingsDropdown";
 import EpisodeContainer from "./watch/EpisodeContainer";
 import Episodes from "./episodes/Episodes";
+import { handleAddAnime, handleDeleteAnime } from "../../lib/bookmark";
+import { toast } from "react-toastify";
+import ReportModal from "./modal/ReportModal";
+import { myList } from "./watchlist/MyList";
+import { useAutoNext, useAutoPlay, useAutoSkip, useEpisodesImage } from "../../store/store";
+
 
 const plugins = [
   ui({
@@ -35,6 +41,19 @@ const plugins = [
   hls(),
   chromecast,
 ];
+
+const Msg = ({ title, message }:any) => {
+  return (
+    <div className="flex flex-col">
+      <span>
+        <span className="font-bold text-gray-200">{title}</span> {message}
+      </span>
+
+      <span className="text-blue-800 text-xl "></span>
+    </div>
+  );
+};
+
 
 const AD = ({ title, data }: ADProps) => {
   return (
@@ -59,14 +78,29 @@ export default function WatchContainer(props: WatchProps) {
   const lst = useRef<any>(params.get("ep"));
   const [lastEpisode, setLastEpisode] = useState(lst.current ? lst.current : 1);
   const [gogoData, setGogoData] = useState<GogoAnimeData>()
-  const epId = params.get("id")
+  const [epId,setEpId] = useState(params.get("id") || props.animeData?.episodeslist?.[0]?.id?.split("-episode")[0])
+  const [click, setClick] = useState(false);
+  const [gogoIframe, setGogoIframe] = useState("");
+  const [download, setDownload] = useState("");
+  const [isReport,setIsReport] = useState(false)
 
+  const {isEpImgEnabled,enableEpImg,disableEpImg}  = useEpisodesImage()
+  const {isAutoNext,enableAutoNext,disableAutoNext}  = useAutoNext()
+  const {isAutoPlay,enableAutoPlay,disableAutoPlay}  = useAutoPlay()
+  const {isAutoSkip,enableAutoSkip,disableAutoSkip}  = useAutoSkip()
   console.log(lst.current);
 
-
+  
 useEffect(() => {
   fetchGogoData()
+
+
+const current = myList().filter((item: any) => item.anime_id == props.animeData?.anime_id || item.mal_id == props.animeData?.mal_id);
+current.length > 0 ? setClick(true) : setClick(false);
+  
 },[])
+
+
 
   useEffect(() => {
     lst.current = lastEpisode;
@@ -81,6 +115,23 @@ useEffect(() => {
     router.push(`?id=${epId?.split("-episode")[0]}&ep=${epNumber}`);
   };
 
+
+  function handleClick() {
+    if (click) {
+      setClick(false);
+      toast.error(
+        <Msg title={props.animeData?.title} message="Was Removed From Your List" />
+        ,{theme: "dark"});
+      handleDeleteAnime(props.animeData);
+     
+    } else {
+      handleAddAnime(props.animeData);
+      setClick(true);
+      toast.success(<Msg title={props.animeData?.title} message="Was Added To Your List" />,{theme: "dark"});
+
+
+    }
+  }
 
   const fetchGogoData = async () => {
     let url = `https://api.animex.live/anime/gogoanime/info/${props.gogoId}`
@@ -105,29 +156,36 @@ useEffect(() => {
           props.animeData?.anilistid,
           props.animeData?.anime_id
         );
-      } else if (payload.type == "ended") {
-        // if (
-        //   props.animeData?.episodeslist?.filter(
-        //     (e: any) => e.number == parseInt(ep.current as any) + 1
-        //   )[0]
-        // ) {
-        //   router.push(
-        //     `/watching/${props.slug?.[0]}/${parseInt(ep.current as any) + 1}`
-        //   );
-        // }
+      } else if (payload.type == "ended" && isAutoNext) {
+
+        let getNextEp = props.animeData?.episodeslist?.filter((e: any) => e.number == parseInt(lastEpisode) + 1)[0]
+
+        if (getNextEp) {
+          setLastEpisode(parseInt(lastEpisode) + 1)
+          router.push(
+            `?id=${getNextEp?.id?.split("-episode")?.[0]}&ep=${parseInt(lastEpisode) + 1}`
+          );
+        }
       }
     },
     [lastEpisode]
   );
 
   useEffect(() => {
+
+    if (isAutoPlay) {
+      player?.current?.play;
+    }
     player?.current?.changeSource(
       fetch(
         `https://aniscraper.up.railway.app/anime/gogoanime/watch/${epId}-episode-${lastEpisode}`
       )
         .then((res) => res.json())
         .then((res) => {
+          setGogoIframe(res?.headers?.Referer);
+            setDownload(res?.download);
           return {
+            
             src: res.sources?.filter((s: any) => s.quality === "default")?.[0]
               .url,
             title: "Title",
@@ -137,8 +195,7 @@ useEffect(() => {
     ).then(() => {
       // player.current?.togglePlay();
 
-      const d: any = player?.current?.duration;
-
+      
       
         fetch(
           `https://api.aniskip.com/v2/skip-times/${props.animeData?.mal_id}/${lastEpisode}?types=op&types=recap&types=mixed-op&types=ed&types=mixed-ed&episodeLength=0`
@@ -202,10 +259,14 @@ useEffect(() => {
           <EpisodeContainer
             title={props.animeData?.title}
             lastEpisode={lastEpisode}
+            download={download && download}
+            handleOpen={() => setIsReport(true)}
           />
 
 
-<div className=" rounded-md flex flex-col lg:flex-row gap-1 w-full p-2 ">
+<hr className="my-2 border-zinc-700 w-[85%] mx-auto"/>
+
+<div   className={`a_d rounded-md flex flex-col lg:flex-row gap-1 w-full p-2 `}>
             <div className="w-full max-w-[200px] mx-auto ">
               <img
                 src={props.animeData?.coverimage || gogoData?.image}
@@ -214,6 +275,34 @@ useEffect(() => {
             </div>
             <div className="p-1 lg:px-3 w-full  text-left relative">
               <span className="absolute top-0 right-0 ">
+
+              
+  
+  {/* this hidden checkbox controls the state */}
+  
+  
+  {/* sun icon */}
+
+  
+          <label className="swap swap-rotate">
+          <input type="checkbox" />
+
+    <Icon
+                    onClick={handleClick}
+                    className={`${
+                      !click ? "swap-on" : "swap-off"
+                    }swap-on fill-current w-7 h-7`}
+                    icon={`${
+                      !click ? "zondicons:add-outline" : "dashicons:remove"
+                    }`}
+                    hFlip={true}
+                    vFlip={true}
+                  />
+  </label>
+
+  
+
+
                 {/* <HeartSwitch
                     checked={click ? true : false}
                     onChange={handleClick}
@@ -283,7 +372,7 @@ useEffect(() => {
         </div>
 
         <div className="max-w-[390px]">
-          <div className="w-full flex gap-2 p-1 justify-end">
+          <div className="w-full flex justify-center gap-2 p-1 ">
             <Icon
               onClick={() => setShowEpisodes((t) => !t)}
               icon="system-uicons:episodes"
@@ -293,6 +382,7 @@ useEffect(() => {
             />
             <SettingsDropdown />
           </div>
+          <hr className="w-[70%] border-zinc-800 mx-auto mb-2"/>
 
           {showEpisodes && (
             <div className="w-[360px]">
@@ -342,6 +432,8 @@ useEffect(() => {
           )}
         </div>
       </div>
+
+      {isReport && <ReportModal isOpen={isReport} onClose={() => setIsReport(false)}/>}
     </>
   );
 }
