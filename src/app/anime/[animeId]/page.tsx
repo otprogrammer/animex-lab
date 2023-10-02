@@ -39,14 +39,14 @@ async function Anime({ params: { animeId } }: PageProps) {
   const getAnime = await fetchAnime(animeId);
 
   return (
-    <div className="text-white">
+    <div className="">
       <div
-        className={` background-transparent w-full text-white py-2 lg:py-1 flex justify-center  mt-[4.8rem] md:mt-0  `}
+        className={` background-transparent w-full  py-2 lg:py-1 flex justify-center  mt-[4.8rem] md:mt-0  `}
       >
         <div
           className={`w-full flex flex-col justify-center items-center lg:flex-row lg:justify-center lg:items-stretch z-[1] `}
         >
-          <div className=" w-full ml-2 bg-neutral-900  rounded-lg  w-8/12 lg:w-auto h-fit my-1  shadow-2xl ">
+          <div  className=" w-full ml-2  border border-zinc-800/75 rounded-lg  w-8/12 text-[14px] lg:w-auto h-fit my-1  shadow-2xl ">
             <div className="relative mx-auto w-fit ">
               {getAnime[0] || getAnime[0] ? (
                 <div className="mt-3">
@@ -57,12 +57,12 @@ async function Anime({ params: { animeId } }: PageProps) {
                         `https://image.tmdb.org/t/p/original${getAnime[0].poster_path}`) ||
                       getAnime[0].coverimage
                     }
-                    className="w-[175px] h-[268px] md:w-full md:h-[319px] rounded-sm mx-auto object-cover"
+                    className="w-[175px] h-[268px] md:w-full md:h-[247px] rounded-sm mx-auto object-cover"
                     alt="image"
                   />
                   </div>
               ) : (
-                <div className="w-full h-[268px] md:w-full md:h-[319px] rounded-sm mx-auto flex items-center justify-center ">
+                <div className="w-full h-[268px] md:w-full md:h-[247px] rounded-sm mx-auto flex items-center justify-center ">
                   {/* <ClipLoader color="#36d7b7" /> */}
                 </div>
               )}
@@ -76,7 +76,10 @@ async function Anime({ params: { animeId } }: PageProps) {
             <div className="flex justify-around gap-1 p-2"></div>
           </div>
 
-          <WatchContainer animeData={getAnime[0]} episodesList={getAnime[0].episodeslist}/>
+            
+
+          <WatchContainer animeData={getAnime?.[0]} episodesList={getAnime?.[0]?.episodeslist} gogoId={getAnime?.[0]?.anime_id || animeId}/>
+            
 
           
         </div>

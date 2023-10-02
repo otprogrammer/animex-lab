@@ -8,18 +8,20 @@ import React, {
   useCallback,
 } from "react";
 import Player, { PlayerEvent, isMobile } from "@oplayer/core";
-import ui from "@oplayer/ui";
+import ui, { Highlight } from "@oplayer/ui";
 import hls from "@oplayer/hls";
 //@ts-ignore
 import ReactPlayer from "@oplayer/react";
 import { chromecast } from "@oplayer/plugins";
 import { useRouter, useSearchParams } from "next/navigation";
-import { ADProps, AnimeInfo, WatchProps } from "../../types/types";
+import { ADProps, AniSkip, AnimeInfo, GogoAnimeData, WatchProps } from "../../types/types";
 import { Icon } from "@iconify/react";
 import { Dialog, Transition } from "@headlessui/react";
 import addWatchList from "../../lib/Watchlist";
 import { useThrottle } from "./player/UseThrottle";
 import SettingsDropdown from "./SettingsDropdown";
+import EpisodeContainer from "./watch/EpisodeContainer";
+import Episodes from "./episodes/Episodes";
 
 const plugins = [
   ui({
@@ -38,8 +40,8 @@ const AD = ({ title, data }: ADProps) => {
   return (
     <div className="flex flex-col py-1">
       <span className=" font-bold txt-primary">{title}</span>
-      <span className={` capitalize text-zinc-300`}>
-        <span className="text-gray-400"></span>
+      <span className={` capitalize `}>
+        <span className=""></span>
 
         {title == "Rank" ? "#" + data : data}
       </span>
@@ -48,17 +50,23 @@ const AD = ({ title, data }: ADProps) => {
 };
 
 export default function WatchContainer(props: WatchProps) {
-  const [source, setSource] = useState<string>("");
+  const [source, setSource] = useState("");
   const player = useRef<Player>(null);
   const router = useRouter();
   let [isOpen, setIsOpen] = useState(true);
   const [showEpisodes, setShowEpisodes] = useState(true);
-  const ep = useSearchParams();
-  const lst = useRef<any>(ep.get("ep"));
+  const params = useSearchParams();
+  const lst = useRef<any>(params.get("ep"));
   const [lastEpisode, setLastEpisode] = useState(lst.current ? lst.current : 1);
-  const cls =
-    "text-zinc-400 hover:txt-primary cursor-pointer flex items-center gap-1.5";
+  const [gogoData, setGogoData] = useState<GogoAnimeData>()
+  const epId = params.get("id")
+
   console.log(lst.current);
+
+
+useEffect(() => {
+  fetchGogoData()
+},[])
 
   useEffect(() => {
     lst.current = lastEpisode;
@@ -67,6 +75,19 @@ export default function WatchContainer(props: WatchProps) {
   const onTimeUpdate = useThrottle((currentTime: any) => {
     // setLastDuration(currentTime, player?.current?.duration);
   }, 1000);
+
+  const handleEpisodeRoute = (epId:any,epNumber: number) => {
+    setLastEpisode(epNumber);
+    router.push(`?id=${epId?.split("-episode")[0]}&ep=${epNumber}`);
+  };
+
+
+  const fetchGogoData = async () => {
+    let url = `https://api.animex.live/anime/gogoanime/info/${props.gogoId}`
+    let req = await fetch(url)
+    let res = await req.json()
+    setGogoData(res)
+  }
 
   const onEvent = useCallback(
     (payload: PlayerEvent) => {
@@ -102,7 +123,7 @@ export default function WatchContainer(props: WatchProps) {
   useEffect(() => {
     player?.current?.changeSource(
       fetch(
-        `https://aniscraper.up.railway.app/anime/gogoanime/watch/${props.animeData.anime_id}-episode-${lastEpisode}`
+        `https://aniscraper.up.railway.app/anime/gogoanime/watch/${epId}-episode-${lastEpisode}`
       )
         .then((res) => res.json())
         .then((res) => {
@@ -113,12 +134,60 @@ export default function WatchContainer(props: WatchProps) {
             poster: "",
           };
         })
+    ).then(() => {
+      // player.current?.togglePlay();
+
+      const d: any = player?.current?.duration;
+
+      
+        fetch(
+          `https://api.aniskip.com/v2/skip-times/${props.animeData?.mal_id}/${lastEpisode}?types=op&types=recap&types=mixed-op&types=ed&types=mixed-ed&episodeLength=0`
+        )
+          .then((res) => res.json())
+          .then((res) => {
+            res = res as AniSkip;
+
+            const highlights: Highlight[] = [];
+            let opDuration = [],
+              edDuration = [];
+
+            if (res.statusCode === 200) {
+              for (let result of res.results) {
+                if (result.skipType === "op" || result.skipType === "ed") {
+                  const { startTime, endTime } = result.interval;
+
+                  if (startTime) {
+                    highlights.push({
+                      time: startTime,
+                      text: result.skipType === "op" ? "OP" : "ED",
+                    });
+                    if (result.skipType === "op") opDuration.push(startTime);
+                    else edDuration.push(startTime);
+                  }
+
+                  if (endTime) {
+                    highlights.push({
+                      time: endTime,
+                      text: result.skipType === "op" ? "OP" : "ED",
+                    });
+                    if (result.skipType === "op") opDuration.push(endTime);
+                    else edDuration.push(endTime);
+                  }
+                }
+              }
+            }
+            player?.current?.emit("opedchange", [opDuration, edDuration]);
+            player?.current?.context.ui.highlight(highlights);
+          });
+      }
     );
   }, [props.slug, lastEpisode]);
 
+  console.log(epId)
+
   return (
     <>
-      <div className=" w-full flex flex-col lg:flex-row gap-6 mx-5">
+      <div  className=" w-full flex flex-col lg:flex-row gap-6 mx-5">
         <div className="w-full ">
           <div className={`w-full  relative aspect-video`}>
             <ReactPlayer
@@ -130,63 +199,83 @@ export default function WatchContainer(props: WatchProps) {
             />
           </div>
 
-          <div className="p-2">
-            <div className="flex justify-between">
-              <div>{props.animeData.title}</div>
-              <div className="flex gap-1">
-                <Icon
-                  onClick={() => setLastEpisode((t: number) => t - 1)}
-                  icon="bx:skip-previous-circle"
-                  width={28}
-                />
-                <Icon
-                  onClick={() => setLastEpisode((t: number) => t + 1)}
-                  icon="bx:skip-next-circle"
-                  width={28}
-                />
-              </div>
+          <EpisodeContainer
+            title={props.animeData?.title}
+            lastEpisode={lastEpisode}
+          />
+
+
+<div className=" rounded-md flex flex-col lg:flex-row gap-1 w-full p-2 ">
+            <div className="w-full max-w-[200px] mx-auto ">
+              <img
+                src={props.animeData?.coverimage || gogoData?.image}
+                className="w-[140px] h-[200px] mx-auto text-center lg:w-full lg:h-[300px] rounded-md object-cover"
+              />
             </div>
+            <div className="p-1 lg:px-3 w-full  text-left relative">
+              <span className="absolute top-0 right-0 ">
+                {/* <HeartSwitch
+                    checked={click ? true : false}
+                    onChange={handleClick}
+                  /> */}
+              </span>
 
-            <small
-              onClick={() => setShowEpisodes((t) => !t)}
-              className="text-zinc-400 cursor-pointer"
+              <div className="grid  md:grid-cols-2">
+                <AD title={"Rank"} data={props.animeData?.rank || "?"} />
+
+                <AD title={"Score"} data={props.animeData?.score || "N/A"} />
+                <AD
+                  title={"Duration"}
+                  data={props.animeData?.duration || "N/A"}
+                />
+
+                <AD
+                  title={"Status"}
+                  data={props.animeData?.status || gogoData?.status}
+                />
+                <AD
+                  title={"Title Japanese"}
+                  data={
+                    props.animeData?.title_japanese ||
+                    gogoData?.otherName
+                  }
+                />
+
+                <AD
+                  title={"Release Date"}
+                  data={props.animeData?.year || gogoData?.releaseDate}
+                />
+                <AD title={"Rating"} data={props.animeData?.rating || "N/A"} />
+                <AD title={"Source"} data={props.animeData?.source || "N/A"} />
+                <AD
+                  title={"Premiered"}
+                  data={props.animeData?.premiered || "N/A"}
+                />
+                <AD
+                  title={"Studios"}
+                  data={props.animeData?.studios?.map((s: any, i: number) => (
+                    <span key={i}>{s.name}</span>
+                  ))}
+                />
+
+                {/* {mal?.airing === "true" && (
+          <div className="flex flex-col py-1  ">
+            <span className="font-bold text-blue-600 ">Broadcast:</span>
+            <span
+              className={` capitalize px-1`}
             >
-              Episode {lastEpisode}
-            </small>
-
-            <div className="flex flex-col xl:flex-row gap-5 justify-end">
-              <span className={cls}>
-                <Icon icon="mdi:thumb-up" color="white" width="24" />
-              </span>
-              <span className={cls}>
-                <Icon icon="mdi:thumb-down" color="white" width="24" />
-              </span>
-              <span className={cls}>
-                <Icon icon="bxs:cloud-download" color="white" width={28} />
-                <span>DOWNLOAD</span>
-              </span>
-              <span onClick={() => setIsOpen(true)} className={cls}>
-                <Icon icon="ic:baseline-flag" color="white" width="28" />
-                <span>REPORT</span>
-              </span>
+              {props.animeData?.broadcast || mal?.broadcast || "?"}
+            </span>
+          </div>
+        )} */}
+              </div>
+              {/* <p className={`p-0 lg:p-2 ${theme.text.notselected} font-light`}>{mal?.synopsis}</p> */}
             </div>
           </div>
-          <hr className="border-zinc-500" />
 
-          <div className="mx-2 p-2 lg:p-8 mt-2 bg-neutral-800  w-full">
+          <div className="mx-2 p-2 lg:p-8 mt-2   w-full">
             <div className="flex flex-col gap-3">
-              <div className="flex gap-2 flex-wrap ">
-                {props.animeData?.genres?.map((Item: any, index: number) => (
-                  <span
-                    key={index}
-                    className=" py-1 px-5 mr-2 text-[#BDBDBDBD] border-[1px] border-[#BDBDBDBD] cursor-pointer flex justify-center whitespace-nowrap items-center transform hover:-translate-y-1 hover:text-gray-300 transition-transform duration-200"
-                  >
-                    {Item}
-                  </span>
-                ))}
-              </div>
-
-              <p className={` text-[#BDBDBD] font-light`}>
+              <p className={` font-light`}>
                 {props.animeData?.synopsis}
               </p>
             </div>
@@ -194,17 +283,19 @@ export default function WatchContainer(props: WatchProps) {
         </div>
 
         <div className="max-w-[390px]">
-          <div className="w-full flex gap-2 justify-end">
+          <div className="w-full flex gap-2 p-1 justify-end">
             <Icon
               onClick={() => setShowEpisodes((t) => !t)}
               icon="system-uicons:episodes"
               width={25}
+              color="white"
+              strokeWidth={1.5}
             />
             <SettingsDropdown />
           </div>
 
           {showEpisodes && (
-            <div className="w-[390px]">
+            <div className="w-[360px]">
               {/* <div>
                 <div>Up Next:</div>
                 <div
@@ -241,32 +332,12 @@ export default function WatchContainer(props: WatchProps) {
                   </div>
                 </div>
               </div> */}
-              <hr className="my-2 w-[80%] mx-auto border-zinc-500" />
 
-              <h1>Episodes:</h1>
-              {props.episodesList?.map((ep: any, i: number) => (
-                <div
-                  onClick={() => {
-                    setLastEpisode(ep.number);
-                    router.push(`?ep=${ep.number}`);
-                  }}
-                  key={i}
-                  className="flex gap-3 my-[8px]"
-                >
-                  <div>
-                    <img
-                      className="flex-1 max-w-[170px] h-[100px] rounded-sm object-cover"
-                      src={ep.image}
-                    />
-                  </div>
-                  <div className="flex flex-col justify-between">
-                    <div className=" font-lighter">{ep.title}</div>
-                    <p className="text-zinc-400 font-extralight text-sm">
-                      Episode {ep.number}
-                    </p>
-                  </div>
-                </div>
-              ))}
+              <Episodes
+                episodesList={props.animeData?.episodeslist || gogoData?.episodes}
+                handleEpisodeRoute={handleEpisodeRoute}
+                animeImg={gogoData?.image}
+              />
             </div>
           )}
         </div>

@@ -16,7 +16,7 @@ const AnimeInformation = (props: AnimeInfoProps) => {
         >
           {props.title}:
         </span>
-        <span className={`text-gray-300 capitalize px-1`}>{props.data}</span>
+        <span className={` text-gray-300 capitalize px-1`}>{props.data}</span>
       </div>
     );
   };

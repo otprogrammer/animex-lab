@@ -20,7 +20,8 @@
     "heroicons": "^2.0.18",
     "next": "^13.5.2",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "swiper": "^9.4.1"
   },
   "devDependencies": {
     "@iconify/react": "^4.1.1",

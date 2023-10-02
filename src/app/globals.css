@@ -4,6 +4,7 @@
 
 
 
+
 @layer components {
 
   .txt-primary {
@@ -13,25 +14,30 @@
 
 
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-  --theme-primary: hsl(346.8 77.2% 49.8%);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
+
+
+
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: #212121;
+  /* color: rgb(var(--foreground-rgb));
+  background: #212121; */
 }
 
 
 
+.search-container {
+ 
+  transition: width 0.3s ease-in-out; /* Transition the width property over 0.3 seconds with ease-in-out timing function */
+}
+
+.open-button {
+  width: 300px; /* Initial width when open */
+  transition: width 0.3s ease-in-out; /* Apply transition specifically for the width property */
+}
+
+.closed-button {
+  width: 30px; /* Initial width when closed */
+  transition: width 0.3s ease-in-out; /* Apply transition specifically for the width property */
+  overflow: hidden;
+}
