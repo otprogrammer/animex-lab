@@ -9,7 +9,6 @@ import supabase from "../../../../utils/supabase";
 
 
 const fetchAnime = async (q:any) => {
-  // let req = await fetch(`https://ottoex.vercel.app/api/a/${animeId}`);
   const {data} = await supabase.from("anime").select("*").or(`anime_id.eq.${q},title.eq.${q},mal_id.eq.${q}`)
   
   // let res = await req.json();
