@@ -8,7 +8,7 @@ import React from "react";
 const getTrending = async () => {
   let req = await fetch(`https://eu2-cheerful-tadpole-32531.upstash.io/get/trending`, {
 headers: {
-Authorization: `Bearer ${process.env.REDIS_BEARER}`
+Authorization: `Bearer ${process.env.REDIS_BEARER_TOKEN}`
 }
 })
 let res = await req.json();
@@ -33,7 +33,7 @@ const fetchLatest = async () => {
   let req = await fetch(`https://eu2-cheerful-tadpole-32531.upstash.io/get/latest`, {
     cache:"no-cache",
 headers: {
-Authorization: `Bearer ${process.env.REDIS_BEARER}`
+Authorization: `Bearer ${process.env.REDIS_BEARER_TOKEN}`
 }
 })
 let res = await req.json();
