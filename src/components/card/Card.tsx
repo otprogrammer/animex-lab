@@ -12,9 +12,9 @@ function Card(anime: any) {
   {/* <span className="indicator-item p-1 rounded-full bg-neutral-700 hover:bg-neutral-800 cursor-pointer">
   <Icon icon="pepicons-pop:dots-y" />
 </span>  */}
-    <Link className=" w-full max-w-[2000px] inline-grid" href={`/anime/${anime.malId || anime.id}?ep=1`}>
-      <div className={`card w-[200px] h-[270px] overflow-hidden`}>
-        <img className=" object-cover  hover:scale-110 transition-all duration-300 ease-in-out rounded-sm" src={anime.image || anime.image_url} alt={anime?.title?.romaji}/>
+    <Link className=" w-full max-w-[200px] hover:-translate-y-1 transition-all duration-300 ease-in-out inline-grid" href={`/anime/${anime.malId || anime.id}?ep=1`}>
+      <div className={`card   overflow-hidden`}>
+        <img className=" object-cover  h-[180px] md:h-[270px]  rounded-sm" src={anime.image || anime.image_url} alt={anime?.title?.romaji}/>
         <small
               style={{
                 // backgroundImage:
@@ -30,7 +30,7 @@ function Card(anime: any) {
               }}
               className="text-neutral-100 p-2 z-50 whitespace-nowrap text-ellipsis overflow-hidden  text-start hover:before:scale-105"
             >
-              {anime.title.romaji}
+              {anime.title?.romaji}
             </small>
       </div>
     </Link>

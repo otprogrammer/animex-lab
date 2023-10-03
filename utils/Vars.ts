@@ -1,6 +1,7 @@
 export const GridBreakPoints  = {
-    320: {
-      slidesPerView: 2,
+  
+    300: {
+      slidesPerView: 2.5,
       spaceBetween: 5,
     },
     480: {
@@ -19,32 +20,32 @@ export const GridBreakPoints  = {
       speed: 500,
     },
     1024: {
-      slidesPerView: 4,
+      slidesPerView: 4.2,
       spaceBetween: 10,
       slidesPerGroup: 3,
       speed: 500,
     },
     1224: {
-      slidesPerView:  5,
+      slidesPerView:  6,
       spaceBetween: 10,
       slidesPerGroup: 3,
       speed: 500,
     },
     1424: {
-      slidesPerView:  7,
+      slidesPerView:  6.5,
       spaceBetween: 10,
       slidesPerGroup:  3,
       speed: 500,
     },
     1624: {
-      slidesPerView:  8,
+      slidesPerView:  7,
       slidesPerGroup: 3,
       spaceBetween: 10,
       speed: 500,
      
     },
     1800: {
-      slidesPerView:  8,
+      slidesPerView:  8.7,
       slidesPerGroup: 3,
       spaceBetween: 10,
       speed: 500,

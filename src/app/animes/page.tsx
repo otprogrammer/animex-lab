@@ -5,41 +5,54 @@ import { watchList } from "@/components/watchlist/WatchList";
 import Link from "next/link";
 import React from "react";
 
+// const getTrending = async () => {
+//   let req = await fetch(
+//     `https://api.animex.live/meta/anilist/trending?page=1&perPage=28`
+//   );
+//   let res = await req.json();
+
+//   return res;
+// };
+
+
 const getTrending = async () => {
-  let req = await fetch(
-    `https://api.animex.live/meta/anilist/trending?page=1&perPage=28`
-  );
-  let res = await req.json();
-
-  return res;
-};
-
-
-const fetchRedis = async () => {
-  let req = await fetch(`https://eu2-cheerful-tadpole-32531.upstash.io/get/death-note`, {
+  let req = await fetch(`https://eu2-cheerful-tadpole-32531.upstash.io/get/trending`, {
 headers: {
-Authorization: "Bearer An8TACQgM2ZmNTUwOWEtM2I5Yy00ZWE0LWE2NWItMmNiNjFiYTFjYzI1DNPhw9vdt05fBhjPq1sklWtBNW5UapmmuUwqhABRhl4="
+Authorization: `Bearer ${process.env.REDIS_BEARER}`
 }
 })
 let res = await req.json();
 
-  return res;
+  return JSON.parse(res.result);
 
 }
+
 
 const fetchLatest = async () => {
-  let req = await fetch(`https://api.animex.live/anime/gogoanime/recent-episodes`)
-
+  let req = await fetch(`https://eu2-cheerful-tadpole-32531.upstash.io/get/latest`, {
+    cache:"no-cache",
+headers: {
+Authorization: `Bearer ${process.env.REDIS_BEARER}`
+}
+})
 let res = await req.json();
 
-  return res.results;
+  return JSON.parse(res.result);
 
 }
+// const fetchLatest = async () => {
+//   let req = await fetch(`https://api.animex.live/anime/gogoanime/recent-episodes`,{cache:"no-store"})
+
+// let res = await req.json();
+
+//   return res.results;
+
+// }
 
 
 async function Animes() {
   const data = await getTrending();
-  const redis = await fetchRedis()
+  // const redis = await fetchRedis()
   const latest = await fetchLatest()
 
 
@@ -47,7 +60,7 @@ async function Animes() {
     <div>
 
       
-    <Tabs Popular={data.results} Latest={latest} MyList={[]}/>
+    <Tabs Trending={data} Latest={latest} MyList={[]}/>
 
     
 

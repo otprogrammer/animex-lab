@@ -11,8 +11,8 @@ export function handleAddAnime(
     );
 
     if (animeIndex === -1) {
-      updatedAnimeList = [...updatedAnimeList, animeData];
-      typeof window !== "undefined" &&
+         updatedAnimeList = [...updatedAnimeList, { ...animeData, time: Date.now() }];
+         typeof window !== "undefined" &&
         localStorage.setItem("animeList", JSON.stringify(updatedAnimeList));
         
     } else {

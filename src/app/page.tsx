@@ -1,45 +1,50 @@
 import Card from "@/components/card/Card";
 import GridContainer from "@/components/container/GridContainer";
 import Tabs from "@/components/tabs/Tabs";
-import { watchList } from "@/components/watchlist/WatchList";
 import Link from "next/link";
 import React from "react";
 
+
 const getTrending = async () => {
-  let req = await fetch(
-    `https://api.animex.live/meta/anilist/trending?page=1&perPage=28`
-  );
-  let res = await req.json();
-
-  return res;
-};
-
-
-const fetchRedis = async () => {
-  let req = await fetch(`https://eu2-cheerful-tadpole-32531.upstash.io/get/death-note`, {
+  let req = await fetch(`https://eu2-cheerful-tadpole-32531.upstash.io/get/trending`, {
 headers: {
-Authorization: "Bearer An8TACQgM2ZmNTUwOWEtM2I5Yy00ZWE0LWE2NWItMmNiNjFiYTFjYzI1DNPhw9vdt05fBhjPq1sklWtBNW5UapmmuUwqhABRhl4="
+Authorization: `Bearer ${process.env.REDIS_BEARER}`
 }
 })
 let res = await req.json();
 
-  return res;
+  return JSON.parse(res.result);
 
 }
 
-const fetchLatest = async () => {
-  let req = await fetch(`https://api.animex.live/anime/gogoanime/recent-episodes`)
+// const fetchRedis = async () => {
+//   let req = await fetch(`https://eu2-cheerful-tadpole-32531.upstash.io/get/death-note`, {
+// headers: {
+// Authorization: "Bearer An8TACQgM2ZmNTUwOWEtM2I5Yy00ZWE0LWE2NWItMmNiNjFiYTFjYzI1DNPhw9vdt05fBhjPq1sklWtBNW5UapmmuUwqhABRhl4="
+// }
+// })
+// let res = await req.json();
 
+//   return res;
+
+// }
+
+const fetchLatest = async () => {
+  let req = await fetch(`https://eu2-cheerful-tadpole-32531.upstash.io/get/latest`, {
+    cache:"no-cache",
+headers: {
+Authorization: `Bearer ${process.env.REDIS_BEARER}`
+}
+})
 let res = await req.json();
 
-  return res.results;
+  return JSON.parse(res.result);
 
 }
 
 
 async function Home() {
   const data = await getTrending();
-  const redis = await fetchRedis()
   const latest = await fetchLatest()
 
 
@@ -47,7 +52,7 @@ async function Home() {
     <div>
 
       
-    <Tabs Popular={data.results} Latest={latest} MyList={[]}/>
+    <Tabs Trending={data} Latest={latest} MyList={[]}/>
 
     
 

@@ -20,6 +20,7 @@
 }
 
 
+
 .card::after {
   content: "";
   position: absolute;
@@ -28,6 +29,7 @@
   box-shadow: rgb(213, 1, 91) 0px 0px 0px 0px inset;
   transition: all 0.2s ease 0s;
 }
+
 
 body {
   /* color: rgb(var(--foreground-rgb));
@@ -52,3 +54,10 @@ body {
   overflow: hidden;
 }
 
+.swiper-button-disabled {
+  opacity: 0.5 !important;
+}
+
+.swiper-wrapper {
+  padding: 10px 0 0 0 !important;
+}

@@ -189,7 +189,7 @@ export type GogoAnimeData = {
   type: string;
   status: string;
   otherName: string;
-  episodes: any[]; // You might want to define a type for episodes as well
+  episodes: any[]; 
 };
 
 
@@ -197,4 +197,93 @@ export type GridContainerProps = {
   data:any[];
   heading:string;
   swiperId?:number;
+  refresh?:() => void
+}
+
+
+
+interface Characters {
+  id: number;
+  role: string;
+  name: {
+    first: string;
+    last: string;
+    full: string;
+    native: string;
+    userPreferred: string;
+  };
+  image: string;
+  voiceActors: VoiceActor[];
+}
+
+interface VoiceActor {
+  id: number;
+  language: string;
+  name: {
+    first: string;
+    last: string;
+    full: string;
+    native: string;
+    userPreferred: string;
+  };
+  image: string;
+}
+
+
+
+interface AnimeRelation {
+  id: number;
+  relationType: string;
+  malId: number;
+  title: {
+    romaji: string;
+    english: string;
+    native: string;
+    userPreferred: string;
+  };
+  status: string;
+  episodes: number;
+  image: string;
+  color: string;
+  type: string;
+  cover: string;
+  rating: number;
+}
+
+
+export interface AnilistInfo {
+  id: string;
+  title: Record<string,string>;
+  malId: number;
+  synonyms: string[];
+  isLicensed: boolean;
+  isAdult: boolean;
+  countryOfOrigin: string;
+  image: string;
+  popularity: number;
+  color: string;
+  cover: string;
+  description: string;
+  status: string;
+  releaseDate: number;
+  startDate: { [key: string]: string }; 
+  endDate: { [key: string]: string };
+  nextAiringEpisode: {
+    airingTime: any,
+    timeUntilAiring: number,
+    episode: number
+    },
+  totalEpisodes: number;
+  currentEpisode: number;
+  rating: number;
+  duration: number;
+  genres: string[];
+  season: string;
+  studios: string[];
+  subOrDub: string;
+  type: string;
+  recommendations: string[]; //
+  characters: Characters[]; //
+  relations: AnimeRelation[]; //*
+  episodes: AnimeEpisodesProps[];
 }

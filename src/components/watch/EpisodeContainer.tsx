@@ -20,12 +20,12 @@ export default function EpisodeContainer({title,lastEpisode,handleNextEpisode,ha
               <div>{title}</div>
               <div className="flex gap-1">
                 <Icon
-                  onClick={handleNextEpisode}
+                  onClick={handlePrevEpisode}
                   icon="bx:skip-previous-circle"
                   width={28}
                 />
                 <Icon
-                  onClick={handlePrevEpisode}
+                  onClick={handleNextEpisode}
                   icon="bx:skip-next-circle"
                   width={28}
                 />
@@ -38,7 +38,7 @@ export default function EpisodeContainer({title,lastEpisode,handleNextEpisode,ha
               Episode {lastEpisode}
             </small>
 
-            <div className="flex flex-col xl:flex-row gap-5 justify-end">
+            <div className="flex  gap-5 justify-end">
               <span className={cls}>
                 <Icon icon="mdi:thumb-up" color="white" width="24" />
               </span>

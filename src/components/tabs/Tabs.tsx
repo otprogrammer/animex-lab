@@ -2,27 +2,29 @@
 import { useState } from 'react'
 import { Tab, Transition } from '@headlessui/react'
 import GridContainer from '../container/GridContainer'
-import { watchList } from '../watchlist/WatchList'
+// import { watchList } from '../watchlist/WatchList'
 import { myList } from '../watchlist/MyList'
+import WatchList from '../watchlist/WatchList'
 
 
 
 type HomeContainerTabs = {
   Latest : any[];
-  Popular : any[]
+  Trending : any[]
   MyList : any;
 }
 
-export default function Tabs({Latest,Popular,MyList}:HomeContainerTabs) {
+export default function Tabs({Latest,Trending,MyList}:HomeContainerTabs) {
 
   let [categories] = useState({
     Latest: Latest,
-    Popular: Popular,
+    Trending: Trending,
     MyList: myList(),
-    WatchList : watchList(),
+    WatchList : [],
 
   })
 
+  
 
 
 const [activeIndex, setActiveIndex] = useState(0);
@@ -39,7 +41,7 @@ const [activeIndex, setActiveIndex] = useState(0);
     <div className="w-full px-2  sm:px-0">
       <Tab.Group>
        
-        <Tab.List className="grid grid-cols-3 md:grid-cols-4 w-full lg:max-w-[85%] xl:max-w-[75%] mx-auto place-self-center">
+        <Tab.List className="grid grid-cols-4 w-full lg:max-w-[85%] xl:max-w-[75%] mx-auto place-self-center">
 
         {Object.keys(categories).map((category,index) => (
 
@@ -66,6 +68,7 @@ const [activeIndex, setActiveIndex] = useState(0);
 
 
         {Object.values(categories).map((posts, idx) => (
+          
           <Tab.Panel
               key={idx}
               
@@ -81,9 +84,10 @@ const [activeIndex, setActiveIndex] = useState(0);
       leave="transform duration-200 transition ease-in-out"
       leaveFrom="opacity-100 rotate-0 scale-100 "
       leaveTo="opacity-0 scale-95 "
-      afterEnter={() => console.log("fe")}
+      
     >
-              <GridContainer data={posts} heading={idx == 0 ? "Latest" : "Popular"}/>
+      {idx !== 3 ? <GridContainer data={posts} heading={idx == 0 ? "Latest" : idx === 1 ? "Trending" : "List"}/> : <WatchList />}
+              {/* <GridContainer data={posts} heading={idx == 0 ? "Latest" : idx === 1 ? "Trending" : "List"}/> */}
             </Transition>
             </Tab.Panel>
 

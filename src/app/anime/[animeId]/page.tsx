@@ -3,11 +3,16 @@ import WatchContainer from "@/components/Watch";
 import AnimeDetails from "@/components/details/AnimeDetails";
 import Link from "next/link";
 import React from "react";
+import { supabase } from "@/supabase";
 
-const fetchAnime = async (animeId: any) => {
-  let req = await fetch(`https://ottoex.vercel.app/api/a/${animeId}`);
-  let res = await req.json();
-  return res;
+
+
+const fetchAnime = async (q:any) => {
+  // let req = await fetch(`https://ottoex.vercel.app/api/a/${animeId}`);
+  const {data} = await supabase.from("anime").select("*").or(`anime_id.eq.${q},title.eq.${q},mal_id.eq.${q}`)
+  
+  // let res = await req.json();
+  return data;
 };
 
 type PageProps = {
@@ -46,35 +51,7 @@ async function Anime({ params: { animeId } }: PageProps) {
         <div
           className={`w-full flex flex-col justify-center items-center lg:flex-row lg:justify-center lg:items-stretch z-[1] `}
         >
-          <div  className=" w-full ml-2  border border-zinc-800/75 rounded-lg  w-8/12 text-[14px] lg:w-auto h-fit my-1  shadow-2xl ">
-            <div className="relative mx-auto w-fit ">
-              {getAnime[0] || getAnime[0] ? (
-                <div className="mt-3">
-
-                  <img
-                    src={
-                      (getAnime[0].poster_path &&
-                        `https://image.tmdb.org/t/p/original${getAnime[0].poster_path}`) ||
-                      getAnime[0].coverimage
-                    }
-                    className="w-[175px] h-[268px] md:w-full md:h-[247px] rounded-sm mx-auto object-cover"
-                    alt="image"
-                  />
-                  </div>
-              ) : (
-                <div className="w-full h-[268px] md:w-full md:h-[247px] rounded-sm mx-auto flex items-center justify-center ">
-                  {/* <ClipLoader color="#36d7b7" /> */}
-                </div>
-              )}
-            </div>
-            
-
-            <div className="h-[2px] bg-neutral-800 my-1.5 w-[70%] mx-auto" />
-            {/* <AiFillStar color="#ffd530e8" /> */}
-
-            <AnimeDetails {...getAnime[0]} />
-            <div className="flex justify-around gap-1 p-2"></div>
-          </div>
+          
 
             
 

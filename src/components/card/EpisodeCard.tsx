@@ -11,9 +11,9 @@ function EpisodeCard(anime: any) {
     
   
   
-    <Link className=" w-full max-w-[200px]" href={`/anime/${anime.id}?id=${anime.id}&ep=${anime.episodeNumber}`}>
-      <div className={`card w-[200px] h-[270px] overflow-hidden `}>
-        <img className=" object-cover  hover:scale-110 transition-all duration-300 ease-in-out rounded-sm" src={anime.image} alt={anime.title} />
+    <Link className=" w-full max-w-[200px] hover:-translate-y-1 transition-all duration-300 ease-in-out inline-grid" href={`/anime/${anime.id}?id=${anime.id}&ep=${anime.episodeNumber}`}>
+      <div className={`card  overflow-hidden `}>
+        <img className=" object-cover  h-[180px] md:h-[270px]  rounded-sm" src={anime.image} alt={anime?.title} />
         <small
               style={{
                 // backgroundImage:
@@ -29,7 +29,7 @@ function EpisodeCard(anime: any) {
               }}
               className="text-neutral-100 p-2 z-50 whitespace-nowrap text-ellipsis overflow-hidden  text-start hover:before:scale-105"
             >
-              {anime.title}
+              {anime?.title}
             </small>
             <span className="absolute top-1 left-2 bg-black/70 px-2 py-0 rounded-sm">
               <span className="text-white font-semibold" style={{textShadow: "rgb(0, 0, 0) 1px 1px 5px",}}>{anime.episodeNumber}</span>
