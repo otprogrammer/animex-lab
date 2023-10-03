@@ -22,6 +22,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["additional.d.ts","next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/Watch.tsx", "src/components/search/Search.js", "lib/Watchlist.js", "supabase.js"],
+  "include": ["additional.d.ts","next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/components/Watch.tsx", "src/components/search/Search.js", "lib/Watchlist.js", "utils/supabase.ts"],
   "exclude": ["node_modules"]
 }

@@ -3,7 +3,7 @@ import WatchContainer from "@/components/Watch";
 import AnimeDetails from "@/components/details/AnimeDetails";
 import Link from "next/link";
 import React from "react";
-import { supabase } from "../../../../supabase";
+import supabase from "../../../../utils/supabase";
 
 
 
