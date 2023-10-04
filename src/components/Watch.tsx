@@ -102,7 +102,7 @@ export default function WatchContainer(props: WatchProps) {
 
   const { isAutoNext } = useAutoNext();
   const { isAutoPlay } = useAutoPlay();
-  const currentEpisode: any = props.episodesList?.filter(
+  const currentEpisode: any = props.episodesList?.length >= 1 && props.episodesList?.filter(
     (ep: any) => ep?.number == lastEpisode
   )[0];
 

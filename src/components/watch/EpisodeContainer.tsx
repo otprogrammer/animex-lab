@@ -1,6 +1,9 @@
 import React from 'react'
 import { Icon } from "@iconify/react";
 
+import {TbPlayerTrackNextFilled, TbPlayerTrackPrevFilled} from "react-icons/tb"
+
+
 type EpisodeContainerProps = {
     title:string;
     lastEpisode:number;
@@ -18,17 +21,29 @@ export default function EpisodeContainer({title,lastEpisode,handleNextEpisode,ha
     <div className="p-2">
             <div className="flex justify-between">
               <div>{title}</div>
-              <div className="flex gap-1">
-                <Icon
+              <div className="flex gap-1 ">
+                <div className='flex items-center rounded-md gap-1 py-1 px-3 bg-neutral-900 cursor-pointer hover:bg-[#e11d48] transition-all duration-300 ease-out'>
+
+                <TbPlayerTrackPrevFilled
                   onClick={handlePrevEpisode}
-                  icon="bx:skip-previous-circle"
-                  width={28}
+                  className="text-white  "
+                  // icon="bx:skip-next-circle"
+                  size={18}
                 />
-                <Icon
+                                  <span>Prev</span>
+
+                </div>
+                <div className='flex items-center rounded-md gap-1 py-1 px-3 bg-neutral-900 cursor-pointer hover:bg-[#e11d48] transition-all duration-300 ease-out'>
+                <span>Next</span>
+
+
+                <TbPlayerTrackNextFilled
                   onClick={handleNextEpisode}
-                  icon="bx:skip-next-circle"
-                  width={28}
+                  className="text-white  "
+                  // icon="bx:skip-next-circle"
+                  size={18}
                 />
+                </div>
               </div>
             </div>
 
@@ -40,17 +55,17 @@ export default function EpisodeContainer({title,lastEpisode,handleNextEpisode,ha
 
             <div className="flex  gap-5 justify-end">
               <span className={cls}>
-                <Icon icon="mdi:thumb-up" color="white" width="24" />
+                <Icon icon="mdi:thumb-up" color="white" width="20" />
               </span>
               <span className={cls}>
-                <Icon icon="mdi:thumb-down" color="white" width="24" />
+                <Icon icon="mdi:thumb-down" color="white" width="20" />
               </span>
               <a href={download} target='_blank' className={cls}>
-                <Icon icon="bxs:cloud-download" color="white" width={28} />
+                <Icon icon="bxs:cloud-download" color="white" width={24} />
                 <span>DOWNLOAD</span>
               </a>
               <span onClick={handleOpen} className={cls}>
-                <Icon icon="ic:baseline-flag" color="white" width="28" />
+                <Icon icon="ic:baseline-flag" color="white" width="24" />
                 <span>REPORT</span>
               </span>
             </div>

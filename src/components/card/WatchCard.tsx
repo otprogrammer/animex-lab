@@ -27,7 +27,7 @@ interface WatchListProps {
 function WatchCard(anime:WatchListProps) {
     
   return (
-    <div className="indicator">
+    <div className="indicator max-w-fit">
      <span onClick={() => {
             if (anime.heading === "WatchList") {
 
@@ -42,12 +42,12 @@ function WatchCard(anime:WatchListProps) {
 </span>
           </span>
       <Link
-        className="  w-full max-w-[200px] hover:-translate-y-1 transition-all duration-300 ease-in-out inline-grid"
+        className="  w-full  hover:-translate-y-1 transition-all duration-300 ease-in-out inline-grid"
         href={`/anime/${anime.mal_id}?ep=1`}
       >
-        <div className={`card relative  overflow-hidden `}>
+        <div className={`card relative ${anime.heading === "WatchList" ? "max-h-[165px]" : "h-[180px] md:h-[270px]"}   overflow-hidden `}>
           <img
-            className=" object-cover  hover:scale-110 transition-all duration-300 ease-in-out rounded-sm"
+            className=" object-cover overflow-hidden hover:scale-110 transition-all duration-300 ease-in-out rounded-sm"
             src={anime.image_url}
             alt={anime.title}
           />

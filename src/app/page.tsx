@@ -31,7 +31,7 @@ let res = await req.json();
 
 const fetchLatest = async () => {
   let req = await fetch(`https://eu2-cheerful-tadpole-32531.upstash.io/get/latest`, {
-    cache:"no-cache",
+    cache:"no-store",
 headers: {
 Authorization: `Bearer ${process.env.REDIS_BEARER_TOKEN}`
 }

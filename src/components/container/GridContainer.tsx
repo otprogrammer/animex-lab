@@ -60,7 +60,7 @@ export default function GridContainer({
       <Swiper
         ref={currentSwiper}
         speed={600}
-        breakpoints={GridBreakPoints}
+        breakpoints={GridBreakPoints(heading)}
         slidesPerView={2}
         slidesPerGroupSkip={1}
         grid={{

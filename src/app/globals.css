@@ -61,3 +61,7 @@ body {
 .swiper-wrapper {
   padding: 10px 0 0 0 !important;
 }
+
+.swiper-slide {
+  margin-top:0 !important;
+}
