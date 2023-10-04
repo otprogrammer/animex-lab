@@ -20,9 +20,9 @@ export default function EpisodeContainer({title,lastEpisode,handleNextEpisode,ha
   return (
     <div className="p-2">
             <div className="flex justify-between">
-              <div>{title}</div>
-              <div className="flex gap-1 ">
-                <div className='flex items-center rounded-md gap-1 py-1 px-3 bg-neutral-900 cursor-pointer hover:bg-[#e11d48] transition-all duration-300 ease-out'>
+              <span className='text-[13px] md:text-lg'>{title}</span>
+              <div className="flex gap-1  ">
+                <div className='flex items-center max-h-[30px] rounded-md gap-1 py-0.5 md:py-1 px-2.5 bg-neutral-800/50 cursor-pointer hover:bg-[#e11d48] transition-all duration-300 ease-out'>
 
                 <TbPlayerTrackPrevFilled
                   onClick={handlePrevEpisode}
@@ -33,7 +33,7 @@ export default function EpisodeContainer({title,lastEpisode,handleNextEpisode,ha
                                   <span>Prev</span>
 
                 </div>
-                <div className='flex items-center rounded-md gap-1 py-1 px-3 bg-neutral-900 cursor-pointer hover:bg-[#e11d48] transition-all duration-300 ease-out'>
+                <div className='flex items-center max-h-[30px] rounded-md gap-1 py-0.5 md:py-1 px-2.5 bg-neutral-800/50 cursor-pointer hover:bg-[#e11d48] transition-all duration-300 ease-out'>
                 <span>Next</span>
 
 
