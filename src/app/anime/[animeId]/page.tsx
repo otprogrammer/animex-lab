@@ -47,7 +47,7 @@ async function Anime({ params: { animeId } }: PageProps) {
   return (
     <div className="">
       <div
-        className={` background-transparent w-full  py-2 lg:py-1 flex justify-center  mt-[4.8rem] md:mt-0  `}
+        className={` background-transparent w-full   lg:py-1 flex justify-center   md:mt-0  `}
       >
         <div
           className={`w-full flex flex-col justify-center items-center lg:flex-row lg:justify-center lg:items-stretch z-[1] `}

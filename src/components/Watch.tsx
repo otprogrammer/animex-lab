@@ -49,6 +49,7 @@ const plugins = [
     keyboard: { global: true },
     topSetting: true,
     theme: { primaryColor: "#e11d48" },
+    topSetting:true,
   }),
   hls(),
   chromecast,
@@ -121,7 +122,7 @@ export default function WatchContainer(props: WatchProps) {
   }, []);
 
   const handleNextEpisode = () => {
-    setLastEpisode(parseInt(lastEpisode) + 1);
+    setLastEpisode(parseInt(lastEpisode) + 1)
     router.push(
       `?id=${currentEpisode?.id?.split("-episode")[0]}&ep=${
         parseInt(lastEpisode) + 1
@@ -130,7 +131,7 @@ export default function WatchContainer(props: WatchProps) {
   };
 
   const handlePrevEpisode = () => {
-    setLastEpisode(parseInt(lastEpisode) + 1);
+    setLastEpisode(parseInt(lastEpisode) - 1);
     router.push(
       `?id=${currentEpisode?.id?.split("-episode")[0]}&ep=${
         parseInt(lastEpisode) - 1
@@ -290,6 +291,7 @@ export default function WatchContainer(props: WatchProps) {
     <>
       <div className=" w-full flex flex-col lg:flex-row gap-6 mx-5 overflow-hidden">
         <div className="w-full ">
+          
           <div className={`w-full  relative aspect-video`}>
             <ReactPlayer
               plugins={plugins}
@@ -309,6 +311,8 @@ export default function WatchContainer(props: WatchProps) {
             handlePrevEpisode={handlePrevEpisode}
           />
 
+          <hr className=" border-zinc-700 w-[85%] mx-auto" />
+
           {props.animeData?.status == "Currently Airing" && (
             <div className="flex flex-col p-1">
               <AiringCountdown
@@ -319,8 +323,6 @@ export default function WatchContainer(props: WatchProps) {
               />
             </div>
           )}
-
-          <hr className="my-2 border-zinc-700 w-[85%] mx-auto" />
 
           <div
             className={`a_d rounded-md flex flex-col lg:flex-row gap-1 w-full p-2 `}

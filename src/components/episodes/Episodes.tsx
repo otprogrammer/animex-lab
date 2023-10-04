@@ -53,7 +53,7 @@ export default function Episodes({
       <EpisodesPagination totalPages={totalPages} currentPage={currentPage} episodesList={episodesList} episodesPerPage={episodesPerPage} handlePageChange={handlePageChange} />
       </div>
 </div>
-<div className={`grid  ${isEpImgEnabled ? "grid-cols-2 gap-2" : "grid"}`}>
+<div className={`grid p-1 ${isEpImgEnabled ? "grid-cols-2 gap-2" : "grid"}`}>
 
 
       {episodesToRender?.map((ep: AnimeEpisodesProps, i: number) => (
