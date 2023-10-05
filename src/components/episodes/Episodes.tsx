@@ -10,14 +10,12 @@ export default function Episodes({
   episodesList,
   animeImg,
   handleEpisodeRoute,
-  episodeNumber
+  episodeNumber,
 }: EpisodesProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const { isEpImgEnabled, enableEpImg, disableEpImg } = useEpisodesImage();
-  const {isSort} = useSort()
-
-
+  const { isSort } = useSort();
 
   function handlePageChange(pageNumber: any) {
     setCurrentPage(pageNumber);
@@ -27,11 +25,11 @@ export default function Episodes({
   const startIndex = (currentPage - 1) * episodesPerPage;
   const endIndex = startIndex + episodesPerPage;
   const episodesToRender =
-    Array.isArray(episodesList) && isSort
+    Array.isArray(episodesList) && !isSort
       ? episodesList
           .sort((a, b): any => a.number - b.number)
           .slice(startIndex, endIndex) || []
-      : Array.isArray(episodesList) && !isSort
+      : Array.isArray(episodesList) && isSort
       ? episodesList
           .sort((a, b): any => b.number - a.number)
           .slice(startIndex, endIndex) || []
@@ -41,7 +39,6 @@ export default function Episodes({
     setTotalPages(Math.ceil(episodesList?.length / 20));
     setCurrentPage(getPageNumber());
   }, []);
-
 
   function getPageNumber() {
     const episodesPerPage = 20; // Assuming 10 episodes per page

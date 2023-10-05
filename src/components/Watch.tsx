@@ -5,7 +5,6 @@ import React, {
   useEffect,
   useState,
   useRef,
-  Fragment,
   useCallback,
 } from "react";
 import Player, { PlayerEvent } from "@oplayer/core";
@@ -16,10 +15,8 @@ import ReactPlayer from "@oplayer/react";
 import { chromecast } from "@oplayer/plugins";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
-  ADProps,
   AniSkip,
   AnilistInfo,
-  AnimeInfo,
   GogoAnimeData,
   WatchProps,
 } from "../../types/types";
@@ -38,7 +35,7 @@ import DetailsTabs from "./tabs/DetailsTabs";
 import Overview from "./details/Overview";
 import { getAnimeList } from "./watchlist/getAnimeList";
 import { getWatchList } from "./watchlist/getWatchList";
-import { FaSort } from "react-icons/fa";
+import { LuArrowDownUp } from "react-icons/lu";
 import { skipOpEd } from "../../lib/skip-op-es";
 
 const plugins = [
@@ -117,6 +114,7 @@ export default function WatchContainer(props: WatchProps) {
   const { isSort, enableIsSort, disableIsSort } = useSort();
   const { isAutoNext } = useAutoNext();
   const { isAutoPlay } = useAutoPlay();
+
   const currentEpisode: any =
     props.episodesList?.length >= 1 &&
     props.episodesList?.filter((ep: any) => ep?.number == lastEpisode)[0];
@@ -214,17 +212,17 @@ export default function WatchContainer(props: WatchProps) {
       if (payload.type == "timeupdate") {
         onTimeUpdate(payload.payload.target.currentTime * 1000);
         addWatchList(
-          props.slug,
+          props.slug || props.gogoId,
           null,
           lastEpisode,
-          props.animeData?.coverimage,
-          props.animeData?.title,
+          props.animeData?.coverimage || gogoData?.image,
+          props.animeData?.title || gogoData?.title,
           Date.now(),
           player?.current?.duration || null,
           payload.payload.target.currentTime * 1000,
           props.animeData?.mal_id,
           props.animeData?.anilistid,
-          props.animeData?.anime_id
+          props.animeData?.anime_id || gogoData?.id
         );
       } else if (payload.type == "ended" && isAutoNext) {
         let getNextEp = props.animeData?.episodeslist?.filter(
@@ -241,7 +239,7 @@ export default function WatchContainer(props: WatchProps) {
         }
       }
     },
-    [lastEpisode,isAutoNext]
+    [lastEpisode, isAutoNext, isAutoPlay, gogoData?.title]
   );
 
   useEffect(() => {
@@ -331,7 +329,9 @@ export default function WatchContainer(props: WatchProps) {
             handleOpen={() => setIsReport(true)}
             handleNextEpisode={handleNextEpisode}
             handlePrevEpisode={handlePrevEpisode}
-            totalEpisodes={props.episodesList?.length}
+            totalEpisodes={
+              gogoData?.totalEpisodes || props.episodesList?.length
+            }
           />
 
           <hr className=" border-zinc-700 w-[85%] mx-auto" />
@@ -369,13 +369,13 @@ export default function WatchContainer(props: WatchProps) {
         </div>
 
         <div className="max-w-[410px] mx-auto">
-          <div className="w-full flex justify-center gap-2 p-1 ">
+          <div className={`w-full ${showEpisodes ? "flex flex-row" : " flex flex-col"} justify-center gap-2 p-1 `}>
             <div
               onClick={isSort ? disableIsSort : enableIsSort}
               aria-label="Sort Episodes"
               className="tool relative cursor-pointer text-white hover:txt-primary self-center"
             >
-              <FaSort size={25} />
+              <LuArrowDownUp size={22} />
             </div>
 
             <div
@@ -389,7 +389,7 @@ export default function WatchContainer(props: WatchProps) {
                 strokeWidth={1.5}
               />
             </div>
-              <SettingsDropdown />
+            <SettingsDropdown />
           </div>
           <hr className="w-[70%] border-zinc-800 mx-auto mb-2" />
 
