@@ -1,7 +1,5 @@
-import GridContainer from '@/components/container/GridContainer';
-import React from 'react'
-
-
+import GridContainer from "@/components/container/GridContainer";
+import React from "react";
 
 const getTrending = async () => {
   let req = await fetch(
@@ -12,9 +10,7 @@ const getTrending = async () => {
   return res;
 };
 
-
 export default async function Popular() {
-  const data = await getTrending()
-  return <GridContainer data={data.results} heading='Trending' />
-
+  const data = await getTrending();
+  return <GridContainer data={data.results} heading="Trending" />;
 }

@@ -32,28 +32,24 @@ function Footer() {
               className="tool rounded-full border-[2px] cursor-pointer border-white p-2 hover:bg-blue-700 transition-all ease-in-out duration-500 hover:-translate-y-1 text-[#ffffff]"
             >
               <Icon icon="cib:buy-me-a-coffee" />
-
             </span>
             <span
               aria-label="Discord"
               className="tool rounded-full border-[2px] cursor-pointer border-white p-2 hover:bg-blue-700 transition-all ease-in-out duration-500 hover:-translate-y-1 text-[#ffffff]"
             >
               <Icon icon="ic:baseline-discord" />
-
             </span>
             <span
               aria-label="Github"
               className="tool rounded-full border-[2px] cursor-pointer border-white p-2 hover:bg-blue-700 transition-all ease-in-out duration-500 hover:-translate-y-1 text-[#ffffff]"
             >
               <Icon icon="ant-design:github-outlined" />
-
             </span>
             <span
               aria-label="Contact Me"
               className="tool rounded-full border-[2px] cursor-pointer border-white p-2 hover:bg-blue-700 transition-all ease-in-out duration-500 hover:-translate-y-1 text-[#ffffff]"
             >
               <Icon icon="mdi:contact" />
-
             </span>
           </div>
         </div>

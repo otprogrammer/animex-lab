@@ -1,21 +1,15 @@
-"use client"
-import { Dialog, Transition } from '@headlessui/react'
-import { Fragment, useState } from 'react'
-
+"use client";
+import { Dialog, Transition } from "@headlessui/react";
+import { Fragment, useState } from "react";
 
 type ReportModalProps = {
-    onClose: () => void;
-    isOpen:boolean;
-}
+  onClose: () => void;
+  isOpen: boolean;
+};
 
-export default function ReportModal({onClose,isOpen}:ReportModalProps) {
-
- 
-
+export default function ReportModal({ onClose, isOpen }: ReportModalProps) {
   return (
     <>
-      
-
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={onClose}>
           <Transition.Child
@@ -49,9 +43,7 @@ export default function ReportModal({onClose,isOpen}:ReportModalProps) {
                     Report a bug.
                   </Dialog.Title>
                   <div className="mt-2">
-                    <p className="text-sm text-gray-500">
-                      Coming Soon.
-                    </p>
+                    <p className="text-sm text-gray-500">Coming Soon.</p>
                   </div>
 
                   <div className="mt-4">
@@ -70,5 +62,5 @@ export default function ReportModal({onClose,isOpen}:ReportModalProps) {
         </Dialog>
       </Transition>
     </>
-  )
+  );
 }

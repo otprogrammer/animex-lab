@@ -20,6 +20,7 @@ import { GridBreakPoints } from "../../../utils/Vars";
 import { GridContainerProps } from "../../../types/types";
 import WatchCard from "../card/WatchCard";
 import NotFound from "../notfound/NotFound";
+import ListCard from "../card/ListCard";
 
 SwiperCore.use([Navigation]);
 
@@ -92,14 +93,20 @@ export default function GridContainer({
                 //   selected={handleSelected}
                 heading={heading}
               />
-            ) : (
-              <WatchCard
+            ) : heading === "MyList" ? (
+              <ListCard
                 {...item}
                 //   selected={handleSelected}
                 refresh={refresh}
                 heading={heading}
               />
-            )}
+            ) : 
+            <WatchCard
+                {...item}
+                //   selected={handleSelected}
+                refresh={refresh}
+                heading={heading}
+              />}
           </SwiperSlide>
         ))}
       </Swiper>

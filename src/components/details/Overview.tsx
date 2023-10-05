@@ -1,110 +1,106 @@
-import React from 'react'
-import { ADProps, AnimeInfo, GogoAnimeData } from '../../../types/types';
+import React from "react";
+import { ADProps, AnimeInfo, GogoAnimeData } from "../../../types/types";
 import { Icon } from "@iconify/react";
 
-
 const AD = ({ title, data }: ADProps) => {
-    return (
-      <div className="flex flex-col py-1">
-        <span className=" font-bold txt-primary">{title}</span>
-        <span className={` capitalize `}>
-          <span className=""></span>
-  
-          {title == "Rank" ? "#" + data : data}
-        </span>
-      </div>
-    );
-  };
+  return (
+    <div className="flex flex-col py-1">
+      <span className=" font-bold txt-primary">{title}</span>
+      <span className={` capitalize `}>
+        <span className=""></span>
 
-
+        {title == "Rank" ? "#" + data : data}
+      </span>
+    </div>
+  );
+};
 
 interface OverViewProps {
-    gogoData : GogoAnimeData;
-    animeData : AnimeInfo;
-    click:boolean;
-    handleClick:() => void;
+  gogoData: GogoAnimeData;
+  animeData: AnimeInfo;
+  click: boolean;
+  handleClick: () => void;
 }
 
-export default function Overview({animeData,gogoData,click,handleClick}:OverViewProps) {
+export default function Overview({
+  animeData,
+  gogoData,
+  click,
+  handleClick,
+}: OverViewProps) {
   return (
-    <div style={{
-        "--bg-image": `url(${`https://image.tmdb.org/t/p/original${animeData?.backdrop_path}`})`,
-      }} className='syno pb-6'>
-
-
     <div
-            className={`a_d rounded-md flex flex-col lg:flex-row gap-1 w-full p-2 `}
-          >
-            <div className="w-full z-50  max-w-[200px] mx-auto ">
-              <img
-                src={`https://image.tmdb.org/t/p/original${animeData?.poster_path}` || animeData?.coverimage || gogoData?.image}
-                className="w-[140px] h-[200px] mx-auto text-center lg:w-full lg:h-[300px] rounded-md object-cover"
+      style={
+        {
+          "--bg-image": `url(${`https://image.tmdb.org/t/p/original${animeData?.backdrop_path}`})`,
+        } as any
+      }
+      className="syno pb-6"
+    >
+      <div
+        className={`a_d rounded-md flex flex-col lg:flex-row gap-1 w-full p-2 `}
+      >
+        <div className="w-full z-50  max-w-[200px] mx-auto ">
+          <img
+            src={
+              (animeData?.poster_path &&
+                `https://image.tmdb.org/t/p/original${animeData?.poster_path}`) ||
+              animeData?.coverimage ||
+              gogoData?.image
+            }
+            className="w-[140px] h-[200px] mx-auto text-center lg:w-full lg:h-[300px] rounded-md object-cover"
+          />
+        </div>
+        <div className="p-1 lg:px-3 w-full  text-left relative">
+          <span className="absolute top-0 right-0 ">
+            {/* this hidden checkbox controls the state */}
+
+            {/* sun icon */}
+
+            <label className="swap z-50 swap-rotate">
+              <input type="checkbox" />
+
+              <Icon
+                onClick={handleClick}
+                className={`${
+                  !click ? "swap-on" : "swap-off"
+                }swap-on fill-current w-7 h-7`}
+                icon={`${
+                  !click ? "zondicons:add-outline" : "dashicons:remove"
+                }`}
+                hFlip={true}
+                vFlip={true}
               />
-            </div>
-            <div className="p-1 lg:px-3 w-full  text-left relative">
-              <span className="absolute top-0 right-0 ">
-                {/* this hidden checkbox controls the state */}
+            </label>
+          </span>
 
-                {/* sun icon */}
+          <div className="grid  md:grid-cols-2">
+            <AD title={"Rank"} data={animeData?.rank || "?"} />
 
-                <label className="swap z-50 swap-rotate">
-                  <input type="checkbox" />
+            <AD title={"Score"} data={animeData?.score || "N/A"} />
+            <AD title={"Duration"} data={animeData?.duration || "N/A"} />
 
-                  <Icon
-                    onClick={handleClick}
-                    className={`${
-                      !click ? "swap-on" : "swap-off"
-                    }swap-on fill-current w-7 h-7`}
-                    icon={`${
-                      !click ? "zondicons:add-outline" : "dashicons:remove"
-                    }`}
-                    hFlip={true}
-                    vFlip={true}
-                  />
-                </label>
+            <AD title={"Status"} data={animeData?.status || gogoData?.status} />
+            <AD
+              title={"Title Japanese"}
+              data={animeData?.title_japanese || gogoData?.otherName}
+            />
 
-                {/* <HeartSwitch
-                    checked={click ? true : false}
-                    onChange={handleClick}
-                  /> */}
-              </span>
+            <AD
+              title={"Release Date"}
+              data={animeData?.year || gogoData?.releaseDate}
+            />
+            <AD title={"Rating"} data={animeData?.rating || "N/A"} />
+            <AD title={"Source"} data={animeData?.source || "N/A"} />
+            <AD title={"Premiered"} data={animeData?.premiered || "N/A"} />
+            <AD
+              title={"Studios"}
+              data={animeData?.studios?.map((s: any, i: number) => (
+                <span key={i}>{s.name}</span>
+              ))}
+            />
 
-              <div className="grid  md:grid-cols-2">
-                <AD title={"Rank"} data={animeData?.rank || "?"} />
-
-                <AD title={"Score"} data={animeData?.score || "N/A"} />
-                <AD
-                  title={"Duration"}
-                  data={animeData?.duration || "N/A"}
-                />
-
-                <AD
-                  title={"Status"}
-                  data={animeData?.status || gogoData?.status}
-                />
-                <AD
-                  title={"Title Japanese"}
-                  data={animeData?.title_japanese || gogoData?.otherName}
-                />
-
-                <AD
-                  title={"Release Date"}
-                  data={animeData?.year || gogoData?.releaseDate}
-                />
-                <AD title={"Rating"} data={animeData?.rating || "N/A"} />
-                <AD title={"Source"} data={animeData?.source || "N/A"} />
-                <AD
-                  title={"Premiered"}
-                  data={animeData?.premiered || "N/A"}
-                />
-                <AD
-                  title={"Studios"}
-                  data={animeData?.studios?.map((s: any, i: number) => (
-                    <span key={i}>{s.name}</span>
-                  ))}
-                />
-
-                {/* {mal?.airing === "true" && (
+            {/* {mal?.airing === "true" && (
           <div className="flex flex-col py-1  ">
             <span className="font-bold text-blue-600 ">Broadcast:</span>
             <span
@@ -114,16 +110,16 @@ export default function Overview({animeData,gogoData,click,handleClick}:OverView
             </span>
           </div>
         )} */}
-              </div>
-              {/* <p className={`p-0 lg:p-2 ${theme.text.notselected} font-light`}>{mal?.synopsis}</p> */}
-            </div>
-            
           </div>
-            <div  className="  p-2 lg:p-8 my-2 bg-neutral-900/75  w-full lg:w-[87%] mx-auto rounded-xl">
-            <div className="flex flex-col gap-3">
-              <p className={` font-light`}>{animeData?.synopsis || gogoData?.description}</p>
-            </div>
+        </div>
+      </div>
+      <div className="  p-2 lg:p-8 my-2 bg-neutral-900/75  w-full lg:w-[87%] mx-auto rounded-xl">
+        <div className="flex flex-col gap-3">
+          <p className={` font-light`}>
+            {animeData?.synopsis || gogoData?.description}
+          </p>
+        </div>
+      </div>
     </div>
-          </div>
-  )
+  );
 }

@@ -17,6 +17,12 @@ interface useAutoSkipProps {
     disableAutoSkip : () => void;
 }
 
+interface useSortProps {
+    isSort : boolean | any;
+    enableIsSort : () => void;
+    disableIsSort : () => void;
+}
+
 interface useAutoPlayProps {
     isAutoPlay : boolean | any;
     enableAutoPlay : () => void;

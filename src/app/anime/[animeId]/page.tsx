@@ -7,7 +7,7 @@ import supabase from "../../../../utils/supabase";
 
 
 
-const fetchAnime = async (q:any,title:string | undefined) => {
+const fetchAnime = async (q:string | number,title:string | undefined) => {
   const {data} = await supabase.from("anime").select("*").or(`anime_id.eq.${q},mal_id.eq.${q}`)
   // let res = await req.json();
   return data;

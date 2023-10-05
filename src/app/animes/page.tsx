@@ -13,32 +13,34 @@ import React from "react";
 //   return res;
 // };
 
-
 const getTrending = async () => {
-  let req = await fetch(`https://eu2-cheerful-tadpole-32531.upstash.io/get/trending`, {
-headers: {
-Authorization: `Bearer ${process.env.REDIS_BEARER_TOKEN}`
-}
-})
-let res = await req.json();
+  let req = await fetch(
+    `https://eu2-cheerful-tadpole-32531.upstash.io/get/trending`,
+    {
+      headers: {
+        Authorization: `Bearer ${process.env.REDIS_BEARER_TOKEN}`,
+      },
+    }
+  );
+  let res = await req.json();
 
   return JSON.parse(res.result);
-
-}
-
+};
 
 const fetchLatest = async () => {
-  let req = await fetch(`https://eu2-cheerful-tadpole-32531.upstash.io/get/latest`, {
-    cache:"no-cache",
-headers: {
-Authorization: `Bearer ${process.env.REDIS_BEARER_TOKEN}`
-}
-})
-let res = await req.json();
+  let req = await fetch(
+    `https://eu2-cheerful-tadpole-32531.upstash.io/get/latest`,
+    {
+      cache: "no-cache",
+      headers: {
+        Authorization: `Bearer ${process.env.REDIS_BEARER_TOKEN}`,
+      },
+    }
+  );
+  let res = await req.json();
 
   return JSON.parse(res.result);
-
-}
+};
 // const fetchLatest = async () => {
 //   let req = await fetch(`https://api.animex.live/anime/gogoanime/recent-episodes`,{cache:"no-store"})
 
@@ -48,22 +50,14 @@ let res = await req.json();
 
 // }
 
-
 async function Animes() {
   const data = await getTrending();
   // const redis = await fetchRedis()
-  const latest = await fetchLatest()
-
+  const latest = await fetchLatest();
 
   return (
     <div>
-
-      
-    <Tabs Trending={data} Latest={latest} MyList={[]}/>
-
-    
-
-    
+      <Tabs Trending={data} Latest={latest} MyList={[]} />
     </div>
   );
 }

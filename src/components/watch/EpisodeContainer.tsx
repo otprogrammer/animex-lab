@@ -30,10 +30,8 @@ export default function EpisodeContainer({
   return (
     <div className="p-2">
       <div className="flex justify-between">
-        <span className="">
-          {title} 
-        </span>
-        
+        <span className="">{title}</span>
+
         <div className="flex gap-1  ">
           {lastEpisode != 1 && (
             <div
@@ -50,29 +48,24 @@ export default function EpisodeContainer({
           )}
 
           {totalEpisodes != lastEpisode && (
-
-          <div
-          aria-label="Next Ep"
-
-            onClick={handleNextEpisode}
-            className="flex items-center relative tool max-h-[30px] rounded-md gap-1 py-0.5 md:py-1 px-2.5 bg-neutral-800/80 cursor-pointer hover:bg-[#e11d48] transition-all duration-300 ease-out"
-          >
-
-            <TbPlayerTrackNextFilled
-              className="text-white  "
-              // icon="bx:skip-next-circle"
-              size={20}
-            />
-          </div>
-          ) }
+            <div
+              aria-label="Next Ep"
+              onClick={handleNextEpisode}
+              className="flex items-center relative tool max-h-[30px] rounded-md gap-1 py-0.5 md:py-1 px-2.5 bg-neutral-800/80 cursor-pointer hover:bg-[#e11d48] transition-all duration-300 ease-out"
+            >
+              <TbPlayerTrackNextFilled
+                className="text-white  "
+                // icon="bx:skip-next-circle"
+                size={20}
+              />
+            </div>
+          )}
         </div>
       </div>
 
-      <small
-              className="text-zinc-400 cursor-pointer"
-            >
-              Episode {lastEpisode}
-            </small>
+      <small className="text-zinc-400 cursor-pointer">
+        Episode {lastEpisode}
+      </small>
 
       <div className="flex text-[13px] md:text-lg  gap-4 justify-end mt-2">
         <span className={cls}>

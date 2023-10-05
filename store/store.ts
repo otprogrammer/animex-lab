@@ -1,3 +1,4 @@
+"use client"
 import { create } from "zustand";
 
 const isEpisodesImg = localStorage.getItem("showEpisodesImg");
@@ -59,11 +60,15 @@ export const useAutoNext = create<useAutoNextProps>((set) => ({
       localStorage.setItem("autoSkip", "false");
     },
   }));
-// function Counter() {
-//   const { count, inc } = useStore()
-//   return (
-//     <div>
-//       <span>{count}</span>
-//       <button onClick={inc}>one up</button>
-//     </div>
-//   )
+
+
+  export const useSort = create<useSortProps>((set) => ({
+    isSort: false,
+    enableIsSort: () => {
+      set(() => ({ isSort: true }));
+    },
+  
+    disableIsSort: () => {
+      set(() => ({ isSort: false }));
+    },
+  }));

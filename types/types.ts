@@ -90,6 +90,7 @@ export type AnimeInfo = {
     episodesList: AnimeEpisodesProps[];
     handleEpisodeRoute: (epId:any,epNumber: number) => void;
     animeImg:string;
+    episodeNumber:number;
   };
   
   export type AnimeEpisodesProps = {

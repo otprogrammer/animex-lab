@@ -1,10 +1,6 @@
 "use client";
 import { useState } from "react";
 import { Tab, Transition } from "@headlessui/react";
-import GridContainer from "../container/GridContainer";
-// import { watchList } from '../watchlist/WatchList'
-import { myList } from "../watchlist/MyList";
-import WatchList from "../watchlist/WatchList";
 import Characters from "../details/Characters";
 import Similar from "../details/Similar";
 import OpEd from "../details/OpEd";
@@ -20,7 +16,7 @@ type DetailsTabsProps = {
   Trailer: any;
 };
 
-const TP = ({ data }: JSX.Element) => {
+const TP = ({ data }: React.JSX.Element | any) => {
   return (
     <Tab.Panel>
       <Transition
@@ -63,7 +59,7 @@ export default function DetailsTabs(props: DetailsTabsProps) {
   return (
     <div className="w-full px-2  sm:px-0">
       <Tab.Group>
-        <Tab.List className="grid grid-cols-4 text-sm md:text-lg md:grid-cols-6 w-full lg:max-w-[85%] xl:max-w-[75%] mx-auto place-self-center">
+        <Tab.List className="grid grid-cols-4 text-sm md:text-lg md:grid-cols-6 w-full lg:max-w-full 2xl:max-w-[75%] mx-auto place-self-center">
           {Object.keys(categories).map((category, index) => (
             <Tab
               key={index}
