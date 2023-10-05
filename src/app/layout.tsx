@@ -31,7 +31,7 @@ export default function RootLayout({
       <label tabIndex={0} className="btn btn-ghost btn-circle">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block w-5 h-5 stroke-current"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
       </label>
-      <ul tabIndex={0} className="menu menu-sm dropdown-content relative mt-3 z-50 p-2 shadow bg-black rounded-box w-52">
+      <ul tabIndex={0} className="menu menu-sm dropdown-content relative mt-3 z-50 p-2 shadow bg-neutral-900 rounded-box w-52">
         <li><a href='/'>Home</a></li>
         <li><Link href={`/animes`}>Animes</Link></li>
         <li><Link href={`/popular`}>Popular</Link></li>
@@ -58,7 +58,7 @@ export default function RootLayout({
         {children}
         
         <ToastContainer
-          position={"bottom-left"}
+          position={"top-left"}
           // onClick={() =>
           //   router.push(`/watching/${resumeId.anime_id}/${resumeId.episode}`)
           // }

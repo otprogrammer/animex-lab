@@ -24,7 +24,7 @@ interface WatchListProps {
 }
 
 
-function WatchCard(anime:WatchListProps) {
+function ListCard(anime:WatchListProps) {
   const [showDelete,setShowDelete] = useState(false)
     
   return (
@@ -32,13 +32,9 @@ function WatchCard(anime:WatchListProps) {
      {showDelete && (
 
 <span onClick={() => {
-  if (anime.heading === "WatchList") {
-
-    DeleteWatchListId(anime.anime_id);
-  }
-  else {
+ 
     handleDeleteAnime(anime)
-  }
+  
   anime.refresh();
 }} className="absolute top-0 right-1 z-50 hover:bg-red-500 cursor-pointer bg-neutral-700/75 rounded-full p-1 mt-1">
   <span className="text-white  font-semibold" style={{textShadow: "rgb(0, 0, 0) 1px 1px 5px",}}><Icon  icon="line-md:remove" width={15} />
@@ -47,7 +43,7 @@ function WatchCard(anime:WatchListProps) {
 )}
       <Link
         className="  w-full   transition-all duration-300 ease-in-out inline-grid"
-        href={`/anime/${anime.anime_id}?ep=${anime.episode}`}
+        href={`/anime/${anime.anime_id}?ep=1`}
       >
         <div  className={`card relative ${anime.heading === "WatchList" ? "max-h-[165px]" : "h-[180px] md:h-[270px]"}   overflow-hidden `}>
           <img
@@ -76,14 +72,12 @@ function WatchCard(anime:WatchListProps) {
           </span>
           
           
-          <ProgressBar mainTime={anime.vidTime} currentTime={anime.duration} />
 
         </div>
       </Link>
-      <TimeAgo timestamp={anime.time}/>
       
     </div>
   );
 }
 
-export default WatchCard;
+export default ListCard;

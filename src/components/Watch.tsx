@@ -32,7 +32,6 @@ import Episodes from "./episodes/Episodes";
 import { handleAddAnime, handleDeleteAnime } from "../../lib/bookmark";
 import { toast } from "react-toastify";
 import ReportModal from "./modal/ReportModal";
-import { myList } from "./watchlist/MyList";
 import {
   useAutoNext,
   useAutoPlay,
@@ -40,6 +39,11 @@ import {
   useEpisodesImage,
 } from "../../store/store";
 import AiringCountdown from "./countdown/AiringCountDown";
+import DetailsTabs from "./tabs/DetailsTabs";
+import Overview from "./details/Overview";
+import Characters from "./details/Characters";
+import Similar from "./details/Similar";
+import { getAnimeList } from "./watchlist/getAnimeList";
 
 const plugins = [
   ui({
@@ -47,9 +51,34 @@ const plugins = [
     slideToSeek: "always",
     screenshot: true,
     keyboard: { global: true },
+    theme: {
+      primaryColor: "#e11d48",
+      watermark: {
+        src: "/logo/favicon-1.png",
+        style: {
+          position: "absolute",
+          // want make screenshot include watermark?
+          // set positioning here, not css. [top, left, right, bottom]
+          top: "10px",
+          right: "10px",
+          width: "40px",
+          height: "auto",
+        },
+        attrs: {
+          class: "watermark",
+          // crossOrigin: 'anonymous'
+          // etc.
+        },
+      },
+    },
     topSetting: true,
-    theme: { primaryColor: "#e11d48" },
-    topSetting:true,
+    screenshot: false,
+    icons: {
+      setting:
+        '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>',
+      // previous: '<svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">   <style type="text/css">       .st0{clip-path:url(#SVGID_2_);}      .st1{opacity:0.65;}       .st2{fill:#FFFFFF;}   </style>   <path class="st2" d="M20.7,2.1l-15.6,9v-9H3.3v19.8h1.8v-8.9l15.6,9V2.1z M18.9,18.8L7.1,12l11.8-6.8V18.8z"/></svg>',// enable previous,next button
+      // next: '<svg style="transform: scale(0.7);" viewBox="0 0 1024 1024"><path d="M743.36 427.52L173.76 119.04A96 96 0 0 0 32 203.52v616.96a96 96 0 0 0 141.76 84.48l569.6-308.48a96 96 0 0 0 0-168.96zM960 96a32 32 0 0 0-32 32v768a32 32 0 0 0 64 0V128a32 32 0 0 0-32-32z"></path></svg>'
+    },
   }),
   hls(),
   chromecast,
@@ -103,17 +132,17 @@ export default function WatchContainer(props: WatchProps) {
 
   const { isAutoNext } = useAutoNext();
   const { isAutoPlay } = useAutoPlay();
-  const currentEpisode: any = props.episodesList?.length >= 1 && props.episodesList?.filter(
-    (ep: any) => ep?.number == lastEpisode
-  )[0];
+  const currentEpisode: any =
+    props.episodesList?.length >= 1 &&
+    props.episodesList?.filter((ep: any) => ep?.number == lastEpisode)[0];
 
-  console.log(epId);
+  console.log(anilistData?.characters);
 
   useEffect(() => {
     fetchGogoData();
     fetchAnilistData();
 
-    const current = myList().filter(
+    const current = getAnimeList().filter(
       (item: any) =>
         item.anime_id == props.animeData?.anime_id ||
         item.mal_id == props.animeData?.mal_id
@@ -122,7 +151,7 @@ export default function WatchContainer(props: WatchProps) {
   }, []);
 
   const handleNextEpisode = () => {
-    setLastEpisode(parseInt(lastEpisode) + 1)
+    setLastEpisode(parseInt(lastEpisode) + 1);
     router.push(
       `?id=${currentEpisode?.id?.split("-episode")[0]}&ep=${
         parseInt(lastEpisode) + 1
@@ -185,6 +214,7 @@ export default function WatchContainer(props: WatchProps) {
     let req = await fetch(url);
     let res = await req.json();
     setAnilistData(res);
+    router.refresh()
   };
 
   const onEvent = useCallback(
@@ -291,7 +321,6 @@ export default function WatchContainer(props: WatchProps) {
     <>
       <div className=" w-full flex flex-col lg:flex-row gap-6 mx-5 overflow-hidden">
         <div className="w-full ">
-          
           <div className={`w-full  relative aspect-video`}>
             <ReactPlayer
               plugins={plugins}
@@ -309,6 +338,7 @@ export default function WatchContainer(props: WatchProps) {
             handleOpen={() => setIsReport(true)}
             handleNextEpisode={handleNextEpisode}
             handlePrevEpisode={handlePrevEpisode}
+            totalEpisodes={props.episodesList?.length}
           />
 
           <hr className=" border-zinc-700 w-[85%] mx-auto" />
@@ -324,98 +354,18 @@ export default function WatchContainer(props: WatchProps) {
             </div>
           )}
 
-          <div
-            className={`a_d rounded-md flex flex-col lg:flex-row gap-1 w-full p-2 `}
-          >
-            <div className="w-full max-w-[200px] mx-auto ">
-              <img
-                src={props.animeData?.coverimage || gogoData?.image}
-                className="w-[140px] h-[200px] mx-auto text-center lg:w-full lg:h-[300px] rounded-md object-cover"
-              />
-            </div>
-            <div className="p-1 lg:px-3 w-full  text-left relative">
-              <span className="absolute top-0 right-0 ">
-                {/* this hidden checkbox controls the state */}
+          <DetailsTabs 
+          Overview={<Overview animeData={props.animeData} gogoData={gogoData} handleClick={handleClick} click={click}/>}
+          Characters={anilistData?.characters}
+          Similar={anilistData?.recommendations}
+          OP={props.animeData?.opening_themes}
+          ED={props.animeData?.ending_themes}
+          Relations={anilistData?.relations}
+          
+          />
+          
 
-                {/* sun icon */}
-
-                <label className="swap swap-rotate">
-                  <input type="checkbox" />
-
-                  <Icon
-                    onClick={handleClick}
-                    className={`${
-                      !click ? "swap-on" : "swap-off"
-                    }swap-on fill-current w-7 h-7`}
-                    icon={`${
-                      !click ? "zondicons:add-outline" : "dashicons:remove"
-                    }`}
-                    hFlip={true}
-                    vFlip={true}
-                  />
-                </label>
-
-                {/* <HeartSwitch
-                    checked={click ? true : false}
-                    onChange={handleClick}
-                  /> */}
-              </span>
-
-              <div className="grid  md:grid-cols-2">
-                <AD title={"Rank"} data={props.animeData?.rank || "?"} />
-
-                <AD title={"Score"} data={props.animeData?.score || "N/A"} />
-                <AD
-                  title={"Duration"}
-                  data={props.animeData?.duration || "N/A"}
-                />
-
-                <AD
-                  title={"Status"}
-                  data={props.animeData?.status || gogoData?.status}
-                />
-                <AD
-                  title={"Title Japanese"}
-                  data={props.animeData?.title_japanese || gogoData?.otherName}
-                />
-
-                <AD
-                  title={"Release Date"}
-                  data={props.animeData?.year || gogoData?.releaseDate}
-                />
-                <AD title={"Rating"} data={props.animeData?.rating || "N/A"} />
-                <AD title={"Source"} data={props.animeData?.source || "N/A"} />
-                <AD
-                  title={"Premiered"}
-                  data={props.animeData?.premiered || "N/A"}
-                />
-                <AD
-                  title={"Studios"}
-                  data={props.animeData?.studios?.map((s: any, i: number) => (
-                    <span key={i}>{s.name}</span>
-                  ))}
-                />
-
-                {/* {mal?.airing === "true" && (
-          <div className="flex flex-col py-1  ">
-            <span className="font-bold text-blue-600 ">Broadcast:</span>
-            <span
-              className={` capitalize px-1`}
-            >
-              {props.animeData?.broadcast || mal?.broadcast || "?"}
-            </span>
-          </div>
-        )} */}
-              </div>
-              {/* <p className={`p-0 lg:p-2 ${theme.text.notselected} font-light`}>{mal?.synopsis}</p> */}
-            </div>
-          </div>
-
-          <div className="mx-2 p-2 lg:p-8 mt-2 bg-neutral-900/75  w-full">
-            <div className="flex flex-col gap-3">
-              <p className={` font-light`}>{props.animeData?.synopsis}</p>
-            </div>
-          </div>
+          
         </div>
 
         <div className="max-w-[410px] mx-auto">

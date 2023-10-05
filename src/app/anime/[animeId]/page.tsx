@@ -7,10 +7,8 @@ import supabase from "../../../../utils/supabase";
 
 
 
-
-const fetchAnime = async (q:any) => {
-  const {data} = await supabase.from("anime").select("*").or(`anime_id.eq.${q},title.eq.${q},mal_id.eq.${q}`)
-  
+const fetchAnime = async (q:any,title:string | undefined) => {
+  const {data} = await supabase.from("anime").select("*").or(`anime_id.eq.${q},mal_id.eq.${q}`)
   // let res = await req.json();
   return data;
 };
@@ -19,7 +17,9 @@ type PageProps = {
   params: {
     animeId: any;
   };
-  // searchParams?: { [key: string]: string | string[] | undefined };
+  searchParams?: { 
+    title : string;
+   };
 };
 
 interface AnimeInfoProps {
@@ -41,8 +41,10 @@ const AnimeInfo = (props: AnimeInfoProps) => {
   );
 };
 
-async function Anime({ params: { animeId } }: PageProps) {
-  const getAnime = await fetchAnime(animeId);
+async function Anime({ params: { animeId },searchParams : query } : PageProps) {
+  const getAnime = await fetchAnime(animeId,query?.title);
+
+  console.log(query?.title)
 
   return (
     <div className="">

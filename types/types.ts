@@ -231,7 +231,7 @@ interface VoiceActor {
 
 
 
-interface AnimeRelation {
+export interface AnimeRelation {
   id: number;
   relationType: string;
   malId: number;

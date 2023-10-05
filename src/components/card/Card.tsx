@@ -16,7 +16,7 @@ function Card(anime: any) {
           pathname: `/anime/${anime.malId || anime.id}`,
           query : {
             ep : 1,
-            // title : anime.title.romaji
+            title : anime.title.english
           }
           
         

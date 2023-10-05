@@ -1,6 +1,6 @@
 "use client"
 
-export function myList() {
+export function getAnimeList() {
 
   let animeL ;
 

@@ -72,7 +72,7 @@ const Search = () => {
     setVal("");
   };
   return (
-    <form className={`bg-neutral-800/50 z-50  cursor-pointer rounded-lg  lg:w-[17rem] `} onSubmit={handleSubmit}>
+    <form className={`bg-neutral-800/95 z-50  cursor-pointer rounded-lg  lg:w-[17rem] `} onSubmit={handleSubmit}>
       <div
         className={` text-gray-300 h-10 w-10 lg:w-full  rounded-full  flex items-center  p-2.5 shadow-2xl relative right-0`}
         id="search"

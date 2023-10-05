@@ -1,40 +1,58 @@
-"use client"
-import { useState } from 'react'
-import { Tab, Transition } from '@headlessui/react'
-import GridContainer from '../container/GridContainer'
+"use client";
+import { useState } from "react";
+import { Tab, Transition } from "@headlessui/react";
+import GridContainer from "../container/GridContainer";
 // import { watchList } from '../watchlist/WatchList'
-import { myList } from '../watchlist/MyList'
-import WatchList from '../watchlist/WatchList'
-
-
+import { myList } from "../watchlist/MyList";
+import WatchList from "../watchlist/WatchList";
+import Characters from "../details/Characters";
+import Similar from "../details/Similar";
+import OpEd from "../details/OpEd";
+import Relations from "../details/Relations";
 
 type DetailsTabsProps = {
-  Overview : any[];
-  Characters : any[]
-  Similar : any;
-  Relations : any;
-  OPED : any;
-  Trailer : any;
-}
+  Overview: any;
+  Characters: any;
+  Similar: any;
+  Relations: any;
+  OP: any;
+  ED: any;
+  Trailer: any;
+};
 
-export default function DetailsTabs(props:DetailsTabsProps) {
+const TP = ({ data }: JSX.Element) => {
+  return (
+    <Tab.Panel>
+      <Transition
+        appear={true}
+        as={"div"}
+        show={true}
+        enter="transform transition duration-[500ms]"
+        enterFrom="opacity-0 scale-[0.90]"
+        enterTo="opacity-100 rotate-0 scale-100"
+        leave="transform duration-200 transition ease-in-out"
+        leaveFrom="opacity-100 rotate-0 scale-100 "
+        leaveTo="opacity-0 scale-95 "
+      >
+        {data}
+      </Transition>
+    </Tab.Panel>
+  );
+};
 
+export default function DetailsTabs(props: DetailsTabsProps) {
   let [categories] = useState({
-    Overview: Latest,
-    Characters: Trending,
-    Similar: myList(),
-    Relations : [],
-    OPED : [],
-    Trailer : [],
+    Overview: "",
+    Characters: "",
+    Similar: "",
+    Relations: "",
+    OPED: "",
+    Trailer: "",
+  });
 
-  })
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  
-
-
-const [activeIndex, setActiveIndex] = useState(0);
-
-  const handleItemClick = (index:number, itemName:string) => {
+  const handleItemClick = (index: number, itemName: string) => {
     setActiveIndex(index);
     // Do something with the itemName, if needed
   };
@@ -45,61 +63,54 @@ const [activeIndex, setActiveIndex] = useState(0);
   return (
     <div className="w-full px-2  sm:px-0">
       <Tab.Group>
-       
-        <Tab.List className="grid grid-cols-4 w-full lg:max-w-[85%] xl:max-w-[75%] mx-auto place-self-center">
-
-        {Object.keys(categories).map((category,index) => (
-
+        <Tab.List className="grid grid-cols-4 text-sm md:text-lg md:grid-cols-6 w-full lg:max-w-[85%] xl:max-w-[75%] mx-auto place-self-center">
+          {Object.keys(categories).map((category, index) => (
             <Tab
-            key={index}
-            onClick={() => handleItemClick(index, category)}
-
-            className={`
+              key={index}
+              onClick={() => handleItemClick(index, category)}
+              className={`
             focus:outline-none
             ${
-              activeIndex === index ? "txt-primary bg-black hover:text-white" : "hover:txt-primary bg-neutral-900"
+              activeIndex === index
+                ? "txt-primary bg-black hover:text-white"
+                : "hover:txt-primary bg-neutral-900"
             } text-center p-2 mx-[1px] cursor-pointer font-bold`}
             >
-            {category}
+              {category}
             </Tab>
           ))}
-                 <hr className="hidden md:block h-0.5 w-full bg-white" style={hrStyles} />
-
-           
-        
+          <hr
+            className="hidden md:block h-0.5 w-full bg-white"
+            style={hrStyles}
+          />
         </Tab.List>
         <Tab.Panels className="mt-2">
-        
-
-
-        {Object.values(categories).map((posts, idx) => (
-          
-          <Tab.Panel
-              key={idx}
-              
+          <Tab.Panel>
+            <Transition
+              appear={true}
+              as={"div"}
+              show={true}
+              enter="transform transition duration-[500ms]"
+              enterFrom="opacity-0 scale-[0.90]"
+              enterTo="opacity-100 rotate-0 scale-100"
+              leave="transform duration-200 transition ease-in-out"
+              leaveFrom="opacity-100 rotate-0 scale-100 "
+              leaveTo="opacity-0 scale-95 "
             >
-          <Transition
-          appear={true}
-
-      as={"div"}
-      show={true}
-      enter="transform transition duration-[500ms]"
-      enterFrom="opacity-0 scale-[0.90]"
-      enterTo="opacity-100 rotate-0 scale-100"
-      leave="transform duration-200 transition ease-in-out"
-      leaveFrom="opacity-100 rotate-0 scale-100 "
-      leaveTo="opacity-0 scale-95 "
-      
-    >
-      {idx !== 3 ? <GridContainer data={posts} heading={idx == 0 ? "Latest" : idx === 1 ? "Trending" : "List"}/> : <WatchList />}
-              {/* <GridContainer data={posts} heading={idx == 0 ? "Latest" : idx === 1 ? "Trending" : "List"}/> */}
+              {props.Overview}
             </Transition>
-            </Tab.Panel>
+          </Tab.Panel>
 
-          ))}
-    
+          <TP data={<Characters data={props.Characters} />} />
+
+          <TP data={<Similar Data={props.Similar} />} />
+          <TP data={<Relations data={props.Relations} />} />
+
+          <TP
+            data={<OpEd opening_themes={props.OP} ending_themes={props.ED} />}
+          />
         </Tab.Panels>
       </Tab.Group>
     </div>
-  )
+  );
 }

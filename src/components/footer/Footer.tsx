@@ -11,7 +11,7 @@ function Footer() {
 
   return (
     <footer className="p-3   md:px-6 md:mt-20  relative bg-neutral-900">
-      <div>
+      <div className="ft">
         <div className="flex flex-col  items-center justify-center relative z-[1]">
           <img
             src={`/logo/favicon-1.png`}

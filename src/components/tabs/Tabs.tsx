@@ -3,8 +3,8 @@ import { useState } from 'react'
 import { Tab, Transition } from '@headlessui/react'
 import GridContainer from '../container/GridContainer'
 // import { watchList } from '../watchlist/WatchList'
-import { myList } from '../watchlist/MyList'
 import WatchList from '../watchlist/WatchList'
+import MyList from '../watchlist/MyList'
 
 
 
@@ -14,12 +14,12 @@ type HomeContainerTabs = {
   MyList : any;
 }
 
-export default function Tabs({Latest,Trending,MyList}:HomeContainerTabs) {
+export default function Tabs({Latest,Trending}:HomeContainerTabs) {
 
   let [categories] = useState({
     Latest: Latest,
     Trending: Trending,
-    MyList: myList(),
+    MyList: [],
     WatchList : [],
 
   })
@@ -86,7 +86,7 @@ const [activeIndex, setActiveIndex] = useState(0);
       leaveTo="opacity-0 scale-95 "
       
     >
-      {idx !== 3 ? <GridContainer data={posts} heading={idx == 0 ? "Latest" : idx === 1 ? "Trending" : "List"}/> : <WatchList />}
+      {idx !== 2 ? <GridContainer data={posts} heading={idx == 0 ? "Latest" : "Trending" }/> : idx == 2 ? <MyList /> : <WatchList />}
               {/* <GridContainer data={posts} heading={idx == 0 ? "Latest" : idx === 1 ? "Trending" : "List"}/> */}
             </Transition>
             </Tab.Panel>

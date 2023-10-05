@@ -45,13 +45,16 @@ export default function Episodes({
   return (
     <div>
 
-<div className="flex justify-between items-center">
+<div className="flex gap-2 items-center justify-between">
 
       <h1>Episodes:</h1>
+      {episodesList?.length > 19 && (
+
       <div>
 
       <EpisodesPagination totalPages={totalPages} currentPage={currentPage} episodesList={episodesList} episodesPerPage={episodesPerPage} handlePageChange={handlePageChange} />
       </div>
+      )}
 </div>
 <div className={`grid p-1 ${isEpImgEnabled ? "grid-cols-2 gap-2" : "grid"}`}>
 
@@ -69,15 +72,15 @@ export default function Episodes({
             <div>
           <img className="flex-shrink-0 w-full h-[100px] rounded-sm object-cover" src={ep.image || animeImg} alt={ep.title} />
             <small className="bg-neutral-900/80 font-black py-0.5 px-1.5 absolute top-0 left-0 rounded-br-lg">{ep.number}</small>
-            <small className=" font-lighter p-0.5">{ep.title}</small>
+            <small className=" font-lighter p-0.5 ">{ep.title}</small>
           </div>
             ) : 
             (
 
-          <div className="flex bg-neutral-900/80 hover:scale-105 hover:bg-neutral-800 py-2 transition-all duration-300 justify-between">
-          <small className="  py-0.5 px-1.5 rounded-br-lg flex-shrink-0">Episode <span className="txt-primary"> {ep.number}</span> </small>
+          <div className="flex bg-neutral-900/80 hover:scale-105 hover:bg-neutral-800 py-2 transition-all duration-300 ">
+          <small className="  py-0.5 px-1.5 rounded-br-lg flex-shrink-0 self-center">Episode <span className="txt-primary"> {ep.number}</span> </small>
 
-            <small className=" font-lighter p-0.5">{ep.title}</small>
+            <small className=" font-lighter p-0.5 text-zinc-400">{ep.title}</small>
             
           </div>
             )}
