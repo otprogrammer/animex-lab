@@ -75,7 +75,7 @@ const plugins = [
   }),
   hls(),
   chromecast,
-  vttThumbnails
+  vttThumbnails()
 ];
 
 const Msg = ({ title, message }: any) => {
@@ -269,11 +269,9 @@ export default function WatchContainer(props: WatchProps) {
       )
         .then((res) => res.json())
         .then((res) => {
-          player?.current?.applyPlugin(
-            vttThumbnails({
-              src: res?.subtitles?.filter((t:any)=> t?.lang == "Thumbnails")[0]?.url
-            })
-          )
+          player.current!.context.ui.changThumbnails({
+            src: res?.subtitles?.filter((t:any)=> t?.lang == "Thumbnails")[0]?.url
+          })
           player.current!.context.ui.subtitle.updateSource(res?.subtitles?.map((a:any) => (
             {
               name: a?.lang,
