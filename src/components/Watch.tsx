@@ -111,7 +111,7 @@ export default function WatchContainer(props: WatchProps) {
   const [isReport, setIsReport] = useState(false);
   const [anilistData, setAnilistData] = useState<AnilistInfo>();
   const [lastEpisodeDuration, setLastEpisodeDuration] = useState();
-  const [isZoro,setIsZoro] = useState(true)
+  const [isZoro,setIsZoro] = useState(false)
   const { isSort, enableIsSort, disableIsSort } = useSort();
   const { isAutoNext } = useAutoNext();
   const { isAutoPlay } = useAutoPlay();
