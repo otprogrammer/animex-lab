@@ -10,7 +10,6 @@ import React, {
 import Player, { PlayerEvent } from "@oplayer/core";
 import ui, { Highlight } from "@oplayer/ui";
 import hls from "@oplayer/hls";
-//@ts-ignore
 import ReactPlayer from "@oplayer/react";
 import { chromecast, vttThumbnails } from "@oplayer/plugins";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -75,6 +74,8 @@ const plugins = [
   }),
   hls(),
   chromecast,
+  // @ts-ignore
+  // type fix next version
   vttThumbnails()
 ];
 
