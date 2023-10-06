@@ -12,7 +12,7 @@ import ui, { Highlight } from "@oplayer/ui";
 import hls from "@oplayer/hls";
 //@ts-ignore
 import ReactPlayer from "@oplayer/react";
-import { chromecast } from "@oplayer/plugins";
+import { chromecast, vttThumbnails } from "@oplayer/plugins";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
   AniSkip,
@@ -75,6 +75,7 @@ const plugins = [
   }),
   hls(),
   chromecast,
+  vttThumbnails
 ];
 
 const Msg = ({ title, message }: any) => {
@@ -110,7 +111,7 @@ export default function WatchContainer(props: WatchProps) {
   const [isReport, setIsReport] = useState(false);
   const [anilistData, setAnilistData] = useState<AnilistInfo>();
   const [lastEpisodeDuration, setLastEpisodeDuration] = useState();
-
+  const [isZoro,setIsZoro] = useState(true)
   const { isSort, enableIsSort, disableIsSort } = useSort();
   const { isAutoNext } = useAutoNext();
   const { isAutoPlay } = useAutoPlay();
@@ -119,7 +120,10 @@ export default function WatchContainer(props: WatchProps) {
     props.episodesList?.length >= 1 &&
     props.episodesList?.filter((ep: any) => ep?.number == lastEpisode)[0];
 
-  console.log(anilistData?.characters);
+    let id = props.animeData?.zoroepisodes?.filter((anime: any) => anime.number ==lastEpisode)?.[0]
+    ?.id?.split("$");
+
+    id = id?.toString().split("/")[2].split("?ep=")
 
   useEffect(() => {
     fetchGogoData();
@@ -245,6 +249,7 @@ export default function WatchContainer(props: WatchProps) {
   useEffect(() => {
     player?.current
       ?.changeSource(
+        !isZoro ?
         fetch(
           `https://aniscraper.up.railway.app/anime/gogoanime/watch/${epId}-episode-${lastEpisode}`
         )
@@ -259,7 +264,36 @@ export default function WatchContainer(props: WatchProps) {
               poster: "",
             };
           })
+     : fetch(
+      `https://aniscraper.up.railway.app/anime/zoro/watch?episodeId=${id?.[0]}$episode$${id?.[1]}$both&server=vidcloud`
       )
+        .then((res) => res.json())
+        .then((res) => {
+          player?.current?.applyPlugin(
+            vttThumbnails({
+              src: res?.subtitles?.filter((t:any)=> t?.lang == "Thumbnails")[0]?.url
+            })
+          )
+          player.current!.context.ui.subtitle.updateSource(res?.subtitles?.map((a:any) => (
+            {
+              name: a?.lang,
+               default: false,
+               src: a?.url
+             }
+            
+          ) ))
+          return {
+            src: `https://ottocors.vercel.app/cors?url=${
+              res.sources?.filter((t: any) => t.quality == "auto")[0]?.url
+            }`,
+            title: props.title,
+            poster: props.episodesList?.filter(
+              (ep: any) => ep.number == props.slug?.[1]
+            )[0]?.image,
+            
+          };
+        })
+ )
       .then(() => {
         if (isAutoPlay) {
           player.current?.togglePlay();
