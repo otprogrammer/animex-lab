@@ -26,9 +26,7 @@ export default function SettingsDropdown() {
   const { isAutoNext, enableAutoNext, disableAutoNext } = useAutoNext();
   const { isAutoPlay, enableAutoPlay, disableAutoPlay } = useAutoPlay();
   const { isAutoSkip, enableAutoSkip, disableAutoSkip } = useAutoSkip();
-  console.log(autoNext);
   const isN = useRef(null);
-  console.log(isN.current);
   return (
     <div className="text-right z-50">
       <Menu as="div" className="relative inline-block text-left">

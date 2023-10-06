@@ -6,6 +6,7 @@ import React, {
   useState,
   useRef,
   useCallback,
+  useMemo,
 } from "react";
 import Player, { PlayerEvent } from "@oplayer/core";
 import ui, { Highlight } from "@oplayer/ui";
@@ -37,6 +38,8 @@ import { getAnimeList } from "./watchlist/getAnimeList";
 import { getWatchList } from "./watchlist/getWatchList";
 import { LuArrowDownUp } from "react-icons/lu";
 import { skipOpEd } from "../../lib/skip-op-es";
+import { Transition } from "@headlessui/react";
+import axios from "axios";
 
 const plugins = [
   skipOpEd(),
@@ -75,10 +78,20 @@ const plugins = [
   }),
   hls(),
   chromecast,
-  vttThumbnails
+  //@ts-ignore
+  vttThumbnails(),
 ];
 
-const Msg = ({ title, message }: any) => {
+interface MsgProps {
+  title: string;
+  message: string;
+}
+interface SubtitleProps {
+  url: string;
+  lang: string;
+}
+
+const Msg = ({ title, message }: MsgProps) => {
   return (
     <div className="flex flex-col">
       <span>
@@ -97,7 +110,7 @@ export default function WatchContainer(props: WatchProps) {
   let [isOpen, setIsOpen] = useState(true);
   const [showEpisodes, setShowEpisodes] = useState(true);
   const params = useSearchParams();
-  const lst = useRef<any>(params.get("ep"));
+  const lst = useRef<string | number | any>(params.get("ep"));
   const [lastEpisode, setLastEpisode] = useState(lst.current ? lst.current : 1);
   const [gogoData, setGogoData] = useState<GogoAnimeData>();
   const [epId, setEpId] = useState(
@@ -111,19 +124,25 @@ export default function WatchContainer(props: WatchProps) {
   const [isReport, setIsReport] = useState(false);
   const [anilistData, setAnilistData] = useState<AnilistInfo>();
   const [lastEpisodeDuration, setLastEpisodeDuration] = useState();
-  const [isZoro,setIsZoro] = useState(false)
+  const [isZoro, setIsZoro] = useState(false);
   const { isSort, enableIsSort, disableIsSort } = useSort();
   const { isAutoNext } = useAutoNext();
   const { isAutoPlay } = useAutoPlay();
+  const [episodesList, setEpisodesList] = useState(
+    props.animeData?.episodeslist?.length !== 0 ? props.animeData?.episodeslist : gogoData?.episodes
+  );
+  const [isSub, setIsSub] = useState(true);
 
+  console.log(params.get("id"));
   const currentEpisode: any =
-    props.episodesList?.length >= 1 &&
-    props.episodesList?.filter((ep: any) => ep?.number == lastEpisode)[0];
+    episodesList?.length >= 1 &&
+    episodesList?.filter((ep: any) => ep?.number == lastEpisode)[0];
 
-    let id = props.animeData?.zoroepisodes?.filter((anime: any) => anime.number ==lastEpisode)?.[0]
+  let id = props.animeData?.zoroepisodes
+    ?.filter((anime: any) => anime.number == lastEpisode)?.[0]
     ?.id?.split("$");
 
-    id = id?.toString().split("/")[2].split("?ep=")
+  id = id?.toString().split("/")[2].split("?ep=");
 
   useEffect(() => {
     fetchGogoData();
@@ -144,6 +163,12 @@ export default function WatchContainer(props: WatchProps) {
     current.length > 0 ? setClick(true) : setClick(false);
   }, []);
 
+  useEffect(() => {
+    if (isZoro) {
+      fetchZoro();
+    }
+  }, [lastEpisode]);
+
   const handleNextEpisode = () => {
     setLastEpisode(parseInt(lastEpisode) + 1);
     router.push(
@@ -151,6 +176,85 @@ export default function WatchContainer(props: WatchProps) {
         parseInt(lastEpisode) + 1
       }`
     );
+  };
+
+  const fetchDub = async () => {
+    try {
+      let url = `https://api.animex.live/anime/gogoanime/info/${
+        props.gogoId + "-dub"
+      }`;
+      let req = await axios.get(url);
+      let res = req.data;
+
+      const updatedEpisodesList = props.animeData?.episodeslist
+        ?.map((episode, index) => {
+          const dubEpisode = res.episodes?.find(
+            (ep) => ep.number == episode?.number
+          ); // Assuming res is an array containing dub episodes data
+
+          if (dubEpisode) {
+            return {
+              ...episode,
+              id: dubEpisode?.id,
+              number: dubEpisode?.number,
+            };
+          }
+
+          return null;
+        })
+        .filter(Boolean); // Filter out undefined/null values
+
+      // Update episodesList state with the new array
+      setEpisodesList(updatedEpisodesList);
+      console.log(updatedEpisodesList);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const [subtitles, setSubtitles] = useState<any>();
+  const [zoroSrc, setZoroSrc] = useState<any>();
+
+  const subtitlesList = useMemo(() => {
+    return subtitles
+      ?.filter((subtitle: SubtitleProps) => subtitle.lang)
+      .map((subtitle: SubtitleProps, index: number) => ({
+        src: subtitle.url,
+        default: subtitle.lang === "English",
+        name: subtitle.lang,
+      }));
+  }, [subtitles]);
+
+  const updateSubtitle = useCallback(() => {
+    player?.current?.context.ui.subtitle.updateSource(subtitlesList);
+    player?.current?.applyPlugin(
+      vttThumbnails({
+        src: subtitles?.filter((t: any) => t?.lang == "Thumbnails")[0]?.url,
+      })
+    );
+  }, [subtitles]);
+
+  const fetchZoro = async () => {
+    let req = await fetch(
+      `https://aniscraper.up.railway.app/anime/zoro/watch?episodeId=${id?.[0]}$episode$${id?.[1]}$both&server=vidcloud`
+    );
+    let res = await req.json();
+    setZoroSrc(
+      `https://ottocors.vercel.app/cors?url=${
+        res.sources?.filter((t: any) => t.quality == "auto")[0]?.url
+      }`
+    );
+
+    setSubtitles(res.subtitles);
+
+    // player.current!.context.ui.subtitle.updateSource(res?.subtitles?.map((s:SubtitleProps,i:number) => (
+    //   {
+    //     name: s?.lang,
+    //      default: i === 0,
+    //      src: s?.url
+    //    }
+
+    // ) ))
   };
 
   const handlePrevEpisode = () => {
@@ -247,128 +351,118 @@ export default function WatchContainer(props: WatchProps) {
   );
 
   useEffect(() => {
-    player?.current
-      ?.changeSource(
-        !isZoro ?
-        fetch(
-          `https://aniscraper.up.railway.app/anime/gogoanime/watch/${epId}-episode-${lastEpisode}`
-        )
-          .then((res) => res.json())
-          .then((res) => {
-            setGogoIframe(res?.headers?.Referer);
-            setDownload(res?.download);
-            return {
-              src: res.sources?.filter((s: any) => s.quality === "default")?.[0]
-                .url,
-              title: "Title",
-              poster: "",
-            };
-          })
-     : fetch(
-      `https://aniscraper.up.railway.app/anime/zoro/watch?episodeId=${id?.[0]}$episode$${id?.[1]}$both&server=vidcloud`
-      )
-        .then((res) => res.json())
-        .then((res) => {
-          player?.current?.applyPlugin(
-            vttThumbnails({
-              src: res?.subtitles?.filter((t:any)=> t?.lang == "Thumbnails")[0]?.url
-            })
+    !isZoro
+      ? player?.current?.changeSource(
+          fetch(
+            `https://aniscraper.up.railway.app/anime/gogoanime/watch/${
+              isSub ? epId : epId + "-dub"
+            }-episode-${lastEpisode}`
           )
-          player.current!.context.ui.subtitle.updateSource(res?.subtitles?.map((a:any) => (
-            {
-              name: a?.lang,
-               default: false,
-               src: a?.url
-             }
-            
-          ) ))
-          return {
-            src: `https://ottocors.vercel.app/cors?url=${
-              res.sources?.filter((t: any) => t.quality == "auto")[0]?.url
-            }`,
-            title: props.title,
-            poster: props.episodesList?.filter(
-              (ep: any) => ep.number == props.slug?.[1]
-            )[0]?.image,
-            
-          };
-        })
- )
-      .then(() => {
-        if (isAutoPlay) {
-          player.current?.togglePlay();
-        }
-
-        fetch(
-          `https://api.aniskip.com/v2/skip-times/${props.animeData?.mal_id}/${lastEpisode}?types=op&types=recap&types=mixed-op&types=ed&types=mixed-ed&episodeLength=0`
+            .then((res) => res.json())
+            .then((res) => {
+              setGogoIframe(res?.headers?.Referer);
+              setDownload(res?.download);
+              return {
+                src: res.sources?.filter(
+                  (s: any) => s.quality === "default"
+                )?.[0].url,
+                title: "Title",
+                poster: "",
+              };
+            })
         )
-          .then((res) => res.json())
-          .then((res) => {
-            res = res as AniSkip;
+      : player?.current
+          ?.changeSource({
+            src: zoroSrc,
+          })
+          .then(updateSubtitle)
+          .then(() => {
+            if (isAutoPlay) {
+              player.current?.togglePlay();
+            }
 
-            const highlights: Highlight[] = [];
-            let opDuration = [],
-              edDuration = [];
+            fetch(
+              `https://api.aniskip.com/v2/skip-times/${props.animeData?.mal_id}/${lastEpisode}?types=op&types=recap&types=mixed-op&types=ed&types=mixed-ed&episodeLength=0`
+            )
+              .then((res) => res.json())
+              .then((res) => {
+                res = res as AniSkip;
 
-            if (res.statusCode === 200) {
-              for (let result of res.results) {
-                if (result.skipType === "op" || result.skipType === "ed") {
-                  const { startTime, endTime } = result.interval;
+                const highlights: Highlight[] = [];
+                let opDuration = [],
+                  edDuration = [];
 
-                  if (startTime) {
-                    highlights.push({
-                      time: startTime,
-                      text: result.skipType === "op" ? "OP" : "ED",
-                    });
-                    if (result.skipType === "op") opDuration.push(startTime);
-                    else edDuration.push(startTime);
-                  }
+                if (res.statusCode === 200) {
+                  for (let result of res.results) {
+                    if (result.skipType === "op" || result.skipType === "ed") {
+                      const { startTime, endTime } = result.interval;
 
-                  if (endTime) {
-                    highlights.push({
-                      time: endTime,
-                      text: result.skipType === "op" ? "OP" : "ED",
-                    });
-                    if (result.skipType === "op") opDuration.push(endTime);
-                    else edDuration.push(endTime);
+                      if (startTime) {
+                        highlights.push({
+                          time: startTime,
+                          text: result.skipType === "op" ? "OP" : "ED",
+                        });
+                        if (result.skipType === "op")
+                          opDuration.push(startTime);
+                        else edDuration.push(startTime);
+                      }
+
+                      if (endTime) {
+                        highlights.push({
+                          time: endTime,
+                          text: result.skipType === "op" ? "OP" : "ED",
+                        });
+                        if (result.skipType === "op") opDuration.push(endTime);
+                        else edDuration.push(endTime);
+                      }
+                    }
                   }
                 }
-              }
-            }
-            player?.current?.emit("opedchange", [opDuration, edDuration]);
-            player?.current?.context.ui.highlight(highlights);
+                player?.current?.emit("opedchange", [opDuration, edDuration]);
+                player?.current?.context.ui.highlight(highlights);
+              });
           });
-      });
   }, [props.slug, lastEpisode, epId]);
 
   return (
     <>
       <div className=" w-full flex flex-col lg:flex-row gap-6 mx-5 overflow-hidden">
         <div className="w-full ">
-          <div className={`w-full  relative aspect-video`}>
-            <ReactPlayer
-              plugins={plugins}
-              ref={player}
-              source={source}
-              autoplay={false}
-              onEvent={onEvent}
-              duration={lastEpisodeDuration}
+          <div className={`${params.get("ep") ? "block" : "hidden"}`}>
+            <Transition
+              appear={params.get("ep") ? true : false}
+              as={"div"}
+              show={true}
+              enter="transform transition duration-500"
+              enterFrom="opacity-0 translate-y-[500px] duration-[800ms] scale-[0.90]"
+              enterTo="opacity-100 rotate-0 scale-100"
+              leave="transform duration-200 transition ease-in-out"
+              leaveFrom="opacity-100 rotate-0 scale-100 "
+              leaveTo="opacity-0 scale-95 "
+            >
+              <div className={`w-full  relative aspect-video`}>
+                <ReactPlayer
+                  plugins={plugins}
+                  ref={player}
+                  source={source}
+                  autoplay={false}
+                  onEvent={onEvent}
+                  duration={lastEpisodeDuration}
+                />
+              </div>
+            </Transition>
+
+            <EpisodeContainer
+              title={props.animeData?.title || (gogoData?.title as string)}
+              lastEpisode={lastEpisode}
+              download={download && download}
+              handleOpen={() => setIsReport(true)}
+              handleNextEpisode={handleNextEpisode}
+              handlePrevEpisode={handlePrevEpisode}
+              totalEpisodes={gogoData?.totalEpisodes || episodesList?.length}
             />
+            <hr className=" border-zinc-700 w-[85%] mx-auto" />
           </div>
-
-          <EpisodeContainer
-            title={props.animeData?.title || (gogoData?.title as string)}
-            lastEpisode={lastEpisode}
-            download={download && download}
-            handleOpen={() => setIsReport(true)}
-            handleNextEpisode={handleNextEpisode}
-            handlePrevEpisode={handlePrevEpisode}
-            totalEpisodes={
-              gogoData?.totalEpisodes || props.episodesList?.length
-            }
-          />
-
-          <hr className=" border-zinc-700 w-[85%] mx-auto" />
 
           {props.animeData?.status == "Currently Airing" &&
             anilistData?.nextAiringEpisode && (
@@ -403,7 +497,32 @@ export default function WatchContainer(props: WatchProps) {
         </div>
 
         <div className="max-w-[410px] mx-auto">
-          <div className={`w-full ${showEpisodes ? "flex flex-row" : " flex flex-col"} justify-center gap-2 p-1 `}>
+          <div
+            className={`w-full ${
+              showEpisodes ? "flex flex-row" : " flex flex-col"
+            } justify-center gap-2 p-1 `}
+          >
+            <label className="swap">
+              <input type="checkbox" />
+              <div
+                className="swap-on txt-primary"
+                onClick={() => {
+                  fetchDub();
+                  setIsSub(false);
+                }}
+              >
+                DUB
+              </div>
+              <div
+                className="swap-off txt-primary"
+                onClick={() => {
+                  setEpisodesList(props.episodesList);
+                  setIsSub(true);
+                }}
+              >
+                SUB
+              </div>
+            </label>
             <div
               onClick={isSort ? disableIsSort : enableIsSort}
               aria-label="Sort Episodes"
@@ -429,47 +548,8 @@ export default function WatchContainer(props: WatchProps) {
 
           {showEpisodes && (
             <div className="w-[360px]">
-              {/* <div>
-                <div>Up Next:</div>
-                <div
-                  // onClick={() => router.push(`/w/${props.slug?.[0]}/${ep.number}`)}
-                  // key={i}
-                  className="flex gap-3 my-[8px]"
-                >
-                  <div>
-                    <img
-                      className="flex-1 max-w-[170px] h-[100px] rounded-sm object-cover"
-                      src={
-                        props.episodesList?.filter(
-                          (ep: any) => ep.number === parseInt(lastEpisode) + 1
-                        )[0]?.image
-                      }
-                    />
-                  </div>
-                  <div className="flex flex-col justify-between">
-                    <div className=" font-lighter">
-                      {
-                        props.episodesList?.filter(
-                          (ep: any) => ep.number === parseInt(lastEpisode) + 1
-                        )[0]?.title
-                      }
-                    </div>
-                    <p className="text-zinc-400 font-extralight text-sm">
-                      Episode{" "}
-                      {
-                        props.episodesList?.filter(
-                          (ep: any) => ep.number === parseInt(lastEpisode) + 1
-                        )[0]?.number
-                      }
-                    </p>
-                  </div>
-                </div>
-              </div> */}
-
               <Episodes
-                episodesList={
-                  props.animeData?.episodeslist || gogoData?.episodes
-                }
+                episodesList={episodesList || gogoData?.episodes}
                 handleEpisodeRoute={handleEpisodeRoute}
                 animeImg={gogoData?.image as string}
                 episodeNumber={lastEpisode}

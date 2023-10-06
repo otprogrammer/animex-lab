@@ -69,8 +69,8 @@ export default function DetailsTabs(props: DetailsTabsProps) {
             ${
               activeIndex === index
                 ? "txt-primary bg-black hover:text-white"
-                : "hover:txt-primary bg-neutral-900"
-            } text-center p-2 mx-[1px] cursor-pointer font-bold`}
+                : "hover:txt-primary bg-neutral-900/90"
+            } text-center p-1.5 mx-[1px] cursor-pointer  text-base`}
             >
               {category}
             </Tab>

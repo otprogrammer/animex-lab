@@ -57,14 +57,14 @@ export default function Overview({
 
             {/* sun icon */}
 
-            <label className="swap z-50 swap-rotate">
+            <label className="swap z-50 swap-rotate tool relative" >
               <input type="checkbox" />
 
               <Icon
                 onClick={handleClick}
                 className={`${
                   !click ? "swap-on" : "swap-off"
-                }swap-on fill-current w-7 h-7`}
+                }swap-on fill-current w-7 h-7 text-white`}
                 icon={`${
                   !click ? "zondicons:add-outline" : "dashicons:remove"
                 }`}
