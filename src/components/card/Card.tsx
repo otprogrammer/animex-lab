@@ -13,7 +13,7 @@ function Card(anime: any) {
       <Link
         className=" w-full max-w-[200px] hover:-translate-y-1 transition-all duration-300 ease-in-out inline-grid"
         href={{
-          pathname: `/anime/${anime.malId || anime.id}`,
+          pathname: `/anime/${anime.malId || anime.id || anime.malID}`,
           query : {
             // ep : 1,
             // title : anime.title.english
@@ -25,7 +25,7 @@ function Card(anime: any) {
         <div className={`card   overflow-hidden`}>
           <img
             className=" object-cover  h-[180px] md:h-[270px]  rounded-sm"
-            src={anime.image || anime.image_url}
+            src={anime.image || anime.image_url || anime.images.large}
             alt={anime?.title?.romaji}
           />
           <small

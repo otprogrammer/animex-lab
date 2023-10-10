@@ -5,6 +5,7 @@ import GridContainer from "../container/GridContainer";
 // import { watchList } from '../watchlist/WatchList'
 import WatchList from "../watchlist/WatchList";
 import MyList from "../watchlist/MyList";
+import Airing from "../schedule/Schedule";
 
 type HomeContainerTabs = {
   Latest: any[];
@@ -18,6 +19,7 @@ export default function Tabs({ Latest, Trending }: HomeContainerTabs) {
     Trending: Trending,
     MyList: [],
     WatchList: [],
+    Schedule:[]
   });
 
   const [activeIndex, setActiveIndex] = useState(0);
@@ -33,7 +35,7 @@ export default function Tabs({ Latest, Trending }: HomeContainerTabs) {
   return (
     <div className="w-full px-2  sm:px-0">
       <Tab.Group>
-        <Tab.List className="grid grid-cols-4 w-full lg:max-w-[85%] xl:max-w-[75%] mx-auto place-self-center">
+        <Tab.List className="grid grid-cols-5 w-full lg:max-w-[85%] xl:max-w-[75%] text-[12px] md:text-md mx-auto place-self-center">
           {Object.keys(categories).map((category, index) => (
             <Tab
               key={index}
@@ -75,8 +77,10 @@ export default function Tabs({ Latest, Trending }: HomeContainerTabs) {
                   />
                 ) : idx == 2 ? (
                   <MyList />
-                ) : (
+                ) : idx == 3 ? (
                   <WatchList />
+                ) : (
+                  <Airing />
                 )}
                 {/* <GridContainer data={posts} heading={idx == 0 ? "Latest" : idx === 1 ? "Trending" : "List"}/> */}
               </Transition>

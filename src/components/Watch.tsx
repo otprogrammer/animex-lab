@@ -542,7 +542,7 @@ export default function WatchContainer(props: WatchProps) {
 
               <div
                 className={`${
-                  epId?.includes("dub") ? "swap-off" : "swap-on"
+                  epId && epId?.includes("dub") ? "swap-off" : "swap-on"
                 } txt-primary`}
                 onClick={() => {
                   fetchDub();
@@ -553,7 +553,7 @@ export default function WatchContainer(props: WatchProps) {
               </div>
               <div
                 className={`${
-                  !epId?.includes("dub") ? "swap-off" : "swap-on"
+                  epId && !epId?.includes("dub") ? "swap-off" : "swap-on"
                 } txt-primary`}
                 onClick={fetchSub}
               >

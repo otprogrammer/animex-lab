@@ -22,7 +22,7 @@ export const GridBreakPoints = (heading:string) => {
       speed: 500,
     },
     1024: {
-      slidesPerView: heading === "WatchList" ? 3.5 : 3.7,
+      slidesPerView: heading === "WatchList" ? 3.5 : 4.7,
       spaceBetween: 10,
       slidesPerGroup: 3,
       speed: 500,
@@ -63,3 +63,36 @@ export const GridBreakPoints = (heading:string) => {
     },
   }
   }
+
+
+
+  export const days = [
+    {
+      name: "Monday",
+      i: 1,
+    },
+    {
+      name: "Tuesday",
+      i: 2,
+    },
+    {
+      name: "Wednesday",
+      i: 3,
+    },
+    {
+      name: "Thursday",
+      i: 4,
+    },
+    {
+      name: "Friday",
+      i: 5,
+    },
+    {
+      name: "Saturday",
+      i: 6,
+    },
+    {
+      name: "Sunday",
+      i: 7,
+    },
+  ];
