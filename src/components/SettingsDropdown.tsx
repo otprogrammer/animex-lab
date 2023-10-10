@@ -21,6 +21,7 @@ export default function SettingsDropdown() {
   const autoPlay = localStorage.getItem("autoPlay");
 
   const autoSkip = localStorage.getItem("autoSkip");
+  console.log(typeof(isEpisodesImg))
 
   const { isEpImgEnabled, enableEpImg, disableEpImg } = useEpisodesImage();
   const { isAutoNext, enableAutoNext, disableAutoNext } = useAutoNext();
@@ -28,9 +29,7 @@ export default function SettingsDropdown() {
   const { isAutoSkip, enableAutoSkip, disableAutoSkip } = useAutoSkip();
   const isN = useRef(null);
   return (
-    <div className="text-right z-50">
-      <Menu as="div" className="relative inline-block text-left">
-        <div>
+      <Menu as="div" className="flex z-50 relative">
           <Menu.Button
             aria-label="Settings"
             className="tool inline-flex w-full justify-center rounded-md bg-black bg-opacity-20 text-sm font-medium text-white hover:txt-primary hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
@@ -43,7 +42,6 @@ export default function SettingsDropdown() {
               icon="gridicons:dropdown"
             /> */}
           </Menu.Button>
-        </div>
         <Transition
           as={Fragment}
           enter="transition ease-out duration-100"
@@ -64,7 +62,7 @@ export default function SettingsDropdown() {
                   >
                     <Switch
                       ref={isN}
-                      checked={autoNext as any}
+                      checked={autoNext == "true" ? true : false}
                       onChange={isAutoNext ? disableAutoNext : enableAutoNext}
                       className={`${
                         autoNext == "true" ? "bg-red-600" : "bg-neutral-700"
@@ -92,7 +90,7 @@ export default function SettingsDropdown() {
                     } group flex gap-3 w-full items-center rounded-md px-2 py-2 text-sm`}
                   >
                     <Switch
-                      checked={autoSkip as any}
+                      checked={autoSkip == "true" ? true : false}
                       onChange={isAutoSkip ? disableAutoSkip : enableAutoSkip}
                       className={`${
                         autoSkip == "true" ? "bg-red-600" : "bg-neutral-700"
@@ -120,7 +118,7 @@ export default function SettingsDropdown() {
                     } group flex gap-3 w-full items-center rounded-md px-2 py-2 text-sm`}
                   >
                     <Switch
-                      checked={autoPlay as any}
+                      checked={isAutoPlay == "true" ? true : false}
                       onChange={isAutoPlay ? disableAutoPlay : enableAutoPlay}
                       className={`${
                         autoPlay == "true" ? "bg-red-600" : "bg-neutral-700"
@@ -148,8 +146,8 @@ export default function SettingsDropdown() {
                     } group flex gap-3 w-full items-center rounded-md px-2 py-2 text-sm`}
                   >
                     <Switch
-                      checked={isEpisodesImg as any}
-                      onChange={isEpImgEnabled ? disableEpImg : enableEpImg}
+                      checked={isEpisodesImg == "true" ? true : false}
+                      onChange={isEpisodesImg == "true" ? disableEpImg : enableEpImg}
                       className={`${
                         isEpisodesImg == "true"
                           ? "bg-red-600"
@@ -176,6 +174,5 @@ export default function SettingsDropdown() {
           </Menu.Items>
         </Transition>
       </Menu>
-    </div>
   );
 }

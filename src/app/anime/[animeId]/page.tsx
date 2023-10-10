@@ -9,7 +9,7 @@ const fetchAnime = async (q: string | number, title: string | undefined) => {
   const { data } = await supabase
     .from("anime")
     .select("*")
-    .or(`anime_id.eq.${q},mal_id.eq.${q}`);
+    .or(`anime_id.eq.${q},mal_id.eq.${q}`).not("title","ilike","(Dub)");
   // let res = await req.json();
   return data;
 };

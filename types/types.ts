@@ -16,9 +16,9 @@ export type AnimeInfo = {
     thetvdb: string;
     anidb: string;
     kitsu: string;
-    notifymoe: any; // Change this to a specific type if possible
+    notifymoe: any; 
     anisearch: string;
-    animeplanet: any; // Change this to a specific type if possible
+    animeplanet: any; 
     season: string;
     genres: string[];
     status: string;
@@ -62,16 +62,29 @@ export type AnimeInfo = {
     opening_themes: string[];
     ending_themes: string[];
     episodes: string;
-    episodeslist: any[]; // Change this to a specific type if possible
-    characters: any; // Change this to a specific type if possible
-    recommendations: any; // Change this to a specific type if possible
+    episodeslist: any[]; 
+    characters: any; 
+    recommendations: any; 
     updated_at: string;
     poster_path: string;
     backdrop_path: string;
     tmdb_id: string;
-    subType: any; // Change this to a specific type if possible
+    subType: any; 
+    zoroepisodes:ZoroEpisode[];
   };
 
+
+  export type ZoroEpisode = {
+    id: string;
+    img: null | string;
+    title: string;
+    hasDub: boolean;
+    number: number;
+    rating: null | number;
+    isFiller: boolean;
+    updatedAt: number;
+    description: null | string;
+  };
 
   export type WatchProps = {
     slug?: string[];

@@ -40,6 +40,7 @@ import { LuArrowDownUp } from "react-icons/lu";
 import { skipOpEd } from "../../lib/skip-op-es";
 import { Transition } from "@headlessui/react";
 import axios from "axios";
+import supabase from "../../utils/supabase";
 
 const plugins = [
   skipOpEd(),
@@ -128,12 +129,12 @@ export default function WatchContainer(props: WatchProps) {
   const { isSort, enableIsSort, disableIsSort } = useSort();
   const { isAutoNext } = useAutoNext();
   const { isAutoPlay } = useAutoPlay();
+  const [episodesLoading,setEpisodesLoading] = useState(false)
   const [episodesList, setEpisodesList] = useState(
     props.animeData?.episodeslist?.length !== 0 ? props.animeData?.episodeslist : gogoData?.episodes
   );
   const [isSub, setIsSub] = useState(true);
 
-  console.log(params.get("id"));
   const currentEpisode: any =
     episodesList?.length >= 1 &&
     episodesList?.filter((ep: any) => ep?.number == lastEpisode)[0];
@@ -145,6 +146,10 @@ export default function WatchContainer(props: WatchProps) {
   id = id?.toString().split("/")[2].split("?ep=");
 
   useEffect(() => {
+
+    if (props.animeData?.title?.includes("(Dub)")) {
+      setIsSub(false)
+    }
     fetchGogoData();
     fetchAnilistData();
     setLastEpisodeDuration(
@@ -163,12 +168,7 @@ export default function WatchContainer(props: WatchProps) {
     current.length > 0 ? setClick(true) : setClick(false);
   }, []);
 
-  useEffect(() => {
-    if (isZoro) {
-      fetchZoro();
-    }
-  }, [lastEpisode]);
-
+ 
   const handleNextEpisode = () => {
     setLastEpisode(parseInt(lastEpisode) + 1);
     router.push(
@@ -180,6 +180,7 @@ export default function WatchContainer(props: WatchProps) {
 
   const fetchDub = async () => {
     try {
+      setEpisodesLoading(true)
       let url = `https://api.animex.live/anime/gogoanime/info/${
         props.gogoId + "-dub"
       }`;
@@ -207,8 +208,11 @@ export default function WatchContainer(props: WatchProps) {
       // Update episodesList state with the new array
       setEpisodesList(updatedEpisodesList);
       console.log(updatedEpisodesList);
+      setEpisodesLoading(false)
     } catch (error) {
       console.error(error);
+      setEpisodesLoading(false)
+
     }
   };
 
@@ -233,6 +237,28 @@ export default function WatchContainer(props: WatchProps) {
       })
     );
   }, [subtitles]);
+
+
+  const fetchSub = async () => {
+
+    setEpisodesLoading(true)
+    if (props.animeData?.title?.includes("(Dub)")) {
+      console.log("yes it's dub")
+
+      let {data} = await supabase.from('anime').select("episodeslist").eq('anime_id',props.gogoId?.split("-dub")[0])
+      setEpisodesList(data?.[0]?.episodeslist);
+      setIsSub(true);
+
+      console.log(data)
+      setEpisodesLoading(false)
+    }
+
+    // setEpisodesList(props.animeData?.episodeslist);
+    // setIsSub(true);
+    // setEpisodesLoading(true)
+
+
+  }
 
   const fetchZoro = async () => {
     let req = await fetch(
@@ -266,6 +292,15 @@ export default function WatchContainer(props: WatchProps) {
     );
   };
   useEffect(() => {
+   
+    if (params.get("ottogod")) {
+      setIsZoro(true)
+    }
+
+      if (isZoro) {
+        fetchZoro();
+      }
+    
     lst.current = lastEpisode;
   }, [lastEpisode]);
 
@@ -332,7 +367,7 @@ export default function WatchContainer(props: WatchProps) {
           props.animeData?.anilistid,
           props.animeData?.anime_id || gogoData?.id
         );
-      } else if (payload.type == "ended" && isAutoNext) {
+      } else if (payload.type == "ended" && isAutoNext == "true") {
         let getNextEp = props.animeData?.episodeslist?.filter(
           (e: any) => e.number == parseInt(lastEpisode) + 1
         )[0];
@@ -351,11 +386,13 @@ export default function WatchContainer(props: WatchProps) {
   );
 
   useEffect(() => {
+    
+
     !isZoro
       ? player?.current?.changeSource(
           fetch(
             `https://aniscraper.up.railway.app/anime/gogoanime/watch/${
-              isSub ? epId : epId + "-dub"
+              params.get("id")
             }-episode-${lastEpisode}`
           )
             .then((res) => res.json())
@@ -422,7 +459,7 @@ export default function WatchContainer(props: WatchProps) {
                 player?.current?.context.ui.highlight(highlights);
               });
           });
-  }, [props.slug, lastEpisode, epId]);
+  }, [props.slug, lastEpisode, epId,params.get("id")]);
 
   return (
     <>
@@ -496,16 +533,17 @@ export default function WatchContainer(props: WatchProps) {
           />
         </div>
 
-        <div className="max-w-[410px] mx-auto">
+        <div className="lg:max-w-[410px] ">
           <div
             className={`w-full ${
               showEpisodes ? "flex flex-row" : " flex flex-col"
-            } justify-center gap-2 p-1 `}
+            } justify-center items-center gap-2 p-1 `}
           >
             <label className="swap">
               <input type="checkbox" />
+              
               <div
-                className="swap-on txt-primary"
+                className={`${epId?.includes("dub") ? "swap-off" : "swap-on"} txt-primary`}
                 onClick={() => {
                   fetchDub();
                   setIsSub(false);
@@ -514,11 +552,8 @@ export default function WatchContainer(props: WatchProps) {
                 DUB
               </div>
               <div
-                className="swap-off txt-primary"
-                onClick={() => {
-                  setEpisodesList(props.episodesList);
-                  setIsSub(true);
-                }}
+                className={`${!epId?.includes("dub") ? "swap-off" : "swap-on"} txt-primary`}
+                onClick={fetchSub}
               >
                 SUB
               </div>
@@ -546,8 +581,8 @@ export default function WatchContainer(props: WatchProps) {
           </div>
           <hr className="w-[70%] border-zinc-800 mx-auto mb-2" />
 
-          {showEpisodes && (
-            <div className="w-[360px]">
+          {showEpisodes && !episodesLoading ? (
+            <div className="lg:w-[360px]">
               <Episodes
                 episodesList={episodesList || gogoData?.episodes}
                 handleEpisodeRoute={handleEpisodeRoute}
@@ -555,7 +590,8 @@ export default function WatchContainer(props: WatchProps) {
                 episodeNumber={lastEpisode}
               />
             </div>
-          )}
+          ) : <div className="lg:w-[360px] flex justify-center mt-10 "><span className="loading loading-spinner text-error loading-lg"></span></div>
+        }
         </div>
       </div>
 

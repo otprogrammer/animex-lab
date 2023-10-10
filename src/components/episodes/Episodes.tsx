@@ -38,7 +38,7 @@ export default function Episodes({
   useEffect(() => {
     setTotalPages(Math.ceil(episodesList?.length / 20));
     setCurrentPage(getPageNumber());
-  }, []);
+  }, [episodesList]);
 
   function getPageNumber() {
     const episodesPerPage = 20; // Assuming 10 episodes per page
@@ -69,7 +69,7 @@ export default function Episodes({
         )}
       </div>
       <div
-        className={`grid p-1 ${isEpImgEnabled ? "grid-cols-2 gap-2" : "grid"}`}
+        className={`grid p-1 ${isEpImgEnabled == "true" ? "grid-cols-2 gap-2" : "grid "}`}
       >
         {episodesToRender?.map((ep: AnimeEpisodesProps, i: number) => (
           <div
@@ -77,7 +77,7 @@ export default function Episodes({
             key={i}
             className="flex flex-col max-w-full cursor-pointer relative my-1"
           >
-            {isEpImgEnabled ? (
+            {isEpImgEnabled == "true" ? (
               <div>
                 <img
                   className="flex-shrink-0 w-full h-[100px] rounded-sm object-cover"

@@ -12,12 +12,12 @@ const autoSkip = localStorage.getItem("autoSkip");
 export const useEpisodesImage = create<useEpisodesProps>((set) => ({
     isEpImgEnabled: isEpisodesImg,
   enableEpImg: () => {
-    set(() => ({ isEpImgEnabled: true }));
+    set(() => ({ isEpImgEnabled: "true" }));
     localStorage.setItem("showEpisodesImg", "true");
   },
 
   disableEpImg: () => {
-    set(() => ({ isEpImgEnabled: false }));
+    set(() => ({ isEpImgEnabled: "false" }));
     localStorage.setItem("showEpisodesImg", "false");
   },
 }));
@@ -25,12 +25,12 @@ export const useEpisodesImage = create<useEpisodesProps>((set) => ({
 export const useAutoNext = create<useAutoNextProps>((set) => ({
     isAutoNext: autoNext,
     enableAutoNext: () => {
-      set(() => ({ isAutoNext: true }));
+      set(() => ({ isAutoNext: "true" }));
       localStorage.setItem("autoNext", "true");
     },
   
     disableAutoNext: () => {
-      set(() => ({ isAutoNext: false }));
+      set(() => ({ isAutoNext: "false" }));
       localStorage.setItem("autoNext", "false");
     },
   }));
@@ -51,12 +51,12 @@ export const useAutoNext = create<useAutoNextProps>((set) => ({
   export const useAutoSkip = create<useAutoSkipProps>((set) => ({
     isAutoSkip: autoSkip,
     enableAutoSkip: () => {
-      set(() => ({ isAutoSkip: true }));
+      set(() => ({ isAutoSkip: "true" }));
       localStorage.setItem("autoSkip", "true");
     },
   
     disableAutoSkip: () => {
-      set(() => ({ isAutoSkip: false }));
+      set(() => ({ isAutoSkip: "false" }));
       localStorage.setItem("autoSkip", "false");
     },
   }));

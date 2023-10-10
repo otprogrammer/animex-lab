@@ -15,8 +15,8 @@ function Card(anime: any) {
         href={{
           pathname: `/anime/${anime.malId || anime.id}`,
           query : {
-            ep : 1,
-            title : anime.title.english
+            // ep : 1,
+            // title : anime.title.english
           }
           
         
