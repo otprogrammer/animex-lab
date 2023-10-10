@@ -293,9 +293,7 @@ export default function WatchContainer(props: WatchProps) {
   };
   useEffect(() => {
    
-    if (params.get("ottogod")) {
-      setIsZoro(true)
-    }
+   
 
       if (isZoro) {
         fetchZoro();
@@ -459,7 +457,7 @@ export default function WatchContainer(props: WatchProps) {
                 player?.current?.context.ui.highlight(highlights);
               });
           });
-  }, [props.slug, lastEpisode, epId,params.get("id")]);
+  }, [props.slug, lastEpisode, epId,params.get("id")],isZoro);
 
   return (
     <>
@@ -539,6 +537,8 @@ export default function WatchContainer(props: WatchProps) {
               showEpisodes ? "flex flex-row" : " flex flex-col"
             } justify-center items-center gap-2 p-1 `}
           >
+
+            <span onClick={() => setIsZoro(true)}>MAX IS GAY</span>
             <label className="swap">
               <input type="checkbox" />
               
