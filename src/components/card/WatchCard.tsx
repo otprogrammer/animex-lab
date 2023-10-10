@@ -9,6 +9,7 @@ import TimeAgo from "./TimeAgo";
 import { handleDeleteAnime } from "../../../lib/bookmark";
 
 interface WatchListProps {
+  id:string;
   anilistid: number;
   anime_id: string;
   duration: number;
@@ -53,7 +54,7 @@ function WatchCard(anime: WatchListProps) {
       )}
       <Link
         className="  w-full   transition-all duration-300 ease-in-out inline-grid"
-        href={`/anime/${anime.anime_id}?ep=${anime.episode}`}
+        href={`/anime/${anime.anime_id}?id=${anime.id}&ep=${anime.episode}`}
       >
         <div
           className={`card relative ${

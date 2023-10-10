@@ -129,9 +129,11 @@ export default function WatchContainer(props: WatchProps) {
   const { isSort, enableIsSort, disableIsSort } = useSort();
   const { isAutoNext } = useAutoNext();
   const { isAutoPlay } = useAutoPlay();
-  const [episodesLoading,setEpisodesLoading] = useState(false)
+  const [episodesLoading, setEpisodesLoading] = useState(false);
   const [episodesList, setEpisodesList] = useState(
-    props.animeData?.episodeslist?.length !== 0 ? props.animeData?.episodeslist : gogoData?.episodes
+    props.animeData?.episodeslist?.length !== 0
+      ? props.animeData?.episodeslist
+      : gogoData?.episodes
   );
   const [isSub, setIsSub] = useState(true);
 
@@ -146,9 +148,8 @@ export default function WatchContainer(props: WatchProps) {
   id = id?.toString().split("/")[2].split("?ep=");
 
   useEffect(() => {
-
     if (props.animeData?.title?.includes("(Dub)")) {
-      setIsSub(false)
+      setIsSub(false);
     }
     fetchGogoData();
     fetchAnilistData();
@@ -168,7 +169,6 @@ export default function WatchContainer(props: WatchProps) {
     current.length > 0 ? setClick(true) : setClick(false);
   }, []);
 
- 
   const handleNextEpisode = () => {
     setLastEpisode(parseInt(lastEpisode) + 1);
     router.push(
@@ -180,7 +180,7 @@ export default function WatchContainer(props: WatchProps) {
 
   const fetchDub = async () => {
     try {
-      setEpisodesLoading(true)
+      setEpisodesLoading(true);
       let url = `https://api.animex.live/anime/gogoanime/info/${
         props.gogoId + "-dub"
       }`;
@@ -208,11 +208,11 @@ export default function WatchContainer(props: WatchProps) {
       // Update episodesList state with the new array
       setEpisodesList(updatedEpisodesList);
       console.log(updatedEpisodesList);
-      setEpisodesLoading(false)
+      setEpisodesLoading(false);
     } catch (error) {
       console.error(error);
-      setEpisodesLoading(false)
-
+      setEpisodesLoading(false);
+      setEpisodesList([]);
     }
   };
 
@@ -238,27 +238,26 @@ export default function WatchContainer(props: WatchProps) {
     );
   }, [subtitles]);
 
-
   const fetchSub = async () => {
-
-    setEpisodesLoading(true)
+    setEpisodesLoading(true);
     if (props.animeData?.title?.includes("(Dub)")) {
-      console.log("yes it's dub")
+      console.log("yes it's dub");
 
-      let {data} = await supabase.from('anime').select("episodeslist").eq('anime_id',props.gogoId?.split("-dub")[0])
+      let { data } = await supabase
+        .from("anime")
+        .select("episodeslist")
+        .eq("anime_id", props.gogoId?.split("-dub")[0]);
       setEpisodesList(data?.[0]?.episodeslist);
       setIsSub(true);
 
-      console.log(data)
-      setEpisodesLoading(false)
+      console.log(data);
+      setEpisodesLoading(false);
+    } else {
+      setEpisodesList(props.animeData?.episodeslist || gogoData?.episodes);
+      setIsSub(true);
+      setEpisodesLoading(false);
     }
-
-    // setEpisodesList(props.animeData?.episodeslist);
-    // setIsSub(true);
-    // setEpisodesLoading(true)
-
-
-  }
+  };
 
   const fetchZoro = async () => {
     let req = await fetch(
@@ -292,13 +291,10 @@ export default function WatchContainer(props: WatchProps) {
     );
   };
   useEffect(() => {
-   
-   
+    if (isZoro) {
+      fetchZoro();
+    }
 
-      if (isZoro) {
-        fetchZoro();
-      }
-    
     lst.current = lastEpisode;
   }, [lastEpisode]);
 
@@ -337,6 +333,12 @@ export default function WatchContainer(props: WatchProps) {
     let req = await fetch(url);
     let res = await req.json();
     setGogoData(res);
+    if (
+      !props.animeData?.episodeslist ||
+      props.animeData?.episodeslist?.length < 1
+    ) {
+      setEpisodesList(res.episodes);
+    }
     setEpId(res.episodes?.[0]?.id?.split("-episode")[0]);
   };
 
@@ -353,7 +355,7 @@ export default function WatchContainer(props: WatchProps) {
       if (payload.type == "timeupdate") {
         onTimeUpdate(payload.payload.target.currentTime * 1000);
         addWatchList(
-          props.slug || props.gogoId,
+          params.get("id"),
           null,
           lastEpisode,
           props.animeData?.coverimage || gogoData?.image,
@@ -384,14 +386,12 @@ export default function WatchContainer(props: WatchProps) {
   );
 
   useEffect(() => {
-    
-
     !isZoro
       ? player?.current?.changeSource(
           fetch(
-            `https://aniscraper.up.railway.app/anime/gogoanime/watch/${
-              params.get("id")
-            }-episode-${lastEpisode}`
+            `https://aniscraper.up.railway.app/anime/gogoanime/watch/${params.get(
+              "id"
+            )}-episode-${lastEpisode}`
           )
             .then((res) => res.json())
             .then((res) => {
@@ -457,7 +457,7 @@ export default function WatchContainer(props: WatchProps) {
                 player?.current?.context.ui.highlight(highlights);
               });
           });
-  }, [props.slug, lastEpisode, epId,params.get("id")],isZoro);
+  }, [props.slug, lastEpisode, epId, params.get("id")]);
 
   return (
     <>
@@ -537,13 +537,13 @@ export default function WatchContainer(props: WatchProps) {
               showEpisodes ? "flex flex-row" : " flex flex-col"
             } justify-center items-center gap-2 p-1 `}
           >
-
-            <span onClick={() => setIsZoro(true)}>MAX IS GAY</span>
             <label className="swap">
               <input type="checkbox" />
-              
+
               <div
-                className={`${epId?.includes("dub") ? "swap-off" : "swap-on"} txt-primary`}
+                className={`${
+                  epId?.includes("dub") ? "swap-off" : "swap-on"
+                } txt-primary`}
                 onClick={() => {
                   fetchDub();
                   setIsSub(false);
@@ -552,7 +552,9 @@ export default function WatchContainer(props: WatchProps) {
                 DUB
               </div>
               <div
-                className={`${!epId?.includes("dub") ? "swap-off" : "swap-on"} txt-primary`}
+                className={`${
+                  !epId?.includes("dub") ? "swap-off" : "swap-on"
+                } txt-primary`}
                 onClick={fetchSub}
               >
                 SUB
@@ -581,17 +583,25 @@ export default function WatchContainer(props: WatchProps) {
           </div>
           <hr className="w-[70%] border-zinc-800 mx-auto mb-2" />
 
-          {showEpisodes && !episodesLoading ? (
+          {showEpisodes && !episodesLoading && episodesList?.length >= 1 ? (
             <div className="lg:w-[360px]">
               <Episodes
-                episodesList={episodesList || gogoData?.episodes}
+                episodesList={episodesList}
                 handleEpisodeRoute={handleEpisodeRoute}
                 animeImg={gogoData?.image as string}
                 episodeNumber={lastEpisode}
               />
             </div>
-          ) : <div className="lg:w-[360px] flex justify-center mt-10 "><span className="loading loading-spinner text-error loading-lg"></span></div>
-        }
+          ) : episodesList?.length < 1 ? (
+            <div className="lg:w-[360px] flex justify-center mt-10 ">
+              {" "}
+              No Episodes Found{" "}
+            </div>
+          ) : (
+            <div className="lg:w-[360px] flex justify-center mt-10 ">
+              <span className="loading loading-spinner text-error loading-lg"></span>
+            </div>
+          )}
         </div>
       </div>
 

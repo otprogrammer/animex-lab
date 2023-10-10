@@ -53,5 +53,13 @@ export const GridBreakPoints = (heading:string) => {
       speed: 500,
      
     },
+
+    2030: {
+      slidesPerView:  heading === "WatchList" ? 6.5 :  9.1,
+      slidesPerGroup: 3,
+      spaceBetween: 10,
+      speed: 500,
+     
+    },
   }
   }

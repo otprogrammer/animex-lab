@@ -24,7 +24,7 @@ export default function RootLayout({
 }) {
   return (
     <html data-theme={"black"} lang="en">
-      <body>
+      <body className="min-h-screen">
         <div className="navbar bg-neutral-900 mb-8">
           <div className="navbar-start">
             <div className="dropdown ">

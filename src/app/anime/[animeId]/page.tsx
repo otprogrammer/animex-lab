@@ -9,7 +9,7 @@ const fetchAnime = async (q: string | number, title: string | undefined) => {
   const { data } = await supabase
     .from("anime")
     .select("*")
-    .or(`anime_id.eq.${q},mal_id.eq.${q}`).not("title","ilike","(Dub)");
+    .or(`anime_id.eq.${q},mal_id.eq.${q}`);
   // let res = await req.json();
   return data;
 };
@@ -30,6 +30,7 @@ interface AnimeInfoProps {
 
 async function Anime({ params: { animeId }, searchParams: query }: PageProps) {
   const getAnime = await fetchAnime(animeId, query?.title);
+  const data = getAnime?.filter((anime) => !anime.title?.includes("(Dub)"))[0]
 
   console.log(query?.title);
 
@@ -42,9 +43,9 @@ async function Anime({ params: { animeId }, searchParams: query }: PageProps) {
           className={`w-full flex flex-col justify-center items-center lg:flex-row lg:justify-center lg:items-stretch z-[1] `}
         >
           <WatchContainer
-            animeData={getAnime?.[0]}
-            episodesList={getAnime?.[0]?.episodeslist}
-            gogoId={getAnime?.[0]?.anime_id || animeId}
+            animeData={data}
+            episodesList={data?.episodeslist}
+            gogoId={data?.anime_id || animeId}
             
           />
         </div>
