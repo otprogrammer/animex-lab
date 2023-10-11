@@ -9,7 +9,7 @@ import TimeAgo from "./TimeAgo";
 import { handleDeleteAnime } from "../../../lib/bookmark";
 
 interface WatchListProps {
-  id:string;
+  id: string;
   anilistid: number;
   anime_id: string;
   duration: number;
@@ -84,19 +84,23 @@ function WatchCard(anime: WatchListProps) {
           >
             {anime.title}
           </small>
-          <span className="absolute top-1 left-2 bg-black/70 px-2 py-0 rounded-sm">
+          {/* <span className="absolute top-1 left-2 bg-black/70 px-2 py-0 rounded-sm">
             <span
               className="text-white font-semibold"
               style={{ textShadow: "rgb(0, 0, 0) 1px 1px 5px" }}
             >
               {anime.episode}
             </span>
-          </span>
+          </span> */}
 
           <ProgressBar mainTime={anime.vidTime} currentTime={anime.duration} />
         </div>
       </Link>
-      <div className="p-1 text-end mt-[-6px]">
+      <div className="flex justify-between items-center mb-3">
+        <span className="text-neutral-300 text-start">
+          Episode{" "}
+          <span className="text-blue-500 font-semibold"> {anime.episode}</span>
+        </span>
         <TimeAgo timestamp={anime.time} />
       </div>
     </div>
