@@ -1,11 +1,11 @@
 "use client"
 import { create } from "zustand";
 
-const isEpisodesImg = localStorage.getItem("showEpisodesImg");
-const autoNext = localStorage.getItem("autoNext");
-const autoPlay = localStorage.getItem("autoPlay");
+const isEpisodesImg = typeof window !== "undefined" && localStorage.getItem("showEpisodesImg");
+const autoNext = typeof window !== "undefined" && localStorage.getItem("autoNext");
+const autoPlay = typeof window !== "undefined" && localStorage.getItem("autoPlay");
 
-const autoSkip = localStorage.getItem("autoSkip");
+const autoSkip = typeof window !== "undefined" && localStorage.getItem("autoSkip");
 
 
 

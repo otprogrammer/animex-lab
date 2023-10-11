@@ -46,7 +46,7 @@ export default function Layout() {
       <meta name="apple-mobile-web-app-status-bar" content="#c40808" />
       <link rel="apple-touch-icon" href="logo250.png" />
       <meta name="theme-color" content="#000000" />
-      <script
+      {/* <script
         async
         src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
       />
@@ -61,7 +61,7 @@ export default function Layout() {
             });
           `,
         }}
-      />
+      /> */}
     </Head>
   );
 }
