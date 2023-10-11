@@ -18,7 +18,7 @@ export default function Tabs({ Latest, Trending }: HomeContainerTabs) {
     Latest: Latest,
     Trending: Trending,
     MyList: [],
-    WatchList: [],
+    History: [],
     Schedule:[]
   });
 

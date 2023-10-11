@@ -67,14 +67,7 @@ body {
 }
 
 
-.ft {overflow: visible;
-  opacity: 1;
-  background: transparent url(https://i.imgur.com/Ax4ZUl9.png) bottom left/330px auto no-repeat;
-  z-index: 0;
-  left: -40px;
-  bottom: 0;
-  height: 244PX;
-  background-position: left;}
+
 
 
   .tool::after {

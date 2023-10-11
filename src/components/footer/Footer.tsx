@@ -6,14 +6,27 @@ import React from "react";
 // import {SiBuymeacoffee} from "react-icons/si"
 import { Icon } from "@iconify/react";
 import { useContact } from "../../../store/store";
+import { isMobile } from "@oplayer/core";
+
+
+const FooterStyle = !isMobile ? {
+  overflow: 'visible',
+  opacity: 1,
+  background: 'transparent url(https://i.imgur.com/Ax4ZUl9.png) bottom left/330px auto no-repeat',
+  zIndex: 0,
+  left: '-40px',
+  bottom: 0,
+  height: '244px', // 'px' should be lowercase
+  backgroundPosition: 'left'
+} : {};
 
 function Footer() {
   const router = useRouter();
-  const {enableIsContact} = useContact()
+  const { enableIsContact } = useContact();
 
   return (
     <footer className="p-3   md:px-6 md:mt-20  relative bg-neutral-900/60">
-      <div className="ft">
+      <div  style={FooterStyle} >
         <div className="flex flex-col  items-center justify-center relative z-[1]">
           <img
             src={`/logo/favicon-1.png`}
@@ -29,18 +42,22 @@ function Footer() {
           </h1>
 
           <div className="flex gap-1">
-            <span
+            <a
+              href="https://ko-fi.com/ottoprogrammer"
+              target="_blank"
               aria-label="Support Me"
               className="tool rounded-full border-[2px] cursor-pointer border-white p-2 hover:bg-blue-700 transition-all ease-in-out duration-500 hover:-translate-y-1 text-[#ffffff]"
             >
               <Icon icon="cib:buy-me-a-coffee" />
-            </span>
-            <span
+            </a>
+            <a
+              href="https://discord.gg/uEAKwRrFpn"
+              target="_blank"
               aria-label="Discord"
               className="tool rounded-full border-[2px] cursor-pointer border-white p-2 hover:bg-blue-700 transition-all ease-in-out duration-500 hover:-translate-y-1 text-[#ffffff]"
             >
               <Icon icon="ic:baseline-discord" />
-            </span>
+            </a>
             <span
               aria-label="Github"
               className="tool rounded-full border-[2px] cursor-pointer border-white p-2 hover:bg-blue-700 transition-all ease-in-out duration-500 hover:-translate-y-1 text-[#ffffff]"
@@ -48,7 +65,7 @@ function Footer() {
               <Icon icon="ant-design:github-outlined" />
             </span>
             <span
-            onClick={enableIsContact}
+              onClick={enableIsContact}
               aria-label="Contact Me"
               className="tool rounded-full border-[2px] cursor-pointer border-white p-2 hover:bg-blue-700 transition-all ease-in-out duration-500 hover:-translate-y-1 text-[#ffffff]"
             >

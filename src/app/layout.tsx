@@ -28,27 +28,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const [isDropDown, setIsDropDown] = useState(false);
-  const {enableIsContact} = useContact()
-
+  const { enableIsContact } = useContact();
 
   return (
     <html data-theme={"black"} lang="en">
-      
       <body className="min-h-screen">
         <div className="navbar bg-neutral-900 mb-8">
           <div className="navbar-start">
-            <div className="dropdown  ">
+            <div onClick={() => setIsDropDown((t) => !t)} className="dropdown  ">
               <label
-             
                 tabIndex={0}
+                
+
                 className="btn btn-ghost btn-circle swap swap-rotate"
               >
                 {/* this hidden checkbox controls the state */}
-                <input type="checkbox" />
 
                 {/* hamburger icon */}
                 <svg
-                  onClick={() => setIsDropDown((t) => !t)}
                   className="swap-off fill-current"
                   xmlns="http://www.w3.org/2000/svg"
                   width="30"
@@ -58,17 +55,6 @@ export default function RootLayout({
                   <path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z" />
                 </svg>
 
-                {/* close icon */}
-                <svg
-                  onClick={() => setIsDropDown((t) => !t)}
-                  className="swap-on fill-current"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="30"
-                  height="30"
-                  viewBox="0 0 512 512"
-                >
-                  <path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z" />
-                </svg>
               </label>
 
               {/* <label tabIndex={0} className="btn btn-ghost btn-circle">
@@ -90,7 +76,7 @@ export default function RootLayout({
               {isDropDown && (
                 <ul
                   tabIndex={0}
-                  className="menu menu-sm dropdown-content relative mt-3 z-50 p-2 shadow bg-neutral-900 rounded-box w-52"
+                  className="menu menu-sm dropdown-content relative mt-3 z-50 p-2 shadow bg-neutral-900 rounded-lg w-52"
                 >
                   <li>
                     <Link href="/">Home</Link>
@@ -103,6 +89,13 @@ export default function RootLayout({
                   </li>
                   <li>
                     <span onClick={enableIsContact}>Contact</span>
+                  </li>
+                  <li>
+
+
+                  <a href="https://ko-fi.com/ottoprogrammer" target="_blank">
+                    <span>Support</span>
+                  </a>
                   </li>
                 </ul>
               )}
@@ -129,8 +122,11 @@ export default function RootLayout({
           </div>
         </div>
         <NextTopLoader color="#e11d48" />
+        <div className="min-h-screen">
 
         {children}
+        </div>
+
 
         <ToastContainer
           position={"top-left"}
