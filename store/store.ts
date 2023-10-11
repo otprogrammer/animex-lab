@@ -72,3 +72,15 @@ export const useAutoNext = create<useAutoNextProps>((set) => ({
       set(() => ({ isSort: false }));
     },
   }));
+
+
+  export const useContact = create<useContactProps>((set) => ({
+    isContact: false,
+    enableIsContact: () => {
+      set(() => ({ isContact: true }));
+    },
+  
+    disableIsContact: () => {
+      set(() => ({ isContact: false }));
+    },
+  }));

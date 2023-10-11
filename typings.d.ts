@@ -28,3 +28,10 @@ interface useAutoPlayProps {
     enableAutoPlay : () => void;
     disableAutoPlay : () => void;
 }
+
+interface useContactProps {
+    isContact : boolean | any;
+    enableIsContact : () => void;
+    disableIsContact : () => void;
+}
+

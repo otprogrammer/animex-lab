@@ -73,11 +73,11 @@ const Search = () => {
   };
   return (
     <form
-      className={`bg-neutral-800/95 z-50  cursor-pointer rounded-lg  lg:w-[17rem] `}
+      className={`btn-ghost z-50  cursor-pointer rounded-full   `}
       onSubmit={handleSubmit}
     >
       <div
-        className={` text-gray-300 h-10 w-10 lg:w-full  rounded-full  flex items-center  p-2.5 shadow-2xl relative right-0`}
+        className={` text-gray-300 h-10 w-10 lg:w-full  bg-neutral-800/75 rounded-full  flex items-center  p-2.5 shadow-2xl relative right-0`}
         id="search"
         onClick={handleClick}
       >
@@ -106,7 +106,7 @@ const Search = () => {
         />
         {content?.length > 0 && (
           <div
-            className={` autocomplete absolute left-0 px-1 py-0 top-11 shadow-2xl transition-all duration-200 rounded-SM  w-full bg-[#222]`}
+            className={` autocomplete absolute left-0 px-1 py-0 top-11 shadow-2xl transition-all duration-200 rounded-sm  w-full bg-[#222]`}
           >
             {content?.map((Item, index) => (
               <Link href={Item.link} key={index}>
