@@ -93,7 +93,7 @@ export default function RootLayout({
                   className="menu menu-sm dropdown-content relative mt-3 z-50 p-2 shadow bg-neutral-900 rounded-box w-52"
                 >
                   <li>
-                    <a href="/">Home</a>
+                    <Link href="/">Home</Link>
                   </li>
                   <li>
                     <Link href={`/`}>Genres</Link>

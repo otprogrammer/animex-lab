@@ -96,7 +96,7 @@ function WatchCard(anime: WatchListProps) {
           <ProgressBar mainTime={anime.vidTime} currentTime={anime.duration} />
         </div>
       </Link>
-      <div className="p-0.5">
+      <div className="p-1 text-end mt-[-6px]">
         <TimeAgo timestamp={anime.time} />
       </div>
     </div>

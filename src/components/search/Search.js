@@ -100,7 +100,7 @@ const Search = () => {
           value={val}
           autoComplete={"off"}
           onChange={handleSearch}
-          className={`text-gray-200 bg-transparent border-none outline-none max-w-0 ease-in-out transition-all duration-700`}
+          className={`text-gray-200 bg-transparent lg:w-[20rem] border-none outline-none max-w-0 ease-in-out transition-all duration-700`}
           placeholder="Search for anime..."
           id="searchinput"
         />

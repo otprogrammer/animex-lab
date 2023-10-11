@@ -7,14 +7,10 @@ import supabase from "../../../utils/supabase";
 import GridContainer from "../container/GridContainer";
 import { days } from "../../../utils/Vars";
 
-
-
 function Airing() {
   const [data, setData] = useState([]);
   const slider = useRef();
   const [activeDay, setActiveDay] = useState<any>();
-
-
 
   useEffect(() => {
     setActiveDay(days.filter((t) => t.i == todayIndex)[0]?.name);
@@ -22,14 +18,13 @@ function Airing() {
     fetchSchedule();
   }, []);
 
-
   const today = dayjs();
   const todayIndex = today.day();
 
   const [selectedTab, setSelectedTab] = useState(todayIndex);
   const [scheduleData, setScheduleData] = useState<any>({});
-  console.log("activeday",activeDay)
-  console.log('todayindex',todayIndex)
+  console.log("activeday", activeDay);
+  console.log("todayindex", todayIndex);
   const renderSchedule = () => {
     switch (activeDay) {
       case "Monday":
@@ -55,8 +50,6 @@ function Airing() {
     setSelectedTab(index);
   };
 
-
-
   const fetchSchedule = async () => {
     // let url = `https://ottoscraper.vercel.app/`
     const { data }: any = await supabase.from("schedule").select("*");
@@ -65,10 +58,9 @@ function Airing() {
 
   return (
     <div className="text-white py-3 home_container">
-
       <div className="w-full px-2  sm:px-0">
         <Tab.Group>
-          <Tab.List className="grid grid-cols-4 lg:grid-cols-7 w-full lg:max-w-[85%] xl:max-w-[75%] mx-auto place-self-center">
+          <Tab.List className="grid grid-cols-3 lg:grid-cols-7 gap-2 w-full lg:max-w-[85%] xl:max-w-[75%] mx-auto place-self-center">
             {days.map((day, index) => {
               const isToday = day.i === (index as any);
 
@@ -112,8 +104,6 @@ function Airing() {
           </Tab.Panels>
         </Tab.Group>
       </div>
-
-      
     </div>
   );
 }

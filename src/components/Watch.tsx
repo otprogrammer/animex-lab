@@ -18,7 +18,9 @@ import { useRouter, useSearchParams } from "next/navigation";
 import {
   AniSkip,
   AnilistInfo,
+  EpisodesListProps,
   GogoAnimeData,
+  GogoEpisodesListProps,
   WatchProps,
 } from "../../types/types";
 import { Icon } from "@iconify/react";
@@ -131,16 +133,17 @@ export default function WatchContainer(props: WatchProps) {
   const { isAutoNext } = useAutoNext();
   const { isAutoPlay } = useAutoPlay();
   const [episodesLoading, setEpisodesLoading] = useState(false);
-  const [episodesList, setEpisodesList] = useState(
+  const [episodesList, setEpisodesList] = useState<any[] | any>(
     props.animeData?.episodeslist?.length !== 0
       ? props.animeData?.episodeslist
       : gogoData?.episodes
   );
   const [isSub, setIsSub] = useState(true);
-
+  const [subtitles, setSubtitles] = useState([]);
+  const [zoroSrc, setZoroSrc] = useState("");
   const currentEpisode =
     episodesList?.length >= 1 &&
-    episodesList?.filter((ep) => ep?.number == lastEpisode)[0];
+    episodesList?.filter((ep : EpisodesListProps) => ep?.number == lastEpisode)[0];
 
   let id = props.animeData?.zoroepisodes
     ?.filter((anime) => anime.number == lastEpisode)?.[0]
@@ -155,7 +158,7 @@ export default function WatchContainer(props: WatchProps) {
     fetchGogoData();
     fetchAnilistData();
     setLastEpisodeDuration(
-      getWatchList().filter((a) =>
+      getWatchList().filter((a: { episode: any; mal_id: string; anime_id: string; }) =>
         a.episode == lastEpisode
           ? a.mal_id == props.animeData?.mal_id ||
             a.anime_id == props.animeData?.anime_id
@@ -163,7 +166,7 @@ export default function WatchContainer(props: WatchProps) {
       )?.[0]?.duration
     );
     const current = getAnimeList().filter(
-      (item) =>
+      (item: { anime_id: string; mal_id: string; }) =>
         item.anime_id == props.animeData?.anime_id ||
         item.mal_id == props.animeData?.mal_id
     );
@@ -191,7 +194,7 @@ export default function WatchContainer(props: WatchProps) {
       const updatedEpisodesList = props.animeData?.episodeslist
         ?.map((episode, index) => {
           const dubEpisode = res.episodes?.find(
-            (ep) => ep.number == episode?.number
+            (ep: { number: number; }) => ep.number == episode?.number
           ); // Assuming res is an array containing dub episodes data
 
           if (dubEpisode) {
@@ -217,8 +220,7 @@ export default function WatchContainer(props: WatchProps) {
     }
   };
 
-  const [subtitles, setSubtitles] = useState();
-  const [zoroSrc, setZoroSrc] = useState();
+  
 
   const subtitlesList = useMemo(() => {
     return subtitles
@@ -234,7 +236,7 @@ export default function WatchContainer(props: WatchProps) {
     player?.current?.context.ui.subtitle.updateSource(subtitlesList);
     player?.current?.applyPlugin(
       vttThumbnails({
-        src: subtitles?.filter((t) => t?.lang == "Thumbnails")[0]?.url,
+        src: subtitles?.filter((t: { lang: string; }) => t?.lang == "Thumbnails")[0]?.url,
       })
     );
   }, [subtitles]);
@@ -267,7 +269,7 @@ export default function WatchContainer(props: WatchProps) {
     let res = await req.json();
     setZoroSrc(
       `https://ottocors.vercel.app/cors?url=${
-        res.sources?.filter((t) => t.quality == "auto")[0]?.url
+        res.sources?.filter((t: { quality: string; }) => t.quality == "auto")[0]?.url
       }`
     );
 
@@ -341,8 +343,9 @@ export default function WatchContainer(props: WatchProps) {
       setEpisodesList(res.episodes);
     }
     if (props.animeData?.episodeslist?.length != res.episodes?.length) {
-      setEpisodesList(appendMissingEpisodes(props.animeData?.episodeslist, res.episodes))
-
+      setEpisodesList(
+        appendMissingEpisodes(props.animeData?.episodeslist, res.episodes)
+      );
     }
     setEpId(res.episodes?.[0]?.id?.split("-episode")[0]);
   };
@@ -363,7 +366,7 @@ export default function WatchContainer(props: WatchProps) {
           params.get("id"),
           null,
           lastEpisode,
-          props.animeData?.coverimage || gogoData?.image,
+          currentEpisode?.image  || props.animeData?.coverimage || gogoData?.image,
           props.animeData?.title || gogoData?.title,
           Date.now(),
           player?.current?.duration || null,
@@ -403,9 +406,8 @@ export default function WatchContainer(props: WatchProps) {
               setGogoIframe(res?.headers?.Referer);
               setDownload(res?.download);
               return {
-                src: res.sources?.filter(
-                  (s) => s.quality === "default"
-                )?.[0].url,
+                src: res.sources?.filter((s: { quality: string; }) => s.quality === "default")?.[0]
+                  .url,
                 title: "Title",
                 poster: "",
               };

@@ -42,7 +42,7 @@ function Card(anime: any) {
             }}
             className="text-neutral-100 p-2 z-50 whitespace-nowrap text-ellipsis overflow-hidden  text-start hover:before:scale-105"
           >
-            {anime.title?.romaji}
+            {anime.title?.romaji || anime.title}
           </small>
         </div>
       </Link>

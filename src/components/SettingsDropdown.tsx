@@ -11,10 +11,7 @@ import {
 } from "../../store/store";
 
 export default function SettingsDropdown() {
-  // const [isAutoNext, setIsAutoNext] = useState(false);
-  // const [isAutoPlay, setIsAutoPlay] = useState(false);
-  // const [isAutoSkip, setIsAutoSkip] = useState(false);
-  // const [isShowImages, setIsShowImages] = useState(false);
+
 
   const isEpisodesImg = typeof window !== "undefined" && localStorage.getItem("showEpisodesImg");
   const autoNext = typeof window !== "undefined" && localStorage.getItem("autoNext");
@@ -63,7 +60,7 @@ export default function SettingsDropdown() {
                     <Switch
                       ref={isN}
                       checked={autoNext == "true" ? true : false}
-                      onChange={isAutoNext ? disableAutoNext : enableAutoNext}
+                      onChange={autoNext == "true" ? disableAutoNext : enableAutoNext}
                       className={`${
                         autoNext == "true" ? "bg-red-600" : "bg-neutral-700"
                       }

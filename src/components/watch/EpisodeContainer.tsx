@@ -9,8 +9,8 @@ import {
 type EpisodeContainerProps = {
   title: string;
   lastEpisode: number;
-  handleNextEpisode: React.MouseEventHandler<SVGSVGElement> | undefined;
-  handlePrevEpisode: React.MouseEventHandler<SVGSVGElement> | undefined;
+  handleNextEpisode: () => void;
+  handlePrevEpisode: () => void;
   handleOpen: React.MouseEventHandler<HTMLElement> | undefined;
   download: string;
   totalEpisodes: number;

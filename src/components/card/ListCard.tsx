@@ -43,7 +43,7 @@ function ListCard(anime:WatchListProps) {
 )}
       <Link
         className="  w-full   transition-all duration-300 ease-in-out inline-grid"
-        href={`/anime/${anime.anime_id}?ep=1`}
+        href={`/anime/${anime.anime_id}`}
       >
         <div  className={`card relative ${anime.heading === "WatchList" ? "max-h-[165px]" : "h-[180px] md:h-[270px]"}   overflow-hidden `}>
           <img

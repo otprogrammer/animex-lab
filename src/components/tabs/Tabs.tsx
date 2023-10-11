@@ -35,7 +35,7 @@ export default function Tabs({ Latest, Trending }: HomeContainerTabs) {
   return (
     <div className="w-full px-2  sm:px-0">
       <Tab.Group>
-        <Tab.List className="grid grid-cols-5 w-full lg:max-w-[85%] xl:max-w-[75%] text-[12px] md:text-md mx-auto place-self-center">
+        <Tab.List className="grid grid-cols-5 w-full lg:max-w-[85%] xl:max-w-[75%] text-[12px] md:text-[16px] mx-auto place-self-center">
           {Object.keys(categories).map((category, index) => (
             <Tab
               key={index}

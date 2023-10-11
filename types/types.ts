@@ -62,7 +62,7 @@ export type AnimeInfo = {
     opening_themes: string[];
     ending_themes: string[];
     episodes: string;
-    episodeslist: any[]; 
+    episodeslist: EpisodesListProps[]; 
     characters: any; 
     recommendations: any; 
     updated_at: string;
@@ -73,7 +73,23 @@ export type AnimeInfo = {
     zoroepisodes:ZoroEpisode[];
   };
 
+  export type GogoEpisodesListProps = {
+    id: string;
+    number: number;
+    url :string;
+   
 
+  }
+
+  export type EpisodesListProps = {
+    id: string;
+    image: string;
+    title: string;
+    number: number;
+    air_date: string;
+    description: string;
+
+  }
   export type ZoroEpisode = {
     id: string;
     img: null | string;
@@ -203,7 +219,7 @@ export type GogoAnimeData = {
   type: string;
   status: string;
   otherName: string;
-  episodes: any[]; 
+  episodes: GogoEpisodesListProps[]; 
 };
 
 
