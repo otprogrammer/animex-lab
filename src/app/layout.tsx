@@ -120,7 +120,7 @@ export default function RootLayout({
           </div>
         </div>
         <NextTopLoader color="#e11d48" />
-        <div className="min-h-screen">{children}</div>
+        {children}
 
         <ToastContainer
           position={"top-left"}
