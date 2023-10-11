@@ -35,11 +35,12 @@ export default function RootLayout({
       <body className="min-h-screen">
         <div className="navbar bg-neutral-900 mb-8">
           <div className="navbar-start">
-            <div onClick={() => setIsDropDown((t) => !t)} className="dropdown  ">
+            <div
+              onClick={() => setIsDropDown((t) => !t)}
+              className="dropdown  "
+            >
               <label
                 tabIndex={0}
-                
-
                 className="btn btn-ghost btn-circle swap swap-rotate"
               >
                 {/* this hidden checkbox controls the state */}
@@ -54,7 +55,6 @@ export default function RootLayout({
                 >
                   <path d="M64,384H448V341.33H64Zm0-106.67H448V234.67H64ZM64,128v42.67H448V128Z" />
                 </svg>
-
               </label>
 
               {/* <label tabIndex={0} className="btn btn-ghost btn-circle">
@@ -91,11 +91,9 @@ export default function RootLayout({
                     <span onClick={enableIsContact}>Contact</span>
                   </li>
                   <li>
-
-
-                  <a href="https://ko-fi.com/ottoprogrammer" target="_blank">
-                    <span>Support</span>
-                  </a>
+                    <a href="https://ko-fi.com/ottoprogrammer" target="_blank">
+                      <span>Support</span>
+                    </a>
                   </li>
                 </ul>
               )}
@@ -122,11 +120,7 @@ export default function RootLayout({
           </div>
         </div>
         <NextTopLoader color="#e11d48" />
-        <div className="min-h-screen">
-
-        {children}
-        </div>
-
+        <div className="min-h-screen">{children}</div>
 
         <ToastContainer
           position={"top-left"}
