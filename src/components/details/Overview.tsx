@@ -41,6 +41,7 @@ export default function Overview({
         className={`a_d rounded-md flex flex-col lg:flex-row gap-1 w-full p-2 `}
       >
         <div className="w-full z-50  max-w-[200px] mx-auto ">
+          {/* <button className="p-2 w-full mx-auto  my-1 rounded-full">Watch</button> */}
           <img
             src={
               (animeData?.poster_path &&

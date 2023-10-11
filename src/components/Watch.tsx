@@ -315,17 +315,17 @@ export default function WatchContainer(props: WatchProps) {
       setClick(false);
       toast.error(
         <Msg
-          title={props.animeData?.title}
+          title={props.animeData?.title || gogoData?.title}
           message="Was Removed From Your List"
         />,
         { theme: "dark" }
       );
       handleDeleteAnime(props.animeData);
     } else {
-      handleAddAnime(props.animeData);
+      handleAddAnime(props.animeData || gogoData);
       setClick(true);
       toast.success(
-        <Msg title={props.animeData?.title} message="Was Added To Your List" />,
+        <Msg title={props.animeData?.title || gogoData?.title} message="Was Added To Your List" />,
         { theme: "dark" }
       );
     }
@@ -600,7 +600,7 @@ export default function WatchContainer(props: WatchProps) {
               {" "}
               No Episodes Found{" "}
             </div>
-          ) : (
+          ) : episodesLoading && (
             <div className="lg:w-[360px] flex justify-center mt-10 ">
               <span className="loading loading-spinner text-error loading-lg"></span>
             </div>

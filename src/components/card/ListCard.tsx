@@ -8,7 +8,6 @@ import { DeleteWatchListId } from "../../../lib/Watchlist";
 import TimeAgo from "./TimeAgo";
 import { handleDeleteAnime } from "../../../lib/bookmark";
 
-
 interface WatchListProps {
   anilistid: number;
   anime_id: string;
@@ -19,36 +18,52 @@ interface WatchListProps {
   time: number;
   title: string;
   vidTime: number;
-  refresh : () => void;
-  heading?:string;
+  refresh: () => void;
+  heading?: string;
+  image: string;
+  id: string;
 }
 
+function ListCard(anime: WatchListProps) {
+  const [showDelete, setShowDelete] = useState(false);
 
-function ListCard(anime:WatchListProps) {
-  const [showDelete,setShowDelete] = useState(false)
-    
   return (
-    <div onMouseEnter={() => setShowDelete(true)}  onMouseLeave={() => setShowDelete(false)} className=" max-w-fit relative">
-     {showDelete && (
+    <div
+      onMouseEnter={() => setShowDelete(true)}
+      onMouseLeave={() => setShowDelete(false)}
+      className=" max-w-fit relative"
+    >
+      {showDelete && (
+        <span
+          onClick={() => {
+            handleDeleteAnime(anime);
 
-<span onClick={() => {
- 
-    handleDeleteAnime(anime)
-  
-  anime.refresh();
-}} className="absolute top-0 right-1 z-50 hover:bg-red-500 cursor-pointer bg-neutral-700/75 rounded-full p-1 mt-1">
-  <span className="text-white  font-semibold" style={{textShadow: "rgb(0, 0, 0) 1px 1px 5px",}}><Icon  icon="line-md:remove" width={15} />
-</span>
-</span>
-)}
+            anime.refresh();
+          }}
+          className="absolute top-0 right-1 z-50 hover:bg-red-500 cursor-pointer bg-neutral-700/75 rounded-full p-1 mt-1"
+        >
+          <span
+            className="text-white  font-semibold"
+            style={{ textShadow: "rgb(0, 0, 0) 1px 1px 5px" }}
+          >
+            <Icon icon="line-md:remove" width={15} />
+          </span>
+        </span>
+      )}
       <Link
         className="  w-full   transition-all duration-300 ease-in-out inline-grid"
-        href={`/anime/${anime.anime_id}`}
+        href={`/anime/${anime.anime_id || anime.id}`}
       >
-        <div  className={`card relative ${anime.heading === "WatchList" ? "max-h-[165px]" : "h-[180px] md:h-[270px]"}   overflow-hidden `}>
+        <div
+          className={`card relative ${
+            anime.heading === "WatchList"
+              ? "max-h-[165px]"
+              : "h-[180px] md:h-[270px]"
+          }   overflow-hidden `}
+        >
           <img
             className=" object-cover overflow-hidden hover:scale-110 transition-all duration-300 ease-in-out rounded-sm"
-            src={anime.image_url}
+            src={anime.image_url || anime.image}
             alt={anime.title}
           />
           <small
@@ -68,14 +83,15 @@ function ListCard(anime:WatchListProps) {
             {anime.title}
           </small>
           <span className="absolute top-1 left-2 bg-black/70 px-2 py-0 rounded-sm">
-            <span className="text-white font-semibold" style={{textShadow: "rgb(0, 0, 0) 1px 1px 5px",}}>{anime.episode}</span>
+            <span
+              className="text-white font-semibold"
+              style={{ textShadow: "rgb(0, 0, 0) 1px 1px 5px" }}
+            >
+              {anime.episode}
+            </span>
           </span>
-          
-          
-
         </div>
       </Link>
-      
     </div>
   );
 }
