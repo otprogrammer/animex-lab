@@ -6,6 +6,8 @@ import {
   TbPlayerTrackPrevFilled,
 } from "react-icons/tb";
 
+import {HiSwitchHorizontal} from "react-icons/hi"
+
 type EpisodeContainerProps = {
   title: string;
   lastEpisode: number;
@@ -61,11 +63,14 @@ export default function EpisodeContainer({
             </div>
           )}
         </div>
+        
       </div>
 
       <small className="text-zinc-400 cursor-pointer">
         Episode {lastEpisode}
       </small>
+
+      
 
       <div className="flex text-[13px] md:text-lg  gap-4 justify-end mt-2">
         <span className={cls}>
@@ -74,6 +79,8 @@ export default function EpisodeContainer({
         <span className={cls}>
           <Icon icon="mdi:thumb-down" color="white" width="24" />
         </span>
+
+       
         <a href={download} target="_blank" className={cls}>
           <Icon icon="bxs:cloud-download" color="white" width={24} />
           <span>DOWNLOAD</span>

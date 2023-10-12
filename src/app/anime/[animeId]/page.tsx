@@ -9,7 +9,7 @@ const fetchAnime = async (q: string | number, title: string | undefined) => {
   const { data } = await supabase
     .from("anime")
     .select("*")
-    .or(`anime_id.eq.${q},mal_id.eq.${q}`);
+    .or(`anime_id.eq.${q},mal_id.eq.${q},title.eq.${title}`);
   // let res = await req.json();
   return data;
 };
@@ -46,7 +46,7 @@ export async function generateMetadata(
   
 
   return {
-    title: query?.ep ? data?.title + " Episode" + query?.ep : data?.title,
+    title: query?.ep ? data?.title + " Episode " + query?.ep : data?.title,
     description: data?.synopsis,
     openGraph: {
       images: [data?.coverimage],

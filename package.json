@@ -11,6 +11,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.17",
     "@oplayer/core": "^1.2.31",
+    "@oplayer/danmaku": "^1.2.24",
     "@oplayer/hls": "^1.2.22",
     "@oplayer/plugins": "^1.0.7",
     "@oplayer/react": "^1.2.8",

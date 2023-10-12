@@ -115,8 +115,8 @@ export default function SettingsDropdown() {
                     } group flex gap-3 w-full items-center rounded-md px-2 py-2 text-sm`}
                   >
                     <Switch
-                      checked={isAutoPlay == "true" ? true : false}
-                      onChange={isAutoPlay ? disableAutoPlay : enableAutoPlay}
+                      checked={autoPlay == "true" ? true : false}
+                      onChange={autoPlay == "true" ? disableAutoPlay : enableAutoPlay}
                       className={`${
                         autoPlay == "true" ? "bg-red-600" : "bg-neutral-700"
                       }

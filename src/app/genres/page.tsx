@@ -23,7 +23,7 @@ const getGenres = async () => {
     let req = await fetch('https://rqpfbkysrcmfrtmcvmop.supabase.co/rest/v1/genres?select=*', {
         method: 'GET',
         headers: headers,
-        next: { revalidate: 10 },
+   
     })
 
     let res = await req.json();

@@ -44,6 +44,8 @@ import { Transition } from "@headlessui/react";
 import axios from "axios";
 import supabase from "../../utils/supabase";
 import { appendMissingEpisodes } from "../../lib/appendeps";
+import { HiSwitchHorizontal } from "react-icons/hi";
+import danmaku from "@oplayer/danmaku";
 
 const plugins = [
   skipOpEd(),
@@ -143,13 +145,17 @@ export default function WatchContainer(props: WatchProps) {
   const [zoroSrc, setZoroSrc] = useState("");
   const currentEpisode =
     episodesList?.length >= 1 &&
-    episodesList?.filter((ep : EpisodesListProps) => ep?.number == lastEpisode)[0];
-
+    episodesList?.filter(
+      (ep: EpisodesListProps) => ep?.number == lastEpisode
+    )[0];
+  const [zoroSrcLoading, setZoroSrcLoading] = useState(false);
   let id = props.animeData?.zoroepisodes
     ?.filter((anime) => anime.number == lastEpisode)?.[0]
     ?.id?.split("$");
 
   id = id?.toString().split("/")[2].split("?ep=");
+  const autoPlay =
+    typeof window !== "undefined" && localStorage.getItem("autoPlay");
 
   useEffect(() => {
     if (props.animeData?.title?.includes("(Dub)")) {
@@ -158,15 +164,16 @@ export default function WatchContainer(props: WatchProps) {
     fetchGogoData();
     fetchAnilistData();
     setLastEpisodeDuration(
-      getWatchList().filter((a: { episode: any; mal_id: string; anime_id: string; }) =>
-        a.episode == lastEpisode
-          ? a.mal_id == props.animeData?.mal_id ||
-            a.anime_id == props.animeData?.anime_id
-          : 0
+      getWatchList().filter(
+        (a: { episode: any; mal_id: string; anime_id: string }) =>
+          a.episode == lastEpisode
+            ? a.mal_id == props.animeData?.mal_id ||
+              a.anime_id == props.animeData?.anime_id
+            : 0
       )?.[0]?.duration
     );
     const current = getAnimeList().filter(
-      (item: { anime_id: string; mal_id: string; }) =>
+      (item: { anime_id: string; mal_id: string }) =>
         item.anime_id == props.animeData?.anime_id ||
         item.mal_id == props.animeData?.mal_id
     );
@@ -194,7 +201,7 @@ export default function WatchContainer(props: WatchProps) {
       const updatedEpisodesList = props.animeData?.episodeslist
         ?.map((episode, index) => {
           const dubEpisode = res.episodes?.find(
-            (ep: { number: number; }) => ep.number == episode?.number
+            (ep: { number: number }) => ep.number == episode?.number
           ); // Assuming res is an array containing dub episodes data
 
           if (dubEpisode) {
@@ -220,8 +227,6 @@ export default function WatchContainer(props: WatchProps) {
     }
   };
 
-  
-
   const subtitlesList = useMemo(() => {
     return subtitles
       ?.filter((subtitle: SubtitleProps) => subtitle.lang)
@@ -236,7 +241,9 @@ export default function WatchContainer(props: WatchProps) {
     player?.current?.context.ui.subtitle.updateSource(subtitlesList);
     player?.current?.applyPlugin(
       vttThumbnails({
-        src: subtitles?.filter((t: { lang: string; }) => t?.lang == "Thumbnails")[0]?.url,
+        src: subtitles?.filter(
+          (t: { lang: string }) => t?.lang == "Thumbnails"
+        )[0]?.url,
       })
     );
   }, [subtitles]);
@@ -263,17 +270,20 @@ export default function WatchContainer(props: WatchProps) {
   };
 
   const fetchZoro = async () => {
+    setZoroSrcLoading(true);
     let req = await fetch(
       `https://aniscraper.up.railway.app/anime/zoro/watch?episodeId=${id?.[0]}$episode$${id?.[1]}$both&server=vidcloud`
     );
     let res = await req.json();
     setZoroSrc(
       `https://ottocors.vercel.app/cors?url=${
-        res.sources?.filter((t: { quality: string; }) => t.quality == "auto")[0]?.url
+        res.sources?.filter((t: { quality: string }) => t.quality == "auto")[0]
+          ?.url
       }`
     );
 
     setSubtitles(res.subtitles);
+    setZoroSrcLoading(false);
 
     // player.current!.context.ui.subtitle.updateSource(res?.subtitles?.map((s:SubtitleProps,i:number) => (
     //   {
@@ -299,7 +309,7 @@ export default function WatchContainer(props: WatchProps) {
     }
 
     lst.current = lastEpisode;
-  }, [lastEpisode]);
+  }, [lastEpisode, isZoro]);
 
   const onTimeUpdate = useThrottle((currentTime) => {
     // setLastDuration(currentTime, player?.current?.duration);
@@ -325,7 +335,10 @@ export default function WatchContainer(props: WatchProps) {
       handleAddAnime(props.animeData || gogoData);
       setClick(true);
       toast.success(
-        <Msg title={props.animeData?.title || gogoData?.title} message="Was Added To Your List" />,
+        <Msg
+          title={props.animeData?.title || gogoData?.title}
+          message="Was Added To Your List"
+        />,
         { theme: "dark" }
       );
     }
@@ -366,7 +379,9 @@ export default function WatchContainer(props: WatchProps) {
           params.get("id"),
           null,
           lastEpisode,
-          currentEpisode?.image  || props.animeData?.coverimage || gogoData?.image,
+          currentEpisode?.image ||
+            props.animeData?.coverimage ||
+            gogoData?.image,
           props.animeData?.title || gogoData?.title,
           Date.now(),
           player?.current?.duration || null,
@@ -390,35 +405,96 @@ export default function WatchContainer(props: WatchProps) {
         }
       }
     },
-    [lastEpisode, isAutoNext, isAutoPlay, gogoData?.title]
+    [lastEpisode, isAutoNext, autoPlay, gogoData?.title]
   );
 
   useEffect(() => {
     !isZoro
-      ? player?.current?.changeSource(
-          fetch(
-            `https://aniscraper.up.railway.app/anime/gogoanime/watch/${params.get(
-              "id"
-            )}-episode-${lastEpisode}`
+      ? player?.current
+          ?.changeSource(
+            fetch(
+              `https://aniscraper.up.railway.app/anime/gogoanime/watch/${params.get(
+                "id"
+              )}-episode-${lastEpisode}`
+            )
+              .then((res) => res.json())
+              .then((res) => {
+                setGogoIframe(res?.headers?.Referer);
+                setDownload(res?.download);
+                return {
+                  src: res.sources?.filter(
+                    (s: { quality: string }) => s.quality === "default"
+                  )?.[0].url,
+                  title: "Title",
+                  poster: "",
+                };
+              })
           )
-            .then((res) => res.json())
-            .then((res) => {
-              setGogoIframe(res?.headers?.Referer);
-              setDownload(res?.download);
-              return {
-                src: res.sources?.filter((s: { quality: string; }) => s.quality === "default")?.[0]
-                  .url,
-                title: "Title",
-                poster: "",
-              };
-            })
-        )
+          // : player?.current
+          //     ?.changeSource({
+          //       src: zoroSrc,
+          //     })
+          //     .then(updateSubtitle)
+          .then(() => {
+            if (isAutoPlay) {
+              player?.current?.togglePlay();
+            } else {
+              player?.current?.pause();
+            }
+
+            fetch(
+              `https://api.aniskip.com/v2/skip-times/${props.animeData?.mal_id}/${lastEpisode}?types=op&types=recap&types=mixed-op&types=ed&types=mixed-ed&episodeLength=0`
+            )
+              .then((res) => res.json())
+              .then((res) => {
+                res = res as AniSkip;
+
+                const highlights: Highlight[] = [];
+                let opDuration = [],
+                  edDuration = [];
+
+                if (res.statusCode === 200) {
+                  for (let result of res.results) {
+                    if (result.skipType === "op" || result.skipType === "ed") {
+                      const { startTime, endTime } = result.interval;
+
+                      if (startTime) {
+                        highlights.push({
+                          time: startTime,
+                          text: result.skipType === "op" ? "OP" : "ED",
+                        });
+                        if (result.skipType === "op")
+                          opDuration.push(startTime);
+                        else edDuration.push(startTime);
+                      }
+
+                      if (endTime) {
+                        highlights.push({
+                          time: endTime,
+                          text: result.skipType === "op" ? "OP" : "ED",
+                        });
+                        if (result.skipType === "op") opDuration.push(endTime);
+                        else edDuration.push(endTime);
+                      }
+                    }
+                  }
+                }
+                player?.current?.emit("opedchange", [opDuration, edDuration]);
+                player?.current?.context.ui.highlight(highlights);
+              });
+          })
       : player?.current
           ?.changeSource({
             src: zoroSrc,
           })
           .then(updateSubtitle)
           .then(() => {
+            if (isAutoPlay) {
+              player?.current?.togglePlay();
+            } else {
+              player?.current?.pause();
+            }
+
             fetch(
               `https://api.aniskip.com/v2/skip-times/${props.animeData?.mal_id}/${lastEpisode}?types=op&types=recap&types=mixed-op&types=ed&types=mixed-ed&episodeLength=0`
             )
@@ -460,7 +536,7 @@ export default function WatchContainer(props: WatchProps) {
                 player?.current?.context.ui.highlight(highlights);
               });
           });
-  }, [props.slug, lastEpisode, epId, params.get("id")]);
+  }, [props.slug, lastEpisode, isZoro, zoroSrc, epId, params.get("id")]);
 
   return (
     <>
@@ -483,7 +559,6 @@ export default function WatchContainer(props: WatchProps) {
                   plugins={plugins}
                   ref={player}
                   source={source}
-                  autoplay={isAutoPlay == "true" ? true : false}
                   onEvent={onEvent}
                   duration={lastEpisodeDuration}
                 />
@@ -540,6 +615,22 @@ export default function WatchContainer(props: WatchProps) {
               showEpisodes ? "flex flex-row" : " flex flex-col"
             } justify-center items-center gap-2 p-1 `}
           >
+            <div className="dropdown dropdown-start">
+              <div className="flex items-center gap-1" tabIndex={0}>
+                <HiSwitchHorizontal size={24} color="white" />
+              </div>
+              <ul
+                tabIndex={0}
+                className="dropdown-content z-[1] menu p-2 shadow bg-neutral-800/90 rounded-box w-52"
+              >
+                <li onClick={() => setIsZoro(false)}>
+                  <a className={`${!isZoro && "txt-primary"}`}>Server 1</a>
+                </li>
+                <li onClick={() => setIsZoro(true)}>
+                  <a className={`${isZoro && "txt-primary"}`}>Server 2</a>
+                </li>
+              </ul>
+            </div>
             <label className="swap">
               <input type="checkbox" />
 
@@ -600,10 +691,12 @@ export default function WatchContainer(props: WatchProps) {
               {" "}
               No Episodes Found{" "}
             </div>
-          ) : episodesLoading && (
-            <div className="lg:w-[360px] flex justify-center mt-10 ">
-              <span className="loading loading-spinner text-error loading-lg"></span>
-            </div>
+          ) : (
+            episodesLoading && (
+              <div className="lg:w-[360px] flex justify-center mt-10 ">
+                <span className="loading loading-spinner text-error loading-lg"></span>
+              </div>
+            )
           )}
         </div>
       </div>

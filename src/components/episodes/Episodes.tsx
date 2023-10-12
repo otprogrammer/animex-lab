@@ -78,7 +78,7 @@ export default function Episodes({
             className="flex flex-col max-w-full cursor-pointer relative my-1"
           >
             {isEpImgEnabled == "true" ? (
-              <div>
+              <div className="">
                 <img
                   className="flex-shrink-0 w-full h-[100px] rounded-sm object-cover"
                   src={ep.image || animeImg}
