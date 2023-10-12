@@ -14,12 +14,10 @@ function Card(anime: any) {
         className=" w-full max-w-[200px] hover:-translate-y-1 transition-all duration-300 ease-in-out inline-grid"
         href={{
           pathname: `/anime/${anime.malId || anime.id || anime.malID}`,
-          query : {
+          query: {
             // ep : 1,
             // title : anime.title.english
-          }
-          
-        
+          },
         }}
       >
         <div className={`card   overflow-hidden`}>

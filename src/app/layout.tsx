@@ -58,7 +58,7 @@ export default function RootLayout({
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content="Animex" />
       <meta property="og:url" content="https://animex.live/" />
-      <meta itemprop="image" content="https://i.imgur.com/yH3ftPc.png" />
+      <meta itemProp="image" content="https://i.imgur.com/yH3ftPc.png" />
       <meta property="og:image" content="https://i.imgur.com/yH3ftPc.png" />
       <meta name="mobile-web-app-capable" content="yes" />
       <meta
@@ -129,7 +129,7 @@ export default function RootLayout({
                     <Link href="/">Home</Link>
                   </li>
                   <li>
-                    <Link href={`/`}>Genres</Link>
+                    <Link href={`/genres`}>Genres</Link>
                   </li>
                   <li>
                     <Link href={`/popular`}>Popular</Link>
@@ -147,12 +147,12 @@ export default function RootLayout({
             </div>
           </div>
           <div className="navbar-center">
-            <a
+            <Link
               href="/"
               className="btn btn-ghost normal-case text-xl rounded-full"
             >
               ANIMEX
-            </a>
+            </Link>
           </div>
           <div className="navbar-end">
             <Search />

@@ -14,12 +14,17 @@ const fetchAnime = async (q: string | number, title: string | undefined) => {
   return data;
 };
 
+import { Metadata, ResolvingMetadata } from "next";
+import { AnimeInfo } from "../../../../types/types";
+
 type PageProps = {
   params: {
-    animeId: any;
+    animeId: string | number;
+    ep : number
   };
   searchParams?: {
     title: string;
+    ep:number
   };
 };
 
@@ -28,11 +33,33 @@ interface AnimeInfoProps {
   data: any;
 }
 
-async function Anime({ params: { animeId }, searchParams: query }: PageProps) {
+export async function generateMetadata(
+  { params: { animeId,ep }, searchParams: query }: PageProps,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
   const getAnime = await fetchAnime(animeId, query?.title);
-  const data = getAnime?.filter((anime) => !anime.title?.includes("(Dub)"))[0]
+  const data: AnimeInfo = getAnime?.filter(
+    (anime) => !anime.title?.includes("(Dub)")
+  )[0];
 
   console.log(query?.title);
+  
+
+  return {
+    title: query?.ep ? data?.title + " Episode" + query?.ep : data?.title,
+    description: data?.synopsis,
+    openGraph: {
+      images: [data?.coverimage],
+    },
+  };
+}
+
+export default async function Anime({
+  params: { animeId },
+  searchParams: query,
+}: PageProps) {
+  const getAnime = await fetchAnime(animeId, query?.title);
+  const data = getAnime?.filter((anime) => !anime.title?.includes("(Dub)"))[0];
 
   return (
     <div className="">
@@ -46,15 +73,12 @@ async function Anime({ params: { animeId }, searchParams: query }: PageProps) {
             animeData={data}
             episodesList={data?.episodeslist}
             gogoId={data?.anime_id || animeId}
-            
           />
         </div>
       </div>
     </div>
   );
 }
-
-export default Anime;
 
 // export async function generateStaticParams() {
 

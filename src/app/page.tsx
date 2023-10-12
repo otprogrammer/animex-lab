@@ -2,8 +2,18 @@ import Card from "@/components/card/Card";
 import GridContainer from "@/components/container/GridContainer";
 import Layout from "@/components/head/Head";
 import Tabs from "@/components/tabs/Tabs";
+import { Metadata } from "next";
 import Link from "next/link";
 import React from "react";
+
+
+
+export const metadata: Metadata = {
+  title: 'Animex - Watch Anime for free in HD quality with English subbed or dubbed',
+  description: 'Browse thousands of animes here for free. High quality anime 24/7 without signing up or malicious ads.',
+  keywords: "Animex, animex, animexstream, anime, anime live, free anime, anime stream, anime hd, english sub, kissanime, gogoanime, animeultima, 9anime, 123animes, animefreak, vidstreaming, gogo-stream"
+}
+
 
 const getTrending = async () => {
   let req = await fetch(
