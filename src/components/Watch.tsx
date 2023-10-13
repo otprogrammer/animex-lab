@@ -605,7 +605,7 @@ export default function WatchContainer(props: WatchProps) {
             OP={props.animeData?.opening_themes}
             ED={props.animeData?.ending_themes}
             Relations={anilistData?.relations}
-            Trailer={"Trailer"}
+            Trailer={props.animeData?.trailer_url}
           />
         </div>
 
@@ -615,9 +615,10 @@ export default function WatchContainer(props: WatchProps) {
               showEpisodes ? "flex flex-row" : " flex flex-col"
             } justify-center items-center gap-2 p-1 `}
           >
-            <div className="dropdown dropdown-start">
-              <div className="flex items-center gap-1" tabIndex={0}>
-                <HiSwitchHorizontal size={24} color="white" />
+            <div  className="dropdown dropdown-end cursor-pointer">
+              <div             title="Servers"
+ className=" relative flex items-center gap-1" tabIndex={0}>
+                <HiSwitchHorizontal size={24}  color="white" />
               </div>
               <ul
                 tabIndex={0}
@@ -626,9 +627,13 @@ export default function WatchContainer(props: WatchProps) {
                 <li onClick={() => setIsZoro(false)}>
                   <a className={`${!isZoro && "txt-primary"}`}>Server 1</a>
                 </li>
+
+                {props.animeData?.zoroepisodes?.length > 1 && (
+
                 <li onClick={() => setIsZoro(true)}>
                   <a className={`${isZoro && "txt-primary"}`}>Server 2</a>
                 </li>
+                )}
               </ul>
             </div>
             <label className="swap">
@@ -655,16 +660,19 @@ export default function WatchContainer(props: WatchProps) {
               </div>
             </label>
             <div
+            title="Sort Episodes"
               onClick={isSort ? disableIsSort : enableIsSort}
               aria-label="Sort Episodes"
-              className="tool relative cursor-pointer text-white hover:txt-primary self-center"
+              className=" relative cursor-pointer text-white hover:txt-primary self-center"
             >
               <LuArrowDownUp size={22} />
             </div>
 
             <div
+                        title="Show/Hide Eps"
+
               onClick={() => setShowEpisodes((t) => !t)}
-              className="relative tool cursor-pointer text-white hover:txt-primary"
+              className="relative  cursor-pointer text-white hover:txt-primary"
               aria-label="Show/Hide Eps"
             >
               <Icon

@@ -5,6 +5,7 @@ import Characters from "../details/Characters";
 import Similar from "../details/Similar";
 import OpEd from "../details/OpEd";
 import Relations from "../details/Relations";
+import Trailer from "../trailer/Trailer";
 
 type DetailsTabsProps = {
   Overview: any;
@@ -13,7 +14,7 @@ type DetailsTabsProps = {
   Relations: any;
   OP: any;
   ED: any;
-  Trailer: any;
+  Trailer: string;
 };
 
 const TP = ({ data }: React.JSX.Element | any) => {
@@ -105,6 +106,10 @@ export default function DetailsTabs(props: DetailsTabsProps) {
           <TP
             data={<OpEd opening_themes={props.OP} ending_themes={props.ED} />}
           />
+          <TP
+            data={<Trailer trailer={props.Trailer}/>}
+          />
+          
         </Tab.Panels>
       </Tab.Group>
     </div>

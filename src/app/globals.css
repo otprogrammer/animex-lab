@@ -74,10 +74,9 @@ body {
     line-height: 1.25em;
     position: absolute;
     content: attr(aria-label);
-    top: 100%;
-    left: 50%;
+    top: -30px;
+    left: -50%;
     z-index: 999999;
-    margin-bottom: -4.5em;
     white-space: nowrap;
     background: #2b2929;
     transform: translate(-50%, 10px) scale(0.8);
