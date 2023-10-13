@@ -34,7 +34,7 @@ export default function RootLayout({
   return (
     <html data-theme={"black"} lang="en">
 
-      <head>
+      {/* <head>
       <link rel="manifest" href="/manifest.json" />
       <link rel="apple-touch-icon" href="/kan.jpg"></link>
       <meta name="theme-color" content="#fff" />
@@ -77,7 +77,7 @@ export default function RootLayout({
       <meta name="apple-mobile-web-app-status-bar" content="#c40808" />
       <link rel="apple-touch-icon" href="logo250.png" />
       <meta name="theme-color" content="#000000" />
-      </head>
+      </head> */}
       
       <body className="min-h-screen">
         <div className="navbar bg-neutral-900 mb-8">
