@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/next-script-for-ga */
 "use client";
 import "./globals.css";
 import type { Metadata } from "next";
@@ -12,7 +13,7 @@ import { useState } from "react";
 import Layout from "@/components/head/Head";
 import Contact from "@/components/contact/Contact";
 import { useContact } from "../../store/store";
-import Head from "next/head";
+import { Analytics } from "@vercel/analytics/react";
 
 // export const metadata: Metadata = {
 //   title: "Animex",
@@ -33,6 +34,23 @@ export default function RootLayout({
 
   return (
     <html data-theme={"black"} lang="en">
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+    (function(w,d,s,l,i){
+      w[l]=w[l]||[];
+      w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+      var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+      j.async=true;
+      j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+      f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','${process.env.GOOGLE_TAGS});
+  `,
+          }}
+        />
+      </head>
 
       {/* <head>
       <link rel="manifest" href="/manifest.json" />
@@ -78,7 +96,7 @@ export default function RootLayout({
       <link rel="apple-touch-icon" href="logo250.png" />
       <meta name="theme-color" content="#000000" />
       </head> */}
-      
+
       <body className="min-h-screen">
         <div className="navbar bg-neutral-900 mb-8">
           <div className="navbar-start">
@@ -168,6 +186,7 @@ export default function RootLayout({
         </div>
         <NextTopLoader color="#e11d48" />
         {children}
+        <Analytics />
 
         <ToastContainer
           position={"top-left"}
@@ -182,6 +201,14 @@ export default function RootLayout({
         />
         <Contact />
         <Footer />
+        <noscript
+          dangerouslySetInnerHTML={{
+            __html: `
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=${process.env.GOOGLE_TAGS}"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  `,
+          }}
+        />
       </body>
     </html>
   );

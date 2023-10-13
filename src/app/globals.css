@@ -2,24 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
-
 @layer components {
-
   .txt-primary {
-    @apply  text-[#e11d48]
+    @apply text-[#e11d48];
   }
 }
 
-
-
 .Toastify__toast-theme--light {
   background-color: #141414e1 !important;
-  
 }
-
-
 
 .card::after {
   content: "";
@@ -30,16 +21,12 @@
   transition: all 0.2s ease 0s;
 }
 
-
 body {
   /* color: rgb(var(--foreground-rgb));
   background: #212121; */
 }
 
-
-
 .search-container {
- 
   transition: width 0.3s ease-in-out; /* Transition the width property over 0.3 seconds with ease-in-out timing function */
 }
 
@@ -63,12 +50,8 @@ body {
 }
 
 .swiper-slide {
-  margin-top:0 !important;
+  margin-top: 0 !important;
 }
-
-
-
-
 
 .tool::after {
   line-height: 1.25em;
@@ -96,17 +79,17 @@ body {
   transform: translateX(-50%) scale(1);
 }
 
-  .syno::after {
-    content: "";
-    position: absolute;
-    background: var(--bg-image);
-    top: 0;
-    left: 0;
-    right: 0;
-    background-size: cover;
-    bottom: 0;
-    opacity: 0.15;
-    background-position: center;
+.syno::after {
+  content: "";
+  position: absolute;
+  background: var(--bg-image);
+  top: 0;
+  left: 0;
+  right: 0;
+  background-size: cover;
+  bottom: 0;
+  opacity: 0.15;
+  background-position: center;
 }
 
 .sw .swiper-slide-next {
@@ -117,7 +100,6 @@ body {
   opacity: 0.5 !important;
 }
 
-
-.swiper-pagination{
+.swiper-pagination {
   opacity: 0 !important;
 }

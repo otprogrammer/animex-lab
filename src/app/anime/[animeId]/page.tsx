@@ -1,7 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import WatchContainer from "@/components/Watch";
 import AnimeDetails from "@/components/details/AnimeDetails";
-import Link from "next/link";
 import React from "react";
 import supabase from "../../../../utils/supabase";
 
@@ -20,11 +19,11 @@ import { AnimeInfo, EpisodesListProps } from "../../../../types/types";
 type PageProps = {
   params: {
     animeId: string | number;
-    ep : number
+    ep: number;
   };
   searchParams?: {
     title: string;
-    ep:number
+    ep: number;
   };
 };
 
@@ -34,27 +33,31 @@ interface AnimeInfoProps {
 }
 
 export async function generateMetadata(
-  { params: { animeId,ep }, searchParams: query }: PageProps,
+  { params: { animeId, ep }, searchParams: query }: PageProps,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const getAnime = await fetchAnime(animeId, query?.title);
   const data: AnimeInfo = getAnime?.filter(
     (anime) => !anime.title?.includes("(Dub)")
   )[0];
-  const currentEpisode :EpisodesListProps | any = query?.ep &&
+  const currentEpisode: EpisodesListProps | any =
+    query?.ep &&
     data?.episodeslist?.length >= 1 &&
     data?.episodeslist?.filter(
       (ep: EpisodesListProps) => ep?.number == query?.ep
     )[0];
 
   console.log(query?.title);
-  
 
   return {
     title: query?.ep ? data?.title + " Episode " + query?.ep : data?.title,
-    description: query?.ep ? currentEpisode?.description || data?.synopsis :data?.synopsis,
+    description: query?.ep
+      ? currentEpisode?.description || data?.synopsis
+      : data?.synopsis,
     openGraph: {
-      images: [query?.ep ? currentEpisode?.image : data?.coverimage || data?.image_url],
+      images: [
+        query?.ep ? currentEpisode?.image : data?.coverimage || data?.image_url,
+      ],
     },
   };
 }
