@@ -70,31 +70,31 @@ body {
 
 
 
-  .tool::after {
-    line-height: 1.25em;
-    position: absolute;
-    content: attr(aria-label);
-    top: -30px;
-    left: -50%;
-    z-index: 999999;
-    white-space: nowrap;
-    background: #2b2929;
-    transform: translate(-50%, 10px) scale(0.8);
-    transform-origin: 50% 100%;
-    color: white;
-    opacity: 0;
-    padding: 4px 8px;
-    border-radius: 4px;
-    transition: transform 0.2s ease 0.1s, opacity 0.2s ease 0.1s;
-    pointer-events: none;
-    font-size: 0.75em;
-  }
-  
-  .tool:hover::after {
-    opacity: 1;
-    transform: translateX(-50%) scale(1);
-  }
+.tool::after {
+  line-height: 1.25em;
+  position: absolute;
+  content: attr(aria-label);
+  bottom: 100%;
+  left: 50%;
+  z-index: 999999;
+  margin-bottom: 0.5em;
+  white-space: nowrap;
+  background: #2b2929;
+  transform: translate(-50%, 10px) scale(0.8);
+  transform-origin: 50% 100%;
+  color: white;
+  opacity: 0;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: transform 0.2s ease 0.1s, opacity 0.2s ease 0.1s;
+  pointer-events: none;
+  font-size: 0.75em;
+}
 
+.tool:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
 
   .syno::after {
     content: "";
@@ -109,10 +109,15 @@ body {
     background-position: center;
 }
 
-.swiper-slide-next {
+.sw .swiper-slide-next {
   opacity: 0.5 !important;
 }
 
-.swiper-slide-prev {
+.sw .swiper-slide-prev {
   opacity: 0.5 !important;
+}
+
+
+.swiper-pagination{
+  opacity: 0 !important;
 }

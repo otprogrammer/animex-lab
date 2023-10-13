@@ -71,7 +71,7 @@ export default function HomeSwiper({ props }: any) {
         mousewheel={true}
         initialSlide={1}
         style={{ paddingBlock: "2rem" }}
-        className=""
+        className="sw"
         onSlideChange={handleSlideChange}
       >
         {top?.map((show: any, index: any) => (
@@ -95,8 +95,8 @@ export default function HomeSwiper({ props }: any) {
                justify-center
               items-center"
                 >
-                  <Link href={`/movie/${show.id}`}>
-                    <button className="rounded-full shadow-2xl shadow-primary w-12 h-12  gap-2 ">
+                  <Link href={`/anime/${show.anime_id}`}>
+                    <button className="rounded-full shadow-2xl text-white shadow-primary w-12 h-12  gap-2 ">
                       <svg
                         viewBox="0 0 512 512"
                         fill="currentColor"
@@ -113,11 +113,24 @@ export default function HomeSwiper({ props }: any) {
             </div>
 
             <div className="hidden md:block  card   relative">
+            
+                      {/* <button className="rounded-full text-white font-bold relative gap-2 ">
+                        <svg
+                          viewBox="0 0 512 512"
+                          fill="currentColor"
+                          className="w-4 h-4"
+                        >
+                          <path d="M133 440a35.37 35.37 0 01-17.5-4.67c-12-6.8-19.46-20-19.46-34.33V111c0-14.37 7.46-27.53 19.46-34.33a35.13 35.13 0 0135.77.45l247.85 148.36a36 36 0 010 61l-247.89 148.4A35.5 35.5 0 01133 440z" />
+                        </svg>
+                      </button> */}
+
+
               <img
                 src={`${`https://image.tmdb.org/t/p/original${show.backdrop_path}`}`}
                 className={`w-full   h-[280px] object-cover rounded-xl`}
                 alt=""
               />
+              
               <div
                 className={`absolute inset-0    ${
                   activeSlide === index
@@ -126,30 +139,45 @@ export default function HomeSwiper({ props }: any) {
                 }`}
               ></div>
               {activeSlide === index ? (
-                <div className="absolute flex-col w-full  gap-2  bottom-2 flex px-5 py-3">
-                  <div className="text-4xl px-1  flex  items-center gap-2 font-bold">
-                    {show.title?.romaji || show.name}{" "}
-                    <button>{show?.vote_average?.toFixed(1)}</button>
-                  </div>
-                  <div className="opacity-70 px-1  lg:w-5/12  italic line-clamp-2 text-[10px] md:text-sm">
-                    {show.overview}
-                  </div>
-                  <div className="flex gap-2 items-center z-50">
-                    <Link href={`/movie/${show.id}`}>
-                      <button className="rounded-full text-white font-bold relative gap-2 ">
-                        {/* <svg
-                          viewBox="0 0 512 512"
-                          fill="currentColor"
-                          className="w-4 h-4"
-                        >
-                          <path d="M133 440a35.37 35.37 0 01-17.5-4.67c-12-6.8-19.46-20-19.46-34.33V111c0-14.37 7.46-27.53 19.46-34.33a35.13 35.13 0 0135.77.45l247.85 148.36a36 36 0 010 61l-247.89 148.4A35.5 35.5 0 01133 440z" />
-                        </svg> */}
-                        {show?.title}
-                      </button>
-                    </Link>
-                    <button className="rounded-full  text-primary border-primary border-2   ">
-                      <button className="p-1 w-full h-full" />
+                <div
+                  className="flex gap-2 absolute inset-0 z-50
+               justify-center
+              items-center"
+                >
+                  <Link href={`/anime/${show.anime_id}`}>
+                    <button className="rounded-full shadow-2xl text-white hover:txt-primary shadow-primary w-12 h-12  gap-2 ">
+                      <svg
+                        viewBox="0 0 512 512"
+                        fill="currentColor"
+                        className="w-10 h-10"
+                      >
+                        <path d="M133 440a35.37 35.37 0 01-17.5-4.67c-12-6.8-19.46-20-19.46-34.33V111c0-14.37 7.46-27.53 19.46-34.33a35.13 35.13 0 0135.77.45l247.85 148.36a36 36 0 010 61l-247.89 148.4A35.5 35.5 0 01133 440z" />
+                      </svg>
                     </button>
+                  </Link>
+                </div>
+              ) : (
+                ""
+              )}
+              {activeSlide === index ? (
+                <div className="absolute flex-col w-full  gap-2  bottom-2 flex px-5 py-3">
+                  {/* <div className="text-4xl px-1  flex  items-center gap-2 font-bold">
+                    {show.title?.romaji || show.title}{" "}
+                    <button>{show?.vote_average?.toFixed(1)}</button>
+                  </div> */}
+                  {/* <div className="opacity- px-1 z-50 lg:w-5/12  italic line-clamp-3 text-[10px] md:text-sm">
+                    {show.synopsis}
+                  </div> */}
+
+                  <div className="flex gap-2 items-center z-50">
+                  <Link className="z-50 cursror-pointer text-white hover:txt-primary flex items-center justify-center" href={`/anime/${show.anime_id}`}>
+
+                    <h1 className="rounded-full  font-bold relative gap-2 ">
+                      {show?.title}
+                    </h1>
+                    </Link>
+
+                    
                   </div>
                 </div>
               ) : (

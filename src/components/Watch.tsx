@@ -8,7 +8,7 @@ import React, {
   useCallback,
   useMemo,
 } from "react";
-import Player, { PlayerEvent } from "@oplayer/core";
+import Player, { PlayerEvent, isMobile } from "@oplayer/core";
 import ui, { Highlight } from "@oplayer/ui";
 import hls from "@oplayer/hls";
 //@ts-ignore
@@ -609,7 +609,11 @@ export default function WatchContainer(props: WatchProps) {
               showEpisodes ? "flex flex-row" : " flex flex-col"
             } justify-center items-center gap-2 p-1 `}
           >
-            <div className="dropdown dropdown-end cursor-pointer">
+            <div
+              className={`dropdown ${
+                isMobile ? "dropdown-start" : "dropdown-end "
+              }cursor-pointer`}
+            >
               <div
                 title="Servers"
                 className=" relative flex items-center gap-1"
