@@ -270,7 +270,6 @@ export default function WatchContainer(props: WatchProps) {
   };
 
   const fetchZoro = async () => {
-    setZoroSrcLoading(true);
     let req = await fetch(
       `https://aniscraper.up.railway.app/anime/zoro/watch?episodeId=${id?.[0]}$episode$${id?.[1]}$both&server=vidcloud`
     );
@@ -283,7 +282,6 @@ export default function WatchContainer(props: WatchProps) {
     );
 
     setSubtitles(res.subtitles);
-    setZoroSrcLoading(false);
 
     // player.current!.context.ui.subtitle.updateSource(res?.subtitles?.map((s:SubtitleProps,i:number) => (
     //   {
@@ -325,7 +323,7 @@ export default function WatchContainer(props: WatchProps) {
       setClick(false);
       toast.error(
         <Msg
-          title={props.animeData?.title || gogoData?.title}
+          title={props.animeData?.title || (gogoData?.title as string)}
           message="Was Removed From Your List"
         />,
         { theme: "dark" }
@@ -336,7 +334,7 @@ export default function WatchContainer(props: WatchProps) {
       setClick(true);
       toast.success(
         <Msg
-          title={props.animeData?.title || gogoData?.title}
+          title={props.animeData?.title || (gogoData?.title as string)}
           message="Was Added To Your List"
         />,
         { theme: "dark" }
@@ -430,11 +428,7 @@ export default function WatchContainer(props: WatchProps) {
                 };
               })
           )
-          // : player?.current
-          //     ?.changeSource({
-          //       src: zoroSrc,
-          //     })
-          //     .then(updateSubtitle)
+
           .then(() => {
             if (isAutoPlay) {
               player?.current?.togglePlay();
@@ -615,10 +609,13 @@ export default function WatchContainer(props: WatchProps) {
               showEpisodes ? "flex flex-row" : " flex flex-col"
             } justify-center items-center gap-2 p-1 `}
           >
-            <div  className="dropdown dropdown-end cursor-pointer">
-              <div             title="Servers"
- className=" relative flex items-center gap-1" tabIndex={0}>
-                <HiSwitchHorizontal size={24}  color="white" />
+            <div className="dropdown dropdown-end cursor-pointer">
+              <div
+                title="Servers"
+                className=" relative flex items-center gap-1"
+                tabIndex={0}
+              >
+                <HiSwitchHorizontal size={24} color="white" />
               </div>
               <ul
                 tabIndex={0}
@@ -629,10 +626,9 @@ export default function WatchContainer(props: WatchProps) {
                 </li>
 
                 {props.animeData?.zoroepisodes?.length > 1 && (
-
-                <li onClick={() => setIsZoro(true)}>
-                  <a className={`${isZoro && "txt-primary"}`}>Server 2</a>
-                </li>
+                  <li onClick={() => setIsZoro(true)}>
+                    <a className={`${isZoro && "txt-primary"}`}>Server 2</a>
+                  </li>
                 )}
               </ul>
             </div>
@@ -660,7 +656,7 @@ export default function WatchContainer(props: WatchProps) {
               </div>
             </label>
             <div
-            title="Sort Episodes"
+              title="Sort Episodes"
               onClick={isSort ? disableIsSort : enableIsSort}
               aria-label="Sort Episodes"
               className=" relative cursor-pointer text-white hover:txt-primary self-center"
@@ -669,8 +665,7 @@ export default function WatchContainer(props: WatchProps) {
             </div>
 
             <div
-                        title="Show/Hide Eps"
-
+              title="Show/Hide Eps"
               onClick={() => setShowEpisodes((t) => !t)}
               className="relative  cursor-pointer text-white hover:txt-primary"
               aria-label="Show/Hide Eps"

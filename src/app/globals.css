@@ -108,3 +108,11 @@ body {
     opacity: 0.15;
     background-position: center;
 }
+
+.swiper-slide-next {
+  opacity: 0.5 !important;
+}
+
+.swiper-slide-prev {
+  opacity: 0.5 !important;
+}

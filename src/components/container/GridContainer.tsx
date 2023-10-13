@@ -13,7 +13,9 @@ import { Icon } from "@iconify/react";
 // import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 // @ts-ignore
-import SwiperCore, { Navigation, Pagination, Grid } from "swiper";
+import SwiperCore from "swiper";
+
+import {Navigation, Pagination, Grid} from "swiper/modules"
 import Card from "../card/Card";
 import EpisodeCard from "../card/EpisodeCard";
 import { GridBreakPoints } from "../../../utils/Vars";
@@ -76,7 +78,8 @@ export default function GridContainer({
         pagination={{
           clickable: true,
         }}
-        modules={[Grid, Navigation]}
+        
+        modules={[Grid,Navigation]}
         className="mySwiper w-full "
       >
         {data?.map((item: any, index: any) => (

@@ -15,7 +15,7 @@ const fetchAnime = async (q: string | number, title: string | undefined) => {
 };
 
 import { Metadata, ResolvingMetadata } from "next";
-import { AnimeInfo } from "../../../../types/types";
+import { AnimeInfo, EpisodesListProps } from "../../../../types/types";
 
 type PageProps = {
   params: {
@@ -41,15 +41,20 @@ export async function generateMetadata(
   const data: AnimeInfo = getAnime?.filter(
     (anime) => !anime.title?.includes("(Dub)")
   )[0];
+  const currentEpisode :EpisodesListProps | any = query?.ep &&
+    data?.episodeslist?.length >= 1 &&
+    data?.episodeslist?.filter(
+      (ep: EpisodesListProps) => ep?.number == query?.ep
+    )[0];
 
   console.log(query?.title);
   
 
   return {
     title: query?.ep ? data?.title + " Episode " + query?.ep : data?.title,
-    description: data?.synopsis,
+    description: query?.ep ? currentEpisode?.description || data?.synopsis :data?.synopsis,
     openGraph: {
-      images: [data?.coverimage],
+      images: [query?.ep ? currentEpisode?.image : data?.coverimage || data?.image_url],
     },
   };
 }
