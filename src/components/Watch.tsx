@@ -192,7 +192,7 @@ export default function WatchContainer(props: WatchProps) {
   const fetchDub = async () => {
     try {
       setEpisodesLoading(true);
-      let url = `https://api.animex.live/anime/gogoanime/info/${
+      let url = `https://aniscraper.vercel.app/anime/gogoanime/info/${
         props.gogoId + "-dub"
       }`;
       let req = await axios.get(url);
@@ -343,7 +343,7 @@ export default function WatchContainer(props: WatchProps) {
   }
 
   const fetchGogoData = async () => {
-    let url = `https://api.animex.live/anime/gogoanime/info/${props.gogoId}`;
+    let url = `https://aniscraper.vercel.app/anime/gogoanime/info/${props.gogoId}`;
     let req = await fetch(url);
     let res = await req.json();
     setGogoData(res);
@@ -362,7 +362,7 @@ export default function WatchContainer(props: WatchProps) {
   };
 
   const fetchAnilistData = async () => {
-    let url = `https://api.animex.live/meta/anilist/info/${props.animeData?.anilistid}`;
+    let url = `https://aniscraper.vercel.app/meta/anilist/info/${props.animeData?.anilistid}`;
     let req = await fetch(url);
     let res = await req.json();
     setAnilistData(res);
