@@ -5,7 +5,7 @@ import GridContainer from "../container/GridContainer";
 
 export default function MyList() {
   const [refresh, setRefresh] = useState(false);
-  const [myList,setMyList] = useState<any>([])
+  const [myList,setMyList] = useState([])
 
   useEffect(() => {
      const storedAnimeList =
@@ -27,7 +27,7 @@ export default function MyList() {
     }))
   }, [refresh]);
 
-   
+   console.log('test')
  
 
 

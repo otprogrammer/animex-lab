@@ -14,7 +14,7 @@ import hls from "@oplayer/hls";
 //@ts-ignore
 import ReactPlayer from "@oplayer/react";
 import { chromecast, vttThumbnails } from "@oplayer/plugins";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import {
   AniSkip,
   AnilistInfo,
@@ -124,6 +124,8 @@ export default function WatchContainer(props: WatchProps) {
       (props.animeData?.episodeslist?.length > 1 &&
         props.animeData?.episodeslist?.[0]?.id?.split("-episode")[0])
   );
+
+  const {ep,id} = useParams()
   const [click, setClick] = useState(false);
   const [gogoIframe, setGogoIframe] = useState("");
   const [download, setDownload] = useState("");
@@ -143,17 +145,20 @@ export default function WatchContainer(props: WatchProps) {
   const [isSub, setIsSub] = useState(true);
   const [subtitles, setSubtitles] = useState([]);
   const [zoroSrc, setZoroSrc] = useState("");
+
+
+
   const currentEpisode =
     episodesList?.length >= 1 &&
     episodesList?.filter(
       (ep: EpisodesListProps) => ep?.number == lastEpisode
     )[0];
   const [zoroSrcLoading, setZoroSrcLoading] = useState(false);
-  let id = props.animeData?.zoroepisodes
+  let zoroId = props.animeData?.zoroepisodes
     ?.filter((anime) => anime.number == lastEpisode)?.[0]
     ?.id?.split("$");
 
-  id = id?.toString().split("/")[2].split("?ep=");
+    zoroId = id?.toString().split("/")[2].split("?ep=");
   const autoPlay =
     typeof window !== "undefined" && localStorage.getItem("autoPlay");
 
@@ -271,7 +276,7 @@ export default function WatchContainer(props: WatchProps) {
 
   const fetchZoro = async () => {
     let req = await fetch(
-      `https://aniscraper.up.railway.app/anime/zoro/watch?episodeId=${id?.[0]}$episode$${id?.[1]}$both&server=vidcloud`
+      `https://aniscraper.up.railway.app/anime/zoro/watch?episodeId=${zoroId?.[0]}$episode$${zoroId?.[1]}$both&server=vidcloud`
     );
     let res = await req.json();
     setZoroSrc(
@@ -306,8 +311,11 @@ export default function WatchContainer(props: WatchProps) {
       fetchZoro();
     }
 
+    
+    console.log(id)
+
     lst.current = lastEpisode;
-  }, [lastEpisode, isZoro]);
+  }, [lastEpisode, isZoro,params.get('id')]);
 
   const onTimeUpdate = useThrottle((currentTime) => {
     // setLastDuration(currentTime, player?.current?.duration);
@@ -373,8 +381,9 @@ export default function WatchContainer(props: WatchProps) {
     (payload: PlayerEvent) => {
       if (payload.type == "timeupdate") {
         onTimeUpdate(payload.payload.target.currentTime * 1000);
+       console.log(currentEpisode?.id)
         addWatchList(
-          epId,
+          currentEpisode?.id?.split("-episode")[0],
           null,
           lastEpisode,
           currentEpisode?.image ||
@@ -403,7 +412,7 @@ export default function WatchContainer(props: WatchProps) {
         }
       }
     },
-    [lastEpisode, isAutoNext, autoPlay, gogoData?.title]
+    [lastEpisode, isAutoNext, autoPlay, gogoData?.title,id]
   );
 
   useEffect(() => {
