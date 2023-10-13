@@ -376,7 +376,7 @@ export default function WatchContainer(props: WatchProps) {
       if (payload.type == "timeupdate") {
         onTimeUpdate(payload.payload.target.currentTime * 1000);
         addWatchList(
-          params.get("id") || epId,
+          epId,
           null,
           lastEpisode,
           currentEpisode?.image ||
