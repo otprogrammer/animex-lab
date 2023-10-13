@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 const getTrending = async () => {
   let req = await fetch(
-    `https://api.animex.live/meta/anilist/popular?page=1&perPage=150`
+    `https://animexscraper.vercel.app/meta/anilist/popular?page=1&perPage=150`
   );
   let res = await req.json();
 
