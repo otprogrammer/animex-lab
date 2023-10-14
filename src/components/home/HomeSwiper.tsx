@@ -17,7 +17,6 @@ import "swiper/css";
 import "swiper/css/autoplay";
 
 import Link from "next/link";
-import supabase from "../../../utils/supabase";
 SwiperCore.use([EffectCoverflow, Pagination]);
 
 const headers = {
@@ -25,7 +24,7 @@ const headers = {
   apikey: `${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`,
 };
 
-const fetcher = (url:string) =>
+const fetcher = (url: string) =>
   fetch(url, { headers: headers }).then((res) => res.json());
 
 export default function HomeSwiper() {

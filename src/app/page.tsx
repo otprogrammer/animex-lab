@@ -75,8 +75,6 @@ const fetchLatest = async () => {
   return JSON.parse(res.result);
 };
 
-
-
 async function Home() {
   const data = await getTrending();
   const latest = await fetchLatest();
