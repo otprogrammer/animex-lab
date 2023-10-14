@@ -34,20 +34,20 @@ export const GridBreakPoints = (heading:string) => {
       speed: 500,
     },
     1424: {
-      slidesPerView: heading === "WatchList" ? 5 : 6.5,
+      slidesPerView: heading === "WatchList" || heading === "Latest" ? 5 : 6.5,
       spaceBetween: 10,
       slidesPerGroup:  3,
       speed: 500,
     },
     1624: {
-      slidesPerView: heading === "WatchList" ? 6 :  7,
+      slidesPerView: heading === "WatchList" || heading === "Latest" ? 6 :  7,
       slidesPerGroup: 3,
       spaceBetween: 10,
       speed: 500,
      
     },
     1800: {
-      slidesPerView:  heading === "WatchList" ? 6.5 :  8.7,
+      slidesPerView:  heading === "WatchList" || heading === "Latest" ? 6.5 :  8.7,
       slidesPerGroup: 3,
       spaceBetween: 10,
       speed: 500,
@@ -55,14 +55,14 @@ export const GridBreakPoints = (heading:string) => {
     },
 
     2030: {
-      slidesPerView:  heading === "WatchList" ? 6.5 :  9.1,
+      slidesPerView:  heading === "WatchList" || heading === "Latest" ? 6.5 :  9.1,
       slidesPerGroup: 3,
       spaceBetween: 10,
       speed: 500,
      
     },
     2450: {
-      slidesPerView:  heading === "WatchList" ? 7.2 :  10.5,
+      slidesPerView:  heading === "WatchList" || heading === "Latest" ? 7.2 :  10.5,
       slidesPerGroup: 3,
       spaceBetween: 10,
       speed: 500,

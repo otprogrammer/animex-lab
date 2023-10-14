@@ -35,3 +35,15 @@ interface useContactProps {
     disableIsContact : () => void;
 }
 
+
+
+interface MsgProps {
+    title: string;
+    message: string;
+  }
+
+
+interface SubtitleProps {
+    url: string;
+    lang: string;
+  }

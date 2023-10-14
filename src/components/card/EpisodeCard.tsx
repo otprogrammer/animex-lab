@@ -8,7 +8,7 @@ function EpisodeCard(anime: any) {
   return (
     <>
       <Link
-        className=" w-full max-w-[200px] hover:-translate-y-1 transition-all duration-300 ease-in-out inline-grid"
+        className=" w-full  hover:-translate-y-1 transition-all duration-300 ease-in-out inline-grid"
         href={{
 
           pathname : `/anime/${anime.id}`,
@@ -22,7 +22,7 @@ function EpisodeCard(anime: any) {
       >
         <div className={`card  overflow-hidden `}>
           <img
-            className=" object-cover  h-[180px] md:h-[270px]  rounded-sm"
+            className=" object-cover  h-[180px] md:h-[175px]  rounded-sm"
             src={anime.image}
             alt={anime?.title}
           />

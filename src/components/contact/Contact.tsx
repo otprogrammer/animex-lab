@@ -2,6 +2,20 @@
 import React, { useRef } from "react";
 import emailjs from "emailjs-com";
 import { useContact } from "../../../store/store";
+import { toast } from "react-toastify";
+
+
+const Msg = ({ title, message }: MsgProps) => {
+  return (
+    <div className="flex flex-col">
+      <span>
+        <span className="font-bold text-gray-200">{title}</span> {message}
+      </span>
+
+      <span className="text-blue-800 text-xl "></span>
+    </div>
+  );
+};
 
 function Contact() {
   const { isContact, disableIsContact } = useContact();
@@ -25,6 +39,13 @@ function Contact() {
         (error) => {
           console.log(error.text);
         }
+      );
+      toast.success(
+        <Msg
+          title={"Message"}
+          message="Your Message Has Been Sent."
+        />,
+        { theme: "dark" }
       );
     form.current.reset();
   };
@@ -137,7 +158,7 @@ function Contact() {
             </div>
             <button
               type="submit"
-              className="text-white bg-red-600  w-full focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 hover:bg-red-900 block"
+              className="text-white bg-red-600  w-full focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 hover:bg-red-700 block"
             >
               Send
             </button>

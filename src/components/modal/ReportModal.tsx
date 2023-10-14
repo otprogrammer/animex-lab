@@ -43,7 +43,7 @@ export default function ReportModal({ onClose, isOpen }: ReportModalProps) {
                     Report a bug.
                   </Dialog.Title>
                   <div className="mt-2">
-                    <p className="text-sm text-gray-500">Coming Soon.</p>
+                    <p className="text-sm text-gray-500">Coming Soon. For inquiries, click the contact button in the footer or the menu dropdown. </p>
                   </div>
 
                   <div className="mt-4">

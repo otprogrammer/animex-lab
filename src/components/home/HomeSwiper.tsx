@@ -1,9 +1,10 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
+import useSWR from "swr";
 
 import { EffectCoverflow, Pagination, Autoplay } from "swiper/modules";
 
@@ -19,28 +20,24 @@ import Link from "next/link";
 import supabase from "../../../utils/supabase";
 SwiperCore.use([EffectCoverflow, Pagination]);
 
-export default function HomeSwiper({ props }: any) {
+const headers = {
+  authorization: `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`,
+  apikey: `${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`,
+};
+
+const fetcher = (url:string) =>
+  fetch(url, { headers: headers }).then((res) => res.json());
+
+export default function HomeSwiper() {
   const [activeSlide, setActiveSlide] = useState(1);
   const [top, setTop] = useState<any>([]);
+  const { data, error, isLoading } = useSWR(
+    "https://tomeleyakujcqfaovrqr.supabase.co/rest/v1/trending?select=*&id=eq.13",
+    fetcher
+  );
 
   const handleSlideChange = (swiper: any) => {
     setActiveSlide(swiper.realIndex);
-  };
-
-  useEffect(() => {
-    getTop();
-  }, []);
-
-  const getTop = async () => {
-    // let url = `https://ottoapi.vercel.app/meta/anilist/trending`
-    // let req = await axios.get(url)
-    // let res = req.data
-    const { data }: any = await supabase
-      .from("trending")
-      .select("*")
-      .eq("id", 13);
-
-    setTop(data[0].trending);
   };
 
   return (
@@ -74,7 +71,7 @@ export default function HomeSwiper({ props }: any) {
         className="sw"
         onSlideChange={handleSlideChange}
       >
-        {top?.map((show: any, index: any) => (
+        {data?.[0]?.trending?.map((show: any, index: any) => (
           <SwiperSlide key={index} className=" max-h-[500px]">
             <div className="md:hidden relative ">
               <img
@@ -113,8 +110,7 @@ export default function HomeSwiper({ props }: any) {
             </div>
 
             <div className="hidden md:block  card   relative">
-            
-                      {/* <button className="rounded-full text-white font-bold relative gap-2 ">
+              {/* <button className="rounded-full text-white font-bold relative gap-2 ">
                         <svg
                           viewBox="0 0 512 512"
                           fill="currentColor"
@@ -124,13 +120,12 @@ export default function HomeSwiper({ props }: any) {
                         </svg>
                       </button> */}
 
-
               <img
                 src={`${`https://image.tmdb.org/t/p/original${show.backdrop_path}`}`}
                 className={`w-full   h-[280px] object-cover rounded-xl`}
                 alt=""
               />
-              
+
               <div
                 className={`absolute inset-0    ${
                   activeSlide === index
@@ -170,14 +165,14 @@ export default function HomeSwiper({ props }: any) {
                   </div> */}
 
                   <div className="flex gap-2 items-center z-50">
-                  <Link className="z-50 cursror-pointer text-white hover:txt-primary flex items-center justify-center" href={`/anime/${show.anime_id}`}>
-
-                    <h1 className="rounded-full  font-bold relative gap-2 ">
-                      {show?.title}
-                    </h1>
+                    <Link
+                      className="z-50 cursror-pointer text-white hover:txt-primary flex items-center justify-center"
+                      href={`/anime/${show.anime_id}`}
+                    >
+                      <h1 className="rounded-full  font-bold relative gap-2 ">
+                        {show?.title}
+                      </h1>
                     </Link>
-
-                    
                   </div>
                 </div>
               ) : (

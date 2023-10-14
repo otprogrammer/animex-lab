@@ -160,6 +160,11 @@ export default function RootLayout({
                       <span>Support</span>
                     </a>
                   </li>
+                  <li>
+                    <a href="https://discord.gg/uEAKwRrFpn" target="_blank">
+                      <span>Discord</span>
+                    </a>
+                  </li>
                 </ul>
               )}
             </div>

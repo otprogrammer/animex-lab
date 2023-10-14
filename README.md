@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<div align="center">
+<h1>Animex Stream</h1>
 
-## Getting Started
+[![Animex Discord server](https://discordapp.com/api/guilds/921529286698074185/widget.png?style=banner1)](https://discord.gg/uEAKwRrFpn)
 
-First, run the development server:
+### Animex Stream is a website where you can watch animes.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Since it is an open-source project, there won't be any ads in this website.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The official website is [animex.live](https://www.animex.live)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+</div>
+<h3>Features:</h3>
+<ul>
+    <li>✔ No Ads.</li>
+    <li>✔ Fast Streaming.</li>
+    <li>✔ The browser store your last episode & you can add animes to your list without logging in.</li>
+    <li>✔ PWA => You can install the app into your desktop or mobile.</li>
+    <li>✔ Download Animes.</li>
+ </ul>
+    
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## Learn More
+<h3>Screenshots:</h3>
 
-To learn more about Next.js, take a look at the following resources:
+![image](https://i.imgur.com/kRtWyWY.png)
+![image](https://i.imgur.com/IuwdnZF.jpg)
+![image](https://i.imgur.com/ntC3wib.jpg)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**<h3>Technologies:</h3>**
+    <ul>
+    <li>✔ Next JS 13</li>
+    <li>✔ TailwindCSS</li>
+    <li>✔ zustand</li>
+    <li>✔ PWA - Progressive Web App</li>
+    <li>✔ Swiper JS</li>
+    <li>✔ HeadlessUI </li>
+    
+ </ul>
+ 
+ ### Support
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Consider showing some support with a cup of coffee.
 
-## Deploy on Vercel
+<a href="https://www.buymeacoffee.com/ottoprogrammer"><img src="https://www.buymeacoffee.com/assets/img/guidelines/download-assets-sm-1.svg" height="35px"/></a>
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+<br/>
+<!-- LICENSE -->
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Copyright © 2023 Otto Programmer

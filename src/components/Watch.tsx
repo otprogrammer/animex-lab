@@ -88,14 +88,7 @@ const plugins = [
   vttThumbnails(),
 ];
 
-interface MsgProps {
-  title: string;
-  message: string;
-}
-interface SubtitleProps {
-  url: string;
-  lang: string;
-}
+
 
 const Msg = ({ title, message }: MsgProps) => {
   return (
@@ -692,6 +685,8 @@ export default function WatchContainer(props: WatchProps) {
             <SettingsDropdown />
           </div>
           <hr className="w-[70%] border-zinc-800 mx-auto mb-2" />
+                <div className="lg:w-[360px]">
+
 
           {showEpisodes && !episodesLoading && episodesList?.length >= 1 ? (
             <div className="lg:w-[360px]">
@@ -714,6 +709,7 @@ export default function WatchContainer(props: WatchProps) {
               </div>
             )
           )}
+                </div>
         </div>
       </div>
 

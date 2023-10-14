@@ -64,7 +64,7 @@ function WatchCard(anime: WatchListProps) {
           }   overflow-hidden `}
         >
           <img
-            className=" object-cover overflow-hidden hover:scale-110 transition-all duration-300 ease-in-out rounded-sm"
+            className=" object-cover overflow-hidden h-[165px] hover:scale-110 transition-all duration-300 ease-in-out rounded-sm"
             src={anime.image_url}
             alt={anime.title}
           />
