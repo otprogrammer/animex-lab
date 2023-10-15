@@ -6,6 +6,8 @@ import GridContainer from "../container/GridContainer";
 import WatchList from "../watchlist/WatchList";
 import MyList from "../watchlist/MyList";
 import Airing from "../schedule/Schedule";
+import { getWatchList } from "../watchlist/getWatchList";
+import { getAnimeList } from "../watchlist/getAnimeList";
 
 type HomeContainerTabs = {
   Latest: any[];
@@ -19,8 +21,9 @@ export default function Tabs({ Latest, Trending }: HomeContainerTabs) {
     Trending: Trending,
     MyList: [],
     History: [],
-    Schedule:[]
+    Schedule: [],
   });
+  const [refresh, setRefresh] = useState(false);
 
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -33,7 +36,7 @@ export default function Tabs({ Latest, Trending }: HomeContainerTabs) {
     transition: "margin-left 0.3s ease-in-out",
   };
   return (
-    <div className="w-full px-2  sm:px-0">
+    <div className="w-full px-2 mt-9  sm:px-0">
       <Tab.Group>
         <Tab.List className="grid grid-cols-5 w-full lg:max-w-[85%] xl:max-w-[75%] text-[12px] md:text-[16px] mx-auto place-self-center">
           {Object.keys(categories).map((category, index) => (
@@ -76,9 +79,19 @@ export default function Tabs({ Latest, Trending }: HomeContainerTabs) {
                     heading={idx == 0 ? "Latest" : "Trending"}
                   />
                 ) : idx == 2 ? (
-                  <MyList />
+                  // <MyList />
+                  <GridContainer
+                    data={getAnimeList()}
+                    heading="MyList"
+                    refresh={() => setRefresh((t) => !t)}
+                  />
                 ) : idx == 3 ? (
-                  <WatchList />
+                  // <WatchList />
+                  <GridContainer
+                    data={getWatchList()}
+                    heading="WatchList"
+                    refresh={() => setRefresh((t) => !t)}
+                  />
                 ) : (
                   <Airing />
                 )}

@@ -1,9 +1,10 @@
 {
     "theme_color": "#f69435",
     "background_color": "#e31251",
-    "display": "browser",
+    "display": "standalone",
     "scope": "/",
-    "start_url": "https://www.animex.live",
+    "start_url": "/",
+    
     "name": "Animex",
     "short_name": "Animex",
     "description": "Browse thousands of animes here for free. High quality anime 24/7 without signing up or malicious ads.",

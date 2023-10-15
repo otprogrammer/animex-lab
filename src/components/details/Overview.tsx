@@ -58,7 +58,7 @@ export default function Overview({
 
             {/* sun icon */}
 
-            <label className="swap z-50 swap-rotate tool relative" >
+            <label className="swap z-50 swap-rotate tool relative">
               <input type="checkbox" />
 
               <Icon
@@ -91,26 +91,20 @@ export default function Overview({
               title={"Release Date"}
               data={animeData?.year || gogoData?.releaseDate}
             />
+            <AD title={"Episodes"} data={animeData?.episodes || "N/A"} />
             <AD title={"Rating"} data={animeData?.rating || "N/A"} />
             <AD title={"Source"} data={animeData?.source || "N/A"} />
             <AD title={"Premiered"} data={animeData?.premiered || "N/A"} />
+            <AD title={"Season"} data={animeData?.season || "N/A"} />
+            {animeData?.airing && (
+              <AD title={"Broadcast"} data={animeData?.broadcast || "N/A"} />
+            )}
             <AD
               title={"Studios"}
-              data={animeData?.studios?.map((s: any, i: number) => (
+              data={animeData?.studios?.map((s, i: number) => (
                 <span key={i}>{s.name}</span>
               ))}
             />
-
-            {/* {mal?.airing === "true" && (
-          <div className="flex flex-col py-1  ">
-            <span className="font-bold text-blue-600 ">Broadcast:</span>
-            <span
-              className={` capitalize px-1`}
-            >
-              {animeData?.broadcast || mal?.broadcast || "?"}
-            </span>
-          </div>
-        )} */}
           </div>
         </div>
       </div>

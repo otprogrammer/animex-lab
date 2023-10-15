@@ -88,8 +88,6 @@ const plugins = [
   vttThumbnails(),
 ];
 
-
-
 const Msg = ({ title, message }: MsgProps) => {
   return (
     <div className="flex flex-col">
@@ -118,7 +116,7 @@ export default function WatchContainer(props: WatchProps) {
         props.animeData?.episodeslist?.[0]?.id?.split("-episode")[0])
   );
 
-  const {ep,id} = useParams()
+  const { ep, id } = useParams();
   const [click, setClick] = useState(false);
   const [gogoIframe, setGogoIframe] = useState("");
   const [download, setDownload] = useState("");
@@ -139,8 +137,6 @@ export default function WatchContainer(props: WatchProps) {
   const [subtitles, setSubtitles] = useState([]);
   const [zoroSrc, setZoroSrc] = useState("");
 
-
-
   const currentEpisode =
     episodesList?.length >= 1 &&
     episodesList?.filter(
@@ -151,7 +147,7 @@ export default function WatchContainer(props: WatchProps) {
     ?.filter((anime) => anime.number == lastEpisode)?.[0]
     ?.id?.split("$");
 
-    zoroId = id?.toString().split("/")[2].split("?ep=");
+  zoroId = id?.toString().split("/")[2].split("?ep=");
   const autoPlay =
     typeof window !== "undefined" && localStorage.getItem("autoPlay");
 
@@ -249,16 +245,14 @@ export default function WatchContainer(props: WatchProps) {
   const fetchSub = async () => {
     setEpisodesLoading(true);
     if (props.animeData?.title?.includes("(Dub)")) {
-      console.log("yes it's dub");
-
       let { data } = await supabase
         .from("anime")
         .select("episodeslist")
         .eq("anime_id", props.gogoId?.split("-dub")[0]);
+
       setEpisodesList(data?.[0]?.episodeslist);
       setIsSub(true);
 
-      console.log(data);
       setEpisodesLoading(false);
     } else {
       setEpisodesList(props.animeData?.episodeslist || gogoData?.episodes);
@@ -304,11 +298,10 @@ export default function WatchContainer(props: WatchProps) {
       fetchZoro();
     }
 
-    
-    console.log(id)
+    console.log(id);
 
     lst.current = lastEpisode;
-  }, [lastEpisode, isZoro,params.get('id')]);
+  }, [lastEpisode, isZoro, params.get("id")]);
 
   const onTimeUpdate = useThrottle((currentTime) => {
     // setLastDuration(currentTime, player?.current?.duration);
@@ -374,7 +367,7 @@ export default function WatchContainer(props: WatchProps) {
     (payload: PlayerEvent) => {
       if (payload.type == "timeupdate") {
         onTimeUpdate(payload.payload.target.currentTime * 1000);
-       console.log(currentEpisode?.id)
+        console.log(currentEpisode?.id);
         addWatchList(
           currentEpisode?.id?.split("-episode")[0],
           null,
@@ -405,7 +398,7 @@ export default function WatchContainer(props: WatchProps) {
         }
       }
     },
-    [lastEpisode, isAutoNext, autoPlay, gogoData?.title,id]
+    [lastEpisode, isAutoNext, autoPlay, gogoData?.title, id]
   );
 
   useEffect(() => {
@@ -685,31 +678,29 @@ export default function WatchContainer(props: WatchProps) {
             <SettingsDropdown />
           </div>
           <hr className="w-[70%] border-zinc-800 mx-auto mb-2" />
-                <div className="lg:w-[360px]">
-
-
-          {showEpisodes && !episodesLoading && episodesList?.length >= 1 ? (
-            <div className="lg:w-[360px]">
-              <Episodes
-                episodesList={episodesList}
-                handleEpisodeRoute={handleEpisodeRoute}
-                animeImg={gogoData?.image as string}
-                episodeNumber={lastEpisode}
-              />
-            </div>
-          ) : episodesList?.length < 1 ? (
-            <div className="lg:w-[360px] flex justify-center mt-10 ">
-              {" "}
-              No Episodes Found{" "}
-            </div>
-          ) : (
-            episodesLoading && (
-              <div className="lg:w-[360px] flex justify-center mt-10 ">
-                <span className="loading loading-spinner text-error loading-lg"></span>
+          <div className="lg:w-[360px]">
+            {showEpisodes && !episodesLoading && episodesList?.length >= 1 ? (
+              <div className="lg:w-[360px]">
+                <Episodes
+                  episodesList={episodesList}
+                  handleEpisodeRoute={handleEpisodeRoute}
+                  animeImg={gogoData?.image as string}
+                  episodeNumber={lastEpisode}
+                />
               </div>
-            )
-          )}
+            ) : episodesList?.length < 1 ? (
+              <div className="lg:w-[360px] flex justify-center mt-10 ">
+                {" "}
+                No Episodes Found{" "}
+              </div>
+            ) : (
+              episodesLoading && (
+                <div className="lg:w-[360px] flex justify-center mt-10 ">
+                  <span className="loading loading-spinner text-error loading-lg"></span>
                 </div>
+              )
+            )}
+          </div>
         </div>
       </div>
 

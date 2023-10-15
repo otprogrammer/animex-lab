@@ -8,8 +8,7 @@ import GridContainer from "../container/GridContainer";
 import { days } from "../../../utils/Vars";
 
 function Airing() {
-  const [data, setData] = useState([]);
-  const slider = useRef();
+ 
   const [activeDay, setActiveDay] = useState<any>();
 
   useEffect(() => {
@@ -22,9 +21,8 @@ function Airing() {
   const todayIndex = today.day();
 
   const [selectedTab, setSelectedTab] = useState(todayIndex);
-  const [scheduleData, setScheduleData] = useState<any>({});
-  console.log("activeday", activeDay);
-  console.log("todayindex", todayIndex);
+  const [scheduleData, setScheduleData] = useState<any>();
+
   const renderSchedule = () => {
     switch (activeDay) {
       case "Monday":
@@ -42,7 +40,7 @@ function Airing() {
       case "Sunday":
         return scheduleData?.sundaySchedule;
       default:
-        return null; // Handle the case when activeDay is not one of the specified days
+        return scheduleData?.sundaySchedule; // Handle the case when activeDay is not one of the specified days
     }
   };
 

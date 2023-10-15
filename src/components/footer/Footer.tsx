@@ -37,7 +37,7 @@ function Footer() {
             onClick={() => router.push("/")}
             className={`flex cursor-pointer  items-end text-[30px] spacing-[1px] text-white font-black `}
           >
-            <span className="text-blue-800  font-black">A</span>
+            <span className="text-red-800  font-black">A</span>
             NIMΞX
           </h1>
 
@@ -46,7 +46,7 @@ function Footer() {
               href="https://ko-fi.com/ottoprogrammer"
               target="_blank"
               aria-label="Support Me"
-              className="tool rounded-full border-[2px] cursor-pointer border-white p-2 hover:bg-blue-700 transition-all ease-in-out duration-500 hover:-translate-y-1 text-[#ffffff]"
+              className="tool rounded-full border-[2px] cursor-pointer border-white p-2 hover:bg-red-700 transition-all ease-in-out duration-500 hover:-translate-y-1 text-[#ffffff]"
             >
               <Icon icon="cib:buy-me-a-coffee" />
             </a>
@@ -54,20 +54,20 @@ function Footer() {
               href="https://discord.gg/uEAKwRrFpn"
               target="_blank"
               aria-label="Discord"
-              className="tool rounded-full border-[2px] cursor-pointer border-white p-2 hover:bg-blue-700 transition-all ease-in-out duration-500 hover:-translate-y-1 text-[#ffffff]"
+              className="tool rounded-full border-[2px] cursor-pointer border-white p-2 hover:bg-red-700 transition-all ease-in-out duration-500 hover:-translate-y-1 text-[#ffffff]"
             >
               <Icon icon="ic:baseline-discord" />
             </a>
             <span
               aria-label="Github"
-              className="tool rounded-full border-[2px] cursor-pointer border-white p-2 hover:bg-blue-700 transition-all ease-in-out duration-500 hover:-translate-y-1 text-[#ffffff]"
+              className="tool rounded-full border-[2px] cursor-pointer border-white p-2 hover:bg-red-700 transition-all ease-in-out duration-500 hover:-translate-y-1 text-[#ffffff]"
             >
               <Icon icon="ant-design:github-outlined" />
             </span>
             <span
               onClick={enableIsContact}
               aria-label="Contact Me"
-              className="tool rounded-full border-[2px] cursor-pointer border-white p-2 hover:bg-blue-700 transition-all ease-in-out duration-500 hover:-translate-y-1 text-[#ffffff]"
+              className="tool rounded-full border-[2px] cursor-pointer border-white p-2 hover:bg-red-700 transition-all ease-in-out duration-500 hover:-translate-y-1 text-[#ffffff]"
             >
               <Icon icon="mdi:contact" />
             </span>

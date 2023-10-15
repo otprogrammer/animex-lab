@@ -34,7 +34,7 @@ export default function GridContainer({
 
   return (
     <div className="home_container m-3 md:max-w-[90%] mx-auto">
-      {data?.length >= 1 ? (
+  
         <>
           <div className=" w-full flex justify-between items-center mt-5">
             <span className={` px-2 flex  $ font-semibold items-end  text-2xl`}>
@@ -104,9 +104,6 @@ export default function GridContainer({
             ))}
           </Swiper>
         </>
-      ) : (
-        <NotFound />
-      )}
     </div>
   );
 }

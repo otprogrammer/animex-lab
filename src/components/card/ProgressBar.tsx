@@ -10,7 +10,7 @@ const convertToMilliseconds = (durationInSeconds:any) => {
     return (
       <div className="absolute bottom-0 right-0 left-0 h-0.5 z-50 bg-gray-200">
         <div
-          className="h-full bg-blue-500"
+          className="h-full bg-red-500"
           style={{ width: `${progress}%` }}
         ></div>
       </div>

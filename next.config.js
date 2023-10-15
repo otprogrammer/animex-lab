@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 
+const withPWAInit = require("next-pwa");
+
 const withPWA = require("next-pwa")({
   dest: "public",
   register: true,
@@ -7,7 +9,7 @@ const withPWA = require("next-pwa")({
 });
 // const nextConfig = {
 //   env: {},
-  
+
 //   typescript: {
 //     // !! WARN !!
 //     // Dangerously allow production builds to successfully complete even if
@@ -19,9 +21,8 @@ const withPWA = require("next-pwa")({
 // };
 
 module.exports = withPWA({
-  
   env: {},
-  
+
   typescript: {
     // !! WARN !!
     // Dangerously allow production builds to successfully complete even if
@@ -29,5 +30,5 @@ module.exports = withPWA({
     // !! WARN !!
     ignoreBuildErrors: true,
   },
-  reactStrictMode: true,
+  reactStrictMode: false,
 });

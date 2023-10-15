@@ -99,7 +99,7 @@ function WatchCard(anime: WatchListProps) {
       <div className="flex justify-between items-center mb-3">
         <span className="text-neutral-300 text-start">
           Episode{" "}
-          <span className="text-blue-500 font-semibold"> {anime.episode}</span>
+          <span className="txt-primary font-semibold"> {anime.episode}</span>
         </span>
         <TimeAgo timestamp={anime.time} />
       </div>

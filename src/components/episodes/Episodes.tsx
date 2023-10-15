@@ -87,7 +87,7 @@ export default function Episodes({
                 <small className="bg-neutral-900/80 font-black py-0.5 px-1.5 absolute top-0 left-0 rounded-br-lg">
                   {ep.number}
                 </small>
-                <small className=" font-lighter p-0.5 ">{ep.title}</small>
+                <small className=" font-lighter p-0.5 ">{ep.title || "Episode " + ep.number}</small>
               </div>
             ) : (
               <div className="flex bg-neutral-900/80 hover:scale-105 hover:bg-neutral-800 py-2 transition-all duration-300 ">
