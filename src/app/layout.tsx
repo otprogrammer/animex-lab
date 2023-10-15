@@ -36,6 +36,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+
+  
+
+
+
   // const [isDropDown, setIsDropDown] = useState(false);
   // const { enableIsContact } = useContact();
 
@@ -84,13 +89,21 @@ export default function RootLayout({
         />
         <Contact />
         <Footer />
-        <noscript
-          dangerouslySetInnerHTML={{
-            __html: `
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=${process.env.GOOGLE_TAGS}"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  `,
-          }}
+        <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+          />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
+              page_path: window.location.pathname,
+            });
+          `,
+            }}
         />
       </body>
     </html>

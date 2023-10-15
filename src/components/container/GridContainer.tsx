@@ -57,7 +57,7 @@ export default function GridContainer({
             slidesPerView={2}
             slidesPerGroupSkip={1}
             grid={{
-              rows: 2,
+              rows: 3,
               fill: "row",
             }}
             navigation={{

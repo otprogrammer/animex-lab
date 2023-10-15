@@ -147,7 +147,7 @@ export default function WatchContainer(props: WatchProps) {
     ?.filter((anime) => anime.number == lastEpisode)?.[0]
     ?.id?.split("$");
 
-  zoroId = id?.toString().split("/")[2].split("?ep=");
+  zoroId = zoroId?.toString().split("/")[2].split("?ep=");
   const autoPlay =
     typeof window !== "undefined" && localStorage.getItem("autoPlay");
 
@@ -383,6 +383,9 @@ export default function WatchContainer(props: WatchProps) {
           props.animeData?.anilistid,
           props.animeData?.anime_id || gogoData?.id
         );
+
+        typeof window !== "undefined" && localStorage.setItem("resumeId",JSON.stringify({"title":props.animeData?.title,"anime_id":currentEpisode?.id?.split("-episode")[0],"episode":lastEpisode}))
+
       } else if (payload.type == "ended" && isAutoNext == "true") {
         let getNextEp = props.animeData?.episodeslist?.filter(
           (e) => e.number == parseInt(lastEpisode) + 1
@@ -678,7 +681,7 @@ export default function WatchContainer(props: WatchProps) {
             <SettingsDropdown />
           </div>
           <hr className="w-[70%] border-zinc-800 mx-auto mb-2" />
-          <div className="lg:w-[360px]">
+          <div className={`${showEpisodes && "lg:w-[360px]"} `}>
             {showEpisodes && !episodesLoading && episodesList?.length >= 1 ? (
               <div className="lg:w-[360px]">
                 <Episodes

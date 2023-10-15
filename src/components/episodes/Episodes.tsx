@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { type AnimeEpisodesProps, EpisodesProps } from "../../../types/types";
 import EpisodesPagination from "./EpisodesPagination";
 import { useEpisodesImage, useSort } from "../../../store/store";
+import { Transition } from "@headlessui/react";
 
 export default function Episodes({
   episodesList,
@@ -53,7 +54,17 @@ export default function Episodes({
   }
 
   return (
-    <div>
+    <Transition
+      appear={true}
+      as={"div"}
+      show={true}
+      enter="transform transition duration-[500ms]"
+      enterFrom="opacity-0 scale-[0.90]"
+      enterTo="opacity-100 rotate-0 scale-100"
+      leave="transform duration-200 transition ease-in-out"
+      leaveFrom="opacity-100 rotate-0 scale-100 "
+      leaveTo="opacity-0 scale-95 "
+    >
       <div className="flex gap-2 items-center justify-between">
         <h1>Episodes:</h1>
         {episodesList?.length > 19 && (
@@ -68,8 +79,11 @@ export default function Episodes({
           </div>
         )}
       </div>
+
       <div
-        className={`grid p-1 ${isEpImgEnabled == "true" ? "grid-cols-2 gap-2" : "grid "}`}
+        className={`grid p-1 ${
+          isEpImgEnabled == "true" ? "grid-cols-2 gap-2" : "grid "
+        }`}
       >
         {episodesToRender?.map((ep: AnimeEpisodesProps, i: number) => (
           <div
@@ -87,7 +101,9 @@ export default function Episodes({
                 <small className="bg-neutral-900/80 font-black py-0.5 px-1.5 absolute top-0 left-0 rounded-br-lg">
                   {ep.number}
                 </small>
-                <small className=" font-lighter p-0.5 ">{ep.title || "Episode " + ep.number}</small>
+                <small className=" font-lighter p-0.5 ">
+                  {ep.title || "Episode " + ep.number}
+                </small>
               </div>
             ) : (
               <div className="flex bg-neutral-900/80 hover:scale-105 hover:bg-neutral-800 py-2 transition-all duration-300 ">
@@ -103,6 +119,6 @@ export default function Episodes({
           </div>
         ))}
       </div>
-    </div>
+    </Transition>
   );
 }
