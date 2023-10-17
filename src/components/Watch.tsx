@@ -536,8 +536,9 @@ export default function WatchContainer(props: WatchProps) {
         <div className="w-full ">
           <div className={`${params.get("ep") ? "block" : "hidden"}`}>
             {alert && (
-              <div className="alert p-2 mb-2 rounded-xl bg-neutral-800/75">
-                <svg
+              <div className="alert gap-1 p-2 mb-2 rounded-xl bg-neutral-800/75">
+               <div className="flex items-center gap-2">
+               <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
@@ -550,10 +551,12 @@ export default function WatchContainer(props: WatchProps) {
                     d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                   ></path>
                 </svg>
+                
                 <span className="text-sm">
                   Help us enhance your experience! Support us for better servers
                   and an improved website.
                 </span>
+                </div>
                 <div className="flex items-center gap-2">
                   <a
                     href="https://ko-fi.com/ottoprogrammer"
