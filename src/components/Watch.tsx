@@ -210,9 +210,8 @@ export default function WatchContainer(props: WatchProps) {
 
           return null;
         })
-        .filter(Boolean); // Filter out undefined/null values
+        .filter(Boolean); 
 
-      // Update episodesList state with the new array
       setEpisodesList(updatedEpisodesList);
       console.log(updatedEpisodesList);
       setEpisodesLoading(false);
