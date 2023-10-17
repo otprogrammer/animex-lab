@@ -299,7 +299,6 @@ export default function WatchContainer(props: WatchProps) {
   }, [lastEpisode, isZoro, params.get("id")]);
 
   const onTimeUpdate = useThrottle((currentTime) => {
-    // setLastDuration(currentTime, player?.current?.duration);
   }, 1000);
 
   const handleEpisodeRoute = (epId: any, epNumber: number) => {
