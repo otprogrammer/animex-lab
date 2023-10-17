@@ -210,7 +210,7 @@ export default function WatchContainer(props: WatchProps) {
 
           return null;
         })
-        .filter(Boolean); 
+        .filter(Boolean);
 
       setEpisodesList(updatedEpisodesList);
       console.log(updatedEpisodesList);
@@ -275,8 +275,6 @@ export default function WatchContainer(props: WatchProps) {
     );
 
     setSubtitles(res.subtitles);
-
-   
   };
 
   const handlePrevEpisode = () => {
@@ -297,8 +295,7 @@ export default function WatchContainer(props: WatchProps) {
     lst.current = lastEpisode;
   }, [lastEpisode, isZoro, params.get("id")]);
 
-  const onTimeUpdate = useThrottle((currentTime) => {
-  }, 1000);
+  const onTimeUpdate = useThrottle((currentTime) => {}, 1000);
 
   const handleEpisodeRoute = (epId: any, epNumber: number) => {
     setLastEpisode(epNumber);
@@ -349,7 +346,7 @@ export default function WatchContainer(props: WatchProps) {
   };
 
   const fetchAnilistData = async () => {
-    let url = `https://animexscraper.vercel.app/meta/anilist/info/${props.animeData?.anilistid}`;
+    let url = `https://api.consumet.org/meta/anilist/info/${props.animeData?.anilistid}`;
     let req = await fetch(url);
     let res = await req.json();
     setAnilistData(res);
@@ -537,25 +534,25 @@ export default function WatchContainer(props: WatchProps) {
           <div className={`${params.get("ep") ? "block" : "hidden"}`}>
             {alert && (
               <div className="alert flex flex-col lg:flex-row gap-1.5 justify-between p-2 mb-2 rounded-xl bg-neutral-800/75">
-               <div className="flex items-center gap-2">
-               <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  className="stroke-info shrink-0 w-6 h-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  ></path>
-                </svg>
-                
-                <span className="text-sm">
-                  Help us enhance your experience! Support us for better servers
-                  and an improved website.
-                </span>
+                <div className="flex items-center gap-2">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    className="stroke-info shrink-0 w-6 h-6"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    ></path>
+                  </svg>
+
+                  <span className="text-sm">
+                    Help us enhance your experience! Support us for better
+                    servers and an improved website.
+                  </span>
                 </div>
                 <div className="flex items-center gap-2">
                   <a
