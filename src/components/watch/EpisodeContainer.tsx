@@ -74,10 +74,10 @@ export default function EpisodeContainer({
 
       <div className="flex text-[13px] md:text-lg  gap-4 justify-end mt-2">
         <span className={cls}>
-          <Icon icon="mdi:thumb-up" color="white" width="24" />
+          <Icon className="text-white hover:txt-primary" icon="mdi:thumb-up"  width="24" />
         </span>
         <span className={cls}>
-          <Icon icon="mdi:thumb-down" color="white" width="24" />
+          <Icon className="text-white hover:txt-primary" icon="mdi:thumb-down"  width="24" />
         </span>
 
        

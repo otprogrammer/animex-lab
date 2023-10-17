@@ -75,7 +75,7 @@ export default function Overview({
             </label>
           </span>
 
-          <div className="grid  md:grid-cols-2">
+          <div className="grid  md:grid-cols-2 2xl:grid-cols-3">
             <AD title={"Rank"} data={animeData?.rank || "?"} />
 
             <AD title={"Score"} data={animeData?.score || "N/A"} />

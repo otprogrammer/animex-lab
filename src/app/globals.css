@@ -103,3 +103,251 @@ body {
 .swiper-pagination {
   opacity: 0 !important;
 }
+
+
+
+.mediaHoverImg {
+  height: 160px;
+  width: 300px;
+  margin-top: 10px;
+  border-radius: 0%;
+  z-index: 2;
+}
+.hoverScreen {
+  position: relative;
+  color: white;
+  width: 300px;
+  transform: scale(0.1); /* Initial scale set to 0.1 */
+  transition-property: transform, opacity; /* Include opacity in the transition */
+  transition-delay: 2000ms;
+  transition-duration: 3s;
+  top: -30px;
+  left:-4rem;
+  opacity: 1;
+  z-index: 2;
+  margin-bottom: 20px;
+  text-decoration: none;
+}
+
+.mediaDiv:hover .hoverScreen {
+  transform: scale(1); /* Scale to 1 on hover */
+  animation: fadeIn 1s ease; /* Add fadeIn animation */
+}
+
+@keyframes fadeIn {
+  from {
+    scale: 0.9;
+  }
+  to {
+    scale: 1;
+  }
+}
+
+.hoverData {
+  position: relative;
+  background: linear-gradient(rgba(27, 37, 48, 0), #1b2530 48px);
+  padding: 30px 30px;
+  padding-bottom: 5px;
+  margin-top: -45px;
+  z-index: 2;
+  text-decoration: none;
+}
+.playButton {
+  color: white;
+  transform: scale(1.3);
+}
+.playButton:hover {
+  background-color: blue;
+  border-radius: 50%;
+  outline: none;
+}
+.playtext {
+  text-decoration: none;
+  margin-top: 5px;
+  font-size: 14px;
+  font-weight: bold;
+}
+.playDiv {
+  display: flex;
+  justify-content: space-between;
+  height: 30px;
+  width: 65px;
+}
+.playIcon {
+  width: 40px;
+}
+.addIcon {
+  color: white;
+}
+.hoverHeading {
+  text-decoration: none;
+  display: flex;
+  justify-content: space-between;
+}
+.title {
+  margin-top: 10px;
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+}
+.overview {
+  margin-top: 5px;
+  font-size: 11px;
+  text-decoration: none;
+}
+.releaseYear {
+  font-size: 11px;
+  color: gray;
+  margin-bottom: 15px;
+}
+.runTime {
+  color: darkgray;
+  font-size: 11px;
+}
+.footerScreen {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 200px;
+}
+.messageIcon {
+  color: darkgray;
+  max-height: 18px;
+}
+.rated {
+  border: 1px solid darkgray;
+  color: darkgray;
+  font-size: 9px;
+  padding: 3px;
+  height: 10px;
+}
+
+
+.headingBanner {
+  color: white;
+  font-size: 19px;
+  margin-left: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.banner {
+  left: 10px;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  justify-content: space-between;
+  z-index: -1;
+}
+
+.banner::-webkit-scrollbar {
+  display: none;
+}
+
+.leftIconDiv {
+  left: 0px;
+  max-height: 166px;
+  z-index: 1;
+  width: 30px;
+  color: gray;
+  position: absolute;
+  margin-top: 10px;
+  -webkit-transition: opacity 0.25s ease, background-color 0.25s ease;
+  transition: opacity 0.25s ease, background-color 0.25s ease;
+  background-color: rgba(15, 23, 30, 0.5);
+}
+
+.leftIcon {
+  min-height: 160px;
+}
+
+.leftIconDiv:hover .leftIcon {
+  color: white;
+  transform: scale(1.5);
+}
+
+.rightIconDiv {
+  margin-top: -180px;
+  right: 0px;
+  min-height: 166px;
+  z-index: 1;
+  width: 40px;
+  color: gray;
+  position: absolute;
+  cursor: pointer;
+  -webkit-transition: opacity 0.25s ease, background-color 0.25s ease;
+  transition: opacity 0.25s ease, background-color 0.25s ease;
+  background-color: rgba(15, 23, 30, 0.5);
+}
+
+.rightIcon {
+  min-height: 160px;
+  margin-left: 0px;
+  padding-top: -200px;
+}
+
+.rightIconDiv:hover .rightIcon {
+  color: white;
+  transform: scale(1.5);
+}
+
+.mediaScreen {
+  margin-top: 5px;
+  z-index: 0;
+}
+
+.mediaDiv {
+  position: static;
+  width: 100%;
+  cursor: pointer;
+  /* z-index: 0; */
+  padding: 10px 0px;
+  padding-top: 5px;
+}
+
+.mediaDiv .displayhoverScreen {
+  display: none;
+  position: absolute;
+  z-index: 5;
+  padding: 1px;
+  /* min-height: 400px; */
+  transform: scale(1);
+}
+
+.mediaDiv:hover .displayhoverScreen {
+  display: block;
+  position: absolute;
+}
+
+.mediaImg {
+  height: 270px;
+  object-fit: cover;
+  margin: 5px;
+  border-radius: 4px;
+  /* z-index: 0; */
+  visibility: visible;
+}
+
+.mediaDiv:hover .mediaImg {
+  height: 0px;
+  width: 284px;
+  visibility: hidden;
+}
+
+.moreButton {
+  color: lightblue;
+  font-size: 14px;
+  margin-right: 15px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.moreButton:hover {
+  color: white;
+}
+
+.swiper-wrapper {
+  margin-left : 4rem !important;
+  /* padding-right : 4rem !important; */
+
+}

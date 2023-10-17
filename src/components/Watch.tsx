@@ -46,6 +46,7 @@ import supabase from "../../utils/supabase";
 import { appendMissingEpisodes } from "../../lib/appendeps";
 import { HiSwitchHorizontal } from "react-icons/hi";
 import danmaku from "@oplayer/danmaku";
+import { AiOutlineClose } from "react-icons/ai";
 
 const plugins = [
   skipOpEd(),
@@ -127,6 +128,7 @@ export default function WatchContainer(props: WatchProps) {
   const { isSort, enableIsSort, disableIsSort } = useSort();
   const { isAutoNext } = useAutoNext();
   const { isAutoPlay } = useAutoPlay();
+  const [iframe, setIframe] = useState(false);
   const [episodesLoading, setEpisodesLoading] = useState(false);
   const [episodesList, setEpisodesList] = useState<any[] | any>(
     props.animeData?.episodeslist?.length !== 0
@@ -136,7 +138,7 @@ export default function WatchContainer(props: WatchProps) {
   const [isSub, setIsSub] = useState(true);
   const [subtitles, setSubtitles] = useState([]);
   const [zoroSrc, setZoroSrc] = useState("");
-
+  const [alert, setAlert] = useState(true);
   const currentEpisode =
     episodesList?.length >= 1 &&
     episodesList?.filter(
@@ -384,8 +386,15 @@ export default function WatchContainer(props: WatchProps) {
           props.animeData?.anime_id || gogoData?.id
         );
 
-        typeof window !== "undefined" && localStorage.setItem("resumeId",JSON.stringify({"title":props.animeData?.title,"anime_id":currentEpisode?.id?.split("-episode")[0],"episode":lastEpisode}))
-
+        typeof window !== "undefined" &&
+          localStorage.setItem(
+            "resumeId",
+            JSON.stringify({
+              title: props.animeData?.title,
+              anime_id: currentEpisode?.id?.split("-episode")[0],
+              episode: lastEpisode,
+            })
+          );
       } else if (payload.type == "ended" && isAutoNext == "true") {
         let getNextEp = props.animeData?.episodeslist?.filter(
           (e) => e.number == parseInt(lastEpisode) + 1
@@ -421,8 +430,8 @@ export default function WatchContainer(props: WatchProps) {
                   src: res.sources?.filter(
                     (s: { quality: string }) => s.quality === "default"
                   )?.[0].url,
-                  title: "Title",
-                  poster: "",
+                  title: currentEpisode?.title || "",
+                  poster: currentEpisode?.image || "",
                 };
               })
           )
@@ -535,6 +544,42 @@ export default function WatchContainer(props: WatchProps) {
       <div className=" w-full flex flex-col lg:flex-row gap-6 mx-5 overflow-hidden">
         <div className="w-full ">
           <div className={`${params.get("ep") ? "block" : "hidden"}`}>
+            {alert && (
+              <div className="alert p-2 mb-2 rounded-xl bg-neutral-800/75">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  className="stroke-info shrink-0 w-6 h-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                  ></path>
+                </svg>
+                <span className="text-sm">
+                  Help us enhance your experience! Support us for better servers
+                  and an improved website.
+                </span>
+                <div className="flex items-center gap-2">
+                  <a
+                    href="https://ko-fi.com/ottoprogrammer"
+                    target="_blank"
+                    className="btn btn-sm capitalize rounded-lg hover:bg-neutral-900"
+                  >
+                    Support
+                  </a>
+                  <button
+                    onClick={() => setAlert(false)}
+                    className="p-2 rounded-full bg-black hover:bg-neutral-900"
+                  >
+                    <AiOutlineClose />
+                  </button>
+                </div>
+              </div>
+            )}
             <Transition
               appear={params.get("ep") ? true : false}
               as={"div"}
@@ -623,13 +668,25 @@ export default function WatchContainer(props: WatchProps) {
                 tabIndex={0}
                 className="dropdown-content z-[1] menu p-2 shadow bg-neutral-800/90 rounded-box w-52"
               >
-                <li onClick={() => setIsZoro(false)}>
-                  <a className={`${!isZoro && "txt-primary"}`}>Server 1</a>
+                <li
+                  onClick={() => {
+                    setIsZoro(false);
+                    setIframe(false);
+                  }}
+                >
+                  <a className={`${!isZoro && !iframe && "txt-primary"}`}>
+                    Server 1
+                  </a>
                 </li>
 
                 {props.animeData?.zoroepisodes?.length > 1 && (
                   <li onClick={() => setIsZoro(true)}>
                     <a className={`${isZoro && "txt-primary"}`}>Server 2</a>
+                  </li>
+                )}
+                {!isZoro && (
+                  <li onClick={() => setIframe(true)}>
+                    <a className={`${iframe && "txt-primary"}`}>Iframe (Ads)</a>
                   </li>
                 )}
               </ul>
