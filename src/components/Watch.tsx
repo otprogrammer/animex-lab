@@ -277,14 +277,7 @@ export default function WatchContainer(props: WatchProps) {
 
     setSubtitles(res.subtitles);
 
-    // player.current!.context.ui.subtitle.updateSource(res?.subtitles?.map((s:SubtitleProps,i:number) => (
-    //   {
-    //     name: s?.lang,
-    //      default: i === 0,
-    //      src: s?.url
-    //    }
-
-    // ) ))
+   
   };
 
   const handlePrevEpisode = () => {
