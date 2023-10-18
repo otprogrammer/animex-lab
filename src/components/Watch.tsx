@@ -612,7 +612,7 @@ export default function WatchContainer(props: WatchProps) {
                   episode={anilistData?.nextAiringEpisode?.episode as number}
                   airingAt={Math.floor(
                     new Date(
-                      anilistData?.nextAiringEpisode?.airingTime
+                      anilistData?.nextAiringEpisode?.airingAt
                     ).getTime()
                   )}
                 />
