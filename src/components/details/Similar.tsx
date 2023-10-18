@@ -4,23 +4,31 @@ import Link from "next/link";
 
 function Similar({ Data }: any) {
   return (
-    <div className="grid grid-cols-1 xl:grid-cols-3 gap-2 p-4">
-      {Data?.length > 1
-        ? Data?.map((anime: any) => (
+    <div className="grid w-full grid-cols-1 xl:grid-cols-2 gap-2 p-4">
+      {Data?.nodes?.length > 1
+        ? Data?.nodes?.map((anime: any) => (
             <div
-              key={anime?.entry?.mal_id}
-              className="flex gap-2 bg-[#3332] p-1"
+              key={anime?.mediaRecommendation?.id}
+              className="flex gap-2 bg-[#3336] p-1"
             >
-              <img className="w-[60px] h-[80px] " src={anime?.image} />
-              <div className="flex flex-col justify-between">
-                <Link href={`/anime/${anime?.malId}`}>
+              <img className="w-[60px] h-[80px] " src={anime?.mediaRecommendation?.coverImage?.large} />
+              <div className="flex flex-col w-full justify-between">
+                <div className="flex items-center justify-between w-full">
+
+                {/* <Link href={{ pathname : `/anime/${anime?.mediaRecommendation?.id}`,
+              query : {
+                anilistId : anime?.mediaRecommendation?.id
+              }}}> */}
                   <small className=" p-1 text-start font-semibold cursor-pointer hover:text-blue-500">
-                    {anime?.title?.romaji}
+                    {anime?.mediaRecommendation?.title?.userPreferred}
                   </small>
-                </Link>
+                {/* </Link> */}
+                <span className="txt-primary px-2 ">{anime?.mediaRecommendation?.format}</span>
+
+                  </div>
                 <small className="text-gray-400 text-start p-1">
-                  <span className="text-neutral-400">Episodes: </span>
-                  {anime?.episodes}
+                  <span className="text-neutral-400">{anime?.mediaRecommendation?.status}</span>
+                  
                 </small>
               </div>
             </div>

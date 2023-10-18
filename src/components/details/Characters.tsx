@@ -7,13 +7,13 @@ function Characters({ data }: any) {
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-2"
 
     >
-      {data?.length > 1 ? data?.map((c: any) => (
+      {data?.edges?.length > 1 ? data?.edges?.map((c: any) => (
         <div key={c?.character?.mal_id} className="">
           <div className="flex justify-between">
             <div className="flex gap-2">
-              <img className="w-[60px] h-[60px] rounded-full object-cover " src={c?.image} />
+              <img className="w-[60px] h-[60px] rounded-full object-cover " src={c?.node?.image?.large} />
               <div className="flex flex-col justify-between">
-                <small className=" p-1 text-start">{c?.name?.full}</small>
+                <small className=" p-1 text-start">{c?.node?.name?.userPreferred}</small>
                 <small className="text-gray-400 text-start p-1">
                   {c?.role}
                 </small>

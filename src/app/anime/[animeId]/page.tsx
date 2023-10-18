@@ -4,7 +4,7 @@ import AnimeDetails from "@/components/details/AnimeDetails";
 import React from "react";
 import supabase from "../../../../utils/supabase";
 
-const fetchAnime = async (q: string | number, title: string | undefined) => {
+const fetchAnime = async (q: string | number, title: string | undefined,anilistId:number) => {
   const { data } = await supabase
     .from("anime")
     .select("*")
@@ -24,6 +24,7 @@ type PageProps = {
   searchParams?: {
     title: string;
     ep: number;
+    anilistId : number;
   };
 };
 
@@ -36,7 +37,7 @@ export async function generateMetadata(
   { params: { animeId, ep }, searchParams: query }: PageProps,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const getAnime = await fetchAnime(animeId, query?.title);
+  const getAnime = await fetchAnime(animeId, query?.title,query?.anilistId);
   const data: AnimeInfo = getAnime?.filter(
     (anime) => !anime.title?.includes("(Dub)")
   )[0];
@@ -66,9 +67,10 @@ export default async function Anime({
   params: { animeId },
   searchParams: query,
 }: PageProps) {
-  const getAnime = await fetchAnime(animeId, query?.title);
+  const getAnime = await fetchAnime(animeId, query?.title,query?.anilistId);
   const data = getAnime?.filter((anime) => !anime.title?.includes("(Dub)"))[0];
 
+  console.log(query)
   return (
     <div className="">
       <div

@@ -346,7 +346,7 @@ export default function WatchContainer(props: WatchProps) {
   };
 
   const fetchAnilistData = async () => {
-    let url = `https://api.consumet.org/meta/anilist/info/${props.animeData?.anilistid}`;
+    let url = `https://ottoscraper.vercel.app/api/anilist/${props.animeData?.anilistid}`;
     let req = await fetch(url);
     let res = await req.json();
     setAnilistData(res);
@@ -628,7 +628,7 @@ export default function WatchContainer(props: WatchProps) {
                 click={click}
               />
             }
-            Characters={anilistData?.characters}
+            Characters={anilistData?.characterPreview}
             Similar={anilistData?.recommendations}
             OP={props.animeData?.opening_themes}
             ED={props.animeData?.ending_themes}
