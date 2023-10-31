@@ -406,7 +406,7 @@ export default function WatchContainer(props: WatchProps) {
       ? player?.current
           ?.changeSource(
             fetch(
-              `https://aniscraper.up.railway.app/anime/gogoanime/watch/${params.get(
+              `https://betaversion-git-main-abhinavkuamrs-projects.vercel.app/api/eplink?id=${params.get(
                 "id"
               )}-episode-${lastEpisode}`
             )
