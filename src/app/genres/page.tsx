@@ -8,35 +8,35 @@ export const metadata: Metadata = {
   description: "Get Anime Genres",
 };
 
-// const headers = {
-//   authorization:
-//     `Bearer ${process.env.SUPABASE2NDKEY}`,
-//   apikey:
-//     `${process.env.SUPABASE2NDKEY}`,
-// };
+const headers = {
+  authorization:
+    `Bearer ${process.env.SUPABASE2NDKEY}`,
+  apikey:
+    `${process.env.SUPABASE2NDKEY}`,
+};
 
-// const getGenres = async () => {
-//   let req = await fetch(
-//     "https://rqpfbkysrcmfrtmcvmop.supabase.co/rest/v1/genres?select=*",
-//     {
-//       method: "GET",
-//       headers: headers,
-//       cache:"no-cache"
-//     }
-//   );
+const getGenres = async () => {
+  let req = await fetch(
+    "https://rqpfbkysrcmfrtmcvmop.supabase.co/rest/v1/genres?select=*",
+    {
+      method: "GET",
+      headers: headers,
+      cache:"no-cache"
+    }
+  );
 
-//   let res = await req.json();
+  let res = await req.json();
 
-//   return res;
-// };
+  return res;
+};
 
 export default async function Genres() {
-  // const data = await getGenres();
+  const data = await getGenres();
 
   return (
     <div>
-      {/* <GenresTab data={data?.[0]?.data} /> */}
-      Genres
+      <GenresTab data={data?.[0]?.data} />
+ 
     </div>
   );
 }
