@@ -4,13 +4,39 @@ import AnimeDetails from "@/components/details/AnimeDetails";
 import React from "react";
 import supabase from "../../../../utils/supabase";
 
+
+
+const headers = {
+  authorization:
+    `Bearer ${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`,
+  apikey:
+    `${process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY}`,
+};
+
+
 const fetchAnime = async (q: string | number, title: string | undefined,anilistId:number) => {
-  const { data } = await supabase
-    .from("anime")
-    .select("*")
-    .or(`anime_id.eq.${q},mal_id.eq.${q},title.eq.${title}`);
-  // let res = await req.json();
-  return data;
+
+  let url = `https://tomeleyakujcqfaovrqr.supabase.co/rest/v1/anime?select=*&or=(anime_id.eq.${q},mal_id.eq.${q},title.eq.${title})`
+
+  let req = await fetch(
+    url,
+    {
+      method: "GET",
+      headers: headers,
+      cache:"no-store"
+      
+    }
+  );
+
+  let res = await req.json();
+  return res;
+
+  // const { data } = await supabase
+  //   .from("anime")
+  //   .select("*")
+  //   .or(`anime_id.eq.${q},mal_id.eq.${q},title.eq.${title}`);
+  // // let res = await req.json();
+  // return data;
 };
 
 import { Metadata, ResolvingMetadata } from "next";

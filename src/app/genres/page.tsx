@@ -21,7 +21,6 @@ const getGenres = async () => {
     {
       method: "GET",
       headers: headers,
-      cache:"no-cache"
     }
   );
 

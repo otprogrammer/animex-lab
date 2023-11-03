@@ -46,6 +46,10 @@ export default function RootLayout({
 
   return (
     <html data-theme={"black"} lang="en">
+      <head>
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3357173685448212"
+     crossOrigin="anonymous"></script>
+      </head>
       {/* <head>
         <link rel="manifest" href="/manifest.json" />
         <link rel="apple-touch-icon" href="/icon.png"></link>

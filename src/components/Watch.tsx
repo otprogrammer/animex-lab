@@ -326,6 +326,9 @@ export default function WatchContainer(props: WatchProps) {
     }
   }
 
+
+  
+
   const fetchGogoData = async () => {
     let url = `https://animexscraper.vercel.app/anime/gogoanime/info/${props.gogoId}`;
     let req = await fetch(url);
@@ -529,6 +532,11 @@ export default function WatchContainer(props: WatchProps) {
 
   return (
     <>
+    <head>
+      <title>
+        {props.animeData?.title || gogoData?.title}
+      </title>
+    </head>
       <div className=" w-full flex flex-col lg:flex-row gap-6 mx-5 overflow-hidden">
         <div className="w-full ">
           <div className={`${params.get("ep") ? "block" : "hidden"}`}>
