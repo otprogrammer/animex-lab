@@ -82,7 +82,7 @@ export default function Episodes({
 
       <div
         className={`grid p-1 ${
-          isEpImgEnabled == "true" ? "grid-cols-2 gap-2" : "grid "
+          isEpImgEnabled == "true" ? "grid-cols-2 gap-1" : "grid "
         }`}
       >
         {episodesToRender?.map((ep: AnimeEpisodesProps, i: number) => (

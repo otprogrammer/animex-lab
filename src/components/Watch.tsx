@@ -11,6 +11,8 @@ import React, {
 import Player, { PlayerEvent, isMobile } from "@oplayer/core";
 import ui, { Highlight } from "@oplayer/ui";
 import hls from "@oplayer/hls";
+import { $ } from '@oplayer/core';
+
 //@ts-ignore
 import ReactPlayer from "@oplayer/react";
 import { chromecast, vttThumbnails } from "@oplayer/plugins";
@@ -50,6 +52,7 @@ import { AiOutlineClose } from "react-icons/ai";
 
 const plugins = [
   skipOpEd(),
+  
   ui({
     pictureInPicture: true,
     slideToSeek: "always",
@@ -77,6 +80,8 @@ const plugins = [
     },
     topSetting: true,
     icons: {
+      playbackRate: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-gauge"><path d="m12 14 4-4"/><path d="M3.34 19a10 10 0 1 1 17.32 0"/></svg>`,
+
       setting:
         '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>',
       // previous: '<svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"viewBox="0 0 24 24" style="enable-background:new 0 0 24 24;" xml:space="preserve">   <style type="text/css">       .st0{clip-path:url(#SVGID_2_);}      .st1{opacity:0.65;}       .st2{fill:#FFFFFF;}   </style>   <path class="st2" d="M20.7,2.1l-15.6,9v-9H3.3v19.8h1.8v-8.9l15.6,9V2.1z M18.9,18.8L7.1,12l11.8-6.8V18.8z"/></svg>',// enable previous,next button
@@ -529,7 +534,8 @@ export default function WatchContainer(props: WatchProps) {
               });
           });
   }, [props.slug, lastEpisode, isZoro, zoroSrc, epId, params.get("id")]);
-
+  
+  
   return (
     <>
     <head>
@@ -541,7 +547,7 @@ export default function WatchContainer(props: WatchProps) {
         <div className="w-full ">
           <div className={`${params.get("ep") ? "block" : "hidden"}`}>
             {alert && (
-              <div className="alert flex flex-col lg:flex-row gap-1.5 justify-between p-2 mb-2 rounded-xl bg-neutral-800/75">
+              <div className="alert flex flex-col lg:flex-row gap-1.5 justify-between p-2 mb-2 rounded-xl bg-neutral-900">
                 <div className="flex items-center gap-2">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -558,8 +564,7 @@ export default function WatchContainer(props: WatchProps) {
                   </svg>
 
                   <span className="text-sm">
-                    Help us enhance your experience! Support us for better
-                    servers and an improved website.
+                  Our website might shut down due to server costs. To keep it alive, we need your support. Please donate to help us continue providing our services. Thank you for your help!
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -598,6 +603,8 @@ export default function WatchContainer(props: WatchProps) {
                   onEvent={onEvent}
                   duration={lastEpisodeDuration}
                 />
+                
+                
               </div>
             </Transition>
 
@@ -634,6 +641,10 @@ export default function WatchContainer(props: WatchProps) {
                 gogoData={gogoData as any}
                 handleClick={handleClick}
                 click={click}
+                handlePlay={() => router.push(
+                  `?id=${currentEpisode?.id?.split("-episode")[0]}&ep=1
+                    
+                  }`)}
               />
             }
             Characters={anilistData?.characterPreview}
@@ -647,7 +658,7 @@ export default function WatchContainer(props: WatchProps) {
 
         <div className="lg:max-w-[410px] ">
           <div
-            className={`w-full ${
+            className={`w-full bg-neutral-900 rounded-full ${
               showEpisodes ? "flex flex-row" : " flex flex-col"
             } justify-center items-center gap-2 p-1 `}
           >
@@ -683,11 +694,11 @@ export default function WatchContainer(props: WatchProps) {
                     <a className={`${isZoro && "txt-primary"}`}>Server 2</a>
                   </li>
                 )}
-                {!isZoro && (
+                {/* {!isZoro && (
                   <li onClick={() => setIframe(true)}>
                     <a className={`${iframe && "txt-primary"}`}>Iframe (Ads)</a>
                   </li>
-                )}
+                )} */}
               </ul>
             </div>
             <label className="swap">

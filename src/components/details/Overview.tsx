@@ -20,6 +20,7 @@ interface OverViewProps {
   animeData: AnimeInfo;
   click: boolean;
   handleClick: () => void;
+  handlePlay: () => void;
 }
 
 export default function Overview({
@@ -27,6 +28,7 @@ export default function Overview({
   gogoData,
   click,
   handleClick,
+  handlePlay,
 }: OverViewProps) {
   return (
     <div
@@ -51,30 +53,48 @@ export default function Overview({
             }
             className="w-[140px] h-[200px] mx-auto text-center lg:w-full lg:h-[300px] rounded-md object-cover"
           />
+          <div className="flex justify-between py-1">
+            <span
+              onClick={handlePlay}
+              aria-label="Play"
+              className="tool relative"
+            >
+              <Icon
+                width={26}
+                icon="octicon:play-16"
+                className=" text-white hover:txt-primary cursor-pointer"
+                strokeWidth={2.5}
+              />
+            </span>
+
+            <span className="">
+              {/* this hidden checkbox controls the state */}
+
+              {/* sun icon */}
+
+              <label
+                aria-label="Remove/Add To MyList"
+                className="swap z-50 swap-rotate tool relative"
+              >
+                <input type="checkbox" />
+
+                <Icon
+                  onClick={handleClick}
+                  className={`${
+                    !click ? "swap-on" : "swap-off"
+                  }swap-on fill-current hover:txt-primary  text-white`}
+                  icon={`${
+                    !click ? "zondicons:add-outline" : "dashicons:remove"
+                  }`}
+                  hFlip={true}
+                  vFlip={true}
+                  width={27}
+                />
+              </label>
+            </span>
+          </div>
         </div>
         <div className="p-1 lg:px-3 w-full  text-left relative">
-          <span className="absolute top-0 right-0 ">
-            {/* this hidden checkbox controls the state */}
-
-            {/* sun icon */}
-
-            <label className="swap z-50 swap-rotate tool relative">
-              <input type="checkbox" />
-
-              <Icon
-                onClick={handleClick}
-                className={`${
-                  !click ? "swap-on" : "swap-off"
-                }swap-on fill-current w-7 h-7 text-white`}
-                icon={`${
-                  !click ? "zondicons:add-outline" : "dashicons:remove"
-                }`}
-                hFlip={true}
-                vFlip={true}
-              />
-            </label>
-          </span>
-
           <div className="grid  md:grid-cols-2 2xl:grid-cols-3">
             <AD title={"Rank"} data={animeData?.rank || "?"} />
 
