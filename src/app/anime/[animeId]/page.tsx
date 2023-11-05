@@ -14,9 +14,9 @@ const headers = {
 };
 
 
-const fetchAnime = async (q: string | number, title: string | undefined,anilistId:number) => {
+const fetchAnime = async (q: string | number, title: string | undefined) => {
 
-  let url = `https://tomeleyakujcqfaovrqr.supabase.co/rest/v1/anime?select=*&or=(anime_id.eq.${q},mal_id.eq.${q},title.eq.${title})`
+  let url = `https://tomeleyakujcqfaovrqr.supabase.co/rest/v1/anime?select=*&or=(anime_id.eq.${q},mal_id.eq.${q},title.eq.${q})`
 
   let req = await fetch(
     url,
@@ -29,6 +29,7 @@ const fetchAnime = async (q: string | number, title: string | undefined,anilistI
   );
 
   let res = await req.json();
+  console.log(res)
   return res;
 
   // const { data } = await supabase
@@ -63,7 +64,7 @@ export async function generateMetadata(
   { params: { animeId, ep }, searchParams: query }: PageProps,
   parent: ResolvingMetadata
 ): Promise<Metadata> {
-  const getAnime = await fetchAnime(animeId, query?.title,query?.anilistId);
+  const getAnime = await fetchAnime(animeId, query?.title);
   const data: AnimeInfo = getAnime?.filter(
     (anime) => !anime.title?.includes("(Dub)")
   )[0];
@@ -93,7 +94,8 @@ export default async function Anime({
   params: { animeId },
   searchParams: query,
 }: PageProps) {
-  const getAnime = await fetchAnime(animeId, query?.title,query?.anilistId);
+  const getAnime = await fetchAnime(animeId, query?.title);
+  console.log(getAnime)
   const data = getAnime?.filter((anime) => !anime.title?.includes("(Dub)"))[0];
 
   console.log(query)

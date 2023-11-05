@@ -658,7 +658,7 @@ export default function WatchContainer(props: WatchProps) {
 
         <div className="lg:max-w-[410px] ">
           <div
-            className={`w-full bg-neutral-900 rounded-full ${
+            className={`w-full  rounded-sm ${
               showEpisodes ? "flex flex-row" : " flex flex-col"
             } justify-center items-center gap-2 p-1 `}
           >
