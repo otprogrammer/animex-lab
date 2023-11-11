@@ -267,17 +267,26 @@ export default function WatchContainer(props: WatchProps) {
     }
   };
 
+  console.log(zoroId)
+
   const fetchZoro = async () => {
+    // https://api.anify.tv/sources?providerId=zoro&watchId=watch/${zoroId?.[0]}?ep=${zoroId?.[1]}&episodeNumber=${lastEpisode}&id=${props.animeData?.anilistid}&subType=sub
     let req = await fetch(
-      `https://aniscraper.up.railway.app/anime/zoro/watch?episodeId=${zoroId?.[0]}$episode$${zoroId?.[1]}$both&server=vidcloud`
+      `https://api.anify.tv/sources?providerId=zoro&watchId=watch/${zoroId?.[0]}?ep=${zoroId?.[1]}&episodeNumber=${lastEpisode}&id=${props.animeData?.anilistid}&subType=sub`
     );
     let res = await req.json();
     setZoroSrc(
-      `https://ottocors.vercel.app/cors?url=${
+      
         res.sources?.filter((t: { quality: string }) => t.quality == "auto")[0]
           ?.url
-      }`
+      
     );
+    // setZoroSrc(
+    //   `https://ottocors.vercel.app/cors?url=${
+    //     res.sources?.filter((t: { quality: string }) => t.quality == "auto")[0]
+    //       ?.url
+    //   }`
+    // );
 
     setSubtitles(res.subtitles);
   };

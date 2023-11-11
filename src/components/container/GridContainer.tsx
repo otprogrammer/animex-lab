@@ -20,6 +20,7 @@ import { GridContainerProps } from "../../../types/types";
 import WatchCard from "../card/WatchCard";
 import NotFound from "../notfound/NotFound";
 import ListCard from "../card/ListCard";
+import { isMobile } from "@oplayer/core";
 
 SwiperCore.use([Navigation]);
 
@@ -57,7 +58,7 @@ export default function GridContainer({
             slidesPerView={2}
             slidesPerGroupSkip={1}
             grid={{
-              rows: 3,
+              rows: isMobile ? 2 : 3,
               fill: "row",
             }}
             navigation={{
