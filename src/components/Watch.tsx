@@ -433,8 +433,13 @@ export default function WatchContainer(props: WatchProps) {
             )}-episode-${lastEpisode}`))
               .then((res) => res.json())
               .then((res) => {
-                setGogoIframe(res?.headers?.Referer);
+                setGogoIframe(res?.iframe?.default);
                 setDownload(res?.download);
+                player?.current?.applyPlugin(
+                  vttThumbnails({
+                    src: res.stream.tracks.file,
+                  })
+                );
                 return {
                   // src: res.sources?.filter(
                   //   (s: { quality: string }) => s.quality === "default"
