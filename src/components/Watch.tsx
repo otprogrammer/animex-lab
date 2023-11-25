@@ -427,9 +427,10 @@ export default function WatchContainer(props: WatchProps) {
             //     "id"
             //   )}-episode-${lastEpisode}`
             // )
-            fetch(`https://prod-amvstrm-api.nyt92.eu.org/api/v2/stream/${params.get(
+         
+            fetch('https://corsproxy.io/?' + encodeURIComponent(`https://prod-amvstrm-api.nyt92.eu.org/api/v2/stream/${params.get(
               "id"
-            )}-episode-${lastEpisode}`)
+            )}-episode-${lastEpisode}`))
               .then((res) => res.json())
               .then((res) => {
                 setGogoIframe(res?.headers?.Referer);
