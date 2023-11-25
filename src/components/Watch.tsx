@@ -422,19 +422,23 @@ export default function WatchContainer(props: WatchProps) {
     !isZoro
       ? player?.current
           ?.changeSource(
-            fetch(
-              `https://betaversion-git-main-abhinavkuamrs-projects.vercel.app/api/eplink?id=${params.get(
-                "id"
-              )}-episode-${lastEpisode}`
-            )
+            // fetch(
+            //   `https://betaversion-git-main-abhinavkuamrs-projects.vercel.app/api/eplink?id=${params.get(
+            //     "id"
+            //   )}-episode-${lastEpisode}`
+            // )
+            fetch(`https://prod-amvstrm-api.nyt92.eu.org/api/v2/stream/${params.get(
+              "id"
+            )}-episode-${lastEpisode}`)
               .then((res) => res.json())
               .then((res) => {
                 setGogoIframe(res?.headers?.Referer);
                 setDownload(res?.download);
                 return {
-                  src: res.sources?.filter(
-                    (s: { quality: string }) => s.quality === "default"
-                  )?.[0].url,
+                  // src: res.sources?.filter(
+                  //   (s: { quality: string }) => s.quality === "default"
+                  // )?.[0].url,
+                  src:res.stream.multi.main.url,
                   title: currentEpisode?.title || "",
                   poster: currentEpisode?.image || "",
                 };
