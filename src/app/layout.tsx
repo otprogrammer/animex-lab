@@ -74,6 +74,10 @@ export default function RootLayout({
       
 
       <body className="min-h-screen">
+      <div role="alert" className="alert bg-neutral-800 alert-info">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="stroke-current shrink-0 w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+  <span className="text-sm">Apologies! Our website is currently undergoing maintenance. If you encounter any issues or have suggestions, please feel free to contact us directly or visit our Discord server. Thank you for your understanding!</span>
+</div>
         <Navbar />
         
         <NextTopLoader color="#e11d48" />

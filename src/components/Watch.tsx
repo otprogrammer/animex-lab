@@ -344,10 +344,10 @@ export default function WatchContainer(props: WatchProps) {
   
 
   const fetchGogoData = async () => {
-    let url = `https://animexscraper.vercel.app/anime/gogoanime/info/${props.gogoId}`;
+    let url = `https://redux-api-wine.vercel.app/api/getanime?link=/category/${props.gogoId}`;
     let req = await fetch(url);
     let res = await req.json();
-    setGogoData(res);
+    setGogoData(res[0].gogoResponse);
     if (
       !props.animeData?.episodeslist ||
       props.animeData?.episodeslist?.length < 1
