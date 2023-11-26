@@ -193,7 +193,7 @@ export default function WatchContainer(props: WatchProps) {
   const fetchDub = async () => {
     try {
       setEpisodesLoading(true);
-      let url = `https://animexscraper.vercel.app/anime/gogoanime/info/${
+      let url = `https://animexgogoanimeapi.vercel.app/gogoanime/info/${
         props.gogoId + "-dub"
       }`;
       let req = await axios.get(url);
@@ -422,29 +422,29 @@ export default function WatchContainer(props: WatchProps) {
     !isZoro
       ? player?.current
           ?.changeSource(
-            // fetch(
-            //   `https://betaversion-git-main-abhinavkuamrs-projects.vercel.app/api/eplink?id=${params.get(
-            //     "id"
-            //   )}-episode-${lastEpisode}`
-            // )
+            fetch(
+              `https://animexgogoanimeapi.vercel.app/gogoanime/watch/${params.get(
+                "id"
+              )}-episode-${lastEpisode}`
+            )
          
-            fetch('https://corsproxy.io/?' + encodeURIComponent(`https://prod-amvstrm-api.nyt92.eu.org/api/v2/stream/${params.get(
-              "id"
-            )}-episode-${lastEpisode}`))
+            // fetch('https://corsproxy.io/?' + encodeURIComponent(`https://prod-amvstrm-api.nyt92.eu.org/api/v2/stream/${params.get(
+            //   "id"
+            // )}-episode-${lastEpisode}`))
               .then((res) => res.json())
               .then((res) => {
-                setGogoIframe(res?.iframe?.default);
+                setGogoIframe(res?.Referer);
                 setDownload(res?.download);
-                player?.current?.applyPlugin(
-                  vttThumbnails({
-                    src: res.stream.tracks.file,
-                  })
-                );
+                // player?.current?.applyPlugin(
+                //   vttThumbnails({
+                //     src: res.stream.tracks.file,
+                //   })
+                // );
                 return {
                   // src: res.sources?.filter(
                   //   (s: { quality: string }) => s.quality === "default"
                   // )?.[0].url,
-                  src:res.stream.multi.main.url,
+                  src:res.sources[0].file,
                   title: currentEpisode?.title || "",
                   poster: currentEpisode?.image || "",
                 };
