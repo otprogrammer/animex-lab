@@ -22,6 +22,7 @@ import Episodes from "../episodes/Episodes";
 import { Transition } from "@headlessui/react";
 import { IoMdClose } from "react-icons/io";
 import { useRouter } from "next/navigation";
+import { appendMissingEpisodes } from "../../../lib/appendeps";
 
 // import { HeartSwitch } from "@anatoliygatt/heart-switch";
 // import { supabase } from "@/supabase";
@@ -61,6 +62,7 @@ function CardModal({ id, handleClose }: any) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [click, setClick] = useState(false);
 //   const {user} = useAuth();
+const [episodesList, setEpisodesList] = useState<any[]>([])
 
 const router = useRouter()
   const ImageContainer = styled.div`
@@ -104,9 +106,19 @@ height: 266px ;
   useEffect(() => {
     setLoading(true);
     fetchData();
+    
+  
     // fetchNeon()
   }, []);
 
+
+  useEffect(() => {
+ 
+    
+    fetchGogoData()
+  
+    // fetchNeon()
+  }, [animeData?.anime_id]);
   // const fetchData = async () => {
   //   let url = `https://ottoex.vercel.app/api/anime/${id}`;
   //   let req = await fetch(url);
@@ -124,6 +136,29 @@ height: 266px ;
     current.length > 0 ? setClick(true) : setClick(false);
   }, [loading]);
 
+
+  const fetchGogoData = async () => {
+    if (animeData?.anime_id) {
+
+      let url = `https://animexgogoanimeapi.vercel.app/gogoanime/info/${animeData?.anime_id}`;
+      let req = await fetch(url);
+      let res = await req.json();
+      // setGogoData(res);
+      if (
+       
+       animeData?.episodeslist?.length < 1
+      ) {
+        setEpisodesList(res.episodes !== null && res.episodes);
+      }
+      if (animeData?.episodeslist?.length != res.episodes?.length) {
+        setEpisodesList(
+          appendMissingEpisodes(episodesList, res.episodes)
+        );
+      }
+    }
+  };
+
+  console.log(animeData?.episodeslist)
   const fetchData = async () => {
 
     const {data}  : any = await supabase.from("anime").select("*").or(`anime_id.eq.${id},mal_id.eq.${id}`)
@@ -132,6 +167,7 @@ height: 266px ;
     // let req = await fetch(url);
     // let res = await req.json();
     setAnimeData(data?.filter((a:any) => !a.title.includes("(Dub)"))[0])
+    setEpisodesList(data?.filter((a:any) => !a.title.includes("(Dub)"))[0]?.episodeslist)
     setLoading(false);
 
     
@@ -234,7 +270,7 @@ height: 266px ;
         // }}
         // exit={{ y: "100vh" }}
         onClick={(e) => e.stopPropagation()}
-        className="w-full max-w-[870px] bg-[#060606]  max-h-[90%] mx-auto shadow-2xl mt-[5rem] overflow-y-scroll scroll-smooth text-white	 cursor-default my-12"
+        className="w-full max-w-[900px] bg-[#060606]  max-h-[90%] mx-auto shadow-2xl mt-[5rem] overflow-y-scroll scroll-smooth text-white	 cursor-default my-12"
       >
         {loading ? (
           <LuLoader />
@@ -353,7 +389,7 @@ height: 266px ;
               </div>
             </div>
             <div
-              className={`grid grid-cols-${navbar.length} sticky  border-b-[0px] text-gray-200 justify-center  border-neutral-700 ${
+              className={`grid grid-cols-2 sticky  border-b-[0px] text-gray-200 justify-center  border-neutral-700 ${
                 showTrailer ? "mt-[0]" : "mt-0"
               } transition-all ease-out duration-300`}
             >
@@ -378,7 +414,7 @@ height: 266px ;
               ))}
               <hr
                 className={` h-0.5 w-full transition-all duration-500 ${
-                  activeIndex !== 0 ? `ml-[${activeIndex * 100}%]` : "ml-0"
+                  activeIndex == 0 ? `ml-0` : "ml-[100%]"
                 } bg-white`}
               />
             </div>
@@ -413,21 +449,19 @@ height: 266px ;
             </div>
                 )}
 
-{/* {activeItem === "Episodes" && (
-                <Episodes
-                  slug={animeData?.anime_id}
-                  nextEpi={"1"}
-                  slugId={animeData?.anime_id}
-                  anilistId={animeData?.anilistid}
-                  animeId={animeData?.anime_id}
-                  epList={
-                    animeData?.episodeslist?.episode ||animeData?.episodeslist
-                  }
-                  heading="Card Modal"
+{activeItem === "Episodes" && (
+
+  <Episodes
+                  episodesList={episodesList}
+                  handleEpisodeRoute={() => {}}
                   animeImg={animeData?.coverimage}
-                  status={animeData?.status}
+                  episodeNumber={1}
+                  isModal={true}
                 />
-              )} */}
+              
+
+                
+              )}
           </div>
         )}
       </div>

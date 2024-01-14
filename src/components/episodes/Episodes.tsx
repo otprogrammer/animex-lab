@@ -12,6 +12,7 @@ export default function Episodes({
   animeImg,
   handleEpisodeRoute,
   episodeNumber,
+  isModal,
 }: EpisodesProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -81,8 +82,8 @@ export default function Episodes({
       </div>
 
       <div
-        className={`grid p-1 ${
-          isEpImgEnabled == "true" ? "grid-cols-2 gap-1" : "grid "
+        className={`grid p-1 ${isModal ? "max-h-[340px] overflow-y-scroll grid-cols-4 gap-1" : 
+          isEpImgEnabled == "true" ? "grid-cols-2 gap-1"  :  "grid "
         }`}
       >
         {episodesToRender?.map((ep: AnimeEpisodesProps, i: number) => (
@@ -94,7 +95,7 @@ export default function Episodes({
             {isEpImgEnabled == "true" ? (
               <div className="">
                 <img
-                  className="flex-shrink-0 w-full h-[100px] rounded-sm object-cover"
+                  className={`flex-shrink-0 w-full ${isModal ? "h-[130px]" : "h-[100px]"} rounded-sm object-cover`}
                   src={ep.image || animeImg}
                   alt={ep.title}
                 />

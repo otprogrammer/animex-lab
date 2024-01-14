@@ -120,6 +120,7 @@ export type AnimeInfo = {
     handleEpisodeRoute: (epId:any,epNumber: number) => void;
     animeImg:string;
     episodeNumber:number;
+    isModal?:boolean
   };
   
   export type AnimeEpisodesProps = {
