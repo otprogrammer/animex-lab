@@ -2,6 +2,7 @@ import Card from "@/components/card/Card";
 import GridContainer from "@/components/container/GridContainer";
 import Layout from "@/components/head/Head";
 import HomeSwiper from "@/components/home/HomeSwiper";
+import AnimeModal from "@/components/modal/AnimeModal";
 import Tabs from "@/components/tabs/Tabs";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -82,6 +83,7 @@ async function Home() {
   return (
     <>
       <HomeSwiper props={data} />
+      <AnimeModal />
       <Tabs Trending={data} Latest={latest} MyList={[]} />
     </>
   );

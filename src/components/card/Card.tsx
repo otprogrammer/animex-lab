@@ -3,22 +3,26 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { AnimeInfo } from "../../../types/types";
 import { Icon } from "@iconify/react";
+import { useRouter } from "next/navigation";
 
 function Card(anime: any) {
+  const router = useRouter()
   return (
     <>
+
       {/* <span className="indicator-item p-1 rounded-full bg-neutral-700 hover:bg-neutral-800 cursor-pointer">
   <Icon icon="pepicons-pop:dots-y" />
 </span>  */}
-      <Link
+      <div
         className=" w-full max-w-[200px] hover:-translate-y-1 transition-all duration-300 ease-in-out inline-grid"
-        href={{
-          pathname: `/anime/${anime.malId || anime.id || anime.malID}`,
-          query: {
-            // ep : 1,
-            // title : anime.title.english
-          },
-        }}
+        // href={{
+        //   pathname: `/anime/${anime.malId || anime.id || anime.malID}`,
+        //   query: {
+        //     // ep : 1,
+        //     // title : anime.title.english
+        //   },
+        // }}
+        onClick={() => router.replace(`?id=${anime.malId || anime.id || anime.malID}`,{scroll:false})}
       >
         <div className={`card   overflow-hidden`}>
           <img
@@ -43,7 +47,7 @@ function Card(anime: any) {
             {anime.title?.romaji || anime.title}
           </small>
         </div>
-      </Link>
+      </div>
     </>
   );
 }

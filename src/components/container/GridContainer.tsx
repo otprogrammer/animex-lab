@@ -21,6 +21,7 @@ import WatchCard from "../card/WatchCard";
 import NotFound from "../notfound/NotFound";
 import ListCard from "../card/ListCard";
 import { isMobile } from "@oplayer/core";
+import CardModal from "../card/CardModal";
 
 SwiperCore.use([Navigation]);
 
@@ -32,6 +33,7 @@ export default function GridContainer({
 }: GridContainerProps) {
   const swiper = useSwiper();
   const currentSwiper = useRef(null);
+  
 
   return (
     <div className="home_container m-3 md:max-w-[90%] mx-auto">
@@ -74,7 +76,7 @@ export default function GridContainer({
           >
             {data?.map((item: any, index: any) => (
               <SwiperSlide key={index}>
-                {heading === "Trending" ? (
+                {heading === "Trending" || heading === "Browse" ? (
                   <Card
                     {...item}
                     //   selected={handleSelected}
@@ -105,6 +107,8 @@ export default function GridContainer({
             ))}
           </Swiper>
         </>
+        
+        
     </div>
   );
 }
