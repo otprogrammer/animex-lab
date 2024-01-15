@@ -7,11 +7,10 @@ import { useRouter } from "next/navigation";
 import { useModal } from "../../../store/store";
 
 function Card(anime: any) {
-  const {enableIsModal} = useModal()
-  const router = useRouter()
+  const { enableIsModal } = useModal();
+  const router = useRouter();
   return (
     <>
-
       {/* <span className="indicator-item p-1 rounded-full bg-neutral-700 hover:bg-neutral-800 cursor-pointer">
   <Icon icon="pepicons-pop:dots-y" />
 </span>  */}
@@ -25,7 +24,7 @@ function Card(anime: any) {
         //   },
         // }}
         // onClick={() => router.replace(`?id=${anime.malId || anime.id || anime.malID}`,{scroll:false})}
-        onClick={() => enableIsModal(anime.malId || anime.id || anime.malID)}
+        onClick={() => enableIsModal(anime.malId || anime.id || anime.malID|| anime.anime_id)}
       >
         <div className={`card   overflow-hidden`}>
           <img

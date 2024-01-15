@@ -1,4 +1,5 @@
 import GridContainer from "@/components/container/GridContainer";
+import AnimeModal from "@/components/modal/AnimeModal";
 import { Metadata } from "next";
 import React from "react";
 
@@ -19,5 +20,11 @@ const getTrending = async () => {
 
 export default async function Popular() {
   const data = await getTrending();
-  return <GridContainer data={data.results} heading="Trending" />;
+  return (
+    <>
+    <AnimeModal />
+    <GridContainer data={data.results} heading="Trending" />
+    </>
+  
+  );
 }

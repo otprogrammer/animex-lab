@@ -8,6 +8,7 @@ import Card from '@/components/card/Card';
 
 import GridContainer from '../container/GridContainer';
 import CustomDropdown from './DropDown';
+import Pagination from '../pagination/Pagination';
 
 
 export default function BrowserContainer() {
@@ -117,15 +118,15 @@ export default function BrowserContainer() {
       </div>
 
       <div className="items-center  text-xs text-white sm:space-y-0 sm:space-x-3 sm:flex">
-      {/* <Pagination
+      <Pagination
         currentPage={page}
         totalPages={data?.total_pages}
         handlePageChange={handlePageChange}
-      /> */}
+      />
 	
 </div>
 
-{loading ? "qsdsq" : data?.data?.length < 1 ? "<NotFound />" : (
+{loading ? "" : data?.data?.length < 1 ? "<NotFound />" : (
 
 <GridContainer data={data.data}    heading={"Browse"} /> 
 

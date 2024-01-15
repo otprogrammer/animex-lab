@@ -90,7 +90,7 @@ export const useAutoNext = create<useAutoNextProps>((set) => ({
     isModal: false,
     id:"",
   
-    enableIsModal: (id:string) => {
+    enableIsModal: (id) => {
       set(() => ({ isModal: true,id:id }));
     },
   

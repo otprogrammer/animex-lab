@@ -23,6 +23,7 @@ import { Transition } from "@headlessui/react";
 import { IoMdClose } from "react-icons/io";
 import { useRouter } from "next/navigation";
 import { appendMissingEpisodes } from "../../../lib/appendeps";
+import { Icon } from "@iconify/react";
 
 // import { HeartSwitch } from "@anatoliygatt/heart-switch";
 // import { supabase } from "@/supabase";
@@ -34,13 +35,8 @@ import { appendMissingEpisodes } from "../../../lib/appendeps";
 // const supabase = createClient(supabaseUrl, supabaseKey);
 // const query = `SELECT * FROM malid`;
 
-const navbar = [
-  { name: "Overview", key: 0 },
-  { name: "Episodes", key: 1 },
-  
-];
 
-const Msg = ({ title, message }:any) => {
+const Msg = ({ title, message }: MsgProps) => {
   return (
     <div className="flex flex-col">
       <span>
@@ -52,19 +48,26 @@ const Msg = ({ title, message }:any) => {
   );
 };
 
+const navbar = [
+  { name: "Overview", key: 0 },
+  { name: "Episodes", key: 1 },
+];
+
+
+
 function CardModal({ id, handleClose }: any) {
   const [data, setData] = useState([]);
-//   const router = useRouter();
+  //   const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [animeData, setAnimeData] = useState<any>();
   const [showTrailer, setShowTrailer] = useState(false);
   const [activeItem, setActiveItem] = useState("Overview");
   const [activeIndex, setActiveIndex] = useState(0);
   const [click, setClick] = useState(false);
-//   const {user} = useAuth();
-const [episodesList, setEpisodesList] = useState<any[]>([])
+  //   const {user} = useAuth();
+  const [episodesList, setEpisodesList] = useState<any[]>([]);
 
-const router = useRouter()
+  const router = useRouter();
   const ImageContainer = styled.div`
 position: relative ;
 overflow:hidden;
@@ -106,17 +109,17 @@ height: 266px ;
   useEffect(() => {
     setLoading(true);
     fetchData();
-    
-  
+
     // fetchNeon()
   }, []);
 
+  const handleEpisodeRoute = (epId: any, epNumber: number) => {
+    router.push(`/anime/${id}?id=${epId?.split("-episode")[0]}&ep=${epNumber}`);
+  };
 
   useEffect(() => {
- 
-    
-    fetchGogoData()
-  
+    fetchGogoData();
+
     // fetchNeon()
   }, [animeData?.anime_id]);
   // const fetchData = async () => {
@@ -132,58 +135,55 @@ height: 266px ;
       typeof window !== "undefined" && localStorage.getItem("animeList");
     const animeList = storedAnimeList ? JSON.parse(storedAnimeList) : [];
 
-    const current = animeList.filter((item: any) => item.anime_id == animeData?.anime_id || item.mal_id == animeData?.mal_id);
+    const current = animeList.filter(
+      (item: any) =>
+        item.anime_id == animeData?.anime_id || item.mal_id == animeData?.mal_id
+    );
     current.length > 0 ? setClick(true) : setClick(false);
   }, [loading]);
 
-
   const fetchGogoData = async () => {
     if (animeData?.anime_id) {
-
       let url = `https://animexgogoanimeapi.vercel.app/gogoanime/info/${animeData?.anime_id}`;
       let req = await fetch(url);
       let res = await req.json();
       // setGogoData(res);
-      if (
-       
-       animeData?.episodeslist?.length < 1
-      ) {
+      if (animeData?.episodeslist?.length < 1) {
         setEpisodesList(res.episodes !== null && res.episodes);
       }
       if (animeData?.episodeslist?.length != res.episodes?.length) {
-        setEpisodesList(
-          appendMissingEpisodes(episodesList, res.episodes)
-        );
+        setEpisodesList(appendMissingEpisodes(episodesList, res.episodes));
       }
     }
   };
 
-  console.log(animeData?.episodeslist)
   const fetchData = async () => {
+    const { data }: any = await supabase
+      .from("anime")
+      .select("*")
+      .or(`anime_id.eq.${id},mal_id.eq.${id}`);
 
-    const {data}  : any = await supabase.from("anime").select("*").or(`anime_id.eq.${id},mal_id.eq.${id}`)
-    
     // let url = `https://ottoex.vercel.app/api/anime/${id}`;
     // let req = await fetch(url);
     // let res = await req.json();
-    setAnimeData(data?.filter((a:any) => !a.title.includes("(Dub)"))[0])
-    setEpisodesList(data?.filter((a:any) => !a.title.includes("(Dub)"))[0]?.episodeslist)
+    setAnimeData(data?.filter((a: any) => !a.title.includes("(Dub)"))[0]);
+    setEpisodesList(
+      data?.filter((a: any) => !a.title.includes("(Dub)"))[0]?.episodeslist
+    );
     setLoading(false);
-
-    
   };
 
-//   const addAnime = async () => {
-//     await supabase.rpc("append_favs", {
-//       user_id: user?.id,
-//       data: {
-//         id: animeData?.anime_id,
-//         image_url: animeData?.coverimage ,
-//         title: animeData?.title ,
-//         released: animeData?.year ,
-//       },
-//     });
-//   };
+  //   const addAnime = async () => {
+  //     await supabase.rpc("append_favs", {
+  //       user_id: user?.id,
+  //       data: {
+  //         id: animeData?.anime_id,
+  //         image_url: animeData?.coverimage ,
+  //         title: animeData?.title ,
+  //         released: animeData?.year ,
+  //       },
+  //     });
+  //   };
 
   function handleAddAnime() {
     const storedAnimeList =
@@ -191,19 +191,17 @@ height: 266px ;
     let updatedAnimeList = storedAnimeList ? JSON.parse(storedAnimeList) : [];
 
     const animeIndex = updatedAnimeList.findIndex(
-      (anime: any) => anime.anime_id === animeData?.anime_id 
+      (anime: any) => anime.anime_id === animeData?.anime_id
     );
 
     if (animeIndex === -1) {
       updatedAnimeList = [...updatedAnimeList, animeData];
       typeof window !== "undefined" &&
         localStorage.setItem("animeList", JSON.stringify(updatedAnimeList));
-        
     } else {
       console.log(`Anime '${animeData?.title}' already exists in the list`);
     }
   }
-
 
   function handleDeleteAnime() {
     const storedAnimeList =
@@ -217,22 +215,32 @@ height: 266px ;
     typeof window !== "undefined" &&
       localStorage.setItem("animeList", JSON.stringify(updatedAnimeList));
   }
+
+
   function handleClick() {
     if (click) {
       setClick(false);
-      handleDeleteAnime();
-      toast.info(
-        <Msg title={animeData?.title} message="Was Removed From Your List" />
+      toast.error(
+        <Msg
+          title={animeData?.title}
+          message="Was Removed From Your List"
+        />,
+        { theme: "dark" }
       );
+      handleDeleteAnime(animeData);
     } else {
-      handleAddAnime();
-      addAnime()
+      handleAddAnime(animeData);
       setClick(true);
-      toast.info(<Msg title={animeData?.title} message="Was Added To Your List" />);
-
+      toast.success(
+        <Msg
+          title={animeData?.title }
+          message="Was Added To Your List"
+        />,
+        { theme: "dark" }
+      );
     }
   }
-
+  
 
   // const fetchTest = async () => {
   //   let req = await axios.get('https://api.animeflix.live/anime/episodes?id=21&dub=false')
@@ -243,60 +251,57 @@ height: 266px ;
   return (
     <Backdrop onClick={handleClose}>
       <Transition
-              appear={true}
-              as={"div"}
-              show={id ? true : false}
-              enter="transform transition duration-500"
-              enterFrom="opacity-0 translate-y-[500px] duration-[800ms] scale-[0.70]"
-              enterTo="opacity-100 rotate-0 scale-100"
-              leave="transform duration-200 transition ease-in-out"
-              leaveFrom="opacity-0 scale-95 translate-y-[-500px] duration-[800ms] "
-              leaveTo="opacity-0 scale-95 translate-y-[-500px] duration-[800ms] "
-              className={`w-full`}
-            >
-
-
-             
-      <div
-        // initial={{ y: "-100vh" }}
-        // animate={{
-        //   y: 0,
-        //   transition: {
-          
-        //     type: "spring",
-        //     stiffness: 130,
-        //     damping: 15,
-        //   },
-        // }}
-        // exit={{ y: "100vh" }}
-        onClick={(e) => e.stopPropagation()}
-        className="w-full max-w-[900px] bg-[#060606]  max-h-[95VH] mx-auto shadow-2xl my-[2rem] overflow-y-scroll scroll-smooth text-white	 cursor-default my-12"
+        appear={true}
+        as={"div"}
+        show={id ? true : false}
+        enter="transform transition duration-500"
+        enterFrom="opacity-0 translate-y-[500px] duration-[800ms] scale-[0.70]"
+        enterTo="opacity-100 rotate-0 scale-100"
+        leave="transform duration-200 transition ease-in-out"
+        leaveFrom="opacity-0 scale-95 translate-y-[-500px] duration-[800ms] "
+        leaveTo="opacity-0 scale-95 translate-y-[-500px] duration-[800ms] "
+        className={`w-full`}
       >
-        {loading ? (
-          <LuLoader />
-        ) : (
-          <div className=" flex flex-col gap-3 h-full w-full p-1">
-            <div className="overflow-hidden">
-              {!showTrailer && (
-                <ImageContainer
-                  style={
-                    {
-                      "--bg-image": `url(${
-                        animeData?.bannerimage || animeData?.coverimage
-                      })`,
-                    } as any
-                  }
-                >
-                  <span
-                  // onClick={handleClick}
-                  className={` flex justify-center items-center cursor-pointer rounded-md p-2 hover:scale-110 transform transition-all duration-200`}
-                >
-                  {/* <HeartSwitch
+        <div
+          // initial={{ y: "-100vh" }}
+          // animate={{
+          //   y: 0,
+          //   transition: {
+
+          //     type: "spring",
+          //     stiffness: 130,
+          //     damping: 15,
+          //   },
+          // }}
+          // exit={{ y: "100vh" }}
+          onClick={(e) => e.stopPropagation()}
+          className="w-full overflow-x-hidden xl:max-w-[900px] 2xl:max-w-[1200px] bg-[#060606]  max-h-[95VH] mx-auto shadow-2xl my-[2rem] overflow-y-scroll scroll-smooth text-white	 cursor-default my-12"
+        >
+          {loading ? (
+            <LuLoader />
+          ) : (
+            <div className=" flex flex-col gap-3 h-full w-full p-1">
+              <div className="overflow-hidden">
+                {!showTrailer && (
+                  <ImageContainer
+                    style={
+                      {
+                        "--bg-image": `url(${
+                          animeData?.bannerimage || animeData?.coverimage
+                        })`,
+                      } as any
+                    }
+                  >
+                    <span
+                      // onClick={handleClick}
+                      className={` flex justify-center items-center cursor-pointer rounded-md p-2 hover:scale-110 transform transition-all duration-200`}
+                    >
+                      {/* <HeartSwitch
                     checked={click ? true : false}
                     onChange={handleClick}
                     title="Bookmark"
                   /> */}
-                  {/* {click ? (
+                      {/* {click ? (
                     <FaHeart size={24} color="red" />
                   ) : (
                     <FaHeart
@@ -305,167 +310,196 @@ height: 266px ;
                       color="white"
                     />
                   )} */}
-                </span>
-                  <IoMdClose
-                    onClick={handleClose}
-                    size={30}
-                    strokeWidth={2.5}
-                    className="absolute cursor-pointer hover:scale-105 text-gray-200   rounded-full top-2 right-2 font-black"
-                  />
-                </ImageContainer>
-              )}
-
-              {showTrailer && (
-                <div className="relative">
-                  <button
-                    className="text-white z-50 font-bold text-3xl bg-[#2229] rounded-full p-1 hover:bg-[#3334] hover:scale-105 absolute top-2 right-2"
-                    onClick={() => setShowTrailer(false)}
-                  >
-                    <CgClose />
-                  </button>
-                  <div className=" pointer-events-none">
-                    <ReactPlayer
-                      url={`${animeData?.trailer_url}`}
-                      width="100%"
-                      height="350px"
-                      config={{
-                        youtube: {
-                          playerVars: { modestbranding: 1 },
-                        },
-                      }}
-                      playing
+                    </span>
+                    <IoMdClose
+                      onClick={handleClose}
+                      size={30}
+                      strokeWidth={2.5}
+                      className="absolute cursor-pointer hover:scale-105 text-gray-200   rounded-full top-2 right-2 font-black"
                     />
-                  </div>
-                </div>
-              )}
-            </div>
-            <div
-              className={`${
-                !showTrailer ? "-mt-20" : ""
-              }  relative px-1 lg:px-4`}
-            >
-              <div className="flex justify-between w-full items-center">
-                <h1 className="font-bold text-md lg:text-2xl txt-primary">
-                  {animeData?.title}
-                </h1>
-                <div className="flex  gap-1 ">
-                  <button
-                    onClick={() =>
-                      animeData?.status !== "Not yet aired" &&
-                      router.push(`/anime/${animeData?.anime_id}`)
-                    }
-                    className="py-1.5 px-2.5 bg-blue-600 text-gray-200 rounded-sm  flex  items-center justify-center gap-2  hover:bg-blue-800 hover:scale-105 transition-all ease-in-out"
-                  >
-                    <BsInfoCircleFill size={16} />
-                    <span className="mx-auto">Details</span>
-                  </button>
-
-                  <button
-                    onClick={() => setShowTrailer(true)}
-                    className="py-1.5 px-2.5 bg-red-600 text-gray-200 rounded-sm  flex  items-center gap-2  hover:bg-red-800  justify-center hover:scale-105 transition-all ease-in-out"
-                  >
-                    <FaYoutube size={18} />
-                    <span className="mx-auto">Trailer</span>
-                  </button>
-                </div>
-              </div>
-
-              <div className=" text-gray-200 flex justify-between p-2">
-                <div className="flex gap-3 items-center">
-                  <div className="flex gap-1 items-center">
-                    <span>
-                      <AiFillStar color="orange" />
-                    </span>
-                    {animeData?.score}
-                  </div>
-                  <span>
-                    {animeData?.duration?.replace("min per ep", "Min")}
-                  </span>
-                  <span>{animeData?.type}</span>
-                </div>
-                <span className="text-gray-300">{animeData?.status}</span>
-
-                
-              </div>
-            </div>
-            <div
-              className={`grid grid-cols-2 sticky  border-b-[0px] text-gray-200 justify-center  border-neutral-700 ${
-                showTrailer ? "mt-[0]" : "mt-0"
-              } transition-all ease-out duration-300`}
-            >
-              {navbar.map((item, index) => (
-                <div
-                  key={index}
-                  onClick={() => {
-                    setActiveIndex(index);
-                    setActiveItem(item.name);
-                    setActiveIndex(
-                      navbar.filter((t: any) => t.name == item.name)[0].key
-                    );
-                  }}
-                  className={`text-center p-2.5 hover:txt-primary bg-neutral-900/70 border-r-[2px] border-black text-[10px] md:text-sm cursor-pointer font-bold ${
-                    activeItem === item.name
-                      ? "txt-primary bg-neutral-950"
-                      : ""
-                  }`}
-                >
-                  <span>{item.name}</span>
-                </div>
-              ))}
-              <hr
-                className={` h-0.5 w-full transition-all duration-500 ${
-                  activeIndex == 0 ? `ml-0` : "ml-[100%]"
-                } bg-white`}
-              />
-            </div>
-                {activeItem == "Overview" && (
-
-            <div className="mb-4">
-
-
-            
-
-            <div className="px-2  text-left">
-              <p className="px-2 text-[#fffdfd99] font-light">
-                {animeData?.synopsis}
-              </p>
-            </div>
-            <div className="py-1 flex justify-center ">
-              <span
-                className={`text-gray-400 flex flex-row flex-wrap justify-center my-2 w-full items-center`}
-              >
-                {animeData?.genres?.map((Item: any, index: number) => (
-                  <Link href={`/genre/${Item}/1`} key={index}>
-                    <span
-                      key={index}
-                      className={` py-1 px-5 mr-2  border-[1px]  cursor-pointer flex justify-center whitespace-nowrap items-center transform hover:-translate-y-[3px]  transition-transform duration-400`}
-                    >
-                      {Item}
-                    </span>
-                  </Link>
-                ))}
-              </span>
-            </div>
-            </div>
+                  </ImageContainer>
                 )}
 
-{activeItem === "Episodes" && (
+                {showTrailer && (
+                  <div className="relative">
+                    <button
+                      className="text-white z-50 font-bold text-3xl bg-[#2229] rounded-full p-1 hover:bg-[#3334] hover:scale-105 absolute top-2 right-2"
+                      onClick={() => setShowTrailer(false)}
+                    >
+                      <CgClose />
+                    </button>
+                    <div className=" pointer-events-none">
+                      <ReactPlayer
+                        url={`${animeData?.trailer_url}`}
+                        width="100%"
+                        height="350px"
+                        config={{
+                          youtube: {
+                            playerVars: { modestbranding: 1 },
+                          },
+                        }}
+                        playing
+                      />
+                    </div>
+                  </div>
+                )}
+              </div>
+              <div
+                className={`${
+                  !showTrailer ? "-mt-20" : ""
+                }  relative px-1 lg:px-4`}
+              >
+                <div className="flex justify-between w-full items-center">
+                  <h1 className="font-bold text-md lg:text-2xl txt-primary">
+                    {animeData?.title}
+                  </h1>
+                  <div className="flex items-center gap-1 ">
+                    {/* <button
+                      onClick={() =>
+                        animeData?.status !== "Not yet aired" &&
+                        router.push(`/anime/${animeData?.anime_id}`)
+                      }
+                      className="p-2 bg-blue-600 text-gray-200 rounded-full  flex  items-center justify-center   hover:bg-blue-800 hover:scale-105 transition-all ease-in-out"
+                    >
+                      <BsInfoCircleFill size={16} />
+                    </button>
 
-  <Episodes
+                    <button
+                      onClick={() => setShowTrailer(true)}
+                      className="p-2 rounded-full bg-red-600 text-gray-200   flex  items-center gap-2  hover:bg-red-800  justify-center hover:scale-105 transition-all ease-in-out"
+                    >
+                      <FaYoutube size={18} />
+                    </button> */}
+                    <span
+              // onClick={handlePlay}
+              onClick={() =>
+                animeData?.status !== "Not yet aired" &&
+                router.push(`/anime/${animeData?.anime_id}`)
+              }
+              aria-label="Play"
+              className="tool relative"
+            >
+              <Icon
+                width={26}
+                icon="octicon:play-16"
+                className=" text-white hover:txt-primary cursor-pointer"
+                strokeWidth={2.5}
+              />
+            </span>
+
+                    <span className="flex">
+              {/* this hidden checkbox controls the state */}
+
+              {/* sun icon */}
+
+              <label
+                aria-label="Remove/Add"
+                className="swap z-50 swap-rotate tool relative"
+              >
+                <input type="checkbox" />
+
+                <Icon
+                  onClick={handleClick}
+                  className={`${
+                    !click ? "swap-on" : "swap-off"
+                  }swap-on fill-current hover:txt-primary  text-white`}
+                  icon={`${
+                    !click ? "zondicons:add-outline" : "dashicons:remove"
+                  }`}
+                  hFlip={true}
+                  vFlip={true}
+                  width={27}
+                />
+              </label>
+            </span>
+                  </div>
+                </div>
+
+                <div className=" text-gray-200 flex justify-between p-2">
+                  <div className="flex gap-3 items-center">
+                    <div className="flex gap-1 items-center">
+                      <span>
+                        <AiFillStar color="orange" />
+                      </span>
+                      {animeData?.score}
+                    </div>
+                    <span>
+                      {animeData?.duration?.replace("min per ep", "Min")}
+                    </span>
+                    <span>{animeData?.type}</span>
+                  </div>
+                  <span className="text-gray-300">{animeData?.status}</span>
+                </div>
+              </div>
+              <div
+                className={`grid grid-cols-2 sticky  border-b-[0px] text-gray-200 justify-center  border-neutral-700 ${
+                  showTrailer ? "mt-[0]" : "mt-0"
+                } transition-all ease-out duration-300`}
+              >
+                {navbar.map((item, index) => (
+                  <div
+                    key={index}
+                    onClick={() => {
+                      setActiveIndex(index);
+                      setActiveItem(item.name);
+                      setActiveIndex(
+                        navbar.filter((t: any) => t.name == item.name)[0].key
+                      );
+                    }}
+                    className={`text-center p-2.5 hover:txt-primary bg-neutral-900/70 border-r-[2px] border-black text-[10px] md:text-sm cursor-pointer font-bold ${
+                      activeItem === item.name
+                        ? "txt-primary bg-neutral-950"
+                        : ""
+                    }`}
+                  >
+                    <span>{item.name}</span>
+                  </div>
+                ))}
+                <hr
+                  className={` h-0.5 w-full transition-all duration-500 ${
+                    activeIndex == 0 ? `ml-0` : "ml-[100%]"
+                  } bg-white`}
+                />
+              </div>
+              {activeItem == "Overview" && (
+                <div className="mb-4">
+                  <div className="px-2  text-left">
+                    <p className="px-2 text-[#fffdfd99] font-light">
+                      {animeData?.synopsis}
+                    </p>
+                  </div>
+                  <div className="py-1 flex justify-center ">
+                    <span
+                      className={`text-gray-400 flex flex-row flex-wrap justify-center my-2 w-full items-center`}
+                    >
+                      {animeData?.genres?.map((Item: any, index: number) => (
+                        <div key={index}>
+                          <span
+                            key={index}
+                            className={` py-1 px-5 mr-2  border-[1px]  cursor-pointer flex justify-center whitespace-nowrap items-center transform hover:-translate-y-[3px]  transition-transform duration-400`}
+                          >
+                            {Item}
+                          </span>
+                        </div>
+                      ))}
+                    </span>
+                  </div>
+                </div>
+              )}
+
+              {activeItem === "Episodes" && (
+                <Episodes
                   episodesList={episodesList}
-                  handleEpisodeRoute={() => {}}
+                  handleEpisodeRoute={handleEpisodeRoute}
                   animeImg={animeData?.coverimage}
                   episodeNumber={1}
                   isModal={true}
                 />
-              
-
-                
               )}
-          </div>
-        )}
-      </div>
-            </Transition>
+            </div>
+          )}
+        </div>
+      </Transition>
     </Backdrop>
   );
 }

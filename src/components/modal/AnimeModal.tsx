@@ -8,8 +8,7 @@ export default function AnimeModal() {
     // const id = useSearchParams().get("id")
   const router = useRouter()
   const {isModal,id,disableIsModal} = useModal()
-  console.log(isModal)
-  console.log(id)
+ 
   return (
     <div>{isModal && (
 

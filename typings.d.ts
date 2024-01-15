@@ -38,7 +38,7 @@ interface useContactProps {
 interface useModalProps {
     isModal : boolean | any;
     id:string;
-    enableIsModal : () => {};
+    enableIsModal : () => void;
     disableIsModal : () => void;
 }
 

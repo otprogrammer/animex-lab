@@ -82,7 +82,7 @@ export default function Episodes({
       </div>
 
       <div
-        className={`grid p-1 ${isModal ? "max-h-[340px] overflow-y-scroll grid-cols-4 gap-1" : 
+        className={`grid p-1 ${isModal ? "max-h-[340px] overflow-y-scroll md:grid-cols-4 lg:grid-cols-5 2xlgrid-cols-5 gap-1" : 
           isEpImgEnabled == "true" ? "grid-cols-2 gap-1"  :  "grid "
         }`}
       >

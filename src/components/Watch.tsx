@@ -263,7 +263,6 @@ export default function WatchContainer(props: WatchProps) {
         .filter(Boolean);
 
       setEpisodesList(updatedEpisodesList);
-      console.log(updatedEpisodesList);
       setEpisodesLoading(false);
     } catch (error) {
       console.error(error);
@@ -312,7 +311,6 @@ export default function WatchContainer(props: WatchProps) {
     }
   };
 
-  console.log(zoroId)
 
   const fetchZoro = async () => {
     // https://api.anify.tv/sources?providerId=zoro&watchId=watch/${zoroId?.[0]}?ep=${zoroId?.[1]}&episodeNumber=${lastEpisode}&id=${props.animeData?.anilistid}&subType=sub
@@ -349,7 +347,6 @@ export default function WatchContainer(props: WatchProps) {
       fetchZoro();
     }
 
-    console.log(id);
 
     lst.current = lastEpisode;
   }, [lastEpisode, isZoro, params.get("id")]);

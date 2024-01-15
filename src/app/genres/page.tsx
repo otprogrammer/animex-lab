@@ -1,4 +1,5 @@
 import GridContainer from "@/components/container/GridContainer";
+import AnimeModal from "@/components/modal/AnimeModal";
 import GenresTab from "@/components/tabs/GenresTab";
 import type { Metadata } from "next";
 import React from "react";
@@ -33,9 +34,11 @@ export default async function Genres() {
   const data = await getGenres();
 
   return (
-    <div>
+    <>
+        <AnimeModal />
+
       <GenresTab data={data?.[0]?.data} />
  
-    </div>
+    </>
   );
 }
