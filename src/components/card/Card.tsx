@@ -4,8 +4,10 @@ import React, { useState } from "react";
 import { AnimeInfo } from "../../../types/types";
 import { Icon } from "@iconify/react";
 import { useRouter } from "next/navigation";
+import { useModal } from "../../../store/store";
 
 function Card(anime: any) {
+  const {enableIsModal} = useModal()
   const router = useRouter()
   return (
     <>
@@ -22,7 +24,8 @@ function Card(anime: any) {
         //     // title : anime.title.english
         //   },
         // }}
-        onClick={() => router.replace(`?id=${anime.malId || anime.id || anime.malID}`,{scroll:false})}
+        // onClick={() => router.replace(`?id=${anime.malId || anime.id || anime.malID}`,{scroll:false})}
+        onClick={() => enableIsModal(anime.malId || anime.id || anime.malID)}
       >
         <div className={`card   overflow-hidden`}>
           <img

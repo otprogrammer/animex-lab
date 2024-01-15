@@ -247,11 +247,11 @@ height: 266px ;
               as={"div"}
               show={id ? true : false}
               enter="transform transition duration-500"
-              enterFrom="opacity-0 translate-y-[500px] duration-[800ms] scale-[0.90]"
+              enterFrom="opacity-0 translate-y-[500px] duration-[800ms] scale-[0.70]"
               enterTo="opacity-100 rotate-0 scale-100"
               leave="transform duration-200 transition ease-in-out"
-              leaveFrom="opacity-100 rotate-0 scale-100 "
-              leaveTo="opacity-0 scale-95 translate-y-[500px] duration-[800ms] "
+              leaveFrom="opacity-0 scale-95 translate-y-[-500px] duration-[800ms] "
+              leaveTo="opacity-0 scale-95 translate-y-[-500px] duration-[800ms] "
               className={`w-full`}
             >
 
@@ -270,7 +270,7 @@ height: 266px ;
         // }}
         // exit={{ y: "100vh" }}
         onClick={(e) => e.stopPropagation()}
-        className="w-full max-w-[900px] bg-[#060606]  max-h-[90%] mx-auto shadow-2xl mt-[5rem] overflow-y-scroll scroll-smooth text-white	 cursor-default my-12"
+        className="w-full max-w-[900px] bg-[#060606]  max-h-[95VH] mx-auto shadow-2xl my-[2rem] overflow-y-scroll scroll-smooth text-white	 cursor-default my-12"
       >
         {loading ? (
           <LuLoader />

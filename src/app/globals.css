@@ -369,3 +369,51 @@ body {
   color: white;
 }
 
+
+.forward {
+  right: 35%;
+  top: 50%;
+  transform: translate(50%, -50%);
+
+}
+
+.backward {
+  left: 35%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+
+
+}
+
+[data-ctrl-hidden="true"] .forward, [data-ctrl-hidden="true"] .backward {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.backward, .forward {
+  color: #fff;
+  position: absolute;
+  background: none;
+  outline: none;
+  border: none;
+}
+
+.backward, .forward {
+  transition: 0.4s opacity, 0.4s visibility;
+}
+
+.nextEp {
+  position: absolute;
+  color:white;
+  padding: 7px 12px;
+  border-radius: 5px;
+  background:rgba(0, 0, 0, 0.566);
+  bottom: 17%;
+  right:3%
+}
+
+.nextEp:hover{
+  background:rgb(0, 0, 0)
+}
+  

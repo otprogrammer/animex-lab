@@ -84,3 +84,17 @@ export const useAutoNext = create<useAutoNextProps>((set) => ({
       set(() => ({ isContact: false }));
     },
   }));
+
+
+  export const useModal = create<useModalProps>((set) => ({
+    isModal: false,
+    id:"",
+  
+    enableIsModal: (id:string) => {
+      set(() => ({ isModal: true,id:id }));
+    },
+  
+    disableIsModal: () => {
+      set(() => ({ isModal: false }));
+    },
+  }));

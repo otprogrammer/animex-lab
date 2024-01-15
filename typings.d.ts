@@ -35,6 +35,12 @@ interface useContactProps {
     disableIsContact : () => void;
 }
 
+interface useModalProps {
+    isModal : boolean | any;
+    id:string;
+    enableIsModal : () => {};
+    disableIsModal : () => void;
+}
 
 
 interface MsgProps {
