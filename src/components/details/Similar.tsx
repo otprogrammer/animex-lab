@@ -1,8 +1,11 @@
 "use client";
 import React from "react";
 import Link from "next/link";
+import { useModal } from "../../../store/store";
 
 function Similar({ Data }: any) {
+  const { enableIsModal } = useModal();
+
   return (
     <div className="grid w-full grid-cols-1 xl:grid-cols-2 gap-2 p-4">
       {Data?.nodes?.length > 1
@@ -10,6 +13,7 @@ function Similar({ Data }: any) {
             <div
               key={anime?.mediaRecommendation?.id}
               className="flex gap-2 bg-[#3336] p-1"
+              onClick={() => enableIsModal(anime?.mediaRecommendation?.id)}
             >
               <img className="w-[60px] h-[80px] " src={anime?.mediaRecommendation?.coverImage?.large} />
               <div className="flex flex-col w-full justify-between">

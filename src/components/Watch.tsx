@@ -130,7 +130,7 @@ export default function WatchContainer(props: WatchProps) {
         theme: {
           primaryColor: "#e11d48",
           watermark: {
-            src: "/logo/favicon-1.png",
+            src: "/logo/logo.png",
             style: {
               position: "absolute",
               // want make screenshot include watermark?

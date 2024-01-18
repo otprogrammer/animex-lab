@@ -29,7 +29,7 @@ function Footer() {
       <div   >
         <div className="flex flex-col  items-center justify-center relative z-[1]">
           <img
-            src={`/logo/favicon-1.png`}
+            src={`/logo/logo.png`}
             className="h-[4rem] w-[4rem] rounded-full object-cover"
           />
           <h1

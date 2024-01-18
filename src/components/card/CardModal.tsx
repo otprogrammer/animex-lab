@@ -161,7 +161,7 @@ height: 266px ;
     const { data }: any = await supabase
       .from("anime")
       .select("*")
-      .or(`anime_id.eq.${id},mal_id.eq.${id}`);
+      .or(`anime_id.eq.${id},mal_id.eq.${id},anilistid.eq.${id}`);
 
     // let url = `https://ottoex.vercel.app/api/anime/${id}`;
     // let req = await fetch(url);

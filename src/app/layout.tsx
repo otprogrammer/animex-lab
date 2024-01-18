@@ -15,6 +15,7 @@ import Contact from "@/components/contact/Contact";
 import { useContact } from "../../store/store";
 import { Analytics } from "@vercel/analytics/react";
 import Navbar from "@/components/navbar/Navbar";
+import { AuthProvider } from "@/components/hooks/Auth";
 
 // export const metadata: Metadata = {
 //   title: "Animex",
@@ -74,6 +75,9 @@ export default function RootLayout({
       
 
       <body className="min-h-screen">
+
+      <AuthProvider> 
+
       
         <Navbar />
         
@@ -110,6 +114,7 @@ export default function RootLayout({
           `,
             }}
         />
+        </AuthProvider>
       </body>
     </html>
   );

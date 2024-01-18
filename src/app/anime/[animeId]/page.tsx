@@ -42,6 +42,7 @@ const fetchAnime = async (q: string | number, title: string | undefined) => {
 
 import { Metadata, ResolvingMetadata } from "next";
 import { AnimeInfo, EpisodesListProps } from "../../../../types/types";
+import AnimeModal from "@/components/modal/AnimeModal";
 
 type PageProps = {
   params: {
@@ -101,6 +102,7 @@ export default async function Anime({
   console.log(query)
   return (
     <div className="">
+      <AnimeModal />
       <div
         className={` background-transparent w-full   lg:py-1 flex justify-center   md:mt-0  `}
       >
