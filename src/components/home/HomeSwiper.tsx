@@ -135,7 +135,7 @@ export default function HomeSwiper() {
               ></div>
               {activeSlide === index ? (
                 <div
-                  className="flex gap-2 absolute inset-0 z-50
+                  className="flex gap-2 absolute inset-0 z-40
                justify-center
               items-center"
                 >
@@ -164,9 +164,9 @@ export default function HomeSwiper() {
                     {show.synopsis}
                   </div> */}
 
-                  <div className="flex gap-2 items-center z-50">
+                  <div className="flex gap-2 items-center z-40">
                     <Link
-                      className="z-50 cursror-pointer text-white hover:txt-primary flex items-center justify-center"
+                      className="z-40 cursror-pointer text-white hover:txt-primary flex items-center justify-center"
                       href={`/anime/${show.anime_id}`}
                     >
                       <h1 className="rounded-full  font-bold relative gap-2 ">

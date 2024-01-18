@@ -34,8 +34,8 @@ interface LoginMenuProps {
 
 const LoginMenu = (props: LoginMenuProps) => {
   return (
-    <div className="relative  max-w-[800px]  right-5 top-14 z-50 rounded-md ">
-      <div className="p-5 fixed right-2 bg-neutral-900/95 top-20 min-w-[280px] border-b-[1px] border-[#2b2a2a]">
+    <div className="relative  max-w-[800px]  right-5 top-14  rounded-md ">
+      <div  className="p-5 fixed right-2 bg-neutral-900/95 top-20 min-w-[280px] border-b-[1px]  border-[#2b2a2a]">
         <div className="p-3 flex flex-col gap-2 items-center">
           <img
             src={`https://i.imgur.com/cv36w6Yg.jpg`}
@@ -188,7 +188,7 @@ export default function Navbar() {
                 </div>
                 
                 {showOptions && (
-                  <div className="bg-neutral-900 text-white flex flex-col gap-2 py-3 absolute w-[258px] right-5 rounded-md drop-shadow-2xl">
+                  <div className="bg-neutral-900 text-white flex flex-col gap-2 py-3 absolute w-[258px] right-5 z-50 rounded-md drop-shadow-2xl">
 
                     
                     <div className="py-2 px-3 flex border-b-2 gap-4 border-neutral-700">

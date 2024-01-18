@@ -5,7 +5,7 @@ import {
   useSupabaseClient,
   useSession,
 } from "@supabase/auth-helpers-react";
-import { useParams, useRouter } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { BsInfoLg } from "react-icons/bs";
 import { IoShareSocial } from "react-icons/io5";
 import { RiHistoryLine, RiPlayList2Line } from "react-icons/ri";
@@ -45,7 +45,7 @@ function Profile() {
 
   const user_id :any = useUser();
   const router = useRouter();
-  const { profile } = useParams();
+  const  {id}  = useParams();
   const [loading, setLoading] = useState(true);
   const [username, setUsername] = useState(null);
   const [website, setWebsite] = useState(null);
@@ -64,7 +64,6 @@ const [refresh,setRefresh] = useState(false)
   const [avatarFile, setAvatarFile] = useState(null);
 
   // const {user} :any = useAuth()
-console.log(user_id)
   const [coverFile, setCoverFile] = useState(null);
   const [coverUrl, setCoverUrl] = useState(null);
   const [activeIndex,setActiveIndex] = useState(0)
@@ -79,7 +78,7 @@ console.log(user_id)
     
     getProfile();
 
-  }, [session, profile,watchList?.length,refresh]);
+  }, [session, id,watchList?.length,refresh]);
   console.log(user_id)
 useEffect(() => {
 
@@ -177,7 +176,7 @@ console.log(user)
       const { data } :any = await supabase
         .from("profiles")
         .select("watchlist")
-        .eq("username", profile);
+        .eq("username", id);
       setWatchList(data[0].watchlist);
       await supabase.from('auth').select("*")
    
@@ -188,7 +187,7 @@ console.log(user)
       let { data, error, status } = await supabase
         .from("profiles")
         .select(`*`)
-        .eq("username", profile)
+        .eq("username", id)
         .single();
 
       if (error && status !== 406) {
@@ -426,8 +425,7 @@ console.log(user)
           <div className="overflow-hidden w-full">
             {activeItem === "FAVORITES" && (
               <div
-                initial={{ x: -80 }}
-                animate={{ x: 0, transition: { duration: 0.7 } }}
+               
                 className="overflow-hidden w-full"
               >
                 <div className="grid grid-cols-3 md:grid-cols-5 lg:grid-cols-5 xl:grid-cols-6  gap-2 mt-4">
@@ -441,7 +439,7 @@ console.log(user)
                         released={anime?.released}
                         id={anime?.id}
                         refresh={() => setRefresh(!refresh)}
-                        username={profile}
+                        username={id}
                       />  
                       </div>
                   ))}
