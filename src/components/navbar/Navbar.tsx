@@ -35,7 +35,7 @@ interface LoginMenuProps {
 const LoginMenu = (props: LoginMenuProps) => {
   return (
     <div className="relative  max-w-[800px]  right-5 top-14  rounded-md ">
-      <div  className="p-5 fixed right-2 bg-neutral-900/95 top-20 min-w-[280px] border-b-[1px]  border-[#2b2a2a]">
+      <div  className="p-5 fixed right-2 bg-neutral-900/95 top-20 min-w-[280px] border-b-[1px] z-50  border-[#2b2a2a]">
         <div className="p-3 flex flex-col gap-2 items-center">
           <img
             src={`https://i.imgur.com/cv36w6Yg.jpg`}
