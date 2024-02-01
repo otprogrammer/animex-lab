@@ -24,6 +24,7 @@ import { IoMdClose } from "react-icons/io";
 import { useRouter } from "next/navigation";
 import { appendMissingEpisodes } from "../../../lib/appendeps";
 import { Icon } from "@iconify/react";
+import { useAuth } from "../hooks/Auth";
 
 // import { HeartSwitch } from "@anatoliygatt/heart-switch";
 // import { supabase } from "@/supabase";
@@ -173,18 +174,19 @@ height: 266px ;
     setLoading(false);
   };
 
-  //   const addAnime = async () => {
-  //     await supabase.rpc("append_favs", {
-  //       user_id: user?.id,
-  //       data: {
-  //         id: animeData?.anime_id,
-  //         image_url: animeData?.coverimage ,
-  //         title: animeData?.title ,
-  //         released: animeData?.year ,
-  //       },
-  //     });
-  //   };
+  const {user} = useAuth();
 
+  const addAnimeToDatabase = async () => {
+    await supabase.rpc("append_favs", {
+      user_id: user?.id,
+      data: {
+        id: animeData?.anime_id,
+        image_url: animeData?.coverimage ,
+        title: animeData?.title ,
+        released: animeData?.year ,
+      },
+    });
+  };
   function handleAddAnime() {
     const storedAnimeList =
       typeof window !== "undefined" && localStorage.getItem("animeList");
@@ -230,6 +232,9 @@ height: 266px ;
       handleDeleteAnime(animeData);
     } else {
       handleAddAnime(animeData);
+      if (user?.id) {
+        addAnimeToDatabase()
+      }
       setClick(true);
       toast.success(
         <Msg

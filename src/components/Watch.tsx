@@ -49,6 +49,7 @@ import { appendMissingEpisodes } from "../../lib/appendeps";
 import { HiSwitchHorizontal } from "react-icons/hi";
 import danmaku from "@oplayer/danmaku";
 import { AiOutlineClose } from "react-icons/ai";
+import { useAuth } from "./hooks/Auth";
 
 
 
@@ -187,6 +188,21 @@ export default function WatchContainer(props: WatchProps) {
     );
     current.length > 0 ? setClick(true) : setClick(false);
   }, []);
+
+
+  const {user} = useAuth();
+
+  const addAnimeToDatabase = async () => {
+    await supabase.rpc("append_favs", {
+      user_id: user?.id,
+      data: {
+        id: props.animeData?.anime_id,
+        image_url: props.animeData?.coverimage ,
+        title: props.animeData?.title ,
+        released: props.animeData?.year ,
+      },
+    });
+  };
 
   const handleNextEpisode = () => {
     setLastEpisode(parseInt(lastEpisode) + 1);
@@ -371,6 +387,9 @@ export default function WatchContainer(props: WatchProps) {
       handleDeleteAnime(props.animeData);
     } else {
       handleAddAnime(props.animeData || gogoData);
+      if (user?.id) {
+        addAnimeToDatabase()
+      }
       setClick(true);
       toast.success(
         <Msg
@@ -499,7 +518,7 @@ export default function WatchContainer(props: WatchProps) {
                   // )?.[0].url,
                   src:res.sources[0].file,
                   title: currentEpisode?.title || "",
-                  poster: currentEpisode?.image || "",
+                  poster: "https://img.freepik.com/premium-photo/anime-girl-neon-headphones-generative-ai_170984-6756.jpg?size=626&ext=jpg&ga=GA1.1.1412446893.1705104000&semt=ais",
                 };
               })
           )

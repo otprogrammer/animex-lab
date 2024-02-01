@@ -7,6 +7,8 @@ import ProgressBar from "./ProgressBar";
 import { DeleteWatchListId } from "../../../lib/Watchlist";
 import TimeAgo from "./TimeAgo";
 import { handleDeleteAnime } from "../../../lib/bookmark";
+import supabase from "../../../utils/supabase";
+import { useAuth } from "../hooks/Auth";
 
 interface WatchListProps {
   anilistid: number;
@@ -26,20 +28,34 @@ interface WatchListProps {
 
 function ListCard(anime: WatchListProps) {
   const [showDelete, setShowDelete] = useState(false);
-
+  const {user} = useAuth()
   return (
     <div
       onMouseEnter={() => setShowDelete(true)}
       onMouseLeave={() => setShowDelete(false)}
       className=" max-w-fit relative"
     >
+
+
+
+
       {showDelete && (
         <span
-          onClick={() => {
-            handleDeleteAnime(anime);
+          
+          onClick={async () => {
+            if (anime.heading !== "UserList") {
+              handleDeleteAnime(anime);
 
+            } else {
+              await supabase.rpc("delete_fav_anime",{
+                user_id : user?.id,
+                anime_id : anime?.id
+            
+            })
+            }
             anime.refresh();
           }}
+
           className="absolute top-0 right-1 z-50 hover:bg-red-500 cursor-pointer bg-neutral-700/75 rounded-full p-1 mt-1"
         >
           <span
