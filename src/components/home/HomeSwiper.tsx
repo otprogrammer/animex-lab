@@ -80,7 +80,7 @@ export default function HomeSwiper() {
       >
         {data?.[0]?.trending?.map((show: any, index: any) => (
           <SwiperSlide key={index}  className="homeswtab  max-h-[500px] ">
-            <div className=" md:hidden relative ">
+            <div className=" md:hidden relative rounded-2xl">
               <img
                 src={`${`https://image.tmdb.org/t/p/original${show.poster_path}`}`}
                 className={`w-full md:hidden h-full rounded-lg `}
@@ -93,14 +93,15 @@ export default function HomeSwiper() {
                     : "bg-background opacity-70"
                 }`}
               ></div> */}
+            </div>
               {activeSlide === index ? (
                 <div
                   className="flex gap-2 
                justify-center
-              items-center"
+              items-center my-2"
                 >
                   <Link  className="bg-black hover:bg-red-600 z-50" href={`/anime/${show.anime_id}`}>
-                    <Button className="flex items-center rounded-sm  text-white  shadow py-1 px-4  gap-4 ">
+                    <Button className="flex items-center rounded-sm  text-white  shadow py-1 h-fit px-4  gap-4 ">
                       <FaPlay />
                       <span>Play</span>
                     </Button>
@@ -109,7 +110,6 @@ export default function HomeSwiper() {
               ) : (
                 ""
               )}
-            </div>
 
             <div className="relative hidden md:flex md:flex-row-reverse md:justify-between      ">
               {/* <button className="rounded-full text-white font-bold relative gap-2 ">

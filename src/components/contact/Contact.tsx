@@ -3,7 +3,7 @@ import React, { useRef } from "react";
 import emailjs from "emailjs-com";
 import { useContact } from "../../../store/store";
 import { toast } from "react-toastify";
-
+import {motion} from 'framer-motion'
 
 const Msg = ({ title, message }: MsgProps) => {
   return (
@@ -53,7 +53,10 @@ function Contact() {
   return (
     <>
       {isContact && (
-        <div
+        <motion.div
+        initial={{x:150}}
+        animate={{x:0}}
+        transition={{ duration: 0.2,type:"tween",ease:"easeIn" }} // Timing and type of the transition
           onClick={(e) => e.stopPropagation()}
           className={`fixed  h-screen p-4 overflow-y-auto  z-50 w-80  bg-neutral-800/90 text-gray-200 transition-all right-0 top-0 `}
         >
@@ -169,7 +172,7 @@ function Contact() {
           <p className="text-sm text-gray-500 ">
             <span className="hover:underline">Animex Stream</span>
           </p>
-        </div>
+        </motion.div>
       )}
     </>
   );

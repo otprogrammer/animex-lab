@@ -113,6 +113,15 @@ const LoginMenu = (props: LoginMenuProps) => {
     </AnimatePresence>
   );
 };
+
+const menuItems = [
+  "Genres",
+  "Popular",
+  "Browse",
+  "Contact",
+  "Support",
+  "Discord",
+];
 export default function Navbar() {
   const [isDropDown, setIsDropDown] = useState(false);
   const { enableIsContact } = useContact();
@@ -134,14 +143,7 @@ export default function Navbar() {
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
-  const menuItems = [
-    "Genres",
-    "Popular",
-    "Browse",
-    "Contact",
-    "Support",
-    "Discord",
-  ];
+  
 
   useEffect(() => {
     if (resumeId)
@@ -161,7 +163,11 @@ export default function Navbar() {
         isBordered
         isMenuOpen={isMenuOpen}
         onMenuOpenChange={setIsMenuOpen}
-        className="bg-black/80 text-white "
+        classNames={{
+          wrapper: "px-1 lg:px-4 justify-between gap-0",
+          
+        }}
+        className="bg-black/80 text-white  "
       >
         <NavbarContent className="sm:flex" justify="start">
           <NavbarMenuToggle
@@ -181,7 +187,7 @@ export default function Navbar() {
           </NavbarBrand>
         </NavbarContent>
 
-        <NavbarContent className="hidden sm:flex gap-4" justify="center">
+        <NavbarContent className="hidden lg:flex gap-4" justify="center">
           <NavbarBrand>
             <Button
               onClick={() => router.push("/")}
@@ -193,57 +199,55 @@ export default function Navbar() {
           </NavbarBrand>
         </NavbarContent>
 
-        <NavbarContent justify="end">
-          
-
-          <NavbarItem className="hidden lg:flex">
+        <NavbarContent justify="end" className="gap-1">
+          <NavbarItem className="">
             <Search />
           </NavbarItem>
 
           <NavbarItem className="">
             {user ? (
+              <Dropdown placement="bottom-end">
+                <DropdownTrigger>
+                  <Avatar
+                    as="button"
+                    className="transition-transform"
+                    color="secondary"
+                    name="Jason Hughes"
+                    size="md"
+                    src={user?.user_metadata?.avatar_url}
+                  />
+                </DropdownTrigger>
+                <DropdownMenu aria-label="Profile Actions" variant="flat">
+                  <DropdownItem key="profile" className="h-14 gap-2">
+                    <p className="font-semibold">Signed in as</p>
+                    <p className="text-default-500">{user?.email}</p>
+                  </DropdownItem>
+                  <DropdownItem
+                    onClick={() =>
+                      router.push(`/profile/${user?.user_metadata?.username}`)
+                    }
+                    key="profile"
+                  >
+                    My Profile
+                  </DropdownItem>
 
-            <Dropdown placement="bottom-end">
-              <DropdownTrigger>
-                <Avatar
-                  
-                  as="button"
-                  className="transition-transform"
-                  color="secondary"
-                  name="Jason Hughes"
-                  size="md"
-                  src={user?.user_metadata?.avatar_url}
-                />
-              </DropdownTrigger>
-              <DropdownMenu aria-label="Profile Actions" variant="flat">
-                <DropdownItem key="profile" className="h-14 gap-2">
-                  <p className="font-semibold">Signed in as</p>
-                  <p className="text-default-500">{user?.email}</p>
-                </DropdownItem>
-                <DropdownItem
-                  onClick={() =>
-                    router.push(`/profile/${user?.user_metadata?.username}`)
-                  }
-                  key="profile"
-                >
-                  My Profile
-                </DropdownItem>
+                  {/* <DropdownItem key="settings">Settings</DropdownItem> */}
+                  <DropdownItem key="discord">
+                    <a href="https://discord.gg/uEAKwRrFpn" target="_blank">
+                      <span>Discord</span>
+                    </a>
+                  </DropdownItem>
 
-                {/* <DropdownItem key="settings">Settings</DropdownItem> */}
-                <DropdownItem key="discord"><a href="https://discord.gg/uEAKwRrFpn" target="_blank">
-                    <span>Discord</span>
-                  </a></DropdownItem>
-
-                <DropdownItem key="help_and_feedback">
-                  Help & Feedback
-                </DropdownItem>
-                <DropdownItem onClick={SignOut} key="logout" color="danger">
-                  Log Out
-                </DropdownItem>
-              </DropdownMenu>
-            </Dropdown>
+                  <DropdownItem key="help_and_feedback">
+                    Help & Feedback
+                  </DropdownItem>
+                  <DropdownItem onClick={SignOut} key="logout" color="danger">
+                    Log Out
+                  </DropdownItem>
+                </DropdownMenu>
+              </Dropdown>
             ) : (
-              <div className="hidden md:flex gap-3 items-center">
+              <div className=" gap-3 items-center">
                 <div
                   className="  rounded-full cursor-pointer"
                   onClick={() => setShowLoginMenu(true)}
@@ -253,7 +257,6 @@ export default function Navbar() {
               </div>
             )}
           </NavbarItem>
-          
         </NavbarContent>
 
         <OutsideClickHandler onOutsideClick={() => setIsMenuOpen(false)}>
@@ -271,6 +274,10 @@ export default function Navbar() {
                   <a href="https://ko-fi.com/ottoprogrammer" target="_blank">
                     <span>Support</span>
                   </a>
+                ) : 
+                
+                item == "Contact" ? (
+                  <span onClick={enableIsContact}>Contact</span>
                 ) : (
                   <Link
                     className="w-full text-neutral-400 hover:text-white"

@@ -77,7 +77,7 @@ const Search = () => {
       onSubmit={handleSubmit}
     >
       <div
-        className={` text-gray-300 h-10 w-10 lg:w-full  bg-neutral-800/75 rounded-full  flex items-center  p-2.5 shadow-2xl relative right-0`}
+        className={` text-gray-300 h-9 w-9 lg:w-full  bg-neutral-800/75 rounded-full  flex items-center  p-2.5 shadow-2xl relative right-0`}
         id="search"
         onClick={handleClick}
       >

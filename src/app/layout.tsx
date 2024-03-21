@@ -84,6 +84,7 @@ export default function RootLayout({
         <Navbar />
         
         <NextTopLoader color="#e11d48" />
+        
         {children}
         <Analytics />
 
