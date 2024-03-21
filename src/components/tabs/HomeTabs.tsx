@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import {  Transition } from "@headlessui/react";
+import { Transition } from "@headlessui/react";
 import GridContainer from "../container/GridContainer";
 // import { watchList } from '../watchlist/WatchList'
 import WatchList from "../watchlist/WatchList";
@@ -42,58 +42,62 @@ export default function HomeTabs({ Latest, Trending }: HomeContainerTabs) {
   return (
     <div className="w-full px-2 mt-9  sm:px-0">
       <Tabs
-      aria-label="Options"
-      selectedKey={selected}
-      onSelectionChange={setSelected}
-      radius="sm"
-      variant="underlined"
-      className="!flex w-fit mx-auto"
-      classNames={{
-        tabList: "gap-6 w-full justify-center relative rounded-none p-0 border-b border-divider",
-        tab: " lg:w-[120px] px-0 h-12",
-      }}
+        aria-label="Options"
+        selectedKey={selected}
+        onSelectionChange={setSelected}
+        radius="sm"
+        variant="underlined"
+        className="!flex w-fit mx-auto"
+        classNames={{
+          tabList:
+            "gap-6 w-full justify-center relative rounded-none p-0 border-b border-divider",
+          tab: " lg:w-[120px] px-0 h-12",
+        }}
       >
-        
-          {Object.values(categories).map((posts, idx) => (
-            <Tab key={idx} title={Object.keys(categories).map((t,id) => (<span>{idx === id && t}</span>))} key={idx}>
-              <Transition
-              key={idx}
-                appear={true}
-                as={"div"}
-                show={true}
-                enter="transform transition duration-[500ms]"
-                enterFrom="opacity-0 scale-[0.90]"
-                enterTo="opacity-100 rotate-0 scale-100"
-                leave="transform duration-200 transition ease-in-out"
-                leaveFrom="opacity-100 rotate-0 scale-100 "
-                leaveTo="opacity-0 scale-95 "
-              >
-                {idx < 2 ? (
-                  <GridContainer
-                    data={posts}
-                    heading={idx == 0 ? "Latest" : "Trending"}
-                  />
-                ) : idx == 2 ? (
-                  // <MyList />
-                  <GridContainer
-                    data={getAnimeList()}
-                    heading="MyList"
-                    refresh={() => setRefresh((t) => !t)}
-                  />
-                ) : idx == 3 ? (
-                  // <WatchList />
-                  <GridContainer
-                    data={getWatchList()}
-                    heading="WatchList"
-                    refresh={() => setRefresh((t) => !t)}
-                  />
-                ) : (
-                  <Airing />
-                )}
-                {/* <GridContainer data={posts} heading={idx == 0 ? "Latest" : idx === 1 ? "Trending" : "List"}/> */}
-              </Transition>
-            </Tab>
-          ))}
+        {Object.values(categories).map((posts, idx) => (
+          <Tab
+          key={idx}
+            title={Object.keys(categories).map((t, id) => (
+              <span>{idx === id && t}</span>
+            ))}
+          >
+            <Transition
+              appear={true}
+              as={"div"}
+              show={true}
+              enter="transform transition duration-[500ms]"
+              enterFrom="opacity-0 scale-[0.90]"
+              enterTo="opacity-100 rotate-0 scale-100"
+              leave="transform duration-200 transition ease-in-out"
+              leaveFrom="opacity-100 rotate-0 scale-100 "
+              leaveTo="opacity-0 scale-95 "
+            >
+              {idx < 2 ? (
+                <GridContainer
+                  data={posts}
+                  heading={idx == 0 ? "Latest" : "Trending"}
+                />
+              ) : idx == 2 ? (
+                // <MyList />
+                <GridContainer
+                  data={getAnimeList()}
+                  heading="MyList"
+                  refresh={() => setRefresh((t) => !t)}
+                />
+              ) : idx == 3 ? (
+                // <WatchList />
+                <GridContainer
+                  data={getWatchList()}
+                  heading="WatchList"
+                  refresh={() => setRefresh((t) => !t)}
+                />
+              ) : (
+                <Airing />
+              )}
+              {/* <GridContainer data={posts} heading={idx == 0 ? "Latest" : idx === 1 ? "Trending" : "List"}/> */}
+            </Transition>
+          </Tab>
+        ))}
       </Tabs>
     </div>
   );
