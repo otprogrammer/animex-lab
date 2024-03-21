@@ -65,7 +65,7 @@ export default function DetailsTabs(props: DetailsTabsProps) {
           {Object.keys(categories).map((category, index) => (
             <Button 
             className={`
-              focus:outline-none focus:border-none w-full
+              focus:outline-none focus:border-none w-full text-[10px] md:text-md
               text-white
               ${
                 activeIndex === index
@@ -78,7 +78,7 @@ export default function DetailsTabs(props: DetailsTabsProps) {
 
             
             <Tab
-               className="w-full focus:outline-none focus:border-none p-2 mx-[1px] "
+               className="w-full focus:outline-none focus:border-none lg:p-2 mx-[1px] "
               
             >
               

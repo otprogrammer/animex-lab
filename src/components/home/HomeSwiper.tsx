@@ -96,9 +96,9 @@ export default function HomeSwiper() {
             </div>
               {activeSlide === index ? (
                 <div
-                  className="flex gap-2 
+                  className="flex md:hidden gap-2 
                justify-center
-              items-center my-2"
+              items-center my-2 "
                 >
                   <Link  className="bg-black hover:bg-red-600 z-50" href={`/anime/${show.anime_id}`}>
                     <Button className="flex items-center rounded-sm  text-white  shadow py-1 h-fit px-4  gap-4 ">

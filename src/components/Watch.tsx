@@ -666,7 +666,7 @@ export default function WatchContainer(props: WatchProps) {
         <div className="w-full ">
           <div className={`${params.get("ep") ? "block" : "hidden"}`}>
             {alert && (
-              <div className="alert flex flex-col lg:flex-row gap-1.5 justify-between p-2 mb-2 rounded-xl bg-black/80">
+              <div className="alert flex  gap-1.5 justify-between p-2 mb-2 rounded-xl bg-black/80">
                 <div className="flex items-center gap-2 pl-2">
                   
                   <FaDonate />

@@ -280,7 +280,7 @@ height: 266px ;
           // }}
           // exit={{ y: "100vh" }}
           onClick={(e) => e.stopPropagation()}
-          className="w-full overflow-x-hidden xl:max-w-[900px] 2xl:max-w-[1200px] bg-[#060606]  max-h-[95VH] mx-auto shadow-2xl my-[2rem] overflow-y-scroll scroll-smooth text-white	 cursor-default my-12"
+          className="w-full overflow-x-hidden xl:max-w-[900px] 2xl:max-w-[1200px] bg-neutral-900  max-h-[95VH] mx-auto shadow-2xl my-[2rem] overflow-y-scroll scroll-smooth text-white	 cursor-default my-12"
         >
           {loading ? (
             <LuLoader />
@@ -388,7 +388,7 @@ height: 266px ;
               }
               }
               aria-label="Play"
-              className="tool relative"
+              className=" relative"
             >
               <Icon
                 width={26}
@@ -405,7 +405,7 @@ height: 266px ;
 
               <label
                 aria-label="Remove/Add"
-                className="swap z-50 swap-rotate tool relative"
+                className="swap z-50 swap-rotate  relative"
               >
                 <input type="checkbox" />
 
@@ -457,7 +457,7 @@ height: 266px ;
                         navbar.filter((t: any) => t.name == item.name)[0].key
                       );
                     }}
-                    className={`text-center p-2.5 hover:txt-primary bg-neutral-900/70 border-r-[2px] border-black text-[10px] md:text-sm cursor-pointer font-bold ${
+                    className={`text-center p-2.5 hover:txt-primary bg-black/80 border-r-[2px] border-default-200 text-[10px] md:text-sm cursor-pointer font-bold ${
                       activeItem === item.name
                         ? "txt-primary bg-neutral-950"
                         : ""
