@@ -52,7 +52,7 @@ const [loading,setLoading] = useState(false)
 const {id} = useParams()
 const [data,setData] = useState({})
 const [refresh,setRefresh] = useState(false)
-
+const [avatar_url,setAvatarUrl] = useState('')
     const {user} = useAuth()
     // const [refresh,setRefresh] = useState(false)
 
@@ -89,6 +89,9 @@ const [refresh,setRefresh] = useState(false)
     );
     let res = await req.json();
     setData(res[0])
+    setAvatarUrl(res[0]?.avatar_url)
+    setCoverUrl(res[0]?.coverimage)
+
 }
 
   const handleFileAvatarChange = (e: any) => {
@@ -98,11 +101,54 @@ const [refresh,setRefresh] = useState(false)
     rd.readAsDataURL(sFile);
     rd.onloadend = () => {
       setAvatarFile(sFile);
-    //   setAvatarUrl(rd.result);
+      setAvatarUrl(rd.result);
       handleUpload(sFile);
     };
   };
 
+  async function updateProfile({
+    username,
+    website,
+    avatar_url,
+    coverimage,
+  }: any) {
+    try {
+      setLoading(true);
+
+      // const updates = {
+      //   id: user.id,
+      //   username,
+      //   website,
+      //   description,
+      //   avatar_url,
+      //   updated_at: new Date().toISOString(),
+      // };
+
+      await supabase.auth.updateUser({
+        data: {
+          // full_name: 'John',
+          // username: username,
+          avatar_url: avatar_url,
+          coverimage: coverimage,
+        },
+      });
+
+      await supabase
+        .from("profiles")
+        .update({
+          avatar_url: avatar_url,
+          coverimage: coverimage,
+          updated_at: new Date().toISOString(),
+        })
+        .eq("id", user?.id);
+      await supabase.auth.refreshSession();
+    } catch (error) {
+      alert("Error updating the data!");
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
+  }
 
   const handleUpload = (avatarF: any) => {
     setUploading(true);
@@ -122,8 +168,8 @@ const [refresh,setRefresh] = useState(false)
         const imageId = response.data.data.id;
         setUploading(false);
 
-        // setAvatarUrl(imageLink);
-        // updateProfile({ avatar_url: imageLink } as any);
+        setAvatarUrl(imageLink);
+        updateProfile({ avatar_url: imageLink } as any);
       })
       .catch((error) => {
         console.log(error);
@@ -148,7 +194,7 @@ const [refresh,setRefresh] = useState(false)
         const imageId = response.data.data.id;
         setUploading(false);
         setCoverUrl(imageLink);
-        // updateProfile({ coverimage: imageLink } as any);
+        updateProfile({ coverimage: imageLink } as any);
       })
       .catch((error) => {
         console.log(error);
