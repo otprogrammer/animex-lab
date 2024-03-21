@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import supabase from "../../../utils/supabase";
 // import WaveButton from '../btn/WaveButton';
-
+import {motion} from 'framer-motion'
 interface SignInProps {
   handleClick: any;
   createNewAccount: any;
@@ -30,7 +30,10 @@ export default function SignIn(props: SignInProps) {
     }
   };
   return (
-    <div
+    <motion.div 
+    initial={{y:-240}}
+    animate={{y:0}}
+    exit={{}}
       className="w-[420px] h-auto flex flex-col justify-center items-center bg-[#0e0f10] drop-shadow-2xl rounded-lg text-gray-200 "
       onClick={(e) => e.stopPropagation()}
     >
@@ -91,6 +94,6 @@ export default function SignIn(props: SignInProps) {
           </button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

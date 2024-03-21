@@ -25,7 +25,7 @@ function Footer() {
   const { enableIsContact } = useContact();
 
   return (
-    <footer className="p-3   md:px-6 md:mt-20  relative bg-neutral-900/60">
+    <footer className="p-3   md:px-6 md:mt-20  relative bg-black/80 border-t border-neutral-800">
       <div   >
         <div className="flex flex-col  items-center justify-center relative z-[1]">
           <img
@@ -73,9 +73,9 @@ function Footer() {
             </span>
           </div>
         </div>
-        <hr className="my-4 border-gray-200 sm:mx-auto dark:border-gray-400 lg:my-6 z-[1] relative" />
+        <hr className="my-4 border-gray-200 sm:mx-auto dark:border-neutral-800 lg:my-6 z-[1] relative" />
         <div className="flex flex-col gap-2">
-          <span className="block  text-gray-200 text-center z-[1]  relative">
+          <span className="block  text-neutral-200 text-center z-[1]  relative">
             Animex does not store any files on our server, we only linked to the
             media which is hosted on 3rd party services.
           </span>

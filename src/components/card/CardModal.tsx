@@ -377,9 +377,15 @@ height: 266px ;
                     </button> */}
                     <span
               // onClick={handlePlay}
-              onClick={() =>
-                animeData?.status !== "Not yet aired" &&
-                router.push(`/anime/${animeData?.anime_id}`)
+              onClick={() => {
+
+
+                if (animeData?.status !== "Not yet aired") {
+
+                  router.push(`/anime/${animeData?.anime_id}`)
+                }
+                handleClose()
+              }
               }
               aria-label="Play"
               className="tool relative"

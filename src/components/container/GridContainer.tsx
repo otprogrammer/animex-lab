@@ -40,8 +40,8 @@ export default function GridContainer({
   
         <>
           <div className=" w-full flex justify-between items-center mt-5">
-            <span className={` px-2 flex  $ font-semibold items-end  text-2xl`}>
-              {/* {heading} */}
+            <span className={` px-2 flex text-white $ font-semibold items-end  text-2xl`}>
+              {heading && heading}
             </span>
 
             <div className="flex items-center gap-[2px] mx-1 p-2.5">
@@ -76,7 +76,7 @@ export default function GridContainer({
           >
             {data?.map((item: any, index: any) => (
               <SwiperSlide key={index}>
-                {heading === "Trending" || heading === "Browse" ? (
+                {heading === "Trending" || heading === "Browse"  ||  heading === "" ? (
                   <Card
                     {...item}
                     //   selected={handleSelected}

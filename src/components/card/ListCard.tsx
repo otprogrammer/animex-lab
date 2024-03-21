@@ -9,6 +9,9 @@ import TimeAgo from "./TimeAgo";
 import { handleDeleteAnime } from "../../../lib/bookmark";
 import supabase from "../../../utils/supabase";
 import { useAuth } from "../hooks/Auth";
+import { revalidatePath } from "next/cache";
+import { useRouter } from "next/navigation";
+import { DeleteAnimeFromDb } from "@/app/actions";
 
 interface WatchListProps {
   anilistid: number;
@@ -29,6 +32,7 @@ interface WatchListProps {
 function ListCard(anime: WatchListProps) {
   const [showDelete, setShowDelete] = useState(false);
   const {user} = useAuth()
+  const router = useRouter()
   return (
     <div
       onMouseEnter={() => setShowDelete(true)}
@@ -47,12 +51,18 @@ function ListCard(anime: WatchListProps) {
               handleDeleteAnime(anime);
 
             } else {
+              // DeleteAnimeFromDb(user?.id,anime?.id)
+              // router.refresh()
               await supabase.rpc("delete_fav_anime",{
                 user_id : user?.id,
                 anime_id : anime?.id
             
             })
-            }
+            
+            
+
+            
+          }
             anime.refresh();
           }}
 

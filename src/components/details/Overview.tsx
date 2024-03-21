@@ -130,7 +130,7 @@ export default function Overview({
       </div>
       <div className="  p-2 lg:p-8 my-2 bg-neutral-900/75  w-full lg:w-[87%] mx-auto rounded-xl">
         <div className="flex flex-col gap-3">
-          <p className={` font-light`}>
+          <p className={` font-light text-neutral-300`}>
             {animeData?.synopsis || gogoData?.description}
           </p>
         </div>

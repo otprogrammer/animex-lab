@@ -4483,7 +4483,7 @@ function Airing() {
                   >
                     <GridContainer
                       data={renderSchedule()}
-                      heading={`Trending`}
+                      heading=""
                     />
                   </Transition>
                 </Tab.Panel>

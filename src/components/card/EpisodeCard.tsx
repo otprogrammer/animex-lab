@@ -23,7 +23,7 @@ function EpisodeCard(anime: any) {
         <div className={`card  overflow-hidden `}>
           <img
             className=" object-cover  h-[180px] md:h-[175px]  rounded-sm"
-            src={anime.image}
+            src={anime.image || anime?.image_url}
             alt={anime?.title}
           />
           <small

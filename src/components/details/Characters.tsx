@@ -4,11 +4,11 @@ function Characters({ data }: any) {
 
 
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-4 gap-2"
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 p-4"
 
     >
       {data?.edges?.length > 1 ? data?.edges?.map((c: any) => (
-        <div key={c?.character?.mal_id} className="">
+        <div key={c?.character?.mal_id} className="bg-[#3336] p-1">
           <div className="flex justify-between">
             <div className="flex gap-2">
               <img className="w-[60px] h-[60px] rounded-full object-cover " src={c?.node?.image?.large} />

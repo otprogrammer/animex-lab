@@ -6,6 +6,7 @@ import Similar from "../details/Similar";
 import OpEd from "../details/OpEd";
 import Relations from "../details/Relations";
 import Trailer from "../trailer/Trailer";
+import { Button } from "@nextui-org/react";
 
 type DetailsTabsProps = {
   Overview: any;
@@ -60,28 +61,39 @@ export default function DetailsTabs(props: DetailsTabsProps) {
   return (
     <div className="w-full px-2  sm:px-0">
       <Tab.Group>
-        <Tab.List className="grid grid-cols-4 text-sm md:text-lg md:grid-cols-6 w-full lg:max-w-full 2xl:max-w-[75%] mx-auto place-self-center">
+        <Tab.List className="grid grid-cols-4 divide-x-[1px] divide-neutral-800 text-sm md:text-lg md:grid-cols-6 w-full lg:max-w-full 2xl:max-w-[75%] mx-auto place-self-center">
           {Object.keys(categories).map((category, index) => (
+            <Button 
+            className={`
+              focus:outline-none focus:border-none w-full
+              text-white
+              ${
+                activeIndex === index
+                  ? "text-red-600 bg-black  hover:text-white"
+                  : "hover:txt-primary bg-black/25"
+              } text-center  cursor-pointer font-bold`}
+            key={index}
+            onClick={() => handleItemClick(index, category)}
+            radius="none">
+
+            
             <Tab
-              key={index}
-              onClick={() => handleItemClick(index, category)}
-              className={`
-            focus:outline-none
-            ${
-              activeIndex === index
-                ? "txt-primary bg-black hover:text-white"
-                : "hover:txt-primary bg-neutral-900/90"
-            } text-center p-1.5 mx-[1px] cursor-pointer  text-base`}
+               className="w-full focus:outline-none focus:border-none p-2 mx-[1px] "
+              
             >
+              
+
               {category}
+              
             </Tab>
+            </Button>
           ))}
           <hr
             className="hidden md:block h-0.5 w-full bg-white"
             style={hrStyles}
           />
         </Tab.List>
-        <Tab.Panels className="mt-2">
+        <Tab.Panels className="bg-black mt-2">
           <Tab.Panel>
             <Transition
               appear={true}

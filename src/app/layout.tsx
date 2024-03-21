@@ -16,6 +16,7 @@ import { useContact } from "../../store/store";
 import { Analytics } from "@vercel/analytics/react";
 import Navbar from "@/components/navbar/Navbar";
 import { AuthProvider } from "@/components/hooks/Auth";
+import { Providers } from "./providers";
 
 // export const metadata: Metadata = {
 //   title: "Animex",
@@ -46,7 +47,7 @@ export default function RootLayout({
   // const { enableIsContact } = useContact();
 
   return (
-    <html data-theme={"black"} lang="en">
+    <html data-theme={"black"} className="dark" lang="en">
       <head>
       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3357173685448212"
      crossOrigin="anonymous"></script>
@@ -74,9 +75,10 @@ export default function RootLayout({
 
       
 
-      <body className="min-h-screen">
+<body className="min-h-screen bg-[#171717] overflow-x-hidden">
 
       <AuthProvider> 
+      <Providers>
 
       
         <Navbar />
@@ -114,7 +116,9 @@ export default function RootLayout({
           `,
             }}
         />
+        </Providers>
         </AuthProvider>
+
       </body>
     </html>
   );

@@ -6,6 +6,7 @@ import { type AnimeEpisodesProps, EpisodesProps } from "../../../types/types";
 import EpisodesPagination from "./EpisodesPagination";
 import { useEpisodesImage, useSort } from "../../../store/store";
 import { Transition } from "@headlessui/react";
+import { Button } from "@nextui-org/react";
 
 export default function Episodes({
   episodesList,
@@ -69,7 +70,7 @@ export default function Episodes({
       <div className="flex gap-2 items-center justify-between">
         <h1>Episodes:</h1>
         {episodesList?.length > 19 && (
-          <div>
+          <div className="">
             <EpisodesPagination
               totalPages={totalPages}
               currentPage={currentPage}
@@ -82,40 +83,48 @@ export default function Episodes({
       </div>
 
       <div
-        className={`grid p-1 ${isModal ? "max-h-[340px] overflow-y-scroll md:grid-cols-4 lg:grid-cols-5 2xlgrid-cols-5 gap-1" : 
-          isEpImgEnabled == "true" ? "grid-cols-2 gap-1"  :  "grid "
+        className={`grid  gap-y-1 p-2 mb-2 ${
+          isModal
+            ? "max-h-[340px] overflow-y-scroll md:grid-cols-4 lg:grid-cols-5 2xl:grid-cols-5 gap-1"
+            : isEpImgEnabled == "true"
+            ? "grid-cols-2 gap-1"
+            : "grid "
         }`}
       >
         {episodesToRender?.map((ep: AnimeEpisodesProps, i: number) => (
           <div
             onClick={() => handleEpisodeRoute(ep.id, ep.number)}
             key={i}
-            className="flex flex-col max-w-full cursor-pointer relative my-1"
+            className="flex flex-col max-w-full cursor-pointer relative "
           >
             {isEpImgEnabled == "true" ? (
-              <div className="">
+              <div className="my-1">
+                <div className="overflow-hidden">
                 <img
-                  className={`flex-shrink-0 w-full ${isModal ? "h-[130px]" : "h-[100px]"} rounded-sm object-cover`}
+                  className={`flex-shrink-0 w-full hover:scale-110 transition-all  overflow-hidden${
+                    isModal ? "h-[130px]" : "h-[100px]"
+                  } rounded-sm object-cover`}
                   src={ep.image || animeImg}
                   alt={ep.title}
                 />
-                <small className="bg-neutral-900/80 font-black py-0.5 px-1.5 absolute top-0 left-0 rounded-br-lg">
+                  </div>
+                <small className="bg-black/60 font-black py-0.5 px-2.5 absolute top-0 left-0 rounded-br-lg">
                   {ep.number}
                 </small>
-                <small className=" font-lighter p-0.5 ">
+                <small className={` font-lighter p-0.5 ${episodeNumber == ep.number && "text-red-500"}`}>
                   {ep.title || "Episode " + ep.number}
                 </small>
               </div>
             ) : (
-              <div className="flex bg-neutral-900/80 hover:scale-105 hover:bg-neutral-800 py-2 transition-all duration-300 ">
-                <small className="  py-0.5 px-1.5 rounded-br-lg flex-shrink-0 self-center">
-                  Episode <span className="txt-primary"> {ep.number}</span>{" "}
+              <Button onClick={() => handleEpisodeRoute(ep.id, ep.number)} className="flex  bg-black/20 hover:bg-black py-2 transition-all duration-300 justify-start rounded-sm ">
+                <small className="   rounded-br-lg flex-shrink-0 self-center">
+                  Episode <span className="txt-primary ml-0.5 font-semibold"> {ep.number}</span>{" "}
                 </small>
 
-                <small className=" font-lighter p-0.5 text-zinc-400">
+                <small className=" font-lighter  text-zinc-400 truncate">
                   {ep.title}
                 </small>
-              </div>
+              </Button>
             )}
           </div>
         ))}

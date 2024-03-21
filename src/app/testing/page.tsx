@@ -360,28 +360,8 @@ const MediaScreen = ({
   
   return (
     <div ref={parentCardRef} className="mediaScreen mx-10">
-      <Swiper
-            ref={currentSwiper}
-            speed={600}
-            breakpoints={GridBreakPoints(heading)}
-            slidesPerView={2}
-            slidesPerGroupSkip={1}
-            grid={{
-              rows: 2,
-              fill: "row",
-            }}
-            navigation={{
-              nextEl: `#swiper-forward-${swiperId}`,
-              prevEl: `#swiper-back-${swiperId}`,
-            }}
-            spaceBetween={10}
-            pagination={{
-              clickable: true,
-            }}
-            modules={[Grid, Navigation]}
-            className="mySwiper w-full mx-20 "
-          >
-
+      
+     
 <div className="flex items-center gap-[2px] mx-1 p-2.5">
               <button className="   " id={`swiper-back-${swiperId}`}>
                 <Icon icon="mingcute:left-fill" width={24} />
@@ -391,10 +371,10 @@ const MediaScreen = ({
               </button>
             </div>
 
-      <div  className="banner" id={"bannerDiv" + moveCount?.toString()}>
+      <div  className="banner grid grid-cols-6" id={"bannerDiv" + moveCount?.toString()}>
         {data?.map((item) => {
           return (
-            <SwiperSlide className="mediaDiv" key={item.mal_id}>
+            <div className="mediaDiv" key={item.mal_id}>
 
 
 
@@ -424,11 +404,10 @@ const MediaScreen = ({
                 </div>
              
             </div>
-            </SwiperSlide>
+            </div>
           );
         })}
       </div>
-          </Swiper>
     
 
      

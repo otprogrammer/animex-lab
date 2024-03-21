@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 // import { useRouter } from 'next/router'
 // import {motion} from "framer-motion"
 // import { supabase } from '@/supabase';
+import {motion} from 'framer-motion'
 
 interface SignUpProps {
   handleClick: any;
@@ -39,7 +40,10 @@ export default function SignUp(props: SignUpProps) {
     }
   };
   return (
-    <div
+    <motion.div 
+    initial={{y:-240}}
+    animate={{y:0}}
+    exit={{ }}
       className="w-[420px] h-auto flex flex-col justify-center items-center bg-[#0e0f10] drop-shadow-2xl rounded-sm text-gray-200 "
       onClick={(e) => e.stopPropagation()}
     >
@@ -109,6 +113,6 @@ export default function SignUp(props: SignUpProps) {
           </button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }

@@ -50,6 +50,8 @@ import { HiSwitchHorizontal } from "react-icons/hi";
 import danmaku from "@oplayer/danmaku";
 import { AiOutlineClose } from "react-icons/ai";
 import { useAuth } from "./hooks/Auth";
+import { FaDonate } from "react-icons/fa";
+import { revalidatePath } from "next/cache";
 
 
 
@@ -204,6 +206,27 @@ export default function WatchContainer(props: WatchProps) {
     });
   };
 
+  const addEpisodeToDatabase = async () => {
+    await supabase.rpc("add_watchlist", {
+      user_id: user?.id,
+      data: {
+        id:   currentEpisode?.id?.split("-episode")[0],
+        anime_id : props.animeData?.anime_id || gogoData?.id ,
+        image_url:currentEpisode?.image ||
+        props.animeData?.coverimage ||
+        gogoData?.image ,
+        title:props.animeData?.title || gogoData?.title ,
+        episode:  lastEpisode,
+        time:  Date.now(),
+        duration : player?.current?.duration || null,
+        released: props.animeData?.year ,
+      },
+    });
+  };
+
+
+
+ 
   const handleNextEpisode = () => {
     setLastEpisode(parseInt(lastEpisode) + 1);
     router.push(
@@ -433,6 +456,9 @@ export default function WatchContainer(props: WatchProps) {
 
   const onEvent = useCallback(
     (payload: PlayerEvent) => {
+
+
+      
       if (payload.type == "timeupdate") {
         
       
@@ -512,13 +538,15 @@ export default function WatchContainer(props: WatchProps) {
                 //     src: res.stream.tracks.file,
                 //   })
                 // );
+                addEpisodeToDatabase()
+
                 return {
                   // src: res.sources?.filter(
                   //   (s: { quality: string }) => s.quality === "default"
                   // )?.[0].url,
                   src:res.sources[0].file,
                   title: currentEpisode?.title || "",
-                  poster: "https://img.freepik.com/premium-photo/anime-girl-neon-headphones-generative-ai_170984-6756.jpg?size=626&ext=jpg&ga=GA1.1.1412446893.1705104000&semt=ais",
+                  poster: currentEpisode?.image || props.animeData?.image_url,
                 };
               })
           )
@@ -638,37 +666,26 @@ export default function WatchContainer(props: WatchProps) {
         <div className="w-full ">
           <div className={`${params.get("ep") ? "block" : "hidden"}`}>
             {alert && (
-              <div className="alert flex flex-col lg:flex-row gap-1.5 justify-between p-2 mb-2 rounded-xl bg-neutral-900">
-                <div className="flex items-center gap-2">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    className="stroke-info shrink-0 w-6 h-6"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                    ></path>
-                  </svg>
+              <div className="alert flex flex-col lg:flex-row gap-1.5 justify-between p-2 mb-2 rounded-xl bg-black/80">
+                <div className="flex items-center gap-2 pl-2">
+                  
+                  <FaDonate />
 
                   <span className="text-sm">
-                  Our website might shut down due to server costs. To keep it alive, we need your support. Please donate to help us continue providing our services. Thank you for your help!
+                  Support Us!
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
                   <a
                     href="https://ko-fi.com/ottoprogrammer"
                     target="_blank"
-                    className="btn btn-sm capitalize rounded-lg hover:bg-neutral-900"
+                    className="btn btn-sm capitalize rounded-lg bg-neutral-900"
                   >
                     Support
                   </a>
                   <button
                     onClick={() => setAlert(false)}
-                    className="p-2 rounded-full bg-black hover:bg-neutral-900"
+                    className="p-2 rounded-full hover:bg-neutral-900"
                   >
                     <AiOutlineClose />
                   </button>
@@ -699,6 +716,7 @@ export default function WatchContainer(props: WatchProps) {
               </div>
             </Transition>
 
+
             <EpisodeContainer
               title={props.animeData?.title || (gogoData?.title as string)}
               lastEpisode={lastEpisode}
@@ -708,7 +726,12 @@ export default function WatchContainer(props: WatchProps) {
               handlePrevEpisode={handlePrevEpisode}
               totalEpisodes={gogoData?.totalEpisodes || episodesList?.length}
             />
-            <hr className=" border-zinc-700 w-[85%] mx-auto" />
+            {
+              props.animeData?.status == "Currently Airing" && (
+
+                <hr className=" border-zinc-700 w-[85%] mx-auto" />
+              )
+            }
           </div>
 
           {props.animeData?.status == "Currently Airing" &&
@@ -747,7 +770,7 @@ export default function WatchContainer(props: WatchProps) {
           />
         </div>
 
-        <div className="lg:max-w-[410px] ">
+        <div className="w-full max-w-[440px]">
           <div
             className={`w-full  rounded-sm ${
               showEpisodes ? "flex flex-row" : " flex flex-col"
@@ -839,9 +862,9 @@ export default function WatchContainer(props: WatchProps) {
             <SettingsDropdown />
           </div>
           <hr className="w-[70%] border-zinc-800 mx-auto mb-2" />
-          <div className={`${showEpisodes && "lg:w-[360px]"} `}>
+          <div className={`${showEpisodes && ""} `}>
             {showEpisodes && !episodesLoading && episodesList?.length >= 1 ? (
-              <div className="lg:w-[360px]">
+              <div className="">
                 <Episodes
                   episodesList={episodesList}
                   handleEpisodeRoute={handleEpisodeRoute}

@@ -226,7 +226,7 @@ export type GogoAnimeData = {
 
 export type GridContainerProps = {
   data:any[];
-  heading:string;
+  heading?:string;
   swiperId?:number;
   refresh?:() => void
 }

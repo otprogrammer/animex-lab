@@ -6,6 +6,7 @@ import GridContainer from "../container/GridContainer";
 import WatchList from "../watchlist/WatchList";
 import MyList from "../watchlist/MyList";
 import Airing from "../schedule/Schedule";
+import { Button } from "@nextui-org/react";
 
 type GenresTabProps = {
   data: any[];
@@ -35,23 +36,34 @@ export default function GenresTab({ data }: GenresTabProps) {
     transition: "margin-left 0.3s ease-in-out",
   };
   return (
-    <div className="w-full px-2  sm:px-0">
+    <div className="w-full px-2 mt-4 lg:mt-14 sm:px-0">
       <Tab.Group>
-        <Tab.List className="flex flex-wrap lg:grid grid-cols-9 w-full lg:max-w-[85%] xl:max-w-[75%] text-[12px] md:text-[16px] mx-auto place-self-center">
+        <Tab.List className="flex flex-wrap divide-x-[1px] divide-neutral-800 lg:grid grid-cols-9 w-full lg:max-w-[85%] xl:max-w-[75%] text-[12px] md:text-[16px] mx-auto place-self-center">
           {genres.map((genre, index) => (
-            <Tab
-              key={index}
-              onClick={() => handleItemClick(index, genre)}
-              className={`
-            focus:outline-none
-            ${
-              activeIndex === index
-                ? "txt-primary bg-black hover:text-white"
-                : "hover:txt-primary bg-neutral-900"
-            } text-center p-2 mx-[1px] cursor-pointer font-bold`}
-            >
-              {genre}
-            </Tab>
+           <Button 
+           className={`
+             focus:outline-none focus:border-none w-full
+             text-white
+             ${
+               activeIndex === index
+                 ? "text-red-600 bg-black  hover:text-white"
+                 : "hover:txt-primary bg-black/25"
+             } text-center  cursor-pointer font-bold`}
+           key={index}
+           onClick={() => handleItemClick(index, genre)}
+           radius="none">
+
+           
+           <Tab
+              className="w-full focus:outline-none focus:border-none p-2 mx-[1px] "
+             
+           >
+             
+
+             {genre}
+             
+           </Tab>
+           </Button>
           ))}
           <hr
             className="hidden md:block h-0.5 w-full bg-white"
