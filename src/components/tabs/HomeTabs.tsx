@@ -55,8 +55,9 @@ export default function HomeTabs({ Latest, Trending }: HomeContainerTabs) {
       >
         
           {Object.values(categories).map((posts, idx) => (
-            <Tab title={Object.keys(categories).map((t,id) => (<span>{idx === id && t}</span>))} key={idx}>
+            <Tab key={idx} title={Object.keys(categories).map((t,id) => (<span>{idx === id && t}</span>))} key={idx}>
               <Transition
+              key={idx}
                 appear={true}
                 as={"div"}
                 show={true}
