@@ -75,7 +75,7 @@ const [avatar_url,setAvatarUrl] = useState('')
 
   const fetchData = async () => {
 
-    let url = `https://tomeleyakujcqfaovrqr.supabase.co/rest/v1/profiles?select=*&username=eq.ottoh3x
+    let url = `https://tomeleyakujcqfaovrqr.supabase.co/rest/v1/profiles?select=*&username=eq.${id}
     `
   
     let req = await fetch(
