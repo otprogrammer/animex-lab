@@ -26,7 +26,7 @@ function Card(anime: any) {
         // onClick={() => router.replace(`?id=${anime.malId || anime.id || anime.malID}`,{scroll:false})}
         onClick={() =>
           enableIsModal(
-            anime.malId || anime.id || anime.malID || anime.anime_id
+            anime.mal_id || anime.malId || anime.id || anime.malID || anime.anime_id
           )
         }
       >

@@ -44,7 +44,7 @@ export const genrelist = [
     "Yuri",
   ];
   export const sort = ['Score','Popularity','Members','Favorites','Rank','Episodes']
-  export const years = [2010,2011,2012,2013,2014,2015,2016, 2017, 2018, 2019, 2020, 2021, 2022,2023,2024];
+  export const years = ["2010","2011","2012","2013","2014","2015","2016", "2017", "2018", "2019", "2020", "2021", "2022","2023","2024"];
   
   export const origin = ["JP", "CN", "KR"];
   

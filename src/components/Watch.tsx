@@ -83,6 +83,7 @@ export default function WatchContainer(props: WatchProps) {
         props.animeData?.episodeslist?.[0]?.id?.split("-episode")[0])
   );
 
+  const [userData,setUserData] = useState()
   const { ep, id } = useParams();
   const [click, setClick] = useState(false);
   const [gogoIframe, setGogoIframe] = useState("");
@@ -114,9 +115,14 @@ export default function WatchContainer(props: WatchProps) {
   const [zoroSrcLoading, setZoroSrcLoading] = useState(false);
   let zoroId = props.animeData?.zoroepisodes
     ?.filter((anime) => anime.number == lastEpisode)?.[0]
-    ?.id?.split("$");
+    ?.episodeId?.split("$") || 
+    props.animeData?.zoroepisodes
+    ?.filter((anime) => anime.number == lastEpisode)?.[0]
+    ?.id?.split("$")
 
-  zoroId = zoroId?.toString().split("/")[2].split("?ep=");
+    zoroId = zoroId?.toString().split("?ep=");
+    console.log('zoroid',zoroId)
+
   const autoPlay =
     typeof window !== "undefined" && localStorage.getItem("autoPlay");
 
@@ -125,6 +131,7 @@ export default function WatchContainer(props: WatchProps) {
       skipOpEd(),
       
       ui({
+        subtitle:{fontSize:30},
         pictureInPicture: true,
         slideToSeek: "always",
         screenshot: false,
@@ -193,6 +200,11 @@ export default function WatchContainer(props: WatchProps) {
 
 
   const {user} = useAuth();
+
+  const fetchUserData = async () => {
+    const {data} = await supabase.from("profile").select("*").eq("id",user?.id)
+    setUserData(data)
+  }
 
   const addAnimeToDatabase = async () => {
     await supabase.rpc("append_favs", {
@@ -312,11 +324,12 @@ export default function WatchContainer(props: WatchProps) {
 
   const subtitlesList = useMemo(() => {
     return subtitles
-      ?.filter((subtitle: SubtitleProps) => subtitle.lang)
+      ?.filter((subtitle: SubtitleProps) => subtitle.label)
       .map((subtitle: SubtitleProps, index: number) => ({
-        src: subtitle.url,
-        default: subtitle.lang === "English",
-        name: subtitle.lang,
+        src: subtitle.file,
+        default: subtitle.label === "English",
+        name: subtitle.label,
+
       }));
   }, [subtitles]);
 
@@ -325,8 +338,8 @@ export default function WatchContainer(props: WatchProps) {
     player?.current?.applyPlugin(
       vttThumbnails({
         src: subtitles?.filter(
-          (t: { lang: string }) => t?.lang == "Thumbnails"
-        )[0]?.url,
+          (t: { kind: string }) => t?.kind == "thumbnails"
+        )[0]?.file,
       })
     );
   }, [subtitles]);
@@ -353,16 +366,28 @@ export default function WatchContainer(props: WatchProps) {
 
   const fetchZoro = async () => {
     // https://api.anify.tv/sources?providerId=zoro&watchId=watch/${zoroId?.[0]}?ep=${zoroId?.[1]}&episodeNumber=${lastEpisode}&id=${props.animeData?.anilistid}&subType=sub
+    // let req = await fetch(
+    //   `https://api.anify.tv/sources?providerId=zoro&watchId=watch/${zoroId?.[0]}?ep=${zoroId?.[1]}&episodeNumber=${lastEpisode}&id=${props.animeData?.anilistid}&subType=sub`
+    // );
+
     let req = await fetch(
-      `https://api.anify.tv/sources?providerId=zoro&watchId=watch/${zoroId?.[0]}?ep=${zoroId?.[1]}&episodeNumber=${lastEpisode}&id=${props.animeData?.anilistid}&subType=sub`
+      `    https://aniwatch-api-eta.vercel.app/anime/episode-srcs?id=s${zoroId?.[0]?.replace("/watch/","")}?ep=${zoroId?.[1]}&server=vidcloud&category=sub
+      `
     );
+
     let res = await req.json();
+    // setZoroSrc(
+      
+    //     res.sources?.filter((t: { quality: string }) => t.quality == "auto")[0]
+    //       ?.url
+      
+    // );
+
     setZoroSrc(
       
-        res.sources?.filter((t: { quality: string }) => t.quality == "auto")[0]
-          ?.url
-      
-    );
+      "https://ottocrs.vercel.app/cors?url=" +res.sources?.[0]?.url
+    
+  );
     // setZoroSrc(
     //   `https://ottocors.vercel.app/cors?url=${
     //     res.sources?.filter((t: { quality: string }) => t.quality == "auto")[0]
@@ -370,7 +395,7 @@ export default function WatchContainer(props: WatchProps) {
     //   }`
     // );
 
-    setSubtitles(res.subtitles);
+    setSubtitles(res.tracks);
   };
 
   const handlePrevEpisode = () => {
