@@ -330,7 +330,6 @@ const MediaScreen = ({
     <div ref={parentCardRef} className="mediaScreen mx-10">
 
 
-      <LatestContainer />
       <div className="flex items-center gap-[2px] mx-1 p-2.5">
         <button className="   " id={`swiper-back-${swiperId}`}>
           <Icon icon="mingcute:left-fill" width={24} />
