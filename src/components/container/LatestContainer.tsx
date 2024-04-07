@@ -6,6 +6,7 @@ import moment from "moment";
 import { Pagination } from "@nextui-org/react";
 import Link from "next/link";
 import { Transition } from "@headlessui/react";
+import { isMobile } from "@oplayer/core";
 
 
 
@@ -44,12 +45,13 @@ export default function LatestContainer({data,heading}) {
       {/* Pagination controls */}
       <div className="flex justify-between items-center w-full py-2">
 
-      <span className={`  flex text-white  font-semibold items-center gap-2  text-2xl`}>
+      <span className={`  flex text-white  font-semibold items-center gap-2  text-sm md:text-2xl`}>
               <span className="w-1 h-8 bg-red-500 rounded-full"></span>
               {heading && heading}
             </span>
 
       <Pagination
+      size={isMobile ? "sm" : "lg"}
         isCompact
         showShadow
         showControls
@@ -98,7 +100,7 @@ export default function LatestContainer({data,heading}) {
         //   as={`/anime/${anime.id}`}
         >
             <div
-              className={`group card rounded-lg  relative h-[165px] overflow-hidden cursor-pointer `}
+              className={`group card rounded-lg  relative h-[125px] md:h-[165px] overflow-hidden cursor-pointer `}
             >
               <div className="absolute inset-0 flex items-center justify-center">
                 <div
@@ -108,7 +110,7 @@ export default function LatestContainer({data,heading}) {
                 </div>
               </div>
               <img
-                className=" object-cover overflow-hidden h-[165px] group-hover:scale-110 group-hover:opacity-70  shadow-xl transition-all duration-300 ease-in-out rounded-sm"
+                className=" object-cover overflow-hidden h-[125px] md:h-[165px] group-hover:scale-110 group-hover:opacity-70  shadow-xl transition-all duration-300 ease-in-out rounded-sm"
                 src={anime.image}
                 alt={anime.title}
               />
@@ -121,7 +123,7 @@ export default function LatestContainer({data,heading}) {
                     backgroundSize: "100% 100%",
                     position: "absolute",
                     top: "2px",
-                    left: 0,
+                    left: "2px",
                     textShadow: "0 1px 2px #000, 0 1px 2px #000",
                     fontSize: ".75rem",
                   }}
@@ -139,7 +141,7 @@ export default function LatestContainer({data,heading}) {
                   backgroundSize: "100% 100%",
                   position: "absolute",
                   top: "2px",
-                  right: 0,
+                  right: "2px",
                   textShadow: "0 1px 2px #000, 0 1px 2px #000",
                   fontSize: ".75rem",
                 }}

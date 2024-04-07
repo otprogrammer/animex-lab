@@ -59,10 +59,9 @@ console.log(Favorites)
               leaveFrom="opacity-100 rotate-0 scale-100 "
               leaveTo="opacity-0 scale-95 "
             >
-              <Card >
-                <CardBody>
+              
                 <div className="overflow-hidden w-full ">
-                <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6  gap-2 mt-4">
+                <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6  gap-1 mt-4">
                   {Favorites?.map((anime: any, index: number) => (
                     <div key={index}>
                       <ListCard
@@ -76,8 +75,8 @@ console.log(Favorites)
                   ))}
                 </div>
               </div>
-                </CardBody>
-              </Card>
+               
+              
 
               {/* <GridContainer data={posts} heading={idx == 0 ? "Latest" : idx === 1 ? "Trending" : "List"}/> */}
             </Transition>
@@ -85,7 +84,7 @@ console.log(Favorites)
 
           <Tab
             title="Watchlist"
-            className="p-2"
+            className="md:p-2"
             
           >
             <Transition
@@ -99,8 +98,7 @@ console.log(Favorites)
               leaveFrom="opacity-100 rotate-0 scale-100 "
               leaveTo="opacity-0 scale-95 "
             >
-              <Card>
-                <CardBody>
+              
                 <div className="mt-2 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-4 gap-2 lg:p-3">
                 {WatchList?.map((a: any, i: number) => (
                   <WatchCard
@@ -117,8 +115,7 @@ console.log(Favorites)
                   <div />
                 )}
               </div>
-                </CardBody>
-              </Card>
+               
 
               {/* <GridContainer data={posts} heading={idx == 0 ? "Latest" : idx === 1 ? "Trending" : "List"}/> */}
             </Transition>

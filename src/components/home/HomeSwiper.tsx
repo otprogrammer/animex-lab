@@ -77,16 +77,17 @@ export default function HomeSwiper() {
         onSlideChange={handleSlideChange}
       >
         {data?.[0]?.trending?.map((show: any, index: any) => (
-          <SwiperSlide  key={index} className=" z-50 relative max-h-[400px] ">
-            <div style={{
-            background: `url(https://image.tmdb.org/t/p/original${show.backdrop_path})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center center",
-            zoom:"80%",
-            opacity: "0.2",
-          }} className="absolute inset-0 hidden md:block">
-
-            </div>
+          <SwiperSlide key={index} className=" z-50 relative max-h-[400px] ">
+            <div
+              style={{
+                background: `url(https://image.tmdb.org/t/p/original${show.backdrop_path})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center center",
+                zoom: "80%",
+                opacity: "0.2",
+              }}
+              className="absolute inset-0 hidden md:block"
+            ></div>
             <div className=" md:hidden relative rounded-2xl">
               <img
                 src={`${`https://image.tmdb.org/t/p/original${show.poster_path}`}`}
@@ -121,23 +122,19 @@ export default function HomeSwiper() {
               ""
             )}
 
-            <div
-              
-              className="relative h-full hidden md:flex  md:flex-row-reverse md:justify-between      "
-            >
-              
+            <div className="relative h-full hidden md:flex  md:flex-row-reverse md:justify-between ">
               <div className="flex flex-col justify-between gap-2 p-3">
                 <div>
                   <div className="flex justify-between items-center ">
-                  {/* <img         className="h-10"        src={`${`https://image.tmdb.org/t/p/original${show.logo}`}`}
+                    {/* <img         className="h-10"        src={`${`https://image.tmdb.org/t/p/original${show.logo}`}`}
  /> */}
-                  <h1 className="rounded-full text-2xl txt-primary font-bold relative gap-2 line-clamp-1">
-                    {show?.title}
-                    <span className="text-zinc-400"> ({show?.year})</span>
-                  </h1>
-                  <span className="text-warning">{show?.status}</span>
-                    </div>
-                    
+                    <h1 className="rounded-full text-2xl txt-primary font-bold relative gap-2 line-clamp-1">
+                      {show?.title}
+                      <span className="text-zinc-400"> ({show?.year})</span>
+                    </h1>
+                    <span className="text-warning">{show?.status}</span>
+                  </div>
+
                   <p className="relative px-1 z-50 lg:w-full mt-3 indent-4 text-default-600 italic text-[10px] md:text-sm">
                     {show.synopsis}
                   </p>
@@ -163,23 +160,22 @@ export default function HomeSwiper() {
                   </div> */}
                 </div>
 
-                <div                   className=" mt-4 z-50 flex items-end justify-between"
->
-                <div className="">
+                <div className=" mt-4 z-50 flex items-end justify-between">
+                  <div className="">
+                    {show?.genres?.map((s, i: number) => (
+                      <span className="text-white font-medium text-sm" key={i}>
+                        {s}
+                        {i !== show?.genres.length - 1 && ", "}
+                      </span>
+                    ))}
+                  </div>
 
-               {show?.genres?.map((s, i: number) => (
-                <span className="text-white font-medium text-sm" key={i}>{s}{i !== show?.genres.length - 1 && ", "}</span>
-              ))}
-                </div>
-            
-                <Link
-                  href={`/anime/${show.anime_id}`}
-                >
-                  <Button className="flex items-center rounded-sm shadow-2xl text-white bg-black/80 hover:bg-red-600 shadow-primary  py-1 px-4  gap-4 ">
-                    <FaPlay />
-                    <span>Play</span>
-                  </Button>
-                </Link>
+                  <Link href={`/anime/${show.anime_id}`}>
+                    <Button className="flex items-center rounded-sm shadow-2xl text-white bg-black/80 hover:bg-red-600 shadow-primary  py-1 px-4  gap-4 ">
+                      <FaPlay />
+                      <span>Play</span>
+                    </Button>
+                  </Link>
                 </div>
               </div>
 

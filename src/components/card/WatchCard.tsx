@@ -68,7 +68,7 @@ function WatchCard(anime: WatchListProps) {
         <div
           className={`card relative ${
             anime.heading === "WatchList" || anime.heading === "User WatchList"
-              ? "h-[165px]"
+              ? "h-[125px] md:h-[165px]"
               : "h-[180px] md:h-[270px]"
           }   overflow-hidden `}
         >

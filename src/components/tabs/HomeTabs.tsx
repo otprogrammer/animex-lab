@@ -41,7 +41,7 @@ export default function HomeTabs({ Latest, Trending }: HomeContainerTabs) {
     transition: "margin-left 0.3s ease-in-out",
   };
   return (
-    <div className="w-full px-2 mt-9  sm:px-0">
+    <div className="w-full md:px-2 mt-9  px-0">
       <Tabs
         aria-label="Options"
         selectedKey={selected}
