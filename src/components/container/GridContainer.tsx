@@ -39,10 +39,14 @@ export default function GridContainer({
     <div className="home_container m-3 md:max-w-[90%] mx-auto">
   
         <>
+
           <div className=" w-full flex justify-between items-center mt-5">
-            <span className={` px-2 flex text-white $ font-semibold items-end  text-2xl`}>
+            {heading && 
+            <span className={`  flex text-white  font-semibold items-center gap-2  text-2xl`}>
+              <span className="w-1 h-8 bg-red-500 rounded-full"></span>
               {heading && heading}
             </span>
+            }
 
             <div className="flex items-center gap-[2px] mx-1 p-2.5">
               <button className="   " id={`swiper-back-${swiperId}`}>

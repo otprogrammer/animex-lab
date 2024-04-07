@@ -16,6 +16,7 @@ import SwiperCore from "swiper";
 SwiperCore.use([]);
 import { Navigation, Pagination, Grid } from "swiper/modules";
 import { Icon } from "@iconify/react/dist/iconify.js";
+import LatestContainer from "@/components/container/LatestContainer";
 
 const MediaScreen = ({
   heading,
@@ -327,6 +328,9 @@ const MediaScreen = ({
 
   return (
     <div ref={parentCardRef} className="mediaScreen mx-10">
+
+
+      <LatestContainer />
       <div className="flex items-center gap-[2px] mx-1 p-2.5">
         <button className="   " id={`swiper-back-${swiperId}`}>
           <Icon icon="mingcute:left-fill" width={24} />
@@ -334,7 +338,7 @@ const MediaScreen = ({
         <button className="     " id={`swiper-forward-${swiperId}`}>
           <Icon icon="mingcute:right-fill" width={24} />
         </button>
-      </div>
+      L</div>
 
       <div
         className="banner grid grid-cols-6"

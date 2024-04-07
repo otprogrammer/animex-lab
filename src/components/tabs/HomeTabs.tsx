@@ -10,6 +10,7 @@ import { getWatchList } from "../watchlist/getWatchList";
 import { getAnimeList } from "../watchlist/getAnimeList";
 import { Button, Chip } from "@nextui-org/react";
 import { Tabs, Tab, Card, CardBody, CardHeader } from "@nextui-org/react";
+import LatestContainer from "../container/LatestContainer";
 
 type HomeContainerTabs = {
   Latest: any[];
@@ -72,10 +73,12 @@ export default function HomeTabs({ Latest, Trending }: HomeContainerTabs) {
               leaveFrom="opacity-100 rotate-0 scale-100 "
               leaveTo="opacity-0 scale-95 "
             >
-              {idx < 2 ? (
+              {
+              idx === 0 ? <LatestContainer data={posts} heading={"Latest Episodes"}/> :
+              idx === 1 ? (
                 <GridContainer
                   data={posts}
-                  heading={idx == 0 ? "Latest" : "Trending"}
+                  heading={"Trending"}
                 />
               ) : idx == 2 ? (
                 // <MyList />

@@ -80,6 +80,7 @@ export default function WatchContainer(props: WatchProps) {
   const [source, setSource] = useState("");
   const player = useRef<Player>(null);
   const router = useRouter();
+  const r = useRouter
   let [isOpen, setIsOpen] = useState(true);
   const [showEpisodes, setShowEpisodes] = useState(true);
   const params = useSearchParams();

@@ -29,7 +29,6 @@ const fetchAnime = async (q: string | number, title: string | undefined) => {
   );
 
   let res = await req.json();
-  console.log(res)
   return res;
 
   // const { data } = await supabase
@@ -96,7 +95,6 @@ export default async function Anime({
   searchParams: query,
 }: PageProps) {
   const getAnime = await fetchAnime(animeId, query?.title);
-  console.log(getAnime)
   const data = getAnime?.filter((anime) => !anime.title?.includes("(Dub)"))[0] || getAnime[0];
 
   console.log(query)

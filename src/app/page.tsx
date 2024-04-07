@@ -65,7 +65,7 @@ const getTrending = async () => {
 
 const fetchLatest = async () => {
   let req = await fetch(
-    `https://eu2-cheerful-tadpole-32531.upstash.io/get/latest`,
+    `https://eu2-cheerful-tadpole-32531.upstash.io/get/recent_episodes`,
     {
       cache: "no-store",
       headers: {
