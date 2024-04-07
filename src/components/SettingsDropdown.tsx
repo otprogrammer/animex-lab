@@ -9,23 +9,25 @@ import {
   useAutoSkip,
   useEpisodesImage,
 } from "../../store/store";
+import { usePlayerStore } from "../../store/player/usePlayer";
 
 export default function SettingsDropdown() {
   const isEpisodesImg =
     typeof window !== "undefined" && localStorage.getItem("showEpisodesImg");
-  const autoNext =
-    typeof window !== "undefined" && localStorage.getItem("autoNext");
-  const autoPlay =
-    typeof window !== "undefined" && localStorage.getItem("autoPlay");
-
-  const autoSkip =
-    typeof window !== "undefined" && localStorage.getItem("autoSkip");
-  console.log(typeof isEpisodesImg);
-
+  
   const { isEpImgEnabled, enableEpImg, disableEpImg } = useEpisodesImage();
-  const { isAutoNext, enableAutoNext, disableAutoNext } = useAutoNext();
-  const { isAutoPlay, enableAutoPlay, disableAutoPlay } = useAutoPlay();
-  const { isAutoSkip, enableAutoSkip, disableAutoSkip } = useAutoSkip();
+  const {
+    isAutoNext,
+    enableAutoNext,
+    disableAutoNext,
+    isAutoPlay,
+    enableAutoPlay,
+    disableAutoPlay,
+    isAutoSkip,
+    enableAutoSkip,
+    disableAutoSkip,
+  } = usePlayerStore();
+
   const isN = useRef(null);
   return (
     <Menu as="div" className="relative inline-flex text-left z-50">
@@ -51,7 +53,7 @@ export default function SettingsDropdown() {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 mt-8 w-60 origin-top-right divide-y divide-gray-100 rounded-md bg-neutral-900 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <Menu.Items className="absolute right-0  mt-8 w-60 origin-top-right divide-y divide-gray-100 rounded-md bg-black/80 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div className="px-1 py-1 ">
             <Menu.Item as="div">
               {({ active }) => (
@@ -62,12 +64,12 @@ export default function SettingsDropdown() {
                 >
                   <Switch
                     ref={isN}
-                    checked={autoNext == "true" ? true : false}
+                    checked={isAutoNext  ? true : false}
                     onChange={
-                      autoNext == "true" ? disableAutoNext : enableAutoNext
+                      isAutoNext  ? disableAutoNext : enableAutoNext
                     }
                     className={`${
-                      autoNext == "true" ? "bg-red-600" : "bg-neutral-700"
+                      isAutoNext  ? "bg-red-600" : "bg-neutral-700"
                     }
           relative inline-flex h-[20px] w-[40px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
                   >
@@ -75,7 +77,7 @@ export default function SettingsDropdown() {
                     <span
                       aria-hidden="true"
                       className={`${
-                        autoNext == "true" ? "translate-x-5" : "translate-x-0"
+                        isAutoNext  ? "translate-x-5" : "translate-x-0"
                       }
             pointer-events-none inline-block h-[16px] w-[16px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
                     />
@@ -92,10 +94,10 @@ export default function SettingsDropdown() {
                   } group flex gap-3 w-full items-center rounded-md px-2 py-2 text-sm`}
                 >
                   <Switch
-                    checked={autoSkip == "true" ? true : false}
+                    checked={isAutoSkip  ? true : false}
                     onChange={isAutoSkip ? disableAutoSkip : enableAutoSkip}
                     className={`${
-                      autoSkip == "true" ? "bg-red-600" : "bg-neutral-700"
+                      isAutoSkip  ? "bg-red-600" : "bg-neutral-700"
                     }
           relative inline-flex h-[20px] w-[40px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
                   >
@@ -103,7 +105,7 @@ export default function SettingsDropdown() {
                     <span
                       aria-hidden="true"
                       className={`${
-                        autoSkip == "true" ? "translate-x-5" : "translate-x-0"
+                        isAutoSkip  ? "translate-x-5" : "translate-x-0"
                       }
             pointer-events-none inline-block h-[16px] w-[16px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
                     />
@@ -120,12 +122,12 @@ export default function SettingsDropdown() {
                   } group flex gap-3 w-full items-center rounded-md px-2 py-2 text-sm`}
                 >
                   <Switch
-                    checked={autoPlay == "true" ? true : false}
+                    checked={isAutoPlay  ? true : false}
                     onChange={
-                      autoPlay == "true" ? disableAutoPlay : enableAutoPlay
+                      isAutoPlay  ? disableAutoPlay : enableAutoPlay
                     }
                     className={`${
-                      autoPlay == "true" ? "bg-red-600" : "bg-neutral-700"
+                      isAutoPlay  ? "bg-red-600" : "bg-neutral-700"
                     }
           relative inline-flex h-[20px] w-[40px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
                   >
@@ -133,7 +135,7 @@ export default function SettingsDropdown() {
                     <span
                       aria-hidden="true"
                       className={`${
-                        autoPlay == "true" ? "translate-x-5" : "translate-x-0"
+                        isAutoPlay  ? "translate-x-5" : "translate-x-0"
                       }
             pointer-events-none inline-block h-[16px] w-[16px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
                     />
@@ -151,11 +153,11 @@ export default function SettingsDropdown() {
                 >
                   <Switch
                     checked={isEpisodesImg == "true" ? true : false}
-                    onChange={
+                      onChange={
                       isEpisodesImg == "true" ? disableEpImg : enableEpImg
                     }
                     className={`${
-                      isEpisodesImg == "true" ? "bg-red-600" : "bg-neutral-700"
+                      isEpisodesImg == "true"  ? "bg-red-600" : "bg-neutral-700"
                     }
           relative inline-flex h-[20px] w-[40px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75`}
                   >

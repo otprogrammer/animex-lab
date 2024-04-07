@@ -425,24 +425,30 @@ header {
 }
 
 
-@media (min-width: 601px) {
+/* @media (min-width: 601px) {
  .sws .swiper-slide-next {
   scale: 0.83 !important;
 
 }
 
 .sws .swiper-slide-prev {
-  scale: 0.83 !important;
+  scale: 0.83  !important;
 
 }
 .sws .swiper-slide-active {
   scale: 1.10 !important;
 
 }
-}
+} */
 
 
 
 .homeswtab {
   background: linear-gradient(90deg,rgba(45,45,45,.30342576483718486),rgba(30,30,32,.6675714231004901) 22%,rgb(37 37 40) 32%) !important;
+}
+
+.css-1ww4d3g{
+  max-height: 80vh !important;
+  aspect-ratio: 16 / 9;
+
 }

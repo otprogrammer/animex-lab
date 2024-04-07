@@ -15,7 +15,7 @@
     "@oplayer/danmaku": "^1.2.24",
     "@oplayer/hls": "^1.2.22",
     "@oplayer/plugins": "^1.0.7",
-    "@oplayer/react": "^1.2.8",
+    "@oplayer/react": "^1.2.10",
     "@oplayer/torrent": "^1.2.23",
     "@oplayer/ui": "^1.2.22",
     "@supabase/auth-helpers-nextjs": "^0.9.0",
@@ -42,6 +42,7 @@
     "styled-components": "^6.1.8",
     "swiper": "^10.3.1",
     "swr": "^2.2.4",
+    "tailwind": "^4.0.0",
     "zustand": "^4.4.2"
   },
   "devDependencies": {

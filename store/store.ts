@@ -1,5 +1,7 @@
 "use client"
 import { create } from "zustand";
+import supabase from "../utils/supabase";
+import { useAuth } from "@/components/hooks/Auth";
 
 const isEpisodesImg = typeof window !== "undefined" && localStorage.getItem("showEpisodesImg");
 const autoNext = typeof window !== "undefined" && localStorage.getItem("autoNext");
@@ -96,5 +98,64 @@ export const useAutoNext = create<useAutoNextProps>((set) => ({
   
     disableIsModal: () => {
       set(() => ({ isModal: false }));
+    },
+  }));
+
+
+  export const useUser = create((set) => ({
+    isUser: false,
+    userData : {},
+    id:"",
+  
+    getUserData: async (userid) => {
+
+      const {data} =await supabase
+      .from("profiles")
+      .select("*")
+      .eq("id", userid)
+
+      set(() => ({userData : data}))
+    },
+  
+    
+  }));
+
+
+  export const useDetailsModal = create<useDetailsModalProps>((set,get) => ({
+    isOpen: false,
+    id:"",
+    anilistid:"",
+    anilistData:{},
+  
+    openModal: (id,anilistid) => {
+      set(() => ({ isOpen: true,id:id,anilistid:anilistid }));
+    },
+  
+    closeModal: () => {
+      set(() => ({ isOpen: false }));
+    },
+    clearId: () => {
+      set(() => ({ id:"" }));
+    },
+    getAnilistData : async () => {
+      let url = `https://ottoscraper.vercel.app/api/anilist/${get().anilistid}`;
+      let req = await fetch(url);
+      let res = await req.json();
+      set(() => ({anilistData : res}))
+      
+
+    }
+  }));
+
+  export const useSearchModal = create<useSearchModalProps>((set) => ({
+    isOpen: false,
+    id:"",
+  
+    openModal: (id) => {
+      set(() => ({ isOpen: true,id:id }));
+    },
+  
+    closeModal: () => {
+      set(() => ({ isOpen: false }));
     },
   }));

@@ -38,7 +38,7 @@ const TP = ({ data }: React.JSX.Element | any) => {
   );
 };
 
-export default function DetailsTabs(props: DetailsTabsProps) {
+export default function DetailsModalTab(props: DetailsTabsProps) {
   let [categories] = useState({
     Overview: "",
     Characters: "",
@@ -61,7 +61,7 @@ export default function DetailsTabs(props: DetailsTabsProps) {
   return (
     <div className="w-full px-2  sm:px-0">
       <Tab.Group>
-        <Tab.List className="grid grid-cols-4 divide-x-[1px] divide-neutral-800 text-sm md:text-base md:grid-cols-6 w-full lg:max-w-full 2xl:max-w-[75%] mx-auto place-self-center">
+        <Tab.List className="grid grid-cols-4 divide-x-[1px] divide-neutral-800 text-sm md:text-lg md:grid-cols-6 w-full lg:max-w-full 2xl:max-w-[75%] mx-auto place-self-center">
           {Object.keys(categories).map((category, index) => (
             <Button 
             className={`
@@ -93,7 +93,7 @@ export default function DetailsTabs(props: DetailsTabsProps) {
             style={hrStyles}
           />
         </Tab.List>
-        <Tab.Panels className="bg-black/40 ">
+        <Tab.Panels className="bg-black max-h-[90vh] overflow-y-scroll">
           <Tab.Panel>
             <Transition
               appear={true}

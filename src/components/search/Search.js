@@ -5,11 +5,13 @@ import Link from "next/link";
 import cheerio from "cheerio";
 
 import { useRouter } from "next/navigation";
+import { useSearchModal } from "../../../store/store";
 
 const Search = () => {
   const router = useRouter();
   const [val, setVal] = useState("");
   const [content, setContent] = useState([]);
+  const {openModal} = useSearchModal()
   useEffect(() => {
     var SearchBar = document.getElementById("search");
     var SearchInput = document.getElementById("searchinput");

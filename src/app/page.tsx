@@ -3,6 +3,7 @@ import GridContainer from "@/components/container/GridContainer";
 import Layout from "@/components/head/Head";
 import HomeSwiper from "@/components/home/HomeSwiper";
 import AnimeModal from "@/components/modal/AnimeModal";
+import DetailsModal from "@/components/modals/DetailsModal";
 import HomeTabs from "@/components/tabs/HomeTabs";
 import Tabs from "@/components/tabs/Tabs";
 import { Metadata } from "next";
@@ -87,7 +88,6 @@ async function Home() {
       <AnimeModal />
       {/* <Tabs Trending={data} Latest={latest} MyList={[]} /> */}
       <HomeTabs Trending={data} Latest={latest} MyList={[]} />
-
     </>
   );
 }

@@ -69,7 +69,7 @@ console.log(Favorites)
                         title={`${anime?.title}`}
                         image_url={anime?.image_url}
                         heading={"UserList"}
-                        id={anime?.id}
+                        id={anime?.anime_id}
                         refresh={refresh}
                       />
                     </div>
@@ -101,7 +101,7 @@ console.log(Favorites)
             >
               <Card>
                 <CardBody>
-                <div className="mt-2 grid grid-cols-2 lg:grid-cols-4 2xl:grid-cols-4 gap-2 lg:p-3">
+                <div className="mt-2 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-4 gap-2 lg:p-3">
                 {WatchList?.map((a: any, i: number) => (
                   <WatchCard
                     key={i}

@@ -2,17 +2,17 @@
 import React, { useEffect, useState } from "react";
 import Search from "../search/Search";
 import Link from "next/link";
-import { useContact } from "../../../store/store";
+import { useContact, useSearchModal, useUser } from "../../../store/store";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
-import { FaUserAlt, FaUserCircle } from "react-icons/fa";
+import { FaSearch, FaUserAlt, FaUserCircle } from "react-icons/fa";
 import Backdrop from "../backdrop/Backdrop";
 import SignIn from "../auth/SignIn";
 import OutsideClickHandler from "../browse/OutsideClickHandler";
 import SignUp from "../auth/SignUp";
 import { useAuth } from "../hooks/Auth";
 import supabase from "../../../utils/supabase";
-import { CgLogOff } from "react-icons/cg";
+import { CgLogOff, CgSearch } from "react-icons/cg";
 import {
   Navbar as Nv,
   NavbarBrand,
@@ -58,6 +58,7 @@ import {
   useDisclosure,
 } from "@nextui-org/react";
 import UserDropdown from "./UserDropdown";
+import SearchModal from "../modal/SearchModal";
 
 const LoginMenu = (props: LoginMenuProps) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -140,15 +141,22 @@ export default function Navbar() {
     typeof window !== "undefined" &&
     JSON.parse(localStorage.getItem("resumeId"));
   const { user } = useAuth();
+  const {getUserData,userData} = useUser()
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const {openModal} = useSearchModal()
 
   
 
   useEffect(() => {
     if (resumeId)
       if (resumeId) toast.info(<Msg resumeId={resumeId} />, { theme: "dark" });
+      if (user) {
+
+        getUserData(user?.id)
+      }
   }, []);
+  console.log(userData)
 
   const SignOut = async () => {
     await supabase.auth.signOut();
@@ -175,19 +183,9 @@ export default function Navbar() {
           />
         </NavbarContent>
 
-        <NavbarContent className="sm:hidden pr-3" justify="center">
-          <NavbarBrand>
-            <Button
-              variant="faded"
-              className="font-bold px-6 bg-neutral-900/90 text-white border-neutral-600/70"
-              onClick={() => router.push("/")}
-            >
-              ANIMEX
-            </Button>{" "}
-          </NavbarBrand>
-        </NavbarContent>
+        
 
-        <NavbarContent className="hidden lg:flex gap-4" justify="center">
+        <NavbarContent className="" justify="center">
           <NavbarBrand>
             <Button
               onClick={() => router.push("/")}
@@ -199,10 +197,13 @@ export default function Navbar() {
           </NavbarBrand>
         </NavbarContent>
 
-        <NavbarContent justify="end" className="gap-1">
-          <NavbarItem className="">
-            <Search />
+        <NavbarContent justify="end" className="gap-2">
+        <NavbarItem onClick={openModal} className="cursor-pointer p-2.5 bg-neutral-900 hover:bg-neutral-800 rounded-lg">
+            <FaSearch size={14} />
           </NavbarItem>
+          {/* <NavbarItem className="">
+            <Search />
+          </NavbarItem> */}
 
           <NavbarItem className="">
             {user ? (
@@ -358,7 +359,8 @@ export default function Navbar() {
           </Backdrop>
         )}
       </AnimatePresence>
-
+      
+<SearchModal />
       <AnimatePresence>
         {showRegister && (
           <Backdrop onClick={() => setShowRegister(false)}>

@@ -1,8 +1,9 @@
 import React from "react";
 import { ADProps, AnimeInfo, GogoAnimeData } from "../../../types/types";
 import { Icon } from "@iconify/react";
+import { Skeleton } from "@nextui-org/react";
 
-const AD = ({ title, data }: ADProps) => {
+export const AD = ({ title, data }: ADProps) => {
   return (
     <div className="flex flex-col py-1">
       <span className=" font-bold txt-primary">{title}</span>
@@ -21,6 +22,7 @@ interface OverViewProps {
   click: boolean;
   handleClick: () => void;
   handlePlay: () => void;
+  anilistData:any;
 }
 
 export default function Overview({
@@ -29,6 +31,7 @@ export default function Overview({
   click,
   handleClick,
   handlePlay,
+  anilistData
 }: OverViewProps) {
   return (
     <div
@@ -44,15 +47,21 @@ export default function Overview({
       >
         <div className="w-full z-50  max-w-[200px] mx-auto ">
           {/* <button className="p-2 w-full mx-auto  my-1 rounded-full">Watch</button> */}
-          <img
-            src={
-              (animeData?.poster_path &&
-                `https://image.tmdb.org/t/p/original${animeData?.poster_path}`) ||
-              animeData?.coverimage ||
-              gogoData?.image
-            }
-            className="w-[140px] h-[200px] mx-auto text-center lg:w-full lg:h-[300px] rounded-md object-cover"
-          />
+          {animeData?.poster_path ||
+                animeData?.coverimage ||
+                gogoData?.image ? (
+            <img
+              src={
+                (animeData?.poster_path &&
+                  `https://image.tmdb.org/t/p/original${animeData?.poster_path}`) ||
+                animeData?.coverimage ||
+                gogoData?.image
+              }
+              className="w-[140px] h-[200px] mx-auto text-center lg:w-full lg:h-[300px] rounded-md object-cover"
+            />
+          ) : (
+            <Skeleton className="w-[140px] h-[200px] mx-auto text-center lg:w-full lg:h-[300px] rounded-md object-cover" />
+          )}
           <div className="flex justify-between py-1">
             <span
               onClick={handlePlay}
@@ -98,20 +107,23 @@ export default function Overview({
           <div className="grid  md:grid-cols-2 2xl:grid-cols-3">
             <AD title={"Rank"} data={animeData?.rank || "?"} />
 
-            <AD title={"Score"} data={animeData?.score || "N/A"} />
+            <AD title={"Score"} data={animeData?.score || anilistData?.averageScore || "N/A"} />
             <AD title={"Duration"} data={animeData?.duration || "N/A"} />
 
-            <AD title={"Status"} data={animeData?.status || gogoData?.status} />
+            <AD
+              title={"Status"}
+              data={animeData?.status || gogoData?.status || "N/A"}
+            />
             <AD
               title={"Title Japanese"}
-              data={animeData?.title_japanese || gogoData?.otherName}
+              data={animeData?.title_japanese || gogoData?.otherName || "N/A"}
             />
 
             <AD
               title={"Release Date"}
               data={animeData?.year || gogoData?.releaseDate}
             />
-            <AD title={"Episodes"} data={animeData?.episodes || "N/A"} />
+            <AD title={"Episodes"} data={animeData?.episodes || anilistData?.episodes || "N/A"} />
             <AD title={"Rating"} data={animeData?.rating || "N/A"} />
             <AD title={"Source"} data={animeData?.source || "N/A"} />
             <AD title={"Premiered"} data={animeData?.premiered || "N/A"} />

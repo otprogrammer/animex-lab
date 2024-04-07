@@ -20,6 +20,8 @@ import Link from "next/link";
 import supabase from "../../../utils/supabase";
 import { FaPlay } from "react-icons/fa";
 import { Button } from "@nextui-org/react";
+import { AD } from "../details/Overview";
+import { isMobile } from "@oplayer/core";
 SwiperCore.use([EffectCoverflow, Pagination]);
 
 const headers = {
@@ -44,7 +46,6 @@ export default function HomeSwiper() {
 
   return (
     <div className="max-w-[80%] mx-auto overflow-hidden w-full ">
-      
       <div className="">
         <div className="flex p-4 items-center flex-row-reverse w-full lg:w-11/12 justify-between mx-auto">
           <div className="flex items-center justify-center gap-4">
@@ -58,19 +59,16 @@ export default function HomeSwiper() {
         grabCursor={true}
         speed={900}
         centeredSlides={true}
-        autoplay={{ delay: 5000 }}
-        slidesPerView={2} // Display 4 slides at once
+        autoplay={{ delay: 50000 }}
+        slidesPerView={isMobile ? 2 : 1} // Display 4 slides at once
         spaceBetween={2} // Add space between slides
         coverflowEffect={{
-          rotate: 10,
-          depth: 90,
+          rotate: 0,
+          depth: 0,
           slideShadows: true,
-          stretch: 40,
-          scale:1.09,
-
+          stretch: 0,
+          scale: 1,
         }}
-
-        
         modules={[Autoplay]}
         mousewheel={true}
         initialSlide={1}
@@ -79,11 +77,20 @@ export default function HomeSwiper() {
         onSlideChange={handleSlideChange}
       >
         {data?.[0]?.trending?.map((show: any, index: any) => (
-          <SwiperSlide key={index}  className="homeswtab  max-h-[500px] ">
+          <SwiperSlide  key={index} className=" z-50 relative max-h-[400px] ">
+            <div style={{
+            background: `url(https://image.tmdb.org/t/p/original${show.backdrop_path})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center center",
+            zoom:"80%",
+            opacity: "0.2",
+          }} className="absolute inset-0 hidden md:block">
+
+            </div>
             <div className=" md:hidden relative rounded-2xl">
               <img
                 src={`${`https://image.tmdb.org/t/p/original${show.poster_path}`}`}
-                className={`w-full md:hidden h-full rounded-lg `}
+                className={`w-[200px] md:hidden object-cover h-full rounded-lg `}
                 alt=""
               />
               {/* <div
@@ -94,54 +101,91 @@ export default function HomeSwiper() {
                 }`}
               ></div> */}
             </div>
-              {activeSlide === index ? (
-                <div
-                  className="flex md:hidden gap-2 
+            {activeSlide === index ? (
+              <div
+                className="flex md:hidden gap-2 
                justify-center
               items-center my-2 "
+              >
+                <Link
+                  className="bg-black hover:bg-red-600 z-50"
+                  href={`/anime/${show.anime_id}`}
                 >
-                  <Link  className="bg-black hover:bg-red-600 z-50" href={`/anime/${show.anime_id}`}>
-                    <Button className="flex items-center rounded-sm  text-white  shadow py-1 h-fit px-4  gap-4 ">
-                      <FaPlay />
-                      <span>Play</span>
-                    </Button>
-                  </Link>
-                </div>
-              ) : (
-                ""
-              )}
+                  <Button className="flex items-center rounded-sm  text-white  shadow py-1 h-fit px-4  gap-4 ">
+                    <FaPlay />
+                    <span>Play</span>
+                  </Button>
+                </Link>
+              </div>
+            ) : (
+              ""
+            )}
 
-            <div className="relative hidden md:flex md:flex-row-reverse md:justify-between      ">
-              {/* <button className="rounded-full text-white font-bold relative gap-2 ">
-                        <svg
-                          viewBox="0 0 512 512"
-                          fill="currentColor"
-                          className="w-4 h-4"
-                        >
-                          <path d="M133 440a35.37 35.37 0 01-17.5-4.67c-12-6.8-19.46-20-19.46-34.33V111c0-14.37 7.46-27.53 19.46-34.33a35.13 35.13 0 0135.77.45l247.85 148.36a36 36 0 010 61l-247.89 148.4A35.5 35.5 0 01133 440z" />
-                        </svg>
-                      </button> */}
+            <div
+              
+              className="relative h-full hidden md:flex  md:flex-row-reverse md:justify-between      "
+            >
+              
               <div className="flex flex-col justify-between gap-2 p-3">
                 <div>
+                  <div className="flex justify-between items-center ">
+                  {/* <img         className="h-10"        src={`${`https://image.tmdb.org/t/p/original${show.logo}`}`}
+ /> */}
+                  <h1 className="rounded-full text-2xl txt-primary font-bold relative gap-2 line-clamp-1">
+                    {show?.title}
+                    <span className="text-zinc-400"> ({show?.year})</span>
+                  </h1>
+                  <span className="text-warning">{show?.status}</span>
+                    </div>
+                    
+                  <p className="relative px-1 z-50 lg:w-full mt-3 indent-4 text-default-600 italic text-[10px] md:text-sm">
+                    {show.synopsis}
+                  </p>
+                  {/* <div className="grid grid-cols-4">
 
-                <h1 className="rounded-full txt-primary font-bold relative gap-2 line-clamp-1">
-                  {show?.title}
-                </h1>
-                <p className="opacity-75 px-1 z-50 lg:w-full mt-3  italic line-clamp-3 text-[10px] md:text-sm">
-                  {show.synopsis}
-                </p>
+
+                  <AD
+              title={"Year"}
+              data={show?.year}
+            />
+            <AD
+              title={"Score"}
+              data={show?.score}
+            />
+            <AD
+              title={"Year"}
+              data={show?.type}
+            />
+            <AD
+              title={"Year"}
+              data={show?.year}
+            />
+                  </div> */}
                 </div>
-                <Link  className=" mt-4 z-50 flex items-end justify-end" href={`/anime/${show.anime_id}`}>
-                    <Button className="flex items-center rounded-sm shadow-2xl text-white bg-black/80 hover:bg-red-600 shadow-primary  py-1 px-4  gap-4 ">
-                      <FaPlay />
-                      <span>Play</span>
-                    </Button>
-                  </Link>
+
+                <div                   className=" mt-4 z-50 flex items-end justify-between"
+>
+                <div className="">
+
+               {show?.genres?.map((s, i: number) => (
+                <span className="text-white font-medium text-sm" key={i}>{s}{i !== show?.genres.length - 1 && ", "}</span>
+              ))}
+                </div>
+            
+                <Link
+                  href={`/anime/${show.anime_id}`}
+                >
+                  <Button className="flex items-center rounded-sm shadow-2xl text-white bg-black/80 hover:bg-red-600 shadow-primary  py-1 px-4  gap-4 ">
+                    <FaPlay />
+                    <span>Play</span>
+                  </Button>
+                </Link>
+                </div>
               </div>
 
               <img
-                src={`${`https://image.tmdb.org/t/p/original${show.backdrop_path}`}`}
-                className={` h-[180px] w-[140px] object-cover rounded-sm`}
+                src={`${`https://image.tmdb.org/t/p/original${show.poster_path}`}`}
+                className={` h-full w-[240px] object-cover rounded-sm`}
                 alt=""
               />
 
@@ -152,7 +196,7 @@ export default function HomeSwiper() {
                     : "bg-[rgb(44 44 44)] opacity-70"
                 }`}
               ></div>
-              
+
               {activeSlide === index ? (
                 <div className="absolute flex-col w-full  gap-2  bottom-2 flex px-5 py-3">
                   {/* <div className="text-4xl px-1  flex  items-center gap-2 font-bold">
