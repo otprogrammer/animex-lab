@@ -16,7 +16,7 @@ function Card(anime: any) {
   <Icon icon="pepicons-pop:dots-y" />
 </span>  */}
       <div
-        className=" w-full max-w-[200px] hover:-translate-y-1 transition-all duration-300 ease-in-out inline-grid"
+        className=" w-full cursor-pointer max-w-[200px] hover:-translate-y-1 transition-all duration-300 ease-in-out inline-grid"
         // href={{
         //   pathname: `/anime/${anime.malId || anime.id || anime.malID}`,
         //   query: {
@@ -33,7 +33,7 @@ function Card(anime: any) {
         onClick={() =>
           openModal(
             anime.mal_id || anime.malId || anime.id || anime.malID || anime.anime_id
-          ,anime.id)
+          ,anime.id || anime.anilistid)
         }
       >
         <div className={`card   overflow-hidden`}>

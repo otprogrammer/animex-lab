@@ -181,7 +181,7 @@ export default function HomeSwiper() {
 
               <img
                 src={`${`https://image.tmdb.org/t/p/original${show.poster_path}`}`}
-                className={` h-full w-[240px] object-cover rounded-sm`}
+                className={` p-4 h-full w-[240px] object-cover rounded-sm`}
                 alt=""
               />
 

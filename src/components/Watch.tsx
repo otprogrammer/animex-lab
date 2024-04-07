@@ -352,7 +352,7 @@ export default function WatchContainer(props: WatchProps) {
   };
 
   const fetchAnilistData = async () => {
-    let url = `https://ottoscraper.vercel.app/api/anilist/${props.animeData?.anilistid}`;
+    let url = `/api/anilist/${props.animeData?.anilistid}`;
     let req = await fetch(url);
     let res = await req.json();
     setAnilistData(res);

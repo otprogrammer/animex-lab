@@ -71,12 +71,12 @@ const {id} = useDetailsModal()
         />
       </head> */}
 
-      <body className="min-h-screen bg-[#171717] overflow-x-hidden">
+      <body className="min-h-screen bg-[#111010] overflow-x-hidden">
         <AuthProvider>
           <Providers>
             <div
               role="alert"
-              className="w-full justify-center flex items-center gap-4 bg-neutral-800 !p-2"
+              className="w-full justify-center flex items-center gap-4  !p-2"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

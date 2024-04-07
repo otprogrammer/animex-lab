@@ -138,7 +138,7 @@ export const useAutoNext = create<useAutoNextProps>((set) => ({
       set(() => ({ id:"" }));
     },
     getAnilistData : async () => {
-      let url = `https://ottoscraper.vercel.app/api/anilist/${get().anilistid}`;
+      let url = `/api/anilist/${get().anilistid}`;
       let req = await fetch(url);
       let res = await req.json();
       set(() => ({anilistData : res}))

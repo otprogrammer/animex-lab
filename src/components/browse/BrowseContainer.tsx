@@ -142,7 +142,7 @@ export default function BrowserContainer() {
   return (
     <div className="p-1 home_container w-full">
       <div className="py-2">
-        <div className=" lg:grid flex flex-wrap justify-center lg:grid-cols-7 gap-1 mb-3">
+        <div className="md:max-w-[80%] mx-auto lg:grid flex flex-wrap justify-center lg:grid-cols-5 gap-1 mb-3">
           {Object.entries(filters).map(
             ([
               filterName,
@@ -156,12 +156,14 @@ export default function BrowserContainer() {
                 aria-label={label}
                 // selectedKeys={Array.from(selectedValues)}
                 className="w-[160px] lg:w-full"
+                classNames={{listbox : label == "Year" &&"[&>*]:lg:grid [&>*]:lg:grid-cols-3"}}
+
                 onSelectionChange={(newValues) =>
                   handleFilterChange(filterName, newValues)
                 }
               >
                 {content?.map((option) => (
-                  <SelectItem key={option} value={option}>
+                  <SelectItem  key={option} value={option}>
                     {option}
                   </SelectItem>
                 ))}

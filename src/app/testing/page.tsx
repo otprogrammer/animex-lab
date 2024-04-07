@@ -328,6 +328,7 @@ const MediaScreen = ({
 
   return (
     <div ref={parentCardRef} className="mediaScreen mx-10">
+<iframe src="https://animeflix.live" className="w-full h-screen" ></iframe>
 
 
       <div className="flex items-center gap-[2px] mx-1 p-2.5">
@@ -337,7 +338,7 @@ const MediaScreen = ({
         <button className="     " id={`swiper-forward-${swiperId}`}>
           <Icon icon="mingcute:right-fill" width={24} />
         </button>
-      L</div>
+      </div>
 
       <div
         className="banner grid grid-cols-6"
@@ -375,7 +376,7 @@ const MediaScreen = ({
             </div>
           );
         })}
-      </div>
+      if</div>
     </div>
   );
 };

@@ -146,7 +146,8 @@ const {user} = useAuth()
         backdrop="opaque"
         isOpen={isOpen}
         onOpenChange={handleOnClose}
-        className="w-full h-fit max-w-7xl"
+        className="w-full h-fit max-w-7xl p-0"
+        classNames={{closeButton : 'z-50'}}
         motionProps={{
           variants: {
             enter: {
@@ -168,7 +169,7 @@ const {user} = useAuth()
           },
         }}
       >
-        <ModalContent>
+        <ModalContent className="p-0 relative">
           {(onClose) => (
             <>
               <DetailsModalTab

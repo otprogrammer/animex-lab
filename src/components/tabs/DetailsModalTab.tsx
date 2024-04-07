@@ -59,7 +59,7 @@ export default function DetailsModalTab(props: DetailsTabsProps) {
     transition: "margin-left 0.3s ease-in-out",
   };
   return (
-    <div className="w-full px-2  sm:px-0">
+    <div className="w-full px-0">
       <Tab.Group>
         <Tab.List className="hidden md:grid grid-cols-4 divide-x-[1px] divide-neutral-800 text-sm md:text-lg md:grid-cols-6 w-full lg:max-w-full 2xl:max-w-[75%] mx-auto place-self-center">
           {Object.keys(categories).map((category, index) => (

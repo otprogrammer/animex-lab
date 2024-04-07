@@ -89,7 +89,7 @@ function ListCard(anime: WatchListProps) {
         >
           <img
             className=" object-cover overflow-hidden hover:scale-110 transition-all duration-300 ease-in-out rounded-sm"
-            src={anime.image_url || anime.image}
+            src={anime?.coverimage || anime.image_url || anime.image}
             alt={anime.title}
           />
           <small
