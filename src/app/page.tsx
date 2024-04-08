@@ -44,6 +44,7 @@ const getTrending = async () => {
       headers: {
         Authorization: `Bearer ${process.env.REDIS_BEARER_TOKEN}`,
       },
+      next : { revalidate: 1000 }
     }
   );
   let res = await req.json();

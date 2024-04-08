@@ -141,22 +141,19 @@ export default function Navbar() {
     typeof window !== "undefined" &&
     JSON.parse(localStorage.getItem("resumeId"));
   const { user } = useAuth();
-  const {getUserData,userData} = useUser()
+  const { getUserData, userData } = useUser();
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-  const {openModal} = useSearchModal()
-
-  
+  const { openModal } = useSearchModal();
 
   useEffect(() => {
     if (resumeId)
       if (resumeId) toast.info(<Msg resumeId={resumeId} />, { theme: "dark" });
-      if (user) {
-
-        getUserData(user?.id)
-      }
+    if (user) {
+      getUserData(user?.id);
+    }
   }, []);
-  console.log(userData)
+  console.log(userData);
 
   const SignOut = async () => {
     await supabase.auth.signOut();
@@ -173,7 +170,6 @@ export default function Navbar() {
         onMenuOpenChange={setIsMenuOpen}
         classNames={{
           wrapper: "px-1 lg:px-4 justify-between gap-0",
-          
         }}
         className="bg-black/80 text-white  "
       >
@@ -182,8 +178,6 @@ export default function Navbar() {
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           />
         </NavbarContent>
-
-        
 
         <NavbarContent className="" justify="center">
           <NavbarBrand>
@@ -198,7 +192,10 @@ export default function Navbar() {
         </NavbarContent>
 
         <NavbarContent justify="end" className="gap-2">
-        <NavbarItem onClick={openModal} className="cursor-pointer p-2.5 bg-neutral-900 hover:bg-neutral-800 rounded-lg">
+          <NavbarItem
+            onClick={openModal}
+            className="cursor-pointer p-2.5 bg-neutral-900 hover:bg-neutral-800 rounded-lg"
+          >
             <FaSearch size={14} />
           </NavbarItem>
           {/* <NavbarItem className="">
@@ -261,34 +258,32 @@ export default function Navbar() {
         </NavbarContent>
 
         <OutsideClickHandler onOutsideClick={() => setIsMenuOpen(false)}>
-          <NavbarMenu className="hidden sm:flex max-w-[300px] bg-black/80 ">
-            {menuItems.map((item, index) => (
-              <NavbarMenuItem
-                className="text-neutral-400 hover:text-white"
-                key={`${item}-${index}`}
-              >
-                {item == "Discord" ? (
-                  <a href="https://discord.gg/uEAKwRrFpn" target="_blank">
-                    <span>Discord</span>
-                  </a>
-                ) : item == "Support" ? (
-                  <a href="https://ko-fi.com/ottoprogrammer" target="_blank">
-                    <span>Support</span>
-                  </a>
-                ) : 
-                
-                item == "Contact" ? (
-                  <span onClick={enableIsContact}>Contact</span>
-                ) : (
-                  <Link
-                    className="w-full text-neutral-400 hover:text-white"
-                    href={`/${item.toLowerCase()}`}
-                  >
-                    {item}
-                  </Link>
-                )}
-              </NavbarMenuItem>
-            ))}
+          <NavbarMenu className="hidden sm:flex max-w-[300px] bg-neutral-900/80 ">
+            <NavbarMenuItem className="text-neutral-400 hover:text-white">
+              <Link href={`/`}>Home</Link>
+            </NavbarMenuItem>
+            <NavbarMenuItem className="text-neutral-400 hover:text-white">
+              <Link href={`/browse`}>Browse</Link>
+            </NavbarMenuItem>
+            <NavbarMenuItem className="text-neutral-400 hover:text-white">
+              <Link href={`/popular`}>Popular</Link>
+            </NavbarMenuItem>
+            <NavbarMenuItem className="text-neutral-400 hover:text-white">
+              <Link href={`/genres`}>Genres</Link>
+            </NavbarMenuItem>
+            <NavbarMenuItem className="text-neutral-400 hover:text-white">
+              <a href="https://discord.gg/uEAKwRrFpn" target="_blank">
+                <span>Discord</span>
+              </a>
+            </NavbarMenuItem>
+            <NavbarMenuItem className="text-neutral-400 hover:text-white">
+              <a href="https://ko-fi.com/ottoprogrammer" target="_blank">
+                <span>Support</span>
+              </a>{" "}
+            </NavbarMenuItem>
+            <NavbarMenuItem className="text-neutral-400 hover:text-white">
+              <span onClick={enableIsContact}>Contact</span>{" "}
+            </NavbarMenuItem>
           </NavbarMenu>
         </OutsideClickHandler>
       </Nv>
@@ -359,8 +354,8 @@ export default function Navbar() {
           </Backdrop>
         )}
       </AnimatePresence>
-      
-<SearchModal />
+
+      <SearchModal />
       <AnimatePresence>
         {showRegister && (
           <Backdrop onClick={() => setShowRegister(false)}>

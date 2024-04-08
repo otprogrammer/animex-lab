@@ -26,9 +26,11 @@ const genres = [
 
 export default function GenresTab({ data }: GenresTabProps) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [genre,setGenre] = useState("Fantasy")
 
   const handleItemClick = (index: number, itemName: string) => {
     setActiveIndex(index);
+    setGenre(itemName)
     // Do something with the itemName, if needed
   };
   const hrStyles = {
@@ -84,7 +86,7 @@ export default function GenresTab({ data }: GenresTabProps) {
                 leaveFrom="opacity-100 rotate-0 scale-100 "
                 leaveTo="opacity-0 scale-95 "
               >
-                <GridContainer data={d} heading={"Trending"} />
+                <GridContainer data={d} heading={""} />
 
                 {/* <GridContainer data={posts} heading={idx == 0 ? "Latest" : idx === 1 ? "Trending" : "List"}/> */}
               </Transition>
