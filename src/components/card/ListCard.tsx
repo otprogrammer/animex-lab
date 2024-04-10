@@ -12,6 +12,7 @@ import { useAuth } from "../hooks/Auth";
 import { revalidatePath } from "next/cache";
 import { useRouter } from "next/navigation";
 import { DeleteAnimeFromDb } from "@/app/actions";
+import { BsPlayFill, BsStarFill } from "react-icons/bs";
 
 interface WatchListProps {
   anilistid: number;
@@ -37,7 +38,7 @@ function ListCard(anime: WatchListProps) {
     <div
       onMouseEnter={() => setShowDelete(true)}
       onMouseLeave={() => setShowDelete(false)}
-      className=" max-w-fit relative"
+      className="group animate-appearance-in  max-w-fit relative"
     >
 
 
@@ -87,9 +88,34 @@ function ListCard(anime: WatchListProps) {
               : "h-[180px] md:h-[270px]"
           }   overflow-hidden `}
         >
+           <div className="absolute inset-0 flex items-center justify-center">
+                <div
+                  className={` hidden opacity-0 bg-white/50 z-50  group-hover:flex group-hover:opacity-90 items-center justify-center   hover:text-red-600 rounded-full shadow  w-12 h-12`}
+                >
+                  <BsPlayFill size={30} />
+                </div>
+              </div>
+              {anime?.score && (
+                <small
+                  style={{
+                    // backgroundImage:
+                    //   "url(https://cdn.myanimelist.net/images/image_box_shadow_bottom.png?v=1634263200)",
+                    backgroundSize: "100% 100%",
+                    position: "absolute",
+                    top: "2px",
+                    left: "2px",
+                    textShadow: "0 1px 2px #000, 0 1px 2px #000",
+                    fontSize: ".75rem",
+                  }}
+                  className="text-neutral-100 flex gap-1 items-center bg-neutral-800/80 rounded-xl py-1 px-3 z-50 whitespace-nowrap text-ellipsis overflow-hidden  text-start hover:before:scale-105"
+                >
+                  <BsStarFill className="text-[#f7bf63]" />
+                  {anime?.score}{" "}
+                </small>
+              )}
           <img
-            className=" object-cover overflow-hidden hover:scale-110 transition-all duration-300 ease-in-out rounded-sm"
-            src={anime?.coverimage || anime.image_url || anime.image}
+            className=" object-cover overflow-hidden group-hover:opacity-50 group-hover:scale-110 transition-all duration-700 ease-in-out  rounded-sm"
+            src={'https://corsproxy.io/?' +  encodeURIComponent(anime?.coverimage || anime.image_url || anime.image)}
             alt={anime.title}
           />
           <small

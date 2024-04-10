@@ -1,11 +1,13 @@
 "use client"
 import React, { useEffect, useState } from "react";
-import { Tabs, Tab, Card, CardBody, CardHeader } from "@nextui-org/react";
+import { Tabs, Tab, Card, CardBody, CardHeader, Pagination } from "@nextui-org/react";
 import { Transition } from "@headlessui/react";
 import CardContainer from "../container/CardContainer";
 import { useRouter } from "next/navigation";
 import ListCard from "../card/ListCard";
 import WatchCard from "../card/WatchCard";
+import LatestContainer from "../container/LatestContainer";
+import { isMobile } from "@oplayer/core";
 
 type HomeContainerTabs = {
   Favorites: any[];
@@ -26,9 +28,21 @@ export default function UserTab({
     WatchList: WatchList,
     PlayList: PlayList,
   });
-
+  const [currentPage, setCurrentPage] = useState(1);
+  const [animesPerPage] = useState(20);
   const router = useRouter()
 
+
+  const handlePageChange = (newPage) => {
+    setCurrentPage(newPage);
+    
+
+  };
+
+  const slicedFavs = Favorites?.slice(
+    (currentPage - 1) * animesPerPage,
+    currentPage * animesPerPage
+  );
   useEffect(() => {
 console.log(Favorites)
   },[Favorites])
@@ -61,8 +75,23 @@ console.log(Favorites)
             >
               
                 <div className="overflow-hidden w-full ">
+                <Pagination
+      size={isMobile ? "sm" : "lg"}
+        isCompact
+        showShadow
+        showControls
+        total={Math.ceil(Favorites?.length / animesPerPage)}
+        initialPage={currentPage}
+        onChange={handlePageChange}
+        className="w-fit flex justify-center"
+        classNames={{
+          wrapper: "divide-x-2 divide-black",
+          prev: "!border-transparent",
+          cursor: "bg-red-600 text-white font-bold",
+        }}
+      />
                 <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6  gap-1 mt-4">
-                  {Favorites?.map((anime: any, index: number) => (
+                  {slicedFavs?.map((anime: any, index: number) => (
                     <div key={index}>
                       <ListCard
                         title={`${anime?.title}`}
@@ -83,7 +112,7 @@ console.log(Favorites)
           </Tab>
 
           <Tab
-            title="Watchlist"
+            title="History"
             className="md:p-2"
             
           >
@@ -98,8 +127,9 @@ console.log(Favorites)
               leaveFrom="opacity-100 rotate-0 scale-100 "
               leaveTo="opacity-0 scale-95 "
             >
+
               
-                <div className="mt-2 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-4 gap-2 lg:p-3">
+                <div className="mt-2 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-4 gap-2 lg:p-3 lg:mx-6">
                 {WatchList?.map((a: any, i: number) => (
                   <WatchCard
                     key={i}

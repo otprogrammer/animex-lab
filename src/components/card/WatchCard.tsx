@@ -9,6 +9,7 @@ import TimeAgo from "./TimeAgo";
 import { handleDeleteAnime } from "../../../lib/bookmark";
 import { useAuth } from "../hooks/Auth";
 import supabase from "../../../utils/supabase";
+import { BsPlayFill } from "react-icons/bs";
 
 interface WatchListProps {
   id: string;
@@ -35,8 +36,10 @@ function WatchCard(anime: WatchListProps) {
     <div
       onMouseEnter={() => setShowDelete(true)}
       onMouseLeave={() => setShowDelete(false)}
-      className=" relative"
+      className="group animate-appearance-in relative"
     >
+
+
       {showDelete && (
         <span
           onClick={async () => {
@@ -72,8 +75,15 @@ function WatchCard(anime: WatchListProps) {
               : "h-[180px] md:h-[270px]"
           }   overflow-hidden `}
         >
+          <div className="absolute inset-0 flex items-center justify-center">
+                <div
+                  className={` hidden opacity-0 bg-white/50 z-50  group-hover:flex group-hover:opacity-90 items-center justify-center   hover:text-red-600 rounded-full shadow  w-12 h-12`}
+                >
+                  <BsPlayFill size={30} />
+                </div>
+              </div>
           <img
-            className=" object-cover overflow-hidden h-[165px] hover:scale-110 transition-all duration-300 ease-in-out rounded-sm"
+            className=" object-cover overflow-hidden h-[165px] group-hover:scale-110 group-hover:opacity-70  shadow-xl hover:scale-110 transition-all duration-300 ease-in-out rounded-lg"
             src={anime.image_url}
             alt={anime.title}
           />

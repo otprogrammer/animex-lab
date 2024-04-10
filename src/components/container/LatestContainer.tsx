@@ -41,7 +41,7 @@ export default function LatestContainer({data,heading}) {
   );
 
   return (
-    <div className="md:max-w-[90%] mx-auto">
+    <div className={`${heading === "WatchList" ? "md:max-w-[90%] mx-auto" : ""} `}>
       {/* Pagination controls */}
       <div className="flex justify-between items-center w-full py-2">
 
@@ -111,7 +111,7 @@ export default function LatestContainer({data,heading}) {
               </div>
               <img
                 className=" object-cover overflow-hidden h-[125px] md:h-[165px] group-hover:scale-110 group-hover:opacity-70  shadow-xl transition-all duration-300 ease-in-out rounded-sm"
-                src={anime.image}
+                src={'https://corsproxy.io/?' +  encodeURIComponent(anime.image || anime.image_url)}
                 alt={anime.title}
               />
 
@@ -147,7 +147,7 @@ export default function LatestContainer({data,heading}) {
                 }}
                 className="text-neutral-100 bg-neutral-800/80 rounded-xl py-1 px-3 z-50 whitespace-nowrap text-ellipsis overflow-hidden  text-start hover:before:scale-105"
               >
-                {timeAgo(anime?.updated_at)}{" "}
+                {timeAgo(anime?.updated_at || anime?.time)}{" "}
               </small>
               <small
                 style={{
@@ -163,7 +163,7 @@ export default function LatestContainer({data,heading}) {
                 }}
                 className="text-neutral-100 p-2 z-50 whitespace-nowrap text-ellipsis overflow-hidden  text-start hover:before:scale-105"
               >
-                Episode {anime.episodeNumber}
+                Episode {anime.episodeNumber || anime.episode}
               </small>
               {/* <span className="absolute top-1 left-2 bg-black/70 px-2 py-0 rounded-sm">
                   <span

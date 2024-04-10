@@ -39,7 +39,7 @@ function Card(anime: any) {
         <div className={`card   overflow-hidden`}>
           <img
             className=" object-cover  h-[180px] md:h-[270px]  rounded-sm"
-            src={anime.image || anime.image_url || anime.images.large}
+            src={'https://corsproxy.io/?' +  encodeURIComponent(anime.image || anime.image_url || anime.images.large) }
             alt={anime?.title?.romaji}
           />
           <small

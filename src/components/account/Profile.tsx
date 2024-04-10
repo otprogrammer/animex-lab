@@ -319,7 +319,7 @@ export default function Profile() {
 
         <div className="w-full">
           <UserTab
-            WatchList={data?.watchlist}
+            WatchList={data?.watchlist?.sort((a, b) => b.time - a.time)}
             Favorites={data?.favs}
             refresh={() => setRefresh(!refresh)}
           />
