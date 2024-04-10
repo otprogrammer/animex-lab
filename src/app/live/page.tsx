@@ -10,51 +10,58 @@ export default function Live() {
     const [dt,setDt] = useState("")
   const [val,setVal] = useState("")
     const player = useRef<Player>(null);
+    const myChannelRef = useRef(null);
+    const [duration,setDuration] = useState(0)
+
+    useEffect(() => {
+        player.current!.seek(duration)
+    },[duration])
+  // Improved initialization and cleanup of the Supabase channel
+  useEffect(() => {
+    // Initialize the channel
     const myChannel = supabase.channel("room-3", {
-        config: {
-          broadcast: { ack: true },
-        },
+      config: {
+        broadcast: { ack: true },
+      },
+    });
+
+    myChannelRef.current = myChannel; // Assign the channel to the ref for later access
+
+    myChannel.subscribe(async (status) => {
+      if (status !== "SUBSCRIBED") {
+        return;
+      }
+
+      const serverResponse = await myChannel.send({
+        type: "broadcast",
+        event: "acknowledge",
+        payload: {},
       });
-    
-      myChannel.subscribe(async (status) => {
-        if (status !== "SUBSCRIBED") {
-          return;
+
+      console.log("Server response:", serverResponse);
+    });
+
+    myChannel.on('broadcast', { event: 'test' }, (payload) => {
+      const message = payload.payload.message;
+      console.log(message); // For debugging
+
+      if (player.current) {
+        if (message === "pause") player.current.pause();
+        if (message === "play") player.current.play();
+        if (message === "seek" && payload.payload.time !== undefined) {
+            // player.current.seek(payload.payload.time);
+            setDuration(payload.payload.time)
+            console.log(`Seeking to ${payload.payload.time}`);
         }
-    
-        const serverResponse = await myChannel.send({
-          type: "broadcast",
-          event: "acknowledge",
-          payload: {},
-        });
-    
-        console.log("serverResponse", serverResponse);
-      });
-    
+      }
+    });
 
-      useEffect(() => {
+    // Cleanup function to remove the channel when the component unmounts
+    return () => {
+      supabase.removeChannel(myChannel);
+    };
+  }, []); // Empty dependency array means this effect runs once on mount and cleanup on unmount
 
-        myChannel.on(
-            'broadcast',
-            { event: 'test' },
-            (payload) => {
-                if (payload.payload.message == "pause") {
-                    player?.current?.pause()
-                }
-                if (payload.payload.message == "play") {
-                    player?.current?.play()
-                }
-    
-                if (payload.payload.message == "seek") {
-                    player?.current?.seek(payload.payload.time)
-                    console.log(payload.payload.message.time)
-                }
-                console.log(payload.payload.message)
-                
-        
-            } 
-          )
-
-      },[supabase])
 
       
     //   const send = () => {
@@ -71,66 +78,34 @@ export default function Live() {
     //     supabase.removeChannel(myChannel);
     //   };
 
-      const onEvent = useCallback(
-        (payload: PlayerEvent) => {
-            console.log(payload)
-          if (payload.type == "pause") {
-            
-            myChannel
-            .send({
-              type: "broadcast",
-              event: "test",
-              payload: { message: 'pause' },
-            })
-            .then((resp) => console.log(resp));
-      
-          // Remember to clean up the channel
-      
-          supabase.removeChannel(myChannel);
-          
-          console.log('possed')
+    const onEvent = useCallback((payload: PlayerEvent) => {
+        console.log(payload); // Debugging
+    
+        const myChannel = myChannelRef.current;
+        if (!myChannel) return;
+    
+        if (payload.type === "pause" || payload.type === "play") {
+          // Handle play and pause events
+          myChannel.send({
+            type: "broadcast",
+            event: "test",
+            payload: { message: payload.type },
+          }).then((resp) => console.log(resp));
+        } else if (payload.type === "seeked") {
+          // Handle seeked event
+          const currentTime = player.current?.currentTime || 0; // Fallback to 0 if undefined
+          myChannel.send({
+            type: "broadcast",
+            event: "test",
+            payload: { message: 'seek', time: currentTime },
+          }).then((resp) => console.log(resp));
         }
-        
-        if (payload.type == "play") {
-            
-            myChannel
-            .send({
-              type: "broadcast",
-              event: "test",
-              payload: { message: 'play' },
-            })
-            .then((resp) => console.log(resp));
-      
-          // Remember to clean up the channel
-      
-          supabase.removeChannel(myChannel);
-          
-          console.log('possed')
-        }
-        // if (payload.type == "seeked") {
-            
-        //     myChannel
-        //     .send({
-        //       type: "broadcast",
-        //       event: "test",
-        //       payload: { message: 'seek',time:player?.current?.currentTime },
-        //     })
-        //     .then((resp) => console.log(resp));
-      
-        //   // Remember to clean up the channel
-      
-        //   supabase.removeChannel(myChannel);
-          
-        //   console.log('seeked',player?.current?.currentTime)
-        // }
-    },
-        []
-      );
+    }, []);
 
   return (
     <div>
 
-{/* <Button onClick={send}>CLICK</Button> */}
+<Button onClick={() => setDuration(550)}>CLICK</Button>
       <Input onChange={(e) => setVal(e.target.value)} />
 
         <ReactPlayer
