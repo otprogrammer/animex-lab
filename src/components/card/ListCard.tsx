@@ -115,7 +115,7 @@ function ListCard(anime: WatchListProps) {
               )}
           <img
             className=" object-cover overflow-hidden group-hover:opacity-50 group-hover:scale-110 transition-all duration-700 ease-in-out  rounded-sm"
-            src={'https://corsproxy.io/?' +  encodeURIComponent(anime?.coverimage || anime.image_url || anime.image)}
+            src={anime?.coverimage || anime.image_url || anime.image}
             alt={anime.title}
           />
           <small
