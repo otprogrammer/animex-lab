@@ -5,6 +5,7 @@ import React, { useCallback, useRef, useState, useEffect } from 'react'
 import supabase from '../../../utils/supabase';
 import { Button, Input } from '@nextui-org/react';
 import ReactPlayer from "@oplayer/react";
+import Chat from '../chat/page';
 
 export default function Live() {
     const [dt,setDt] = useState("")
@@ -119,6 +120,8 @@ export default function Live() {
                  
                   // autoplay={true}
                 />
+
+                <Chat />
     </div>
   )
 }

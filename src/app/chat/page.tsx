@@ -112,12 +112,12 @@ export default function Chat() {
     });
   };
   return (
-    <div className="p-10">
+    <div className="lg:p-10">
       <Button onClick={send}>CLICK</Button>
       <Input onChange={(e) => setVal(e.target.value)} />
 
       <span>data : {dt}</span>
-      <div className="py-4 px-6 border border-zinc-700 rounded-xl max-w-3xl mx-auto">
+      <div className="py-4 px-6 border border-zinc-700 rounded-xl lg:max-w-3xl mx-auto">
         <div className="space-y-2">
           {content?.map((msg, idx) => (
             <div key={idx} className="flex gap-3 flex-row-reverse">
