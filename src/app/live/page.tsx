@@ -48,6 +48,8 @@ export default function Live() {
       if (player.current) {
         if (message === "pause") player.current.pause();
         if (message === "play") player.current.play();
+        if (message === "playing") player.current.play();
+
         if (message === "seek" && payload.payload.time !== undefined) {
             // player.current.seek(payload.payload.time);
             setDuration(payload.payload.time)
@@ -84,14 +86,14 @@ export default function Live() {
         const myChannel = myChannelRef.current;
         if (!myChannel) return;
     
-        if (payload.type === "pause" || payload.type === "play") {
+        if (payload.type === "pause" || payload.type === "play" || payload.type === "playing") {
           // Handle play and pause events
           myChannel.send({
             type: "broadcast",
             event: "test",
             payload: { message: payload.type },
           }).then((resp) => console.log(resp));
-        } else if (payload.type === "seeked") {
+        } else if (payload.type === "seeking") {
           // Handle seeked event
           const currentTime = player.current?.currentTime || 0; // Fallback to 0 if undefined
           myChannel.send({
@@ -112,7 +114,7 @@ export default function Live() {
                   plugins={plugins}
                   ref={player}
                   aspectRatio={0}
-                  source={{src:"https://www110.anicdnstream.info/videos/hls/ElpdaHzE5XJ_YAClrNrsMw/1712803534/223460/053189c337f6799792c485c08ed11764/ep.1.1712571450.m3u8"}}
+                  source={{src:"https://www084.vipanicdn.net/streamhls/a80af13ae85820b664b87e68fa55f4c8/ep.1.1703910332.m3u8"}}
                   onEvent={onEvent}
                  
                   // autoplay={true}
