@@ -66,13 +66,13 @@ export default function SearchModal({ children }) {
   return (
     <>
       <Modal
-        backdrop="opaque"
+        backdrop="blur"
         isOpen={isOpen}
         onOpenChange={closeModal}
-        className="w-full max-w-3xl   bg-transparent rounded-sm "
+        className="w-full max-w-3xl border-none shadow-none  bg-transparent rounded-sm "
         classNames={{
-            backdrop: "bg-gradient-to-t from-black/80 to-black/10 backdrop-opacity-20",
-            wrapper : '!items-start py-10'
+            // backdrop: "bg-gradient-to-t from-black/80 to-black/10 backdrop-opacity-20",
+            wrapper : '!items- py-10'
           }}
         motionProps={{
           variants: {
@@ -95,10 +95,10 @@ export default function SearchModal({ children }) {
           },
         }}
       >
-        <ModalContent>
+        <ModalContent className="flex flex-col gap-2">
           {(onClose) => (
             <>
-              <div className="flex items-center gap-2 p-2.5 bg-neutral-800/80 ">
+              <div className="flex items-center gap-2 p-2.5 bg-neutral-900/80 ">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-5 w-5"
@@ -128,11 +128,11 @@ export default function SearchModal({ children }) {
                   onSubmit={handleSubmit}
                 >
                   <div
-                    className={`   lg:w-full   rounded-sm  flex items-center  md:p-4 shadow-2xl relative right-0`}
+                    className={`   lg:w-full   rounded-sm  flex items-center   shadow-2xl relative right-0`}
                   >
                     <div className="w-full max-h-[600px] overflow-y-scroll">
                       <div
-                        className={`  divide-y-[4px] divide-neutral-500   px-1 py-0 transition-all duration-200 rounded-sm  w-full `}
+                        className={`  divide-y-[4px] divide-neutral-500    py-0 transition-all duration-200 rounded-sm  w-full `}
                       >
                         {content?.map((Item, index) => (
                           <Link onClick={closeModal} href={(Item.link)} key={index}>

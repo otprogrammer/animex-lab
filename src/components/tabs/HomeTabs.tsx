@@ -48,6 +48,7 @@ export default function HomeTabs({ Latest, Trending }: HomeContainerTabs) {
         onSelectionChange={setSelected}
         radius="sm"
         variant="underlined"
+        color="danger"
         className="!flex w-fit mx-auto"
         classNames={{
           tabList:

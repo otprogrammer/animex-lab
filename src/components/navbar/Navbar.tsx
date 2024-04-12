@@ -248,7 +248,7 @@ export default function Navbar() {
               <div className=" gap-3 items-center">
                 <div
                   className="  rounded-full cursor-pointer"
-                  onClick={() => setShowLoginMenu(true)}
+                  onClick={() => setShowLogin(true)}
                 >
                   <FaUserCircle color="white" size={30} />
                 </div>
@@ -339,21 +339,19 @@ export default function Navbar() {
         </OutsideClickHandler>
       </div>
 
-      <AnimatePresence>
-        {showLogin && (
-          <Backdrop onClick={() => setShowLogin(false)}>
+      
             <SignIn
               handleClick={() => {
                 setShowLogin(false);
               }}
+              isOpen={showLogin}
               createNewAccount={() => {
                 setShowLogin(false);
                 setShowRegister(true);
               }}
             />
-          </Backdrop>
-        )}
-      </AnimatePresence>
+        
+   
 
       <SearchModal />
       <AnimatePresence>

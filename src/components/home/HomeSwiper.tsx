@@ -59,7 +59,7 @@ export default function HomeSwiper() {
         grabCursor={true}
         speed={900}
         centeredSlides={true}
-        autoplay={{ delay: 50000 }}
+        autoplay={{ delay: 3000 }}
         slidesPerView={isMobile ? 2 : 1} // Display 4 slides at once
         spaceBetween={2} // Add space between slides
         coverflowEffect={{

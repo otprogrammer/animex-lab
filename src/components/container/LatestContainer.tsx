@@ -41,7 +41,7 @@ export default function LatestContainer({data,heading}) {
   );
 
   return (
-    <div className={`${heading === "WatchList" ? "md:max-w-[90%] mx-auto" : ""} `}>
+    <div className={`${heading === "WatchList" || heading === "Latest Episodes" ? "md:max-w-[90%] mx-auto" : ""} `}>
       {/* Pagination controls */}
       <div className="flex justify-between items-center w-full py-2">
 

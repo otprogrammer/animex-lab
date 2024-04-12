@@ -18,6 +18,7 @@ import Navbar from "@/components/navbar/Navbar";
 import { AuthProvider } from "@/components/hooks/Auth";
 import { Providers } from "./providers";
 import DetailsModal from "@/components/modals/DetailsModal";
+import Chat from "@/components/chat/Chat";
 
 // export const metadata: Metadata = {
 //   title: "Animex",
@@ -83,6 +84,7 @@ const {id} = useDetailsModal()
             {children}
             <Analytics />
 
+{/* <Chat /> */}
             <DetailsModal />
             <ToastContainer
               position={"top-left"}
