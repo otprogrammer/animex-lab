@@ -129,16 +129,17 @@ export default function SignIn(props: SignInProps) {
         },
       }}
       placement="center"
+      size="full"
     >
-      <ModalContent className=" p-0 relative">
-        <div className="flex w-full">
+      <ModalContent  className="w-full p-0 relative">
+        <div className="flex  w-full">
           <img
-            className="w-[350px] h-[507px] object-cover"
+            className="hidden lg:block lg:w-[350px] lg:h-[507px] object-cover"
             src="https://e1.pxfuel.com/desktop-wallpaper/213/433/desktop-wallpaper-jujutsu-kaisen-phone-jujutsu-kaisen-mobile.jpg"
           />
 
           <div
-            className="w-[420px] p-4 h-auto flex flex-col  items-center bg-[#0e0f10] drop-shadow-2xl rounded-lg text-gray-200 "
+            className="w-[300px] md:w-[420px] p-4 h-auto flex flex-col  items-center bg-[#0e0f10] drop-shadow-2xl rounded-lg text-gray-200 "
             onClick={(e) => e.stopPropagation()}
           >
             {/* <div className="p-6 flex flex-col gap-2 items-center">

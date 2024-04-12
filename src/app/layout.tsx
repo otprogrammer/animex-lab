@@ -15,7 +15,7 @@ import Contact from "@/components/contact/Contact";
 import { useContact, useDetailsModal } from "../../store/store";
 import { Analytics } from "@vercel/analytics/react";
 import Navbar from "@/components/navbar/Navbar";
-import { AuthProvider } from "@/components/hooks/Auth";
+import { AuthProvider, useAuth } from "@/components/hooks/Auth";
 import { Providers } from "./providers";
 import DetailsModal from "@/components/modals/DetailsModal";
 import Chat from "@/components/chat/Chat";
@@ -41,7 +41,7 @@ export default function RootLayout({
 }) {
   // const [isDropDown, setIsDropDown] = useState(false);
   // const { enableIsContact } = useContact();
-const {id} = useDetailsModal()
+  const { id } = useDetailsModal();
   return (
     <html data-theme={"black"} className="dark" lang="en">
       <head>
@@ -75,8 +75,6 @@ const {id} = useDetailsModal()
       <body className="min-h-screen bg-[#111010] overflow-x-hidden">
         <AuthProvider>
           <Providers>
-            
-
             <Navbar />
 
             <NextTopLoader color="#e11d48" />
@@ -84,7 +82,7 @@ const {id} = useDetailsModal()
             {children}
             <Analytics />
 
-{/* <Chat /> */}
+        <Chat />
             <DetailsModal />
             <ToastContainer
               position={"top-left"}
