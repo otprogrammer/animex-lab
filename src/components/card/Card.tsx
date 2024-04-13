@@ -44,12 +44,12 @@ function Card(anime: any) {
       >
         <div className={`card relative  overflow-hidden`}>
           <img
-            className=" object-cover  h-[180px] md:h-[270px]  rounded-sm"
+            className=" object-cover  h-[180px] md:h-[270px]  rounded-lg"
             src={anime.image || anime.image_url || anime.images.large}
             alt={anime?.title?.romaji}
           />
 
-          {anime?.rating && (
+          {anime?.score && (
             <small
               style={{
                 // backgroundImage:
@@ -64,7 +64,7 @@ function Card(anime: any) {
               className="text-neutral-100 flex gap-1 items-center bg-neutral-800/80 rounded-xl py-1 px-3 z-50 whitespace-nowrap text-ellipsis overflow-hidden  text-start hover:before:scale-105"
             >
               <BsStarFill className="text-[#f7bf63]" />
-              {anime?.rating / 10}{" "}
+              {anime?.score}
             </small>
           )}
           <small
@@ -79,7 +79,7 @@ function Card(anime: any) {
               textShadow: "0 1px 2px #000, 0 1px 2px #000",
               fontSize: ".75rem",
             }}
-            className={`text-[${anime?.color}] p-2 z-50 whitespace-nowrap text-ellipsis overflow-hidden  text-start hover:before:scale-105`}
+            className={` p-2 z-50 whitespace-nowrap text-ellipsis overflow-hidden  text-start hover:before:scale-105`}
           >
             {anime.title?.romaji || anime.title}
           </small>
