@@ -27,88 +27,6 @@ function Airing() {
       title: "Monday",
       animes: [
         {
-          slug: "ochibi-san",
-          title: {
-            english: null,
-            native: "オチビサン",
-            romaji: "Ochibi-san",
-            userPreferred: "Ochibi-san",
-          },
-          type: "TV_SHORT",
-          anilistID: "168992",
-          malID: "56588",
-          synonyms: ["The Diary of Ochibi-san", null],
-          description:
-            "<i>\"I can help you laugh, but I can't take away the tears you've shed.\" </i><br><br>\nIn Mametsubu-cho, a town somewhere in the ancient Japanese city of Kamakura, Ochibi-san lives a relaxed, easy life. With his friend Nazeni the dog, Jack the naughty kitten, and Pankui the hungry dog, Ochibi-san's year in Mametsubu-cho is filled with encounters and new discoveries! Flower-viewing in spring, swimming in summer, collecting leaves in fall, and eating yummy food in winter.\n<br><br>\n(Source: Crunchyroll)",
-          episodeNum: 17,
-          animeLength: 24,
-          genres: ["Slice of Life"],
-          status: "RELEASING",
-          season: "FALL",
-          averageScore: null,
-          nextAiringEpisode: {
-            airingAt: 1712458800,
-            episode: 24,
-          },
-          duration: 5,
-          trailerVideo: "D4Xi_jLCykg",
-          relatedAnime: [
-            {
-              type: "ANIME",
-              format: "ONA",
-              relationType: "PARENT",
-              relationName: "Parent",
-              images: {
-                large:
-                  "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/nx20947-Qg0QUi31tjeb.jpg",
-                medium:
-                  "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/nx20947-Qg0QUi31tjeb.jpg",
-              },
-              bannerImage:
-                "https://s4.anilist.co/file/anilistcdn/media/anime/banner/20947-7uPxrc63bFxM.jpg",
-              meanScore: 71,
-              episodes: 36,
-              description:
-                "Japan Anima(tor)'s Exhibition is the showcase of the animations produced by various directors with love and energy, which are planned from original projects, spin-off projects, promotional films, Music PV, and VJ Films etc...Episodes:#01: The Dragon Dentist (Directed by Outarou Maijou)#02: HILL CLIMB GIRL (Directed by Azuma Tani)#03: ME!ME!ME! (Directed by Hibiki Yoshizaki)#04: Carnage (Directed by Akira Honma)#05: Yoshikazu Yasuhiko & Ichiro Itano: Collection of Key Animation Films (collection of key animation from 1979's Mobile Suit Gundam)#06: 20min Walk From Nishi-Ogikubo Station, 2 Bedrooms, Living Room, Dining Room, Kitchen, 2mos Deposit, No Pets Allowed (Directed by Takeshi Honda & Mahiro Maeda)#07: Until you come to me. (Directed by Tadashi Hiramatsu)#08: Tomorrow from there (Directed by Akemi Hayashi)#09: Denkou Choujin Gridman: boys invent great hero (Directed by Akira Amemiya)#10: YAMADELOID (Directed by Takashi Horiuchi & Masahiro Emoto)#11: POWER PLANT No. 33 (Directed by Yasuhiro Yoshiura & Kengo Saito)#12: Evangelion: Another Impact (Confidential) (Directed by Shinji Aramaki)#13: Kanón (Directed by Mahiro Maeda)#14: SEX and VIOLENCE with MACHSPEED (Directed by Hiroyuki Imaishi)#15: Obake-Chan (Directed by Shigeto Koyama)#16: Tsukikage no Tokio (Directed by Takanobu Mizuno)#17: THREE FALLEN WITNESSES (Directed by Satoru Utsunomiya)#18: The Diary of Ochibi (Directed by Masashi Kawamura)#19: I can Friday by Day! (Directed by Kazuya Tsurumaki)#20A: ME!ME!ME! CHRONIC feat.daoko / TeddyLoid (Directed by Hibiki Yoshizaki, remix of short #3)#20B: (Making of) evangelion:Another Impact (Making of video of short #12)#21: ICONIC FIELD (Directed by Ikuto Yamashita)#22: IBUSEKI YORUNI (Directed by Tadashi Hiramatsu) #23: Memoirs of amorous gentlemen (Produced by Cork Inc.)#24: Rapid Rouge (Directed by Daisuke Onitsuka)#25: HAMMERHEAD (Directed by Otaro Maijo)#26: COMEDY SKIT 1989 (Directed by Kazuto Nakazawa)#27: BUBU & BUBULINA (Directed by Takashi Nakamura)#28: ENDLESS NIGHT (Directed by Sayo Yamamoto)#29: BUREAU OF PROTO SOCIETY (Directed by Yasuhiro Yoshiura)#30: The Ultraman (Directed by Akitoshi Yokoyama)#31: GIRL (Directed by Hibiki Yoshizaki)#32: Neon Genesis IMPACTS. (Directed by Yuhei Sakuragi)#33: Ragnarok (Directed by Kazuyoshi Katayama)#34: Robot on the Road (Directed by Hiroyuki Okiura)#35: Cassette Girl (Directed by Hiroyasu Kobayashi)Note: #20A and #20B (special) are counted as two separate episodes in the episode total.",
-              startDate: {
-                year: 2014,
-                month: 11,
-                day: 7,
-              },
-              seasonYear: 2014,
-              animeName: {
-                userPreferred: "Nihon Animator Mihonichi",
-                english: "Japan Anima(tor)’s Exhibition",
-                romaji: "Nihon Animator Mihonichi",
-              },
-              anilistID: 20947,
-              slug: "nihon-animator-mihonichi",
-            },
-          ],
-          startDate: {
-            year: 2023,
-            month: 10,
-            day: 8,
-          },
-          endDate: {
-            year: null,
-            month: null,
-            day: null,
-          },
-          updatedAt: 1708869123,
-          images: {
-            large:
-              "https://image.tmdb.org/t/p/w440_and_h660_face/22DpP1IgUBGt8t9UhRRi6ivzgcN.jpg",
-            medium:
-              "https://image.tmdb.org/t/p/w300_and_h450_bestv2/22DpP1IgUBGt8t9UhRRi6ivzgcN.jpg",
-            small:
-              "https://image.tmdb.org/t/p/w92/22DpP1IgUBGt8t9UhRRi6ivzgcN.jpg",
-          },
-          airingTime: 1711941000000,
-          delayed: false,
-          scheduledEpisode: 24,
-        },
-        {
           slug: "saint-seiya-knights-of-the-zodiac-season-3",
           title: {
             english:
@@ -126,14 +44,14 @@ function Airing() {
           synonyms: [null],
           description:
             "The final hour is approaching! There are only five hours left until the arrow of the God Killer pierces Athena's heart. Only the Pope, who sits atop the sanctuary, can save Athena. However, in order for Seiya and the other four Bronze Saints to reach the Pope's Chamber, they must break through the Twelve Palaces protected by the Golden Saints. There are five more palaces waiting for them to reach the Pope's Chamber. Can Seiya and his team defeat the powerful enemies that stand in their way and reach the Pope's Chamber, where the shocking truth is hidden?<br>\n<br>\n(Source: Crunchyroll News)",
-          episodeNum: 2,
+          episodeNum: 3,
           animeLength: 12,
           genres: ["Adventure", "Fantasy"],
           status: "RELEASING",
           season: null,
           averageScore: "70",
           nextAiringEpisode: null,
-          duration: null,
+          duration: 23,
           relatedAnime: [
             {
               type: "ANIME",
@@ -242,7 +160,7 @@ function Airing() {
             month: null,
             day: null,
           },
-          updatedAt: 1711960892,
+          updatedAt: 1712568468,
           images: {
             large:
               "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx158988-e4Z8K2MyQCau.png",
@@ -252,8 +170,8 @@ function Airing() {
               "https://s4.anilist.co/file/anilistcdn/media/anime/cover/small/bx158988-e4Z8K2MyQCau.png",
           },
           bannerImage: null,
-          scheduledEpisode: 2,
-          airingTime: 1711959060000,
+          scheduledEpisode: 3,
+          airingTime: 1712563860000,
           delayed: false,
         },
         {
@@ -269,18 +187,18 @@ function Airing() {
           malID: "53356",
           synonyms: ["Where Does the Doomsday Train Go?", null],
           description:
-            'The anime\'s story is set in a town in a not-so-ordinary countryside, where a big and strange occurrence is happening to its residents. But a young girl named Shizuru Chikura has a strong desire to see her lost friend again. Shizuru and three other girls board an abandoned train, and they set out to the outside world, where survival is not certain. What awaits them at the last stop of the "Doomsday Train?"<br><br>\n\n(Source: Anime News Network)',
-          episodeNum: 1,
+            "In a seemingly ordinary rural town, something strange is happening to the residents. But Shizuru Chikura is more concerned for her missing friend. Determined to find her, Shizuru and three other girls board an abandoned train and travel to the outside world, unsure if they’ll make it back alive. As they venture toward the unknown, the question looms: What awaits them at the final stop?<br><br>\n\n(Source: Crunchyroll)",
+          episodeNum: 2,
           animeLength: 12,
-          genres: [],
+          genres: ["Adventure", "Comedy", "Sci-Fi"],
           status: "RELEASING",
           season: null,
-          averageScore: "70",
+          averageScore: "69",
           nextAiringEpisode: {
-            airingAt: 1712577600,
-            episode: 2,
+            airingAt: 1713182400,
+            episode: 3,
           },
-          duration: null,
+          duration: 24,
           relatedAnime: [],
           startDate: {
             year: 2024,
@@ -288,11 +206,11 @@ function Airing() {
             day: 1,
           },
           endDate: {
-            year: null,
-            month: null,
-            day: null,
+            year: 2024,
+            month: 6,
+            day: 17,
           },
-          updatedAt: 1711975999,
+          updatedAt: 1712580155,
           images: {
             large:
               "https://image.tmdb.org/t/p/w440_and_h660_face/9eyKUHjD3roRqyypM8FbsUV5iKT.jpg",
@@ -303,9 +221,9 @@ function Airing() {
           },
           bannerImage:
             "https://image.tmdb.org/t/p/w1920_and_h800_face/lIryvAPvyTkM6Iba7u9HBrSfKZ0.jpg",
-          airingTime: 1711975200000,
+          airingTime: 1712580000000,
           delayed: false,
-          scheduledEpisode: 1,
+          scheduledEpisode: 2,
         },
         {
           slug: "kami-wa-game-ni-ueteiru",
@@ -324,18 +242,18 @@ function Airing() {
             null,
           ],
           description:
-            "In their (overabundance of) free time, the gods grew bored and decided to create challenging battles of wits to spice things up! Their opponent? Humanity! A select few players called “apostles” meet the gods on the spiritual realm’s playing field to beat the deities at their own games. A former god named Leoleshea has woken after sleeping for thousands of years, and her first demand is to meet “this era’s very best player!” She is introduced to Fay, an acclaimed rookie apostle. Together, they plan to challenge the gods and win the ultimate prize, but no one in human history has managed to clear ten games—because the gods can be capricious, outrageous, and sometimes downright incomprehensible! In the face of absurdity, what can the apostles do but enjoy the contest to its fullest?<br><br>\n(Source: Yen Press)",
-          episodeNum: 1,
+            "In a world of idle gods, humans are forced into brain challenges with them. With three defeats, gods lose their right to challenge, while 10 victories spell human triumph. Fay, determined to achieve the impossible, enters the ultimate test of wits against the gods. Will he defy divinity or is he just another loss in the making?<br><br>\n(Source: Crunchyroll)",
+          episodeNum: 2,
           animeLength: 13,
           genres: ["Comedy", "Drama", "Ecchi", "Fantasy", "Romance"],
           status: "RELEASING",
           season: null,
-          averageScore: "70",
+          averageScore: "61",
           nextAiringEpisode: {
-            airingAt: 1712579400,
-            episode: 2,
+            airingAt: 1713184200,
+            episode: 3,
           },
-          duration: null,
+          duration: 24,
           trailerVideo: "bee4eJJ0s3Q",
           relatedAnime: [],
           startDate: {
@@ -344,11 +262,11 @@ function Airing() {
             day: 1,
           },
           endDate: {
-            year: null,
-            month: null,
-            day: null,
+            year: 2024,
+            month: 6,
+            day: 24,
           },
-          updatedAt: 1711979336,
+          updatedAt: 1712584069,
           images: {
             large:
               "https://image.tmdb.org/t/p/w440_and_h660_face/uXirDcJ3wTkpL4tMxEoIMWndFxM.jpg",
@@ -359,7 +277,61 @@ function Airing() {
           },
           bannerImage:
             "https://s4.anilist.co/file/anilistcdn/media/anime/banner/144176-pI0FHoCJ5Rxc.jpg",
-          airingTime: 1711978800000,
+          airingTime: 1712583600000,
+          delayed: false,
+          scheduledEpisode: 2,
+        },
+        {
+          slug: "lv2-kara-cheat-datta-moto-yuusha-kouho-no-mattari-isekai-life",
+          title: {
+            english:
+              "Chillin' in Another World with Level 2 Super Cheat Powers",
+            native: "Lv2からチートだった元勇者候補のまったり異世界ライフ",
+            romaji:
+              "Lv2 Kara Cheat datta Moto Yuusha Kouho no Mattari Isekai Life",
+            userPreferred:
+              "Lv2 Kara Cheat datta Moto Yuusha Kouho no Mattari Isekai Life",
+          },
+          type: "TV",
+          anilistID: "170130",
+          malID: "56923",
+          synonyms: [],
+          description:
+            "The Magical Kingdom of Klyrode summons hundreds of heroes from other worlds every year to fight in their war against the Dark One and his army of powerful demons. Banaza is one of those heroes, summoned from the Royal Capital Paluma, but something’s not right—Banaza is only an average merchant. He has no magic, no fighting ability, and his stats are abysmal. Worse, a mishap leaves him unable to return home! Rejected as a hero and stranded in another world, abandoned to the far reaches of the kingdom by a cruel king who just wants him gone, Banaza’s fate looks pretty bleak. But what will happen once the failed hero candidate finds himself with super cheat powers once he hits level two?<br>\n<br>\n(Source: J-Novel Club)",
+          episodeNum: 1,
+          animeLength: null,
+          genres: ["Adventure", "Fantasy", "Romance"],
+          status: "RELEASING",
+          season: "SPRING",
+          averageScore: "70",
+          nextAiringEpisode: {
+            airingAt: 1713189600,
+            episode: 2,
+          },
+          duration: null,
+          trailerVideo: "MUn_fypkCfU",
+          relatedAnime: [],
+          startDate: {
+            year: 2024,
+            month: 4,
+            day: 8,
+          },
+          endDate: {
+            year: null,
+            month: null,
+            day: null,
+          },
+          updatedAt: 1712588217,
+          bannerImage: null,
+          images: {
+            large:
+              "https://image.tmdb.org/t/p/w440_and_h660_face/bJYw5ocrHSTlVUqHSHjVwyQAwcO.jpg",
+            medium:
+              "https://image.tmdb.org/t/p/w300_and_h450_bestv2/bJYw5ocrHSTlVUqHSHjVwyQAwcO.jpg",
+            small:
+              "https://image.tmdb.org/t/p/w92/bJYw5ocrHSTlVUqHSHjVwyQAwcO.jpg",
+          },
+          airingTime: 1712587200000,
           delayed: false,
           scheduledEpisode: 1,
         },
@@ -381,15 +353,15 @@ function Airing() {
           ],
           description:
             "The second season of <i>Tsuki ga Michibiku Isekai Douchuu</i>.<br>\n<br>\nAfter Makoto Misumi defeats Mitsurugi and Sofia Bulga, humanity is saved from the attacking demon army—for the time being. The goddess is aware of Makoto’s growing power, and she sees him as less of a nuisance and more of a rival. Makoto continues his journey to further expand his community of outcasts and connect with more hyumans. But will he be strong enough to hold off the coming storm?<br>\n<br>\n(Source: Crunchyroll)",
-          episodeNum: 13,
+          episodeNum: 14,
           animeLength: 25,
           genres: ["Action", "Adventure", "Comedy", "Fantasy"],
           status: "RELEASING",
           season: null,
           averageScore: "76",
           nextAiringEpisode: {
-            airingAt: 1712584800,
-            episode: 14,
+            airingAt: 1713189600,
+            episode: 15,
           },
           duration: 24,
           trailerVideo: "WuqnD0LKdGQ",
@@ -437,7 +409,7 @@ function Airing() {
             month: null,
             day: null,
           },
-          updatedAt: 1711984213,
+          updatedAt: 1712589292,
           images: {
             large:
               "https://image.tmdb.org/t/p/w440_and_h660_face/7AEti7vnCyfsvkp99g3pxvYsUqw.jpg",
@@ -448,8 +420,8 @@ function Airing() {
           },
           bannerImage:
             "https://image.tmdb.org/t/p/w1920_and_h800_face/ciPDoPMqd3icCBHsIlhIb3UyOd2.jpg",
-          scheduledEpisode: 13,
-          airingTime: 1711984200000,
+          scheduledEpisode: 14,
+          airingTime: 1712589000000,
           delayed: false,
         },
         {
@@ -465,18 +437,18 @@ function Airing() {
           malID: "56690",
           synonyms: ["リ・モンスター", null],
           description:
-            "After meeting an untimely death, Tomokui Kanata is reincarnated as a lowly goblin, but he’s worked up a monstrous appetite. Thanks to his new ability that allows him to grow stronger the more he feeds, his feeble status quickly changes, and he rises to become the goblin leader. With a mix of his past memories, new body, and strong stomach, he’s taking a bite out of this new fantastical world!. <br><br>\n(Source: Crunchyroll)<br><br>\n<i>The episodes were streamed several days ahead than the TV broadcast on U-NEXT, Anime Houdai, and Crunchyroll beginning on April 2nd, 2024 at 0:00 JST. The regular TV broadcast begins on April 5th, 2024.",
-          episodeNum: 1,
-          animeLength: null,
+            "After meeting an untimely death, Tomokui Kanata is reincarnated as a lowly goblin, but he’s worked up a monstrous appetite. Thanks to his new ability that allows him to grow stronger the more he feeds, his feeble status quickly changes, and he rises to become the goblin leader. With a mix of his past memories, new body, and strong stomach, he’s taking a bite out of this new fantastical world! <br><br>\n(Source: Crunchyroll)<br><br>\n<i>The episodes were streamed several days ahead than the TV broadcast on U-NEXT, Anime Houdai, and Crunchyroll beginning on April 2nd, 2024 at 0:00 JST. The regular TV broadcast begins on April 5th, 2024.",
+          episodeNum: 2,
+          animeLength: 12,
           genres: ["Action", "Adventure", "Fantasy"],
           status: "RELEASING",
           season: null,
-          averageScore: "70",
+          averageScore: "68",
           nextAiringEpisode: {
-            airingAt: 1712502000,
-            episode: 2,
+            airingAt: 1713193200,
+            episode: 3,
           },
-          duration: null,
+          duration: 24,
           relatedAnime: [],
           startDate: {
             year: 2024,
@@ -484,11 +456,11 @@ function Airing() {
             day: 2,
           },
           endDate: {
-            year: null,
-            month: null,
-            day: null,
+            year: 2024,
+            month: 6,
+            day: 18,
           },
-          updatedAt: 1711986227,
+          updatedAt: 1712591208,
           images: {
             large:
               "https://image.tmdb.org/t/p/w440_and_h660_face/jPKYAXFJm78QTQYdyPuwHerzROE.jpg",
@@ -499,9 +471,60 @@ function Airing() {
           },
           bannerImage:
             "https://s4.anilist.co/file/anilistcdn/media/anime/banner/169417-NaD0wR83gTbm.jpg",
-          scheduledEpisode: 1,
-          airingTime: 1711986000000,
+          scheduledEpisode: 2,
+          airingTime: 1712590800000,
           delayed: false,
+        },
+        {
+          slug: "tadaima-okaeri",
+          title: {
+            english: "Tadaima, Okaeri",
+            native: "ただいま、おかえり",
+            romaji: "Tadaima, Okaeri",
+            userPreferred: "Tadaima, Okaeri",
+          },
+          type: null,
+          anilistID: "169698",
+          malID: "56768",
+          synonyms: ["Welcome Back, I'm Home", null],
+          description:
+            "Masaki Fujiyoshi is a stay-at-home spouse and parent. He has fought long and hard with feelings of being a burden to his loving husband, Hiromu, due to his status as an omega—and the difficulty they faced to achieve this domesticity. When their son, Hikari, was born, the family moved to an area better suited for raising children.<br>\n<br>\nDespite their newfound domestic bliss, the family's ties to their past are in tatters. There are people they left behind to pursue the creation of their happy family, and when they begin to return, Masaki and Hiromu aren't quite sure they have good intentions.\n<br><br>\n(Source: Crunchyroll)",
+          episodeNum: 1,
+          animeLength: 12,
+          genres: ["Drama", "Romance", "Slice of Life"],
+          status: "RELEASING",
+          season: null,
+          averageScore: "70",
+          nextAiringEpisode: {
+            airingAt: 1713195000,
+            episode: 2,
+          },
+          duration: null,
+          relatedAnime: [],
+          startDate: {
+            year: 2024,
+            month: 4,
+            day: 9,
+          },
+          endDate: {
+            year: 2024,
+            month: 6,
+            day: 25,
+          },
+          updatedAt: 1712593407,
+          bannerImage:
+            "https://s4.anilist.co/file/anilistcdn/media/anime/banner/169698-bMhXndCIlAOu.jpg",
+          images: {
+            large:
+              "https://image.tmdb.org/t/p/w440_and_h660_face/mFLNrSczrzZjAMebEcuk1RttCs9.jpg",
+            medium:
+              "https://image.tmdb.org/t/p/w300_and_h450_bestv2/mFLNrSczrzZjAMebEcuk1RttCs9.jpg",
+            small:
+              "https://image.tmdb.org/t/p/w92/mFLNrSczrzZjAMebEcuk1RttCs9.jpg",
+          },
+          airingTime: 1712592600000,
+          delayed: false,
+          scheduledEpisode: 1,
         },
         {
           slug: "tensei-shitara-dai-nana-ouji-dattanode-kimamani-majutsu-wo-kiwamemasu",
@@ -520,17 +543,17 @@ function Airing() {
           synonyms: [null],
           description:
             "The qualities valued most in the study of magic are bloodline, aptitude, and effort. There was one sorcerer who, despite his deep love for magic, was born a commoner and thus lacked the bloodline and aptitude for it. As he died an unnatural death, he wished he had studied magic more while he had the chance. Then, he was reincarnated as Lloyd, the seventh prince of the Kingdom of Saloum and one blessed with a strong magical bloodline. Reborn with all his memories intact, along with the perfect bloodline and immense talent, he was determined to enjoy his new life, using his extraordinary magical abilities to master the study of magic that was beyond his reach in his previous life!\n<br>\n<br>\n(Source: Crunchyroll)",
-          episodeNum: 1,
+          episodeNum: 2,
           animeLength: null,
           genres: ["Adventure", "Fantasy", "Slice of Life"],
           status: "RELEASING",
           season: "SPRING",
-          averageScore: "70",
+          averageScore: "67",
           nextAiringEpisode: {
-            airingAt: 1712588400,
-            episode: 2,
+            airingAt: 1713193200,
+            episode: 3,
           },
-          duration: null,
+          duration: 24,
           trailerVideo: "PzsBkhOa6JM",
           relatedAnime: [],
           startDate: {
@@ -543,7 +566,7 @@ function Airing() {
             month: null,
             day: null,
           },
-          updatedAt: 1711990027,
+          updatedAt: 1712670566,
           images: {
             large:
               "https://image.tmdb.org/t/p/w440_and_h660_face/kMDJ2hdBTLZn33O53xCtE14fFD1.jpg",
@@ -553,18 +576,18 @@ function Airing() {
               "https://image.tmdb.org/t/p/w92/kMDJ2hdBTLZn33O53xCtE14fFD1.jpg",
           },
           bannerImage: null,
-          scheduledEpisode: 1,
-          airingTime: 1711989600000,
+          scheduledEpisode: 2,
+          airingTime: 1712594400000,
           delayed: false,
         },
         {
           slug: "ookami-to-koushinryou-merchant-meets-the-wise-wolf",
           title: {
-            english: "Spice and Wolf: merchant meets the wise wolf",
-            native: "狼と香辛料 merchant meets the wise wolf",
-            romaji: "Ookami to Koushinryou: merchant meets the wise wolf",
+            english: "Spice and Wolf: MERCHANT MEETS THE WISE WOLF",
+            native: "狼と香辛料 MERCHANT MEETS THE WISE WOLF",
+            romaji: "Ookami to Koushinryou: MERCHANT MEETS THE WISE WOLF",
             userPreferred:
-              "Ookami to Koushinryou: merchant meets the wise wolf",
+              "Ookami to Koushinryou: MERCHANT MEETS THE WISE WOLF",
           },
           type: "TV",
           anilistID: "145728",
@@ -577,17 +600,17 @@ function Airing() {
           ],
           description:
             "Lawrence is a traveling merchant selling various goods from a horse-drawn cart. One day, he arrives at a village and meets a beautiful girl with the ears and tail of an animal! Her name is Holo the Wisewolf and she brings bountiful harvests. She wishes to return to her homeland, and Lawrence offers to take her. Now, the once-lonely merchant and the once-lonely wisewolf begin their journey north.<br>\n<br>\n(Source: Crunchyroll)",
-          episodeNum: 1,
-          animeLength: null,
+          episodeNum: 2,
+          animeLength: 25,
           genres: ["Adventure", "Fantasy", "Romance"],
           status: "RELEASING",
           season: null,
-          averageScore: "70",
+          averageScore: "79",
           nextAiringEpisode: {
-            airingAt: 1712593800,
-            episode: 2,
+            airingAt: 1713198600,
+            episode: 3,
           },
-          duration: null,
+          duration: 24,
           trailerVideo: "DuWQOwwI9z4",
           relatedAnime: [
             {
@@ -632,7 +655,7 @@ function Airing() {
             month: null,
             day: null,
           },
-          updatedAt: 1711995202,
+          updatedAt: 1712670064,
           images: {
             large:
               "https://image.tmdb.org/t/p/w440_and_h660_face/bTY6l48wPXOFr4RHaEbs2muRZAq.jpg",
@@ -643,8 +666,8 @@ function Airing() {
           },
           bannerImage:
             "https://s4.anilist.co/file/anilistcdn/media/anime/banner/145728-uGKxkhr7XlZn.jpg",
-          scheduledEpisode: 1,
-          airingTime: 1711995000000,
+          scheduledEpisode: 2,
+          airingTime: 1712599800000,
           delayed: false,
         },
         {
@@ -664,17 +687,17 @@ function Airing() {
           synonyms: ["The Banished Former Hero Lives as He Pleases", null],
           description:
             '"I can finally go search for the peaceful life I\'ve been looking forward to since my past life." \n<br><br>\nAllen, a boy called a failure because he was not blessed with a "Gift" from god, is actually a former hero who still has the memories and powers of his past life?! Using his banishment from his family\'s duchy as an excuse, Allen is about to start a carefree journey to do whatever he wants when he comes across an attempt on the life of his ex-fiancée...?! \n<br><br>\nThe former hero wants to live a relaxing life this time around, but the heroic fantasy life he never wanted is about to begin! \n<br><br>\n(Source: Crunchyroll)',
-          episodeNum: 2,
+          episodeNum: 3,
           animeLength: null,
           genres: ["Action", "Adventure", "Fantasy", "Romance"],
           status: "RELEASING",
           season: null,
-          averageScore: "70",
+          averageScore: "49",
           nextAiringEpisode: {
-            airingAt: 1712595600,
-            episode: 2,
+            airingAt: 1713200400,
+            episode: 4,
           },
-          duration: null,
+          duration: 24,
           relatedAnime: [],
           startDate: {
             year: 2024,
@@ -682,11 +705,11 @@ function Airing() {
             day: 2,
           },
           endDate: {
-            year: null,
-            month: null,
-            day: null,
+            year: 2024,
+            month: 6,
+            day: 11,
           },
-          updatedAt: 1711997833,
+          updatedAt: 1712669645,
           images: {
             large:
               "https://image.tmdb.org/t/p/w440_and_h660_face/gUDkHsNzkjTBQ55fS9pUO1ng7vk.jpg",
@@ -696,9 +719,169 @@ function Airing() {
               "https://image.tmdb.org/t/p/w92/gUDkHsNzkjTBQ55fS9pUO1ng7vk.jpg",
           },
           bannerImage: null,
-          airingTime: 1711996800000,
+          airingTime: 1712601600000,
           delayed: false,
-          scheduledEpisode: 2,
+          scheduledEpisode: 3,
+        },
+      ],
+      today: false,
+    },
+    {
+      title: "Tuesday",
+      animes: [
+        {
+          slug: "unnamed-memory",
+          title: {
+            english: "Unnamed Memory",
+            native: "Unnamed Memory",
+            romaji: "Unnamed Memory",
+            userPreferred: "Unnamed Memory",
+          },
+          type: "TV",
+          anilistID: "158709",
+          malID: "53835",
+          synonyms: ["アンネームドメモリー", "อันเนมด์ เมโมรี", null],
+          description:
+            "<i>\"My wish as champion is for you to descend the tower and be my wife.\"</i><br>\n<br>\nClimbing a deadly tower, Oscar seeks the power of its master, the Witch of the Azure Moon. He hopes her incredible magic can break a curse that will kill any woman he takes for a wife. When the prince sees how beautiful Tinasha is, though, he has a better idea-since she's surely strong enough to survive his curse, she should just marry him instead! Tinasha isn't keen on the idea, but agrees to live with Oscar in the royal castle for a year while researching the spell placed on the prince. The witch's pretty face hides several lifetimes of dark secrets, however-secrets that begin resurfacing...<br>\n<br>\n(Source: Yen Press)",
+          episodeNum: 1,
+          animeLength: 12,
+          genres: ["Adventure", "Fantasy", "Romance"],
+          status: "RELEASING",
+          season: null,
+          averageScore: "70",
+          nextAiringEpisode: {
+            airingAt: 1713277800,
+            episode: 2,
+          },
+          duration: null,
+          trailerVideo: "ilArkPqWAC8",
+          relatedAnime: [],
+          startDate: {
+            year: 2024,
+            month: 4,
+            day: 9,
+          },
+          endDate: {
+            year: 2024,
+            month: 6,
+            day: 25,
+          },
+          updatedAt: 1712675796,
+          images: {
+            large:
+              "https://image.tmdb.org/t/p/w440_and_h660_face/JKwYF6LbhsQOwgvfua2ZsQWoGv.jpg",
+            medium:
+              "https://image.tmdb.org/t/p/w300_and_h450_bestv2/JKwYF6LbhsQOwgvfua2ZsQWoGv.jpg",
+            small:
+              "https://image.tmdb.org/t/p/w92/JKwYF6LbhsQOwgvfua2ZsQWoGv.jpg",
+          },
+          bannerImage:
+            "https://s4.anilist.co/file/anilistcdn/media/anime/banner/158709-ZGCammGG4F9a.jpg",
+          airingTime: 1712675400000,
+          delayed: false,
+          scheduledEpisode: 1,
+        },
+        {
+          slug: "rinkai",
+          title: {
+            english: null,
+            native: "リンカイ！",
+            romaji: "Rinkai!",
+            userPreferred: "Rinkai!",
+          },
+          type: null,
+          anilistID: "163141",
+          malID: "54859",
+          synonyms: [null],
+          description:
+            "The story centers on the sport of women's cycling, which debuted in Japan shortly after World War II. However, organized competitions folded after just 15 years and laid dormant for several decades. Then the Rinkai! League launched to revive the sport.<br><br>\n(Source: Anime News Network)",
+          episodeNum: 1,
+          animeLength: null,
+          genres: ["Sports"],
+          status: "RELEASING",
+          season: null,
+          averageScore: "70",
+          nextAiringEpisode: {
+            airingAt: 1713277800,
+            episode: 2,
+          },
+          duration: null,
+          trailerVideo: "UioWR0zW7pA",
+          relatedAnime: [],
+          startDate: {
+            year: 2024,
+            month: 4,
+            day: 9,
+          },
+          endDate: {
+            year: null,
+            month: null,
+            day: null,
+          },
+          updatedAt: 1712676996,
+          images: {
+            large:
+              "https://image.tmdb.org/t/p/w440_and_h660_face/q9f55lHPF2fLQmZ5jQ8N9o89Kxn.jpg",
+            medium:
+              "https://image.tmdb.org/t/p/w300_and_h450_bestv2/q9f55lHPF2fLQmZ5jQ8N9o89Kxn.jpg",
+            small:
+              "https://image.tmdb.org/t/p/w92/q9f55lHPF2fLQmZ5jQ8N9o89Kxn.jpg",
+          },
+          bannerImage:
+            "https://s4.anilist.co/file/anilistcdn/media/anime/banner/163141-kv3UqmqTahhd.jpg",
+          airingTime: 1712677200000,
+          delayed: false,
+          scheduledEpisode: 1,
+        },
+        {
+          slug: "boukyaku-battery-tv",
+          title: {
+            english: "Oblivion Battery",
+            native: "忘却バッテリー (TV)",
+            romaji: "Boukyaku Battery (TV)",
+            userPreferred: "Boukyaku Battery (TV)",
+          },
+          type: "TV",
+          anilistID: "167927",
+          malID: "56165",
+          synonyms: [null],
+          description:
+            'Iron-armed pitcher, Haruka Kiyomine, and the shrewd catcher, Kei Kaname, AKA the "Skilled General," were considered to be an unrivaled, monstrous battery duo in the middle-school baseball world. They were both scouted by various powerhouse high schools across the nation, but somehow, they both ended up at Tokyo Municipal Kotesashi High School, which wasn\'t known for baseball at all. On top of that, other star players who had lost to that duo in the past and completely strayed from baseball coincidentally also enrolled at that school, and…\n<br><br>\nTheir meeting sets everything into motion once again.\n<br><br>\nTheir high school baseball story begins now!\n<br><br>\n(Source: Crunchyroll)',
+          episodeNum: 1,
+          animeLength: 12,
+          genres: ["Comedy", "Sports"],
+          status: "RELEASING",
+          season: null,
+          averageScore: "70",
+          nextAiringEpisode: {
+            airingAt: 1713279600,
+            episode: 2,
+          },
+          duration: null,
+          relatedAnime: [],
+          startDate: {
+            year: 2024,
+            month: 4,
+            day: 10,
+          },
+          endDate: {
+            year: 2024,
+            month: 6,
+            day: 26,
+          },
+          updatedAt: 1712679514,
+          images: {
+            large:
+              "https://image.tmdb.org/t/p/w440_and_h660_face/6mhVHKDOchX5xvVV2QXZAwnCHZQ.jpg",
+            medium:
+              "https://image.tmdb.org/t/p/w300_and_h450_bestv2/6mhVHKDOchX5xvVV2QXZAwnCHZQ.jpg",
+            small:
+              "https://image.tmdb.org/t/p/w92/6mhVHKDOchX5xvVV2QXZAwnCHZQ.jpg",
+          },
+          bannerImage: null,
+          airingTime: 1712679000000,
+          delayed: false,
+          scheduledEpisode: 1,
         },
       ],
       today: false,
@@ -720,15 +903,15 @@ function Airing() {
           synonyms: [],
           description:
             "In the far future, war has destroyed the entire Earth, leaving only a barren wasteland where the supply of water is controlled by the greedy king. In search of a long-lost lake, Sheriff Rao asked the king of the demons for help...and got the king's son, Beelzebub, and his assistant, Thief. Together the unlikely trio sets off across the desert, facing dragons, bandits and the deadliest foe of all... the King's army itself! <br><br>\nThe first half of the <i>SAND LAND: THE SERIES</i> anime, episodes one to six, are titled “Akuma no Ooji” and is based on the film adaptation with some new footage, it will premiere alongside episode seven, which is the first episode of a brand-new arc titled “Tenshi no Yuusha”.<br><br>\n\n(Source: VIZ Media, Crunchyroll News, edited) ",
-          episodeNum: 9,
+          episodeNum: 10,
           animeLength: 13,
           genres: ["Action", "Adventure", "Fantasy", "Supernatural"],
           status: "RELEASING",
           season: "SPRING",
           averageScore: "71",
           nextAiringEpisode: {
-            airingAt: 1712155500,
-            episode: 9,
+            airingAt: 1713337200,
+            episode: 11,
           },
           duration: 24,
           trailerVideo: "eoIceltMvH0",
@@ -743,7 +926,7 @@ function Airing() {
             month: 5,
             day: 1,
           },
-          updatedAt: 1712129849,
+          updatedAt: 1712733712,
           bannerImage:
             "https://s4.anilist.co/file/anilistcdn/media/anime/banner/175642-9GbVSmu7ht7e.jpg",
           images: {
@@ -754,57 +937,301 @@ function Airing() {
             small:
               "https://image.tmdb.org/t/p/w92/fxBu818TRNHjHkUwGQctH775Ro3.jpg",
           },
-          airingTime: 1712156100000,
+          airingTime: 1712733060000,
           delayed: false,
-          scheduledEpisode: 9,
+          scheduledEpisode: 10,
         },
         {
-          slug: "sengoku-youko",
+          slug: "seiyuu-radio-no-uraomote",
           title: {
-            english: "Sengoku Youko",
-            native: "戦国妖狐",
-            romaji: "Sengoku Youko",
-            userPreferred: "Sengoku Youko",
+            english: "The Many Sides of Voice Actor Radio",
+            native: "声優ラジオのウラオモテ",
+            romaji: "Seiyuu Radio no Uraomote",
+            userPreferred: "Seiyuu Radio no Uraomote",
           },
           type: "TV",
-          anilistID: "168194",
-          malID: "56242",
+          anilistID: "159039",
+          malID: "53912",
           synonyms: [null],
           description:
-            "The world is divided into two factions: humans and monsters called katawara. Despite being a katawara, Tama loves humans and vows to protect them from evil, even if it means fighting her own kind. Her brother Jinka, however, hates humans, despite mostly being one. The siblings are joined by a cowardly swordsman named Shinsuke, who wants to learn how to become strong.<br>\n<br>\nWhen the group uncovers a plot to experiment on humans and transform them into monsters, they vow to defeat whoever is behind it... Even if it means battling an entire army of warriors.<br>\n<br>\n(Source: Crunchyroll)",
-          episodeNum: 13,
-          animeLength: 13,
-          genres: ["Action", "Adventure", "Fantasy"],
-          status: "FINISHED",
-          season: "WINTER",
-          averageScore: "65",
-          nextAiringEpisode: null,
-          duration: 24,
+            "Yuuhi Yugure and Yasumi Utatane, high school classmates and co-hosts of a weekly radio program, paint a picture-perfect friendship for their listeners. Yet, in reality, they couldn’t be more different. Their off-air dynamic is a whirlwind of chaos and insults. As their tumultuous relationship unfolds, they navigate the turbulent waters of friendship and rivalry in the cutthroat realm of showbiz. <br><br>\n(Source: Crunchyroll, edited)",
+          episodeNum: 1,
+          animeLength: null,
+          genres: ["Comedy", "Drama", "Slice of Life"],
+          status: "RELEASING",
+          season: null,
+          averageScore: "70",
+          nextAiringEpisode: {
+            airingAt: 1713355200,
+            episode: 2,
+          },
+          duration: null,
           relatedAnime: [],
           startDate: {
             year: 2024,
-            month: 1,
-            day: 11,
+            month: 4,
+            day: 10,
+          },
+          endDate: {
+            year: null,
+            month: null,
+            day: null,
+          },
+          updatedAt: 1712753205,
+          images: {
+            large:
+              "https://image.tmdb.org/t/p/w440_and_h660_face/733lDek9YYMfxplg0ELoi3mkRuH.jpg",
+            medium:
+              "https://image.tmdb.org/t/p/w300_and_h450_bestv2/733lDek9YYMfxplg0ELoi3mkRuH.jpg",
+            small:
+              "https://image.tmdb.org/t/p/w92/733lDek9YYMfxplg0ELoi3mkRuH.jpg",
+          },
+          bannerImage:
+            "https://image.tmdb.org/t/p/w1920_and_h800_face/fkcaYCLh5IV2SrwdmtdQGewPnWV.jpg",
+          airingTime: 1712752800000,
+          delayed: false,
+          scheduledEpisode: 1,
+        },
+        {
+          slug: "kaii-to-otome-to-kamikakushi",
+          title: {
+            english: "Mysterious Disappearances",
+            native: "怪異と乙女と神隠し",
+            romaji: "Kaii to Otome to Kamikakushi",
+            userPreferred: "Kaii to Otome to Kamikakushi",
+          },
+          type: "TV",
+          anilistID: "160090",
+          malID: "54199",
+          synonyms: ["Mysteries, Maidens, And Mysterious Disappearances", null],
+          description:
+            "An aspiring novelist teams up with an enigmatic colleague to solve supernatural urban mysteries! Ogawa Sumireko is a busty bookstore clerk who wants to become a novelist after some writing success in her youth. When strange occurrences start cropping up around the city, she teams up with her flirtatious co-worker Adashino Ren to look into them. But Ren is hiding a secret of his own! With their combined skills of occult knowledge, what will they discover as they investigate?<br><br>\n\n(Source: KADOKAWA Anime Channel)",
+          episodeNum: 1,
+          animeLength: 12,
+          genres: ["Ecchi", "Mystery", "Romance", "Supernatural"],
+          status: "RELEASING",
+          season: null,
+          averageScore: "70",
+          nextAiringEpisode: {
+            airingAt: 1713360600,
+            episode: 2,
+          },
+          duration: null,
+          trailerVideo: "xGP87awGE48",
+          relatedAnime: [],
+          startDate: {
+            year: 2024,
+            month: 4,
+            day: 10,
           },
           endDate: {
             year: 2024,
-            month: 4,
-            day: 4,
+            month: 6,
+            day: 26,
           },
-          updatedAt: 1712159343,
+          updatedAt: 1712780968,
           images: {
             large:
-              "https://image.tmdb.org/t/p/w440_and_h660_face/9g4q1OX4GAkTZH9wSSc3t6Be03p.jpg",
+              "https://image.tmdb.org/t/p/w440_and_h660_face/2S5ZCNmmio6wfXhmO9cZLEtzLL3.jpg",
             medium:
-              "https://image.tmdb.org/t/p/w300/9g4q1OX4GAkTZH9wSSc3t6Be03p.jpg",
+              "https://image.tmdb.org/t/p/w300_and_h450_bestv2/2S5ZCNmmio6wfXhmO9cZLEtzLL3.jpg",
             small:
-              "https://image.tmdb.org/t/p/w92/9g4q1OX4GAkTZH9wSSc3t6Be03p.jpg",
+              "https://image.tmdb.org/t/p/w92/2S5ZCNmmio6wfXhmO9cZLEtzLL3.jpg",
           },
           bannerImage:
-            "https://s4.anilist.co/file/anilistcdn/media/anime/banner/168194-ynjLJ3TembGL.jpg",
-          scheduledEpisode: 13,
-          airingTime: 1712158800000,
+            "https://image.tmdb.org/t/p/w1920_and_h800_face/yEDYkxETyRlUCKk4eHBup7ToBgB.jpg",
+          airingTime: 1712758200000,
           delayed: false,
+          scheduledEpisode: 1,
+        },
+        {
+          slug: "date-a-live-v",
+          title: {
+            english: "Date A Live V",
+            native: "デート・ア・ライブV",
+            romaji: "Date A Live V",
+            userPreferred: "Date A Live V",
+          },
+          type: "TV",
+          anilistID: "151380",
+          malID: "52196",
+          synonyms: [
+            "Date A Live Season 5",
+            "พิชิตรัก พิทักษ์โลก ภาค 5",
+            "Рандеву с Жизнью 5",
+            null,
+          ],
+          description: "The fifth season of <i>Date A Live</i>.",
+          episodeNum: 1,
+          animeLength: 12,
+          genres: [
+            "Action",
+            "Comedy",
+            "Ecchi",
+            "Fantasy",
+            "Mecha",
+            "Romance",
+            "Sci-Fi",
+          ],
+          status: "RELEASING",
+          season: null,
+          averageScore: "70",
+          nextAiringEpisode: {
+            airingAt: 1713364200,
+            episode: 2,
+          },
+          duration: null,
+          trailerVideo: "2icL_g4JS1w",
+          relatedAnime: [
+            {
+              type: "ANIME",
+              format: "TV",
+              relationType: "PREQUEL",
+              relationName: "Prequel",
+              images: {
+                large:
+                  "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx116605-uzDakXnaZ1OW.jpg",
+                medium:
+                  "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx116605-uzDakXnaZ1OW.jpg",
+              },
+              bannerImage:
+                "https://s4.anilist.co/file/anilistcdn/media/anime/banner/116605-qmByNsRP3c53.jpg",
+              meanScore: 76,
+              episodes: 12,
+              trailer: "Dvn0XsA73Yo",
+              description:
+                "The fourth season of Date A Live.Despite the numerous challenges he has overcome so far, Shidou Itsuka's mission with Ratatoskr is far from over. In a departure from his daily routine, Shidou encounters a starving woman lying on the street and ends up helping her. After the two arrive at her apartment, the woman introduces herself as Nia Honjou—a popular manga artist working under a pen name. However, cutting straight to the chase, Nia reveals that she is also a Spirit and is aware of Shidou's secret operation.Interested in seeing his charisma firsthand, Nia challenges Shidou to win her over on a date. As he strives for an opportunity to seal her powers, Shidou learns more about Nia and her history with Deus Ex Machina Industries, a name he is all too familiar with...",
+              startDate: {
+                year: 2022,
+                month: 4,
+                day: 8,
+              },
+              seasonYear: 2022,
+              animeName: {
+                userPreferred: "Date A Live IV",
+                english: "Date A Live IV",
+                romaji: "Date A Live IV",
+              },
+              anilistID: 116605,
+              slug: "date-a-live-iv",
+            },
+          ],
+          startDate: {
+            year: 2024,
+            month: 4,
+            day: 10,
+          },
+          endDate: {
+            year: 2024,
+            month: 6,
+            day: 26,
+          },
+          updatedAt: 1712780472,
+          images: {
+            large:
+              "https://image.tmdb.org/t/p/w440_and_h660_face/as0vdW93PjBr5UzG2ZNIkxaSupX.jpg",
+            medium:
+              "https://image.tmdb.org/t/p/w300_and_h450_bestv2/as0vdW93PjBr5UzG2ZNIkxaSupX.jpg",
+            small:
+              "https://image.tmdb.org/t/p/w92/as0vdW93PjBr5UzG2ZNIkxaSupX.jpg",
+          },
+          bannerImage:
+            "https://s4.anilist.co/file/anilistcdn/media/anime/banner/151380-EWQOtJmxe3JY.jpg",
+          airingTime: 1712760060000,
+          delayed: false,
+          scheduledEpisode: 1,
+        },
+        {
+          slug: "kono-subarashii-sekai-ni-shukufuku-wo-3",
+          title: {
+            english: "KONOSUBA -God's Blessing on This Wonderful World! 3",
+            native: "この素晴らしい世界に祝福を! 3",
+            romaji: "Kono Subarashii Sekai ni Shukufuku wo! 3",
+            userPreferred: "Kono Subarashii Sekai ni Shukufuku wo! 3",
+          },
+          type: "TV",
+          anilistID: "136804",
+          malID: "49458",
+          synonyms: [
+            "Konosuba 3",
+            "KONOSUBA -God's blessing on this wonderful world! 3",
+            "ขอให้โชคดีมีชัยในโลกแฟนตาซี! ภาค 3",
+            null,
+          ],
+          description:
+            "The third season of <i>Kono Subarashii Sekai ni Shukufuku wo! </i><br><br>\nThe dysfunctional party is back, but they may be short a member soon ’cause Kazuma is over it. Disillusioned with adventure, he wants to become a monk, but Aqua, Megumin, and Darkness call bull. However, the career dispute gets put on hold when a princess requests to hear all about their tales. Will the taste of fame at the royal castle keep them together or will this mark their farewell tour?<br><br>\n\n(Source: Crunchyroll)",
+          episodeNum: 1,
+          animeLength: 11,
+          genres: ["Action", "Adventure", "Comedy", "Fantasy"],
+          status: "RELEASING",
+          season: null,
+          averageScore: "70",
+          nextAiringEpisode: {
+            airingAt: 1713362400,
+            episode: 2,
+          },
+          duration: null,
+          relatedAnime: [
+            {
+              type: "ANIME",
+              format: "MOVIE",
+              relationType: "PREQUEL",
+              relationName: "Prequel",
+              images: {
+                large:
+                  "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx102976-WcNjDFdQbdCv.png",
+                medium:
+                  "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx102976-WcNjDFdQbdCv.png",
+              },
+              bannerImage:
+                "https://s4.anilist.co/file/anilistcdn/media/anime/banner/102976-xv7fCzBwQ7GU.jpg",
+              meanScore: 83,
+              episodes: 1,
+              trailer: "5h4rQY9bpgE",
+              description:
+                "A video game-loving shut-in, Satou Kazuma's life should've ended when he was hit by a truck, but through a twist of fate, he ends up reincarnating in another world--and dragging the troublemaking goddess, Aqua, the wildly dorky mage, Megumin, and the unrelentingly delusional lady knight, Darkness, with him.Now, the Crimson Demon village that Megumin and Yunyun are from is facing a threat that could mean its ending. Kazuma and his gang follow Yunyun, who returns to the Crimson Demon village intent on saving it... when they are faced with their greatest threat yet! What will become of the unremarkable adventurer Kazuma's life in another world?!",
+              startDate: {
+                year: 2019,
+                month: 8,
+                day: 30,
+              },
+              seasonYear: 2019,
+              animeName: {
+                userPreferred:
+                  "Kono Subarashii Sekai ni Shukufuku wo! Kurenai Densetsu",
+                english:
+                  "KONOSUBA -God's blessing on this wonderful world!- Legend of Crimson",
+                romaji:
+                  "Kono Subarashii Sekai ni Shukufuku wo! Kurenai Densetsu",
+              },
+              anilistID: 102976,
+              slug: "kono-subarashii-sekai-ni-shukufuku-wo-kurenai-densetsu",
+            },
+          ],
+          startDate: {
+            year: 2024,
+            month: 4,
+            day: 10,
+          },
+          endDate: {
+            year: null,
+            month: null,
+            day: null,
+          },
+          updatedAt: 1712780000,
+          images: {
+            large:
+              "https://image.tmdb.org/t/p/w440_and_h660_face/mu4F6a4ImUT5xqYlc0IcwHaALKE.jpg",
+            medium:
+              "https://image.tmdb.org/t/p/w300_and_h450_bestv2/mu4F6a4ImUT5xqYlc0IcwHaALKE.jpg",
+            small:
+              "https://image.tmdb.org/t/p/w92/mu4F6a4ImUT5xqYlc0IcwHaALKE.jpg",
+          },
+          bannerImage:
+            "https://s4.anilist.co/file/anilistcdn/media/anime/banner/136804-vrv1d1NgrfPo.jpg",
+          airingTime: 1712761800000,
+          delayed: false,
+          scheduledEpisode: 1,
         },
         {
           slug: "bartender-kami-no-glass",
@@ -820,17 +1247,17 @@ function Airing() {
           synonyms: ["Bartender (New Anime)", null],
           description:
             "At Eden Hall, each glass has a story. A quiet bar lies tucked away in the streets of Tokyo, and it seems only the most desperate souls burdened by their own troubles manage to find its doors. But after a glass of God poured by the brilliant bartender Ryuu, they leave renewed. Ryuu has a gift—he knows how to soothe the soul with the perfect drink. Who will he meet next?<br><br>\n\n(Source: Crunchyroll)",
-          episodeNum: 1,
+          episodeNum: 2,
           animeLength: null,
           genres: ["Drama", "Slice of Life"],
           status: "RELEASING",
           season: "SPRING",
-          averageScore: "70",
+          averageScore: "72",
           nextAiringEpisode: {
-            airingAt: 1712761200,
-            episode: 2,
+            airingAt: 1713366000,
+            episode: 3,
           },
-          duration: null,
+          duration: 24,
           relatedAnime: [
             {
               type: "ANIME",
@@ -874,7 +1301,7 @@ function Airing() {
             month: null,
             day: null,
           },
-          updatedAt: 1712162685,
+          updatedAt: 1712779508,
           images: {
             large:
               "https://image.tmdb.org/t/p/w440_and_h660_face/lmz7qVUFYQkwk5dsCYNNWlR6dZB.jpg",
@@ -885,58 +1312,60 @@ function Airing() {
           },
           bannerImage:
             "https://image.tmdb.org/t/p/w1920_and_h800_face/zdwUGj94cdxhJYNMfpPVamiYTaa.jpg",
-          airingTime: 1712162400000,
+          airingTime: 1712767200000,
           delayed: false,
-          scheduledEpisode: 1,
+          scheduledEpisode: 2,
         },
         {
-          slug: "metallic-rouge",
+          slug: "kenka-dokugaku",
           title: {
-            english: "Metallic Rouge",
-            native: "メタリックルージュ",
-            romaji: "Metallic Rouge",
-            userPreferred: "Metallic Rouge",
+            english: "Viral Hit",
+            native: "喧嘩独学",
+            romaji: "Kenka Dokugaku",
+            userPreferred: "Kenka Dokugaku",
           },
           type: "TV",
-          anilistID: "162985",
-          malID: "54794",
-          synonyms: [null],
+          anilistID: "174653",
+          malID: "58080",
+          synonyms: [],
           description:
-            "In a world where humans coexist with androids called Neans, a group known as the Immortal Nine rises up against society. Tasked with disposing of the revolters, a Nean named Rouge Redstar (aka Metal Rouge) and investigator Naomi Orthmann head to Mars to track them down…but first, Rouge wants some chocolate. <br><br>\n(Source: Crunchyroll)",
-          episodeNum: 13,
-          animeLength: 13,
-          genres: ["Action", "Mystery", "Sci-Fi"],
-          status: "FINISHED",
-          season: "WINTER",
-          averageScore: "62",
-          nextAiringEpisode: null,
-          duration: 23,
-          trailerVideo: "m7teRMkFdao",
+            "Scrawny high school student Hobin Yu is probably the last guy you’d expect to star in a NewTube channel that revolves around fighting. But after following some advice from a mysterious NewTube channel, Hobin is soon knocking out guys stronger than him and raking in more money than he could have ever dreamed of. Can Hobin keep this up, or will he eventually meet his match?\n<br><br>\n(Source: WEBTOON)",
+          episodeNum: 1,
+          animeLength: null,
+          genres: ["Action", "Comedy"],
+          status: "RELEASING",
+          season: "SPRING",
+          averageScore: "70",
+          nextAiringEpisode: {
+            airingAt: 1713369300,
+            episode: 2,
+          },
+          duration: null,
+          trailerVideo: "zKFWWXhcZrQ",
           relatedAnime: [],
           startDate: {
             year: 2024,
-            month: 1,
+            month: 4,
             day: 11,
           },
           endDate: {
-            year: 2024,
-            month: 4,
-            day: 4,
+            year: null,
+            month: null,
+            day: null,
           },
-          updatedAt: 1712166084,
+          updatedAt: 1712779127,
+          bannerImage: null,
           images: {
             large:
-              "https://image.tmdb.org/t/p/w440_and_h660_face/dcUWxOeCiEM7n7KdIYk1O8Xzgzp.jpg",
+              "https://image.tmdb.org/t/p/w440_and_h660_face/saY79VayosiHPxZUHRpsnMBG0dY.jpg",
             medium:
-              "https://image.tmdb.org/t/p/w300_and_h450_bestv2/dcUWxOeCiEM7n7KdIYk1O8Xzgzp.jpg",
+              "https://image.tmdb.org/t/p/w300_and_h450_bestv2/saY79VayosiHPxZUHRpsnMBG0dY.jpg",
             small:
-              "https://image.tmdb.org/t/p/w92/dcUWxOeCiEM7n7KdIYk1O8Xzgzp.jpg",
+              "https://image.tmdb.org/t/p/w92/saY79VayosiHPxZUHRpsnMBG0dY.jpg",
           },
-          bannerImage:
-            "https://image.tmdb.org/t/p/w1920_and_h800_face/wlHjte7xC8ZfgAMxUKxLL77ejyC.jpg",
-          scheduledEpisode: 13,
-          airingTime: 1712165700000,
+          airingTime: 1712770500000,
           delayed: false,
+          scheduledEpisode: 1,
         },
       ],
       today: false,
@@ -968,18 +1397,18 @@ function Airing() {
           ],
           description:
             "When young adventurer Laios and his company are attacked and soundly thrashed by a dragon deep in a dungeon, the party loses all its money and provisions...and a member! They're eager to go back and save her, but there is just one problem: If they set out with no food or coin to speak of, they're sure to starve on the way! But Laios comes up with a brilliant idea: \"Let's eat the monsters!\" Slimes, basilisks, and even dragons...none are safe from the appetites of these dungeon-crawling gourmands! <br>\n<br>\n(Source: Yen Press)\n<br><br>\n<i>Note: A world premiere screening of Episode 1 was shown in the Studio TRIGGER panel at Anime Expo on July 1, 2023.</i>",
-          episodeNum: 14,
+          episodeNum: 15,
           animeLength: 24,
           genres: ["Adventure", "Comedy", "Fantasy"],
           status: "RELEASING",
           season: "WINTER",
           averageScore: "79",
           nextAiringEpisode: {
-            airingAt: 1712842200,
-            episode: 15,
+            airingAt: 1713447000,
+            episode: 16,
           },
           duration: 25,
-          trailerVideo: "WaIau6W2g98",
+          trailerVideo: "60_2zt9l3Yk",
           relatedAnime: [],
           startDate: {
             year: 2024,
@@ -991,7 +1420,7 @@ function Airing() {
             month: 6,
             day: null,
           },
-          updatedAt: 1712240539,
+          updatedAt: 1712844899,
           images: {
             large:
               "https://image.tmdb.org/t/p/w440_and_h660_face/9t3DYdGxK3i4WRzKvIZwJd4kBnr.jpg",
@@ -1005,8 +1434,14 @@ function Airing() {
           logoart:
             "https://image.tmdb.org/t/p/original/xiNezajnlUlKafC9Au3IMwmOICK.png",
           style: ["-1%", "-.5vw"],
-          scheduledEpisode: 14,
-          airingTime: 1712238060000,
+          bannerart: {
+            large:
+              "https://image.tmdb.org/t/p/original/e3GyQwh6H6YY01oYGy19OeEW8j4.jpg",
+            medium:
+              "https://image.tmdb.org/t/p/original/xC5GyeIzLsSRizJE5LedGShNgBa.jpg",
+          },
+          scheduledEpisode: 15,
+          airingTime: 1712842860000,
           delayed: false,
         },
         {
@@ -1022,15 +1457,15 @@ function Airing() {
           malID: "53410",
           synonyms: ["Laid-Back Camp Season 3", null],
           description: "The third season of <i>Yuru Camp△</i>.",
-          episodeNum: 1,
+          episodeNum: 2,
           animeLength: 12,
           genres: ["Comedy", "Slice of Life"],
           status: "RELEASING",
           season: null,
-          averageScore: "70",
+          averageScore: "82",
           nextAiringEpisode: {
-            airingAt: 1712844000,
-            episode: 2,
+            airingAt: 1713448800,
+            episode: 3,
           },
           duration: 24,
           relatedAnime: [
@@ -1077,7 +1512,7 @@ function Airing() {
             month: 6,
             day: 20,
           },
-          updatedAt: 1712279344,
+          updatedAt: 1712850522,
           images: {
             large:
               "https://image.tmdb.org/t/p/w440_and_h660_face/jRZgkki3duWxgHpsKHTYlwuzfX6.jpg",
@@ -1089,9 +1524,9 @@ function Airing() {
           bannerImage:
             "https://s4.anilist.co/file/anilistcdn/media/anime/banner/155908-K8ZgYWWJj3P4.jpg",
           disableVaryg: true,
-          airingTime: 1712243400000,
+          airingTime: 1712848200000,
           delayed: false,
-          scheduledEpisode: 1,
+          scheduledEpisode: 2,
         },
         {
           slug: "maou-no-ore-ga-dorei-elf-wo-yome-ni-shitanda-ga-dou-medereba-ii",
@@ -1113,15 +1548,15 @@ function Airing() {
           ],
           description:
             "Zagan might be the most feared evil sorcerer, but when it comes to social interactions, he’s the most inept. All those days studying the dark arts won’t help him when he falls in love at first sight with Nephelia, the beautiful elven slave, and spends his entire fortune to purchase her. With no clue how to talk to each other, the awkward arrangement for a bumbling sorcerer and timid elf begins.<br>\n<br>\n(Source: Crunchyroll)",
-          episodeNum: 2,
+          episodeNum: 3,
           animeLength: 12,
           genres: ["Action", "Fantasy", "Romance"],
           status: "RELEASING",
           season: null,
-          averageScore: "70",
+          averageScore: "71",
           nextAiringEpisode: {
-            airingAt: 1712847600,
-            episode: 2,
+            airingAt: 1713456000,
+            episode: 4,
           },
           duration: 24,
           relatedAnime: [],
@@ -1133,9 +1568,9 @@ function Airing() {
           endDate: {
             year: 2024,
             month: 6,
-            day: 21,
+            day: 14,
           },
-          updatedAt: 1712277049,
+          updatedAt: 1712852011,
           images: {
             large:
               "https://image.tmdb.org/t/p/w440_and_h660_face/7WDqjQyBkegbaDPgucfA6Rvj32x.jpg",
@@ -1146,9 +1581,9 @@ function Airing() {
           },
           bannerImage:
             "https://image.tmdb.org/t/p/w1920_and_h800_face/fh9awPSGwVOqo9veBi10qTmxzTY.jpg",
-          airingTime: 1712247000000,
+          airingTime: 1712851800000,
           delayed: false,
-          scheduledEpisode: 2,
+          scheduledEpisode: 3,
         },
         {
           slug: "hananoi-kun-to-koi-no-yamai",
@@ -1173,17 +1608,17 @@ function Airing() {
           ],
           description:
             "Hotaru Hinase is a first-year in high school that has a great family and wonderful friends, but not much luck when it comes to romance.\nOne day, she happens to see the hot boy from the class next door, Hananoi, get dumped. Seeing Hananoi standing in the middle of a park all alone, Hotaru decides to hand him an umbrella.<br><br>\nThat little act causes Hananoi to ask her out soon after.\n<br><br>\nWhat does love even mean? What does it mean to be in love? Hotaru is flustered at suddenly being asked out by Hananoi, who has an endless amount of love for the person he loves and wants to do everything he can for them. This is a story about first love between a girl who doesn't understand romantic love and a boy that may be a bit too heavy-handed when it comes to love.<br>\n<br>\n(Source: Kodansha USA)",
-          episodeNum: 1,
+          episodeNum: 2,
           animeLength: 12,
           genres: ["Drama", "Romance"],
           status: "RELEASING",
           season: null,
-          averageScore: "70",
+          averageScore: "68",
           nextAiringEpisode: {
-            airingAt: 1712847360,
-            episode: 2,
+            airingAt: 1713452160,
+            episode: 3,
           },
-          duration: null,
+          duration: 24,
           relatedAnime: [],
           startDate: {
             year: 2024,
@@ -1195,7 +1630,7 @@ function Airing() {
             month: 6,
             day: 20,
           },
-          updatedAt: 1712250878,
+          updatedAt: 1712855676,
           images: {
             large:
               "https://image.tmdb.org/t/p/w440_and_h660_face/e1ao8YAdgbN0wCUSatCESTPwaAh.jpg",
@@ -1206,111 +1641,9 @@ function Airing() {
           },
           bannerImage:
             "https://image.tmdb.org/t/p/w1920_and_h800_face/cV6nwJT6Xh0Aam47CIAFupqELyU.jpg",
-          airingTime: 1712250600000,
+          airingTime: 1712855400000,
           delayed: false,
-          scheduledEpisode: 1,
-        },
-        {
-          slug: "majo-to-yajuu",
-          title: {
-            english: "The Witch and the Beast",
-            native: "魔女と野獣",
-            romaji: "Majo to Yajuu",
-            userPreferred: "Majo to Yajuu",
-          },
-          type: null,
-          anilistID: "153818",
-          malID: "52816",
-          synonyms: ["The Witch and the Beast", null],
-          description:
-            'It all started with the 17 "Origins," whose powers were passed down to individuals who still exist around the world today. A man carrying a coffin and a girl with the eyes of a beast appear in a town. The girl was once cursed by a witch and now searches for her in order to undo the curse. Is the witch who appears before them the quarry they\'ve been searching for? And how can the curse be undone? This quest for revenge against an evil witch begins rolling when the beast captures the witch. This magnificent and intense dark fantasy begins now!<br>\n<br>\n(Source: Crunchyroll)',
-          episodeNum: 12,
-          animeLength: 12,
-          genres: ["Action", "Adventure", "Drama", "Fantasy"],
-          status: "FINISHED",
-          season: null,
-          averageScore: "68",
-          nextAiringEpisode: null,
-          duration: 24,
-          relatedAnime: [],
-          startDate: {
-            year: 2024,
-            month: 1,
-            day: 12,
-          },
-          endDate: {
-            year: 2024,
-            month: 4,
-            day: 5,
-          },
-          updatedAt: 1712278134,
-          images: {
-            large:
-              "https://image.tmdb.org/t/p/w440_and_h660_face/ooSzpaJkU8MnfuLKn0IThcACv57.jpg",
-            medium:
-              "https://image.tmdb.org/t/p/w300_and_h450_bestv2/ooSzpaJkU8MnfuLKn0IThcACv57.jpg",
-            small:
-              "https://image.tmdb.org/t/p/w92/ooSzpaJkU8MnfuLKn0IThcACv57.jpg",
-          },
-          bannerImage:
-            "https://image.tmdb.org/t/p/w1920_and_h800_face/lDLELq7XAi36qe204A3kbV7g88a.jpg",
-          scheduledEpisode: 12,
-          airingTime: 1712251500000,
-          delayed: false,
-        },
-        {
-          slug: "wind-breaker",
-          title: {
-            english: "WIND BREAKER",
-            native: "WIND BREAKER",
-            romaji: "WIND BREAKER",
-            userPreferred: "WIND BREAKER",
-          },
-          type: "TV",
-          anilistID: "163270",
-          malID: "54900",
-          synonyms: [null],
-          description:
-            "Where the average scores are the lowest, but the fights are the strongest. Furin High School is renowned as a super school of delinquents. Haruka Sakura, a first-year student, came from outside the city to fight to the top. However, Furin High School has become a group that protects the town called the “Chime of the Wind Breaker” – Bofurin. The heroic legend of high school delinquent Sakura begins here!\n<br><br>\n(Source: Crunchyroll)",
-          episodeNum: 1,
-          animeLength: null,
-          genres: ["Action", "Comedy", "Drama"],
-          status: "RELEASING",
-          season: null,
-          averageScore: "70",
-          nextAiringEpisode: {
-            airingAt: 1712849160,
-            episode: 2,
-          },
-          duration: null,
-          relatedAnime: [],
-          startDate: {
-            year: 2024,
-            month: 4,
-            day: 5,
-          },
-          endDate: {
-            year: null,
-            month: null,
-            day: null,
-          },
-          updatedAt: 1712253099,
-          images: {
-            large:
-              "https://image.tmdb.org/t/p/w440_and_h660_face/3kTFL3PAeTyS8gGZAh0iYG6NNjt.jpg",
-            medium:
-              "https://image.tmdb.org/t/p/w300_and_h450_bestv2/3kTFL3PAeTyS8gGZAh0iYG6NNjt.jpg",
-            small:
-              "https://image.tmdb.org/t/p/w92/3kTFL3PAeTyS8gGZAh0iYG6NNjt.jpg",
-          },
-          bannerImage:
-            "https://s4.anilist.co/file/anilistcdn/media/anime/banner/163270-QshLCttd04s6.jpg",
-          airingTime: 1712252400000,
-          delayed: false,
-          scheduledEpisode: 1,
-          logoart:
-            "https://image.tmdb.org/t/p/original/z0ElfwMAOkQWvDw7miVBD3a3iOA.png",
-          style: ["-1%", "-.5vw"],
+          scheduledEpisode: 2,
         },
         {
           slug: "urusei-yatsura-2022-2nd-season",
@@ -1330,18 +1663,15 @@ function Airing() {
           ],
           description:
             "The second season of <i>Urusei Yatsura (2022)</i>.<br><br>\n\nLum, the gorgeous daughter of an invading race of Oni Aliens is smitten with High School student Ataru Moroboshi. A dedicated womanizer, Ataru is unfazed by Lum’s fierce electric shock attacks and continues his daily hunt for pretty girls. With a host of other unique characters, including classmate Shinobu, elegant shrine maiden Sakura, Lum’s best friend’s Oyuki, Benten and Ran, Buddhist Monk Cherry, Ten, the little brat, heir to a wealthy family Shuutaro Mendou and the secretly female beauty Ryunosuke… A classic slapstick love comedy where anything goes!<br><br>(Source: Fuji Creative)<br>\n<br>\n<i>Note: HIDIVE has labeled the first cour of this season as “Season 3.” They labeled the 1st and 2nd cours of the 1st season as “Season 1” and “Season 2.”</i>",
-          episodeNum: 12,
+          episodeNum: 13,
           animeLength: 23,
           genres: ["Comedy", "Romance", "Sci-Fi", "Supernatural"],
           status: "RELEASING",
           season: null,
           averageScore: "75",
           nextAiringEpisode: {
-            airingAt: 1712251800,
-            episode: 13,
-            delayed: true,
-            delayedText:
-              "Episode 13 has been delayed by a week due to a split-cour break. Episode 13 will air on April 11th.",
+            airingAt: 1713455700,
+            episode: 14,
           },
           duration: 23,
           relatedAnime: [
@@ -1388,7 +1718,7 @@ function Airing() {
             month: null,
             day: null,
           },
-          updatedAt: 1711647841,
+          updatedAt: 1712857694,
           bannerImage:
             "https://s4.anilist.co/file/anilistcdn/media/anime/banner/155645-Wl60JjmslUrL.jpg",
           images: {
@@ -1399,9 +1729,70 @@ function Airing() {
             small:
               "https://image.tmdb.org/t/p/w92/vzOSTRN7ThklByHIMKHRYDO2cfV.jpg",
           },
-          airingTime: 1712252400000,
-          delayed: true,
+          airingTime: 1712857200000,
+          delayed: false,
           scheduledEpisode: 13,
+        },
+        {
+          slug: "wind-breaker",
+          title: {
+            english: "WIND BREAKER",
+            native: "WIND BREAKER",
+            romaji: "WIND BREAKER",
+            userPreferred: "WIND BREAKER",
+          },
+          type: "TV",
+          anilistID: "163270",
+          malID: "54900",
+          synonyms: [null],
+          description:
+            "Where the average scores are the lowest, but the fights are the strongest. Furin High School is renowned as a super school of delinquents. Haruka Sakura, a first-year student, came from outside the city to fight to the top. However, Furin High School has become a group that protects the town called the “Chime of the Wind Breaker” – Bofurin. The heroic legend of high school delinquent Sakura begins here!\n<br><br>\n(Source: Crunchyroll)",
+          episodeNum: 2,
+          animeLength: 13,
+          genres: ["Action", "Comedy", "Drama"],
+          status: "RELEASING",
+          season: null,
+          averageScore: "76",
+          nextAiringEpisode: {
+            airingAt: 1713453960,
+            episode: 3,
+          },
+          duration: 24,
+          relatedAnime: [],
+          startDate: {
+            year: 2024,
+            month: 4,
+            day: 5,
+          },
+          endDate: {
+            year: 2024,
+            month: 6,
+            day: 28,
+          },
+          updatedAt: 1712860925,
+          images: {
+            large:
+              "https://image.tmdb.org/t/p/w440_and_h660_face/3kTFL3PAeTyS8gGZAh0iYG6NNjt.jpg",
+            medium:
+              "https://image.tmdb.org/t/p/w300_and_h450_bestv2/3kTFL3PAeTyS8gGZAh0iYG6NNjt.jpg",
+            small:
+              "https://image.tmdb.org/t/p/w92/3kTFL3PAeTyS8gGZAh0iYG6NNjt.jpg",
+          },
+          bannerImage:
+            "https://s4.anilist.co/file/anilistcdn/media/anime/banner/163270-QshLCttd04s6.jpg",
+          airingTime: 1712857200000,
+          delayed: false,
+          scheduledEpisode: 2,
+          logoart:
+            "https://image.tmdb.org/t/p/original/z0ElfwMAOkQWvDw7miVBD3a3iOA.png",
+          style: ["-1%", "-.5vw"],
+          trailerVideo: "bu4gzHDoTOg",
+          bannerart: {
+            large:
+              "https://image.tmdb.org/t/p/original/sxNelxuFKCRzZIfupns6FrR7a5R.jpg",
+            medium:
+              "https://image.tmdb.org/t/p/original/yLrgx1AbgmSDQNp5YBZxc5Tix7B.jpg",
+          },
         },
         {
           slug: "henjin-no-salad-bowl",
@@ -1417,15 +1808,15 @@ function Airing() {
           synonyms: ["Salad Bowl of Eccentrics", null],
           description:
             "Sousuke Kaburaya, an impoverished detective, met Sara, a princess from another world with magical powers.\n<br><br>\nSara began living with Sousuke, and she quickly adjusted to life in modern Japan.<br>\nMeanwhile, Livia, a female knight who came from the same world as Sara, found herself lost and homeless, but surprisingly enjoyed her days here.\n<br><br>\nThese two people, who live a positive life despite their situation, began to have an impact on Sousuke and the other oddballs in the neighborhood, including a devilish lawyer, a divorce agent, and a cult leader. <br><br>\n(Source: Shogakukan, translated)",
-          episodeNum: 1,
+          episodeNum: 2,
           animeLength: 12,
           genres: ["Comedy", "Fantasy", "Slice of Life"],
           status: "RELEASING",
           season: null,
-          averageScore: "70",
+          averageScore: "67",
           nextAiringEpisode: {
-            airingAt: 1712852880,
-            episode: 2,
+            airingAt: 1713457680,
+            episode: 3,
           },
           duration: 24,
           relatedAnime: [],
@@ -1439,7 +1830,7 @@ function Airing() {
             month: 6,
             day: 21,
           },
-          updatedAt: 1712277592,
+          updatedAt: 1712859314,
           images: {
             large:
               "https://image.tmdb.org/t/p/w440_and_h660_face/6dumHhfa0BMzjwEZpj9o4uVcGpP.jpg",
@@ -1448,10 +1839,11 @@ function Airing() {
             small:
               "https://image.tmdb.org/t/p/w92/6dumHhfa0BMzjwEZpj9o4uVcGpP.jpg",
           },
-          bannerImage: null,
-          airingTime: 1712256900000,
+          bannerImage:
+            "https://image.tmdb.org/t/p/w1920_and_h800_face/qa2MZGPOBoeCnr1AMj9zzg7E3h.jpg",
+          airingTime: 1712861700000,
           delayed: false,
-          scheduledEpisode: 1,
+          scheduledEpisode: 2,
         },
       ],
       today: false,
@@ -1479,8 +1871,8 @@ function Airing() {
           season: "WINTER",
           averageScore: "46",
           nextAiringEpisode: {
-            airingAt: 1712286000,
-            episode: 111,
+            airingAt: 1712890800,
+            episode: 112,
           },
           duration: 23,
           relatedAnime: [],
@@ -1503,9 +1895,9 @@ function Airing() {
             small:
               "https://image.tmdb.org/t/p/w92/2EkTiYPBvW3R1221Sk4436PkoHt.jpg",
           },
-          airingTime: 1712286600000,
+          airingTime: 1712891400000,
           delayed: false,
-          scheduledEpisode: 111,
+          scheduledEpisode: 112,
         },
         {
           slug: "nijiyon-animation-2",
@@ -1528,7 +1920,7 @@ function Airing() {
           season: "SPRING",
           averageScore: "70",
           nextAiringEpisode: {
-            airingAt: 1712926440,
+            airingAt: 1712930040,
             episode: 2,
           },
           duration: null,
@@ -1554,8 +1946,8 @@ function Airing() {
             small:
               "https://s4.anilist.co/file/anilistcdn/media/anime/cover/small/bx172242-1VjrQuON0Zfu.png",
           },
-          scheduledEpisode: 1,
-          airingTime: 1712325840000,
+          scheduledEpisode: 2,
+          airingTime: 1712930640000,
           delayed: false,
         },
         {
@@ -1579,7 +1971,7 @@ function Airing() {
           season: "SPRING",
           averageScore: "70",
           nextAiringEpisode: {
-            airingAt: 1712928600,
+            airingAt: 1712930400,
             episode: 2,
           },
           duration: null,
@@ -1600,15 +1992,15 @@ function Airing() {
             "https://image.tmdb.org/t/p/w1920_and_h800_face/f1ubIMALVWRvIUxho9yHhoHb9qb.jpg",
           images: {
             large:
-              "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx171040-o1oMiDGZT98Z.jpg",
+              "https://image.tmdb.org/t/p/w440_and_h660_face/7S713gLbVcNrqpys8kInhmbm8jW.jpg",
             medium:
-              "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx171040-o1oMiDGZT98Z.jpg",
+              "https://image.tmdb.org/t/p/w300_and_h450_bestv2/7S713gLbVcNrqpys8kInhmbm8jW.jpg",
             small:
-              "https://s4.anilist.co/file/anilistcdn/media/anime/cover/small/bx171040-o1oMiDGZT98Z.jpg",
+              "https://image.tmdb.org/t/p/w92/7S713gLbVcNrqpys8kInhmbm8jW.jpg",
           },
-          scheduledEpisode: 1,
-          airingTime: 1712326200000,
+          airingTime: 1712931000000,
           delayed: false,
+          scheduledEpisode: 2,
         },
         {
           slug: "tensei-shitara-slime-datta-ken-3rd-season",
@@ -1636,7 +2028,7 @@ function Airing() {
           season: "SPRING",
           averageScore: "70",
           nextAiringEpisode: {
-            airingAt: 1712930400,
+            airingAt: 1712935800,
             episode: 2,
           },
           duration: null,
@@ -1697,9 +2089,9 @@ function Airing() {
           },
           bannerImage:
             "https://s4.anilist.co/file/anilistcdn/media/anime/banner/156822-y0wPQIl3AHDA.jpg",
-          airingTime: 1712331600000,
+          airingTime: 1712936400000,
           delayed: false,
-          scheduledEpisode: 1,
+          scheduledEpisode: 2,
         },
         {
           slug: "mahouka-koukou-no-rettousei-3",
@@ -1726,7 +2118,7 @@ function Airing() {
           season: null,
           averageScore: "70",
           nextAiringEpisode: {
-            airingAt: 1712932200,
+            airingAt: 1712937600,
             episode: 2,
           },
           duration: null,
@@ -1778,65 +2170,17 @@ function Airing() {
           updatedAt: 1712333714,
           images: {
             large:
-              "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx143271-o5wry0ohH9R3.jpg",
+              "https://image.tmdb.org/t/p/w440_and_h660_face/rotXKLCkGvXd40wlQ0vdidwDND1.jpg",
             medium:
-              "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx143271-o5wry0ohH9R3.jpg",
+              "https://image.tmdb.org/t/p/w300_and_h450_bestv2/rotXKLCkGvXd40wlQ0vdidwDND1.jpg",
             small:
-              "https://s4.anilist.co/file/anilistcdn/media/anime/cover/small/bx143271-o5wry0ohH9R3.jpg",
+              "https://image.tmdb.org/t/p/w92/rotXKLCkGvXd40wlQ0vdidwDND1.jpg",
           },
           bannerImage:
             "https://image.tmdb.org/t/p/w1920_and_h800_face/lpLZuBJuGDGSzLDVvIDKkdOpLuD.jpg",
-          scheduledEpisode: 1,
-          airingTime: 1712333400000,
+          airingTime: 1712938200000,
           delayed: false,
-        },
-        {
-          slug: "snack-basue",
-          title: {
-            english: "Snack Basue",
-            native: "スナックバス江",
-            romaji: "Snack Basue",
-            userPreferred: "Snack Basue",
-          },
-          type: null,
-          anilistID: "166093",
-          malID: "55636",
-          synonyms: [null],
-          description:
-            "Welcome to Snack Basue! Delight yourself in this charming snack bar, just five stations away from Hokkaido's largest downtown area, Susukino. Run by the quirky proprietress, Basue, and her junior hostess, Akemi, the place is filled with laughter and smiles from its oddball regulars and walk-ins as they regale tales of their lives. So, pull up a seat and have a drink—is shochu OK? <br><br>\n(Source: Crunchyroll)",
-          episodeNum: 13,
-          animeLength: 13,
-          genres: ["Comedy"],
-          status: "FINISHED",
-          season: null,
-          averageScore: "54",
-          nextAiringEpisode: null,
-          duration: 24,
-          relatedAnime: [],
-          startDate: {
-            year: 2024,
-            month: 1,
-            day: 13,
-          },
-          endDate: {
-            year: 2024,
-            month: 4,
-            day: 6,
-          },
-          updatedAt: 1712338269,
-          images: {
-            large:
-              "https://image.tmdb.org/t/p/w440_and_h660_face/9QNmG6cv0UG0GP3Q4wQCrhkxwK4.jpg",
-            medium:
-              "https://image.tmdb.org/t/p/w300_and_h450_bestv2/9QNmG6cv0UG0GP3Q4wQCrhkxwK4.jpg",
-            small:
-              "https://image.tmdb.org/t/p/w92/9QNmG6cv0UG0GP3Q4wQCrhkxwK4.jpg",
-          },
-          bannerImage:
-            "https://image.tmdb.org/t/p/w1920_and_h800_face/kvsmDwZxVt094tX5M9tqtGvNuT3.jpg",
-          airingTime: 1712337900000,
-          delayed: false,
-          scheduledEpisode: 13,
+          scheduledEpisode: 2,
         },
         {
           slug: "highspeed-etoile",
@@ -1859,7 +2203,7 @@ function Airing() {
           season: null,
           averageScore: "70",
           nextAiringEpisode: {
-            airingAt: 1712940780,
+            airingAt: 1712944800,
             episode: 2,
           },
           duration: null,
@@ -1885,8 +2229,8 @@ function Airing() {
               "https://s4.anilist.co/file/anilistcdn/media/anime/cover/small/bx152302-afLOVyltWMSq.jpg",
           },
           bannerImage: null,
-          scheduledEpisode: 1,
-          airingTime: 1712340600000,
+          scheduledEpisode: 2,
+          airingTime: 1712945400000,
           delayed: false,
         },
         {
@@ -1910,11 +2254,8 @@ function Airing() {
           season: null,
           averageScore: "57",
           nextAiringEpisode: {
-            airingAt: 1712360400,
+            airingAt: 1712965200,
             episode: 12,
-            delayed: true,
-            delayedText:
-              "Episode 12 has been delayed by a week. Episode 12 will air on April 12th, 2024.",
           },
           duration: null,
           relatedAnime: [
@@ -2001,12 +2342,12 @@ function Airing() {
           },
           bannerImage:
             "https://image.tmdb.org/t/p/w1920_and_h800_face/1uuWlEEAZHnPX1VnwqJc7pfo2YM.jpg",
-          airingTime: 1712361000000,
-          delayed: true,
+          airingTime: 1712965800000,
+          delayed: false,
           scheduledEpisode: 12,
         },
       ],
-      today: false,
+      today: true,
     },
     {
       title: "Saturday",
@@ -2014,7 +2355,7 @@ function Airing() {
         {
           slug: "ooi-tonbo",
           title: {
-            english: null,
+            english: "Tonbo!",
             native: "オーイ! とんぼ",
             romaji: "Ooi! Tonbo",
             userPreferred: "Ooi! Tonbo",
@@ -2025,37 +2366,42 @@ function Airing() {
           synonyms: ["Hey! Tonbo", null],
           description:
             " The story begins with Igarashi, who was disqualified as a pro golfer after a certain \"incident\" and thus moves to Kagoshima Prefecture's Tokara Islands to step out of the limelight. On these islands known as \"Japan's last unexplored wilderness,\" he encounters a naive girl named Tonbo.\n<br><br>\nAs it turns out, these supposedly unexplored islands have a homemade golf course, where Tonbo plays every day. She demonstrates genius-level prowess, playing every kind of shot with just one golf club, a 3-iron. Igarashi is amazed at Tonbo's talent, even as he harbors doubts about her only using a 3-iron. Yet, hidden deep in Tonbo's heart lies a painful, sad past…. <br><br>\n(Source: Anime News Network)",
-          episodeNum: null,
+          episodeNum: 1,
           animeLength: null,
           genres: ["Drama", "Sports"],
-          status: "NOT_YET_RELEASED",
+          status: "RELEASING",
           season: null,
-          averageScore: null,
-          nextAiringEpisode: null,
-          duration: null,
+          averageScore: "58",
+          nextAiringEpisode: {
+            airingAt: 1712971800,
+            episode: 2,
+          },
+          duration: 24,
           relatedAnime: [],
           startDate: {
             year: 2024,
-            month: null,
-            day: null,
+            month: 4,
+            day: 6,
           },
           endDate: {
             year: null,
             month: null,
             day: null,
           },
-          updatedAt: 1688547644,
+          updatedAt: 1712674377,
           images: {
             large:
-              "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx164440-0OEblpcn9n6m.jpg",
+              "https://image.tmdb.org/t/p/w440_and_h660_face/rAI0hOocFwELMJVmBJn1l3ubRD9.jpg",
             medium:
-              "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx164440-0OEblpcn9n6m.jpg",
+              "https://image.tmdb.org/t/p/w300_and_h450_bestv2/rAI0hOocFwELMJVmBJn1l3ubRD9.jpg",
             small:
-              "https://s4.anilist.co/file/anilistcdn/media/anime/cover/small/bx164440-0OEblpcn9n6m.jpg",
+              "https://image.tmdb.org/t/p/w92/rAI0hOocFwELMJVmBJn1l3ubRD9.jpg",
           },
-          scheduledEpisode: 1,
-          airingTime: 1712367600000,
+          airingTime: 1712972400000,
           delayed: false,
+          scheduledEpisode: 2,
+          bannerImage:
+            "https://image.tmdb.org/t/p/w1920_and_h800_face/xd2hpd1GfMOCinTFEavXryQUIm.jpg",
         },
         {
           slug: "meitantei-conan",
@@ -2090,7 +2436,7 @@ function Airing() {
           season: "WINTER",
           averageScore: "81",
           nextAiringEpisode: {
-            airingAt: 1712998800,
+            airingAt: 1713007800,
             episode: 1120,
           },
           duration: 25,
@@ -3426,8 +3772,8 @@ function Airing() {
               "https://image.tmdb.org/t/p/w92/hSKD1ysKYJ36t6iUSf8dN3C76Se.jpg",
           },
           animeLength: null,
-          scheduledEpisode: 1119,
-          airingTime: 1712403600000,
+          scheduledEpisode: 1120,
+          airingTime: 1713008400000,
           delayed: false,
         },
         {
@@ -3451,7 +3797,7 @@ function Airing() {
           season: "SPRING",
           averageScore: "65",
           nextAiringEpisode: {
-            airingAt: 1713015000,
+            airingAt: 1713016800,
             episode: 3,
           },
           duration: 24,
@@ -3478,58 +3824,59 @@ function Airing() {
             small:
               "https://image.tmdb.org/t/p/w92/jhCmZmFmHxb7z6qVy13bvCpCRPY.jpg",
           },
-          airingTime: 1712412600000,
+          airingTime: 1713017400000,
           delayed: false,
-          scheduledEpisode: 2,
+          scheduledEpisode: 3,
         },
         {
-          slug: "bucchigiri",
+          slug: "kaijuu-8-gou",
           title: {
-            english: "BUCCHIGIRI?!",
-            native: "ぶっちぎり?!",
-            romaji: "BUCCHIGIRI?!",
-            userPreferred: "BUCCHIGIRI?!",
+            english: "Kaiju No.8",
+            native: "怪獣８号",
+            romaji: "Kaijuu 8-gou",
+            userPreferred: "Kaijuu 8-gou",
           },
           type: "TV",
-          anilistID: "165254",
-          malID: "55358",
-          synonyms: [null],
+          anilistID: "153288",
+          malID: "52588",
+          synonyms: ["Monster #8", "8Kaijuu", "KAIJU No. EIGHT", null],
           description:
-            "Arajin Tomoshibi's reunion with his old pal Matakara Asamine takes an unexpected turn when they stumble into a brawl with the toughest guys in town. And just when you thought things couldn't get weirder, a colossal genie decides to drop in. Brace yourself for the ultimate showdown. It's the clash of the cool and the magical!<br><br> (Source: Crunchyroll)",
-          episodeNum: 13,
-          animeLength: 12,
-          genres: ["Action", "Supernatural"],
-          status: "FINISHED",
-          season: "WINTER",
-          averageScore: "65",
-          nextAiringEpisode: null,
-          duration: 24,
-          trailerVideo: "Kw6JkejW_Hw",
+            "With the highest kaiju-emergence rates in the world, Japan is no stranger to attack by deadly monsters. Enter the Japan Defense Force, a military organization tasked with the neutralization of kaiju. Kafka Hibino, a kaiju-corpse cleanup man, has always dreamed of joining the force. But when he gets another shot at achieving his childhood dream, he undergoes an unexpected transformation. How can he fight kaiju now that he’s become one himself?!<br>\n<br>\n(Source: VIZ Media)",
+          episodeNum: null,
+          animeLength: null,
+          genres: ["Action", "Adventure", "Sci-Fi"],
+          status: "NOT_YET_RELEASED",
+          season: null,
+          averageScore: null,
+          nextAiringEpisode: {
+            airingAt: 1713022200,
+            episode: 1,
+          },
+          duration: null,
+          trailerVideo: "5-1wTVWKQe8",
           relatedAnime: [],
           startDate: {
             year: 2024,
-            month: 1,
-            day: 13,
+            month: null,
+            day: null,
           },
           endDate: {
-            year: 2024,
-            month: 4,
-            day: 6,
+            year: null,
+            month: null,
+            day: null,
           },
-          updatedAt: 1712418341,
+          updatedAt: 1688577181,
           images: {
             large:
-              "https://image.tmdb.org/t/p/w440_and_h660_face/8Rb5cEDdurXD4iO7zQAwbnl1765.jpg",
+              "https://image.tmdb.org/t/p/w440_and_h660_face/q2ihpco7zy6WEBMicHUgr1SqVvP.jpg",
             medium:
-              "https://image.tmdb.org/t/p/w300_and_h450_bestv2/8Rb5cEDdurXD4iO7zQAwbnl1765.jpg",
+              "https://image.tmdb.org/t/p/w300_and_h450_bestv2/q2ihpco7zy6WEBMicHUgr1SqVvP.jpg",
             small:
-              "https://image.tmdb.org/t/p/w92/8Rb5cEDdurXD4iO7zQAwbnl1765.jpg",
+              "https://image.tmdb.org/t/p/w92/q2ihpco7zy6WEBMicHUgr1SqVvP.jpg",
           },
-          bannerImage:
-            "https://s4.anilist.co/file/anilistcdn/media/anime/banner/165254-YJ00wXUFxWTG.jpg",
-          airingTime: 1712418000000,
+          airingTime: 1713022800000,
           delayed: false,
-          scheduledEpisode: 12,
+          scheduledEpisode: 1,
         },
         {
           slug: "the-fable",
@@ -3552,7 +3899,7 @@ function Airing() {
           season: null,
           averageScore: "70",
           nextAiringEpisode: {
-            airingAt: 1713023700,
+            airingAt: 1713024900,
             episode: 2,
           },
           duration: null,
@@ -3570,17 +3917,17 @@ function Airing() {
           updatedAt: 1712422798,
           images: {
             large:
-              "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx166910-pdgLmHMLdzUR.jpg",
+              "https://image.tmdb.org/t/p/w440_and_h660_face/aQeVABaQ7gZedtmtDRwhrgOQwgq.jpg",
             medium:
-              "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx166910-pdgLmHMLdzUR.jpg",
+              "https://image.tmdb.org/t/p/w300_and_h450_bestv2/aQeVABaQ7gZedtmtDRwhrgOQwgq.jpg",
             small:
-              "https://s4.anilist.co/file/anilistcdn/media/anime/cover/small/bx166910-pdgLmHMLdzUR.jpg",
+              "https://image.tmdb.org/t/p/w92/aQeVABaQ7gZedtmtDRwhrgOQwgq.jpg",
           },
           bannerImage:
             "https://s4.anilist.co/file/anilistcdn/media/anime/banner/166910-hmc3ZVLcnv9x.jpg",
-          scheduledEpisode: 1,
-          airingTime: 1712420700000,
+          airingTime: 1713025500000,
           delayed: false,
+          scheduledEpisode: 2,
         },
         {
           slug: "yoru-no-kurage-wa-oyogenai",
@@ -3603,7 +3950,7 @@ function Airing() {
           season: null,
           averageScore: "70",
           nextAiringEpisode: {
-            airingAt: 1713024000,
+            airingAt: 1713025800,
             episode: 2,
           },
           duration: null,
@@ -3622,17 +3969,157 @@ function Airing() {
           updatedAt: 1712422232,
           images: {
             large:
-              "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx163078-kIhCmQARcoOD.jpg",
+              "https://image.tmdb.org/t/p/w440_and_h660_face/hos25Y5VGGvmHGFSCz0rNPoPhMj.jpg",
             medium:
-              "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx163078-kIhCmQARcoOD.jpg",
+              "https://image.tmdb.org/t/p/w300_and_h450_bestv2/hos25Y5VGGvmHGFSCz0rNPoPhMj.jpg",
             small:
-              "https://s4.anilist.co/file/anilistcdn/media/anime/cover/small/bx163078-kIhCmQARcoOD.jpg",
+              "https://image.tmdb.org/t/p/w92/hos25Y5VGGvmHGFSCz0rNPoPhMj.jpg",
           },
           bannerImage:
             "https://s4.anilist.co/file/anilistcdn/media/anime/banner/163078-4dH1WfraZFO8.jpg",
-          scheduledEpisode: 1,
-          airingTime: 1712421600000,
+          airingTime: 1713026400000,
           delayed: false,
+          scheduledEpisode: 2,
+        },
+        {
+          slug: "long-zu",
+          title: {
+            english: "Dragon Raja -The Blazing Dawn-",
+            native: "龙族",
+            romaji: "Long Zu",
+            userPreferred: "Long Zu",
+          },
+          type: "ONA",
+          anilistID: "122511",
+          malID: "44408",
+          synonyms: ["Dragon Raja"],
+          description:
+            "Lu Mingfei never expected to live an extraordinary life. He was content with his average achievements and took pride in his skill in Starcraft. However, all that is upended when he suddenly receives a scholarship to study in Chicago at a place called Cassell College.<br>\nIt all seems too good to be true, this can only be a scam! Little does he know, that when he does eventually accept the offer, it is but the beginning of the rest of his life, and the college's obscurity will be the least of his concerns once they start telling him about the dragons...\n<br><br>\n<i>Note: Episode 0 aired with a runtime of 49 minutes.</i>",
+          episodeNum: 16,
+          animeLength: 17,
+          genres: ["Action", "Drama", "Fantasy"],
+          status: "FINISHED",
+          season: null,
+          averageScore: "69",
+          nextAiringEpisode: {
+            airingAt: 1713026700,
+            episode: 3,
+          },
+          duration: 18,
+          trailerVideo: "2o3WETDYBhc",
+          relatedAnime: [
+            {
+              type: "ANIME",
+              format: "ONA",
+              relationType: "SEQUEL",
+              relationName: "Sequel",
+              images: {
+                large:
+                  "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx157692-lihmnuJGcbM6.png",
+                medium:
+                  "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx157692-lihmnuJGcbM6.png",
+              },
+              bannerImage: null,
+              meanScore: null,
+              episodes: null,
+              description: "The second season of Long Zu.",
+              startDate: {
+                year: null,
+                month: null,
+                day: null,
+              },
+              seasonYear: null,
+              animeName: {
+                userPreferred: "Long Zu 2",
+                english: null,
+                romaji: "Long Zu 2",
+              },
+              anilistID: 157692,
+              slug: "long-zu-2",
+            },
+          ],
+          startDate: {
+            year: 2022,
+            month: 8,
+            day: 19,
+          },
+          endDate: {
+            year: 2022,
+            month: 11,
+            day: 25,
+          },
+          updatedAt: 1712423908,
+          bannerImage:
+            "https://s4.anilist.co/file/anilistcdn/media/anime/banner/122511-c2NEixtg4qHx.jpg",
+          images: {
+            large:
+              "https://image.tmdb.org/t/p/w440_and_h660_face/4OxjZt3Evt0UY65Ozr4C4S895CO.jpg",
+            medium:
+              "https://image.tmdb.org/t/p/w300_and_h450_bestv2/4OxjZt3Evt0UY65Ozr4C4S895CO.jpg",
+            small:
+              "https://image.tmdb.org/t/p/w92/4OxjZt3Evt0UY65Ozr4C4S895CO.jpg",
+          },
+          airingTime: 1713027300000,
+          delayed: false,
+          scheduledEpisode: 3,
+        },
+        {
+          slug: "sasayaku-you-ni-koi-wo-utau",
+          title: {
+            english: null,
+            native: "ささやくように恋を唄う",
+            romaji: "Sasayaku You ni Koi wo Utau",
+            userPreferred: "Sasayaku You ni Koi wo Utau",
+          },
+          type: "TV",
+          anilistID: "160181",
+          malID: "54233",
+          synonyms: [
+            "Whisper Me a Love Song",
+            "Whispering You a Love Song",
+            "SasaKoi",
+            "Cicha piosenka o miłości",
+            "กระซิบรักเป็นทำนองร้องบอกเธอ",
+            "Flüster mir ein Liebeslied",
+            null,
+          ],
+          description:
+            'Bubbly, energetic first-year high school student Himari falls head over heels for her senpai Yori after hearing her band perform on the first day of school. Himari tells Yori she just loves her, and to Himari\'s surprise, Yori says she loves Himari back! But when Himari realizes that she and her senpai are feeling two different kinds of love, she begins to ask herself what "love" really means...<br>\n<br>\n(Source: Kodansha USA)',
+          episodeNum: null,
+          animeLength: null,
+          genres: ["Drama", "Music", "Romance"],
+          status: "NOT_YET_RELEASED",
+          season: "WINTER",
+          averageScore: null,
+          nextAiringEpisode: {
+            airingAt: 1713029400,
+            episode: 1,
+          },
+          duration: null,
+          trailerVideo: "RN1d3Ny2AgM",
+          relatedAnime: [],
+          startDate: {
+            year: 2024,
+            month: 1,
+            day: null,
+          },
+          endDate: {
+            year: null,
+            month: null,
+            day: null,
+          },
+          updatedAt: 1688580781,
+          images: {
+            large:
+              "https://image.tmdb.org/t/p/w440_and_h660_face/xWStcaXFVsu7iyJovp6spxZplWG.jpg",
+            medium:
+              "https://image.tmdb.org/t/p/w300_and_h450_bestv2/xWStcaXFVsu7iyJovp6spxZplWG.jpg",
+            small:
+              "https://image.tmdb.org/t/p/w92/xWStcaXFVsu7iyJovp6spxZplWG.jpg",
+          },
+          airingTime: 1713030000000,
+          delayed: false,
+          scheduledEpisode: 1,
         },
         {
           slug: "tonari-no-youkai-san",
@@ -3655,7 +4142,7 @@ function Airing() {
           season: null,
           averageScore: "70",
           nextAiringEpisode: {
-            airingAt: 1713027600,
+            airingAt: 1713033900,
             episode: 2,
           },
           duration: null,
@@ -3673,17 +4160,17 @@ function Airing() {
           updatedAt: 1712432736,
           images: {
             large:
-              "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx146867-PZrxvW84s1n1.jpg",
+              "https://image.tmdb.org/t/p/w440_and_h660_face/23DRKb4JlytHeOn8newtFUKjqrU.jpg",
             medium:
-              "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx146867-PZrxvW84s1n1.jpg",
+              "https://image.tmdb.org/t/p/w300_and_h450_bestv2/23DRKb4JlytHeOn8newtFUKjqrU.jpg",
             small:
-              "https://s4.anilist.co/file/anilistcdn/media/anime/cover/small/bx146867-PZrxvW84s1n1.jpg",
+              "https://image.tmdb.org/t/p/w92/23DRKb4JlytHeOn8newtFUKjqrU.jpg",
           },
           bannerImage:
             "https://image.tmdb.org/t/p/w1920_and_h800_face/rNKcsqiMvu2CXH5ShsXGlYK8clp.jpg",
-          scheduledEpisode: 1,
-          airingTime: 1712429700000,
+          airingTime: 1713034500000,
           delayed: false,
+          scheduledEpisode: 2,
         },
       ],
       today: false,
@@ -3712,7 +4199,7 @@ function Airing() {
           season: "WINTER",
           averageScore: "68",
           nextAiringEpisode: {
-            airingAt: 1713051000,
+            airingAt: 1713058200,
             episode: 11,
           },
           duration: 24,
@@ -3739,9 +4226,9 @@ function Airing() {
             small:
               "https://image.tmdb.org/t/p/w92/n54Wc92wS1sjZQEQHTDiHXGeruV.jpg",
           },
-          airingTime: 1712454000000,
+          airingTime: 1713058800000,
           delayed: false,
-          scheduledEpisode: 10,
+          scheduledEpisode: 11,
         },
         {
           title: {
@@ -3773,8 +4260,11 @@ function Airing() {
           season: "FALL",
           averageScore: "88",
           nextAiringEpisode: {
-            airingAt: 1713054600,
+            airingAt: 1713060000,
             episode: 1101,
+            delayed: true,
+            delayedText:
+              "Episode 1101 has been delayed by a week due to a recap episode. Episode 1101 will air on April 21st, 2024.",
           },
           trailerVideo: "AhcE7VWVblc",
           relatedAnime: [
@@ -5121,9 +5611,9 @@ function Airing() {
             medium:
               "https://www.themoviedb.org/t/p/original/oVfucXvhutTpYExG9k06NJqnpT9.jpg",
           },
-          scheduledEpisode: 1100,
-          airingTime: 1712455800000,
-          delayed: false,
+          scheduledEpisode: 1101,
+          airingTime: 1713060600000,
+          delayed: true,
         },
         {
           slug: "ninja-kamui",
@@ -5146,7 +5636,7 @@ function Airing() {
           season: "WINTER",
           averageScore: "78",
           nextAiringEpisode: {
-            airingAt: 1713070800,
+            airingAt: 1713070860,
             episode: 10,
           },
           duration: 23,
@@ -5173,9 +5663,9 @@ function Airing() {
             small:
               "https://image.tmdb.org/t/p/w92/3dl7QFrpvtu9My4L6K7KtUMP8p1.jpg",
           },
-          airingTime: 1712466660000,
+          airingTime: 1713071460000,
           delayed: false,
-          scheduledEpisode: 9,
+          scheduledEpisode: 10,
         },
         {
           slug: "yozakura-san-chi-no-daisakusen",
@@ -5206,7 +5696,7 @@ function Airing() {
           season: null,
           averageScore: "70",
           nextAiringEpisode: {
-            airingAt: 1713081600,
+            airingAt: 1713081660,
             episode: 2,
           },
           duration: null,
@@ -5224,17 +5714,17 @@ function Airing() {
           updatedAt: 1712477713,
           images: {
             large:
-              "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx158898-O3egiBNkxLQO.png",
+              "https://image.tmdb.org/t/p/w440_and_h660_face/cVisjiKyY3i1ZfW1MhvePk65Sro.jpg",
             medium:
-              "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx158898-O3egiBNkxLQO.png",
+              "https://image.tmdb.org/t/p/w300_and_h450_bestv2/cVisjiKyY3i1ZfW1MhvePk65Sro.jpg",
             small:
-              "https://s4.anilist.co/file/anilistcdn/media/anime/cover/small/bx158898-O3egiBNkxLQO.png",
+              "https://image.tmdb.org/t/p/w92/cVisjiKyY3i1ZfW1MhvePk65Sro.jpg",
           },
           bannerImage:
             "https://image.tmdb.org/t/p/w1920_and_h800_face/5k5QemX3fDy1KGf7ZTcmfSg0JnQ.jpg",
-          scheduledEpisode: 1,
-          airingTime: 1712477460000,
+          airingTime: 1713082260000,
           delayed: false,
+          scheduledEpisode: 2,
         },
         {
           slug: "captain-tsubasa-season-2-junior-youth-hen",
@@ -5261,7 +5751,7 @@ function Airing() {
           season: "FALL",
           averageScore: "69",
           nextAiringEpisode: {
-            airingAt: 1713083400,
+            airingAt: 1713085200,
             episode: 28,
           },
           duration: 22,
@@ -5352,8 +5842,8 @@ function Airing() {
           },
           bannerImage:
             "https://s4.anilist.co/file/anilistcdn/media/anime/banner/163024-rFtOWsDQy12B.jpg",
-          scheduledEpisode: 27,
-          airingTime: 1712481000000,
+          scheduledEpisode: 28,
+          airingTime: 1713085800000,
           delayed: false,
         },
         {
@@ -5382,8 +5872,8 @@ function Airing() {
           season: "SPRING",
           averageScore: "79",
           nextAiringEpisode: {
-            airingAt: 1712480460,
-            episode: 255,
+            airingAt: 1713085260,
+            episode: 256,
           },
           duration: 2,
           trailerVideo: "Jnu8xZpHj00",
@@ -5569,9 +6059,9 @@ function Airing() {
             small:
               "https://image.tmdb.org/t/p/w92/2Ix5Qwad4Zsdx6CC9yBl06rt3qt.jpg",
           },
-          airingTime: 1712481060000,
+          airingTime: 1713085860000,
           delayed: false,
-          scheduledEpisode: 255,
+          scheduledEpisode: 256,
         },
         {
           slug: "hibike-euphonium-kumiko-3-nensei-hen",
@@ -5594,7 +6084,7 @@ function Airing() {
           season: null,
           averageScore: "70",
           nextAiringEpisode: {
-            airingAt: 1713081600,
+            airingAt: 1713090600,
             episode: 2,
           },
           duration: null,
@@ -5655,8 +6145,8 @@ function Airing() {
           },
           bannerImage:
             "https://s4.anilist.co/file/anilistcdn/media/anime/banner/109731-O9wpjWphEhKn.jpg",
-          scheduledEpisode: 1,
-          airingTime: 1712486400000,
+          scheduledEpisode: 2,
+          airingTime: 1713091200000,
           delayed: false,
         },
         {
@@ -5680,7 +6170,7 @@ function Airing() {
           season: null,
           averageScore: "70",
           nextAiringEpisode: {
-            airingAt: 1713099600,
+            airingAt: 1713103200,
             episode: 2,
           },
           duration: null,
@@ -5731,17 +6221,17 @@ function Airing() {
           updatedAt: 1712499643,
           images: {
             large:
-              "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx169584-e9X229cmrh8j.jpg",
+              "https://image.tmdb.org/t/p/w440_and_h660_face/cHRE2RI6KsyrBTRSAJwddfBJWao.jpg",
             medium:
-              "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx169584-e9X229cmrh8j.jpg",
+              "https://image.tmdb.org/t/p/w300_and_h450_bestv2/cHRE2RI6KsyrBTRSAJwddfBJWao.jpg",
             small:
-              "https://s4.anilist.co/file/anilistcdn/media/anime/cover/small/bx169584-e9X229cmrh8j.jpg",
+              "https://image.tmdb.org/t/p/w92/cHRE2RI6KsyrBTRSAJwddfBJWao.jpg",
           },
           bannerImage:
             "https://image.tmdb.org/t/p/w1920_and_h800_face/jfO2pBpARfE7xjALilxUcIHcrcX.jpg",
-          scheduledEpisode: 1,
-          airingTime: 1712499000000,
+          airingTime: 1713103800000,
           delayed: false,
+          scheduledEpisode: 2,
         },
         {
           slug: "vampire-dormitory",
@@ -5764,7 +6254,7 @@ function Airing() {
           season: "SPRING",
           averageScore: "70",
           nextAiringEpisode: {
-            airingAt: 1713105000,
+            airingAt: 1713105900,
             episode: 2,
           },
           duration: null,
@@ -5784,15 +6274,15 @@ function Airing() {
           bannerImage: null,
           images: {
             large:
-              "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx170604-VwLdBL8Gip9Z.jpg",
+              "https://image.tmdb.org/t/p/w440_and_h660_face/jmfNa7BQfI7DN1kFSx6jkBwYDGG.jpg",
             medium:
-              "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx170604-VwLdBL8Gip9Z.jpg",
+              "https://image.tmdb.org/t/p/w300_and_h450_bestv2/jmfNa7BQfI7DN1kFSx6jkBwYDGG.jpg",
             small:
-              "https://s4.anilist.co/file/anilistcdn/media/anime/cover/small/bx170604-VwLdBL8Gip9Z.jpg",
+              "https://image.tmdb.org/t/p/w92/jmfNa7BQfI7DN1kFSx6jkBwYDGG.jpg",
           },
-          scheduledEpisode: 1,
-          airingTime: 1712501700000,
+          airingTime: 1713106500000,
           delayed: false,
+          scheduledEpisode: 2,
         },
         {
           slug: "jii-san-baa-san-wakagaeru",
@@ -5820,7 +6310,7 @@ function Airing() {
           season: null,
           averageScore: "70",
           nextAiringEpisode: {
-            airingAt: 1713101400,
+            airingAt: 1713106800,
             episode: 2,
           },
           duration: null,
@@ -5838,16 +6328,16 @@ function Airing() {
           updatedAt: 1712503142,
           images: {
             large:
-              "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx168138-jgMSP1rDkJhs.jpg",
+              "https://image.tmdb.org/t/p/w440_and_h660_face/pfiHJ5l67ptZSStHFaFdAppd5kZ.jpg",
             medium:
-              "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx168138-jgMSP1rDkJhs.jpg",
+              "https://image.tmdb.org/t/p/w300_and_h450_bestv2/pfiHJ5l67ptZSStHFaFdAppd5kZ.jpg",
             small:
-              "https://s4.anilist.co/file/anilistcdn/media/anime/cover/small/bx168138-jgMSP1rDkJhs.jpg",
+              "https://image.tmdb.org/t/p/w92/pfiHJ5l67ptZSStHFaFdAppd5kZ.jpg",
           },
           bannerImage: null,
-          scheduledEpisode: 1,
-          airingTime: 1712502600000,
+          airingTime: 1713107400000,
           delayed: false,
+          scheduledEpisode: 2,
         },
         {
           slug: "tensei-kizoku-kantei-skill-de-nariagaru",
@@ -5874,7 +6364,7 @@ function Airing() {
           season: null,
           averageScore: "70",
           nextAiringEpisode: {
-            airingAt: 1713105000,
+            airingAt: 1713107700,
             episode: 2,
           },
           duration: null,
@@ -5893,16 +6383,17 @@ function Airing() {
           updatedAt: 1712513834,
           images: {
             large:
-              "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx164702-FjpM96MPdzVm.jpg",
+              "https://image.tmdb.org/t/p/w440_and_h660_face/pMLitK7uCKoF25dNn5Xai0RuFra.jpg",
             medium:
-              "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx164702-FjpM96MPdzVm.jpg",
+              "https://image.tmdb.org/t/p/w300_and_h450_bestv2/pMLitK7uCKoF25dNn5Xai0RuFra.jpg",
             small:
-              "https://s4.anilist.co/file/anilistcdn/media/anime/cover/small/bx164702-FjpM96MPdzVm.jpg",
+              "https://image.tmdb.org/t/p/w92/pMLitK7uCKoF25dNn5Xai0RuFra.jpg",
           },
-          bannerImage: null,
-          scheduledEpisode: 1,
-          airingTime: 1712502600000,
+          bannerImage:
+            "https://image.tmdb.org/t/p/w1920_and_h800_face/hhxCYAcFdeoiaBjKshMgKEp1X9E.jpg",
+          airingTime: 1713108300000,
           delayed: false,
+          scheduledEpisode: 2,
         },
         {
           slug: "mushoku-tensei-ii-isekai-ittara-honki-dasu-part-2",
@@ -5928,7 +6419,7 @@ function Airing() {
           season: "SPRING",
           averageScore: "70",
           nextAiringEpisode: {
-            airingAt: 1713106800,
+            airingAt: 1713108600,
             episode: 2,
           },
           duration: null,
@@ -5979,17 +6470,17 @@ function Airing() {
           updatedAt: 1712513391,
           images: {
             large:
-              "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx166873-JC56ExYSC2YB.jpg",
+              "https://image.tmdb.org/t/p/w440_and_h660_face/kVHnRfj5c7rzetzMPlRQXEZRzkH.jpg",
             medium:
-              "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx166873-JC56ExYSC2YB.jpg",
+              "https://image.tmdb.org/t/p/w300_and_h450_bestv2/kVHnRfj5c7rzetzMPlRQXEZRzkH.jpg",
             small:
-              "https://s4.anilist.co/file/anilistcdn/media/anime/cover/small/bx166873-JC56ExYSC2YB.jpg",
+              "https://image.tmdb.org/t/p/w92/kVHnRfj5c7rzetzMPlRQXEZRzkH.jpg",
           },
           bannerImage:
             "https://s4.anilist.co/file/anilistcdn/media/anime/banner/166873-GTi5imE5skM2.jpg",
-          scheduledEpisode: 1,
-          airingTime: 1712504400000,
+          airingTime: 1713109200000,
           delayed: false,
+          scheduledEpisode: 2,
         },
         {
           slug: "blue-archive-the-animation",
@@ -6005,13 +6496,16 @@ function Airing() {
           synonyms: ["ブルアカ", null],
           description:
             "A live-streamed second anniversary special for Yostar and Nexon Games' <i>Blue Archive</i> smartphone role-playing game announced that production on a television anime, <i>Blue Archive The Animation</i>, has been green-lit.<br><br>\n(Source: Anime News Network)",
-          episodeNum: null,
+          episodeNum: 1,
           animeLength: null,
           genres: [],
-          status: "NOT_YET_RELEASED",
+          status: "RELEASING",
           season: null,
           averageScore: null,
-          nextAiringEpisode: null,
+          nextAiringEpisode: {
+            airingAt: 1713109500,
+            episode: 2,
+          },
           duration: null,
           relatedAnime: [],
           startDate: {
@@ -6027,68 +6521,18 @@ function Airing() {
           updatedAt: 1688555540,
           images: {
             large:
-              "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx160589-xtebwU6ihBg1.jpg",
+              "https://image.tmdb.org/t/p/w440_and_h660_face/yMfRJxj71eKRSAUBTX2OW5blkEN.jpg",
             medium:
-              "https://s4.anilist.co/file/anilistcdn/media/anime/cover/medium/bx160589-xtebwU6ihBg1.jpg",
+              "https://image.tmdb.org/t/p/w300_and_h450_bestv2/yMfRJxj71eKRSAUBTX2OW5blkEN.jpg",
             small:
-              "https://s4.anilist.co/file/anilistcdn/media/anime/cover/small/bx160589-xtebwU6ihBg1.jpg",
+              "https://image.tmdb.org/t/p/w92/yMfRJxj71eKRSAUBTX2OW5blkEN.jpg",
           },
-          scheduledEpisode: 1,
-          airingTime: 1712505300000,
+          airingTime: 1713110100000,
           delayed: false,
-        },
-        {
-          slug: "yami-shibai-12",
-          title: {
-            english: "Theatre of Darkness: Yamishibai 12",
-            native: "闇芝居 十二期",
-            romaji: "Yami Shibai 12",
-            userPreferred: "Yami Shibai 12",
-          },
-          type: "TV_SHORT",
-          anilistID: "170953",
-          malID: "57180",
-          synonyms: [],
-          description: "The twelfth season of Yami Shibai.",
-          episodeNum: 12,
-          animeLength: null,
-          genres: ["Horror", "Supernatural"],
-          status: "RELEASING",
-          season: "WINTER",
-          averageScore: "52",
-          nextAiringEpisode: {
-            airingAt: 1712519100,
-            episode: 13,
-          },
-          duration: 4,
-          relatedAnime: [],
-          startDate: {
-            year: 2024,
-            month: 1,
-            day: 15,
-          },
-          endDate: {
-            year: null,
-            month: null,
-            day: null,
-          },
-          updatedAt: 1711915047,
-          bannerImage:
-            "https://image.tmdb.org/t/p/w1920_and_h800_face/kdgX5uDV5HoaiIo8HsCEyx6ncH6.jpg",
-          images: {
-            large:
-              "https://image.tmdb.org/t/p/w440_and_h660_face/cGBwUshccdU6uTWC6JDMSrKYyYK.jpg",
-            medium:
-              "https://image.tmdb.org/t/p/w300_and_h450_bestv2/cGBwUshccdU6uTWC6JDMSrKYyYK.jpg",
-            small:
-              "https://image.tmdb.org/t/p/w92/cGBwUshccdU6uTWC6JDMSrKYyYK.jpg",
-          },
-          airingTime: 1712519700000,
-          delayed: false,
-          scheduledEpisode: 13,
+          scheduledEpisode: 2,
         },
       ],
-      today: true,
+      today: false,
     },
   ];
   const renderSchedule = () => {

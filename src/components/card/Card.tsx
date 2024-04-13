@@ -5,10 +5,11 @@ import { AnimeInfo } from "../../../types/types";
 import { Icon } from "@iconify/react";
 import { useRouter } from "next/navigation";
 import { useDetailsModal, useModal } from "../../../store/store";
+import { BsStarFill } from "react-icons/bs";
 
 function Card(anime: any) {
   const { enableIsModal } = useModal();
-  const {openModal} = useDetailsModal()
+  const { openModal } = useDetailsModal();
   const router = useRouter();
   return (
     <>
@@ -32,16 +33,40 @@ function Card(anime: any) {
         // }
         onClick={() =>
           openModal(
-            anime.mal_id || anime.malId || anime.id || anime.malID || anime.anime_id
-          ,anime.id || anime.anilistid)
+            anime.mal_id ||
+              anime.malId ||
+              anime.id ||
+              anime.malID ||
+              anime.anime_id,
+            anime.id || anime.anilistid
+          )
         }
       >
-        <div className={`card   overflow-hidden`}>
+        <div className={`card relative  overflow-hidden`}>
           <img
             className=" object-cover  h-[180px] md:h-[270px]  rounded-sm"
-            src={anime.image || anime.image_url || anime.images.large }
+            src={anime.image || anime.image_url || anime.images.large}
             alt={anime?.title?.romaji}
           />
+
+          {anime?.rating && (
+            <small
+              style={{
+                // backgroundImage:
+                //   "url(https://cdn.myanimelist.net/images/image_box_shadow_bottom.png?v=1634263200)",
+                backgroundSize: "100% 100%",
+                position: "absolute",
+                top: "2px",
+                left: "2px",
+                textShadow: "0 1px 2px #000, 0 1px 2px #000",
+                fontSize: ".75rem",
+              }}
+              className="text-neutral-100 flex gap-1 items-center bg-neutral-800/80 rounded-xl py-1 px-3 z-50 whitespace-nowrap text-ellipsis overflow-hidden  text-start hover:before:scale-105"
+            >
+              <BsStarFill className="text-[#f7bf63]" />
+              {anime?.rating / 10}{" "}
+            </small>
+          )}
           <small
             style={{
               // backgroundImage:
@@ -54,7 +79,7 @@ function Card(anime: any) {
               textShadow: "0 1px 2px #000, 0 1px 2px #000",
               fontSize: ".75rem",
             }}
-            className="text-neutral-100 p-2 z-50 whitespace-nowrap text-ellipsis overflow-hidden  text-start hover:before:scale-105"
+            className={`text-[${anime?.color}] p-2 z-50 whitespace-nowrap text-ellipsis overflow-hidden  text-start hover:before:scale-105`}
           >
             {anime.title?.romaji || anime.title}
           </small>
