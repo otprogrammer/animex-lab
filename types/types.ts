@@ -230,6 +230,7 @@ export type GridContainerProps = {
   data:any[];
   heading?:string;
   swiperId?:number;
+  day?:string;
   refresh?:() => void
 }
 

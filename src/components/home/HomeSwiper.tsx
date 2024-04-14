@@ -45,7 +45,7 @@ export default function HomeSwiper() {
   };
 
   return (
-    <div className="max-w-[80%] mx-auto overflow-hidden w-full ">
+    <div className="max-w-[80%] mx-auto overflow-hidden w-full rounded-lg">
       <div className="">
         <div className="flex p-4 items-center flex-row-reverse w-full lg:w-11/12 justify-between mx-auto">
           <div className="flex items-center justify-center gap-4">
@@ -63,10 +63,10 @@ export default function HomeSwiper() {
         slidesPerView={isMobile ? 2 : 1} // Display 4 slides at once
         spaceBetween={2} // Add space between slides
         coverflowEffect={{
-          rotate: 0,
+          rotate: 30,
           depth: 0,
           slideShadows: true,
-          stretch: 0,
+          stretch: 10,
           scale: 1,
         }}
         modules={[Autoplay]}
@@ -181,7 +181,7 @@ export default function HomeSwiper() {
 
               <img
                 src={`${`https://image.tmdb.org/t/p/original${show.poster_path}`}`}
-                className={` p-4 h-full w-[240px] object-cover rounded-sm`}
+                className={` p-4 h-full w-[240px] object-cover rounded-lg`}
                 alt=""
               />
 

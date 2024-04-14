@@ -30,6 +30,7 @@ export default function GridContainer({
   heading,
   swiperId,
   refresh,
+  day,
 }: GridContainerProps) {
   const swiper = useSwiper();
   const currentSwiper = useRef(null);
@@ -38,6 +39,14 @@ export default function GridContainer({
     <div className="home_container m-3 md:max-w-[90%] mx-auto">
       <>
         <div className=" w-full flex justify-between items-center mt-5">
+          {day && (
+             <span
+             className={`  flex text-white  font-semibold items-center gap-2  text-2xl`}
+           >
+             <span className="w-1 h-8 bg-red-500 rounded-full"></span>
+             {day}
+           </span>
+          )}
           {heading && (
             <span
               className={`  flex text-white  font-semibold items-center gap-2  text-2xl`}

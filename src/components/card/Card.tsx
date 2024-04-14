@@ -6,6 +6,29 @@ import { Icon } from "@iconify/react";
 import { useRouter } from "next/navigation";
 import { useDetailsModal, useModal } from "../../../store/store";
 import { BsStarFill } from "react-icons/bs";
+import { CgTime } from "react-icons/cg";
+import { RiTimeFill } from "react-icons/ri";
+
+function formatTimestamp(timestamp: number): string {
+  // Create a new Date object using the provided timestamp
+  const date = new Date(timestamp);
+
+  // Get hours and minutes
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+
+  // Determine AM or PM suffix
+  const ampm = hours >= 12 ? "PM" : "AM";
+
+  // Convert hour from 24-hour to 12-hour format
+  const formattedHour = hours % 12 || 12; // Converts 0 hours to 12 for 12 AM
+
+  // Format minutes to ensure two digits
+  const formattedMinutes = minutes < 10 ? "0" + minutes : minutes;
+
+  // Combine parts to form the final time string
+  return `${formattedHour}:${formattedMinutes} ${ampm}`;
+}
 
 function Card(anime: any) {
   const { enableIsModal } = useModal();
@@ -45,7 +68,7 @@ function Card(anime: any) {
         <div className={`card relative  overflow-hidden`}>
           <img
             className=" object-cover  h-[180px] md:h-[270px]  rounded-lg"
-            src={anime.image || anime.image_url || anime.images.large}
+            src={anime.image || anime.image_url || anime?.images?.large}
             alt={anime?.title?.romaji}
           />
 
@@ -67,6 +90,26 @@ function Card(anime: any) {
               {anime?.score}
             </small>
           )}
+
+          {anime.airingTime && (
+            <small
+              style={{
+                // backgroundImage:
+                //   "url(https://cdn.myanimelist.net/images/image_box_shadow_bottom.png?v=1634263200)",
+                backgroundSize: "100% 100%",
+                position: "absolute",
+                top: "2px",
+                left: "2px",
+                textShadow: "0 1px 2px #000, 0 1px 2px #000",
+                fontSize: ".75rem",
+              }}
+              className="text-neutral-100 flex gap-1 items-center bg-neutral-800/80 rounded-xl py-1 px-3 z-50 whitespace-nowrap text-ellipsis overflow-hidden  text-start hover:before:scale-105"
+            >
+              <RiTimeFill className="text-[#c5ff59] animate-pulse" />
+              {formatTimestamp(anime.airingTime + 3600000)}
+            </small>
+          )}
+
           <small
             style={{
               // backgroundImage:

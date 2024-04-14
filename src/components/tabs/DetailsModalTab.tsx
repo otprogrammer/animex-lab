@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Tab, Transition } from "@headlessui/react";
 import Characters from "../details/Characters";
 import Similar from "../details/Similar";
@@ -7,6 +7,7 @@ import OpEd from "../details/OpEd";
 import Relations from "../details/Relations";
 import Trailer from "../trailer/Trailer";
 import { Button } from "@nextui-org/react";
+import { useDetailsModal } from "../../../store/store";
 
 type DetailsTabsProps = {
   Overview: any;
@@ -47,8 +48,15 @@ export default function DetailsModalTab(props: DetailsTabsProps) {
     OPED: "",
     Trailer: "",
   });
+  const { anilistid } = useDetailsModal();
+  const divRef = useRef(null);
 
   const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    handleItemClick(0, "null");
+    
+  }, [anilistid]);
 
   const handleItemClick = (index: number, itemName: string) => {
     setActiveIndex(index);
@@ -61,10 +69,11 @@ export default function DetailsModalTab(props: DetailsTabsProps) {
   return (
     <div className="w-full px-0">
       <Tab.Group>
-        <Tab.List className="hidden md:grid grid-cols-4 divide-x-[1px] divide-neutral-800 text-sm md:text-lg md:grid-cols-6 w-full lg:max-w-full 2xl:max-w-[75%] mx-auto place-self-center">
+        <Tab.List  className="hidden md:grid grid-cols-4 divide-x-[1px] divide-neutral-800 text-sm md:text-lg md:grid-cols-6 w-full lg:max-w-full 2xl:max-w-[75%] mx-auto place-self-center">
           {Object.keys(categories).map((category, index) => (
-            <Button 
-            className={`
+            <Button
+            ref={divRef}
+              className={`
               focus:outline-none focus:border-none w-full text-[10px] md:text-md
               text-white
               ${
@@ -72,20 +81,13 @@ export default function DetailsModalTab(props: DetailsTabsProps) {
                   ? "text-red-600 bg-black  hover:text-white"
                   : "hover:txt-primary bg-black/25"
               } text-center  cursor-pointer font-bold`}
-            key={index}
-            onClick={() => handleItemClick(index, category)}
-            radius="none">
-
-            
-            <Tab
-               className="w-full focus:outline-none focus:border-none lg:p-2 mx-[1px] "
-              
+              key={index}
+              onClick={() => handleItemClick(index, category)}
+              radius="none"
             >
-              
-
-              {category}
-              
-            </Tab>
+              <Tab className="w-full focus:outline-none focus:border-none lg:p-2 mx-[1px] ">
+                {category}
+              </Tab>
             </Button>
           ))}
           <hr
@@ -118,10 +120,7 @@ export default function DetailsModalTab(props: DetailsTabsProps) {
           <TP
             data={<OpEd opening_themes={props.OP} ending_themes={props.ED} />}
           />
-          <TP
-            data={<Trailer trailer={props.Trailer}/>}
-          />
-          
+          <TP data={<Trailer trailer={props.Trailer} />} />
         </Tab.Panels>
       </Tab.Group>
     </div>

@@ -503,7 +503,8 @@ export default function WatchContainer(props: WatchProps) {
                   source={source}
                   onEvent={onEvent}
                   duration={lastEpisodeDuration}
-                  playing={isAutoPlay ? true : false}
+                  autoplay={isAutoPlay ? true : false}
+
                   // autoplay={true}
                 />
               </div>
