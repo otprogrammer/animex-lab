@@ -121,7 +121,7 @@ export default function Episodes({
                     className={`flex-shrink-0 w-full hover:scale-110 transition-all group-hover:opacity-60 shadow-xl overflow-hidden ${
                       isModal ? "h-[130px]" : " h-[140px]"
                     } rounded-lg   object-cover`}
-                    src={ep.image || animeImg}
+                    src={ep.image || ep.img || animeImg}
                     alt={ep.title}
                   />
 

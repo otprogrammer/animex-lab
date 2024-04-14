@@ -127,6 +127,7 @@ export type AnimeInfo = {
   export type AnimeEpisodesProps = {
     id: string;
     image: string;
+    img:string;
     title: string;
     number: number;
     air_date: string;
