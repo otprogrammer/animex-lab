@@ -21,7 +21,7 @@ import DetailsModal from "@/components/modals/DetailsModal";
 import Chat from "@/components/chat/Chat";
 
 // export const metadata: Metadata = {
-//   title: "Animex",
+//   title: "Animexxx",
 //   description:
 //     "Animex - Watch Anime for free in HD quality with English subbed or dubbed. You can watch anime online free in HD. Best place for free find and one-click anime. English Subbed and Dubbed anime online. WATCH NOW!",
 //   keywords:
