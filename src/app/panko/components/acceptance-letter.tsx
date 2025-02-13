@@ -67,7 +67,7 @@ export default function EditAcceptanceLetter() {
   return (
     <Card className="max-w-lg mx-auto">
       <CardHeader>
-        <h2 className="text-xl font-bold">Edit Acceptance Letter</h2>
+        <h2 className="text-xl font-bold">Acceptance Letter</h2>
       </CardHeader>
       <CardBody className="gap-4">
       <Input label="Month" name="month" value={formData.month} onChange={handleChange} />
