@@ -107,7 +107,7 @@ export default function EditAcceptanceLetter() {
       </CardBody>
       <CardFooter>
         <Button color="success" variant="bordered" onPress={generateDocument} className="w-full">
-          Download Updated Acceptance Letter
+          Download Acceptance Letter
         </Button>
       </CardFooter>
     </Card>
